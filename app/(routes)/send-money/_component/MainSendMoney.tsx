@@ -9,7 +9,7 @@ import PaymentStep from "./steps/paymentStep";
 import ReceiverStep from "./steps/recieverStep";
 
 const MainSendMoney = () => {
-    const steps = ["details", "receiver", "payment"];
+    const steps = ["details", "recipient", "review", "payment"];
     const [activeStep, setActiveStep] = useState(0);
 
     const onNextStep = () =>
@@ -27,6 +27,8 @@ const MainSendMoney = () => {
             case 1:
                 return <ReceiverStep onNext={onNextStep} />;
             case 2:
+                return <PaymentStep onNext={onNextStep} />;
+            case 3:
                 return <PaymentStep onNext={onNextStep} />;
             default:
                 break;
