@@ -6,7 +6,7 @@ const HeroSection = () => {
     return (
         <section
             className={cn(
-                "relative min-h-screen flex items-center overflow-hidden",
+                "relative min-h-screen flex items-center overflow-hidden pb-15 pt-6",
                 "before:absolute before:inset-0 before:bg-black before:opacity-70 before:z-10",
             )}
         >

@@ -31,7 +31,7 @@ export function MainHeader() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-8 text-xl">
             <Link
               href="#how-it-works"
               className="text-white hover:text-gold-light transition-colors"
@@ -53,11 +53,11 @@ export function MainHeader() {
           </nav>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8 text-xl">
             <Link href="/login" className="text-white hover:text-gold-light transition-colors">Login</Link>
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-10 text-sm font-medium transition-colors"
+              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-10 font-medium transition-colors text-xl"
             >
               Register
             </Link>
