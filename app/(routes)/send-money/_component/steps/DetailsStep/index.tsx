@@ -8,9 +8,9 @@ interface IDetailsStep {
 const DetailsStep: FC<IDetailsStep> = ({ onNext }) => {
     return (
         <PaymentCardLayout
-            title="Amount"
-            description="Send your money at anytime, anywhere in the world."
-            buttonLabel="continue"
+            title="Send Money"
+            description=""
+            buttonLabel="Continue"
             onNext={onNext}
         >
             <SendMoneyDetailsForm />
