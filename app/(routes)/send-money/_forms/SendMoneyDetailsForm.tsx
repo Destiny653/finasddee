@@ -1,7 +1,7 @@
 "use client";
 import { div } from "framer-motion/client";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 
 export enum transferTypeEnum {
     ACCOUNT = "account",
@@ -9,7 +9,10 @@ export enum transferTypeEnum {
     MOBILE_TRANSFER = "mobile-transfer",
 }
 
-const SendMoneyDetailsForm = () => {
+interface ISendMoneyDetailsForm {
+    onNext?: () => void;
+}
+const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
     const [youSend, setYouSend] = useState('');
     const [recipientGets, setRecipientGets] = useState('0.0');
     const [fees, setFees] = useState('0.0');
@@ -323,7 +326,6 @@ const SendMoneyDetailsForm = () => {
 
             {/* Continue Button */}
             <div className="mb-6">
-                <Link href={'/send-money?transferType=' + transferTypeEnum.ACCOUNT}>
                 <button
                     type="button"
                     className="btn btn-primary w-full py-3 text-white font-semibold"
@@ -333,12 +335,13 @@ const SendMoneyDetailsForm = () => {
                             alert('Please enter a valid amount to send.');
                             return;
                         }
-                        alert('Proceeding to payment page...');
+                        if (onNext) {
+                            onNext();
+                        }
                     }}
                 >
                     Continue
                 </button>
-                </Link>
             </div>
 
             {/* Security badges */}

@@ -14,7 +14,7 @@ interface IPaymentCardLayout {
     children: ReactNode;
     title: string;
     description?: string;
-    buttonLabel: string;
+    buttonLabel?: string;
     onNext?: () => void;
 }
 const PaymentCardLayout: FC<IPaymentCardLayout> = ({
@@ -32,8 +32,14 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
             </CardHeader>
             <CardContent>{children}</CardContent>
             <CardFooter className="flex flex-col gap-4">
-           
-              
+                {buttonLabel && onNext && (
+                    <Button
+                        onClick={onNext}
+                        className="w-full py-3 text-white font-semibold bg-[#b8860b] hover:bg-[#9a7209]"
+                    >
+                        {buttonLabel}
+                    </Button>
+                )}
             </CardFooter>
         </Card>
     );

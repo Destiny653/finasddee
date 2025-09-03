@@ -10,10 +10,8 @@ const DetailsStep: FC<IDetailsStep> = ({ onNext }) => {
         <PaymentCardLayout
             title="Amount"
             description="Send your money at anytime, anywhere in the world."
-            buttonLabel="continue"
-            onNext={onNext}
         >
-            <SendMoneyDetailsForm />
+            <SendMoneyDetailsForm onNext={onNext} />
         </PaymentCardLayout>
     );
 };
