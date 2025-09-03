@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
@@ -34,23 +35,12 @@ export function PageHeader() {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
+              className="lg:hidden p-2 text-black hover:text-[#b8860b] transition-colors"
               type="button"
               onClick={toggleMenu}
               aria-label="Toggle navigation"
             >
-              <span className={cn(
-                "block w-6 h-0.5 bg-black transition-all duration-300",
-                isMenuOpen && "rotate-45 translate-y-1.5"
-              )}></span>
-              <span className={cn(
-                "block w-6 h-0.5 bg-black transition-all duration-300",
-                isMenuOpen && "opacity-0"
-              )}></span>
-              <span className={cn(
-                "block w-6 h-0.5 bg-black transition-all duration-300",
-                isMenuOpen && "-rotate-45 -translate-y-1.5"
-              )}></span>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
             {/* Mobile Navigation */}
