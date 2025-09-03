@@ -253,7 +253,7 @@ const SendMoneyDetailsForm = () => {
                     }}>$</span>
                     <input
                         type="number"
-                        className="form-control"
+                        className="form-control outline-0 rounded-none border-0"
                         id="youSend"
                         placeholder="0"
                         name="amount"
@@ -262,10 +262,9 @@ const SendMoneyDetailsForm = () => {
                         value={youSend}
                         onChange={(e) => setYouSend(e.target.value)}
                         style={{
-                            borderLeft: 'none',
-                            borderRight: 'none',
                             flex: '1',
-                            minWidth: '0'
+                            minWidth: '0',
+                            border:'0'
                         }}
                     />
                     <select
@@ -273,9 +272,9 @@ const SendMoneyDetailsForm = () => {
                         className="form-select"
                         required
                         style={{
-                            width: '140px',
+                            width: '200px',
                             minWidth: '140px',
-                            maxWidth: '140px',
+                            // maxWidth: '140px',
                             border: 'none',
                             backgroundColor: '#f9fafb',
                             borderLeft: 'none',

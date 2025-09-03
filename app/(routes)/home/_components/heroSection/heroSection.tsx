@@ -7,15 +7,14 @@ const HeroSection = () => {
         <section
             className={cn(
                 "relative min-h-screen flex items-center overflow-hidden pb-15 pt-6",
-                "before:absolute before:inset-0 before:bg-black before:opacity-70 before:z-10",
+                "before:absolute before:inset-0 before:bg-black before:opacity-60 before:z-10",
             )}
         >
             {/* Static background */}
             <div
-                className="absolute inset-0 bg-cover bg-center bg-fixed"
+                className="absolute inset-0 bg-cover bg-center"
                 style={{
                     backgroundImage: 'url(/assets/images/new_cover_photo.jpg)',
-                    backgroundAttachment: 'fixed'
                 }}
             />
             <div className="container mx-auto px-4 relative z-20">

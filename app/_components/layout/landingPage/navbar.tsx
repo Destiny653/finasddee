@@ -57,7 +57,7 @@ export function MainHeader() {
             <Link href="/login" className="text-white hover:text-gold-light transition-colors">Login</Link>
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-10 font-medium transition-colors text-xl"
+              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-8 font-medium transition-colors text-xl"
             >
               Register
             </Link>
