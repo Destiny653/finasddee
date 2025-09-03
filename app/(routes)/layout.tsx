@@ -1,11 +1,10 @@
 import React, { FC, ReactNode } from "react";
-import MainLandingPageLayout from "../_components/layout/landingPage/MainLandingPageLayout";
 
-interface ILandingPageLayout {
+interface IRoutesLayout {
     children: ReactNode;
 }
-const LandingPageLayout: FC<ILandingPageLayout> = ({ children }) => {
-    return <MainLandingPageLayout>{children}</MainLandingPageLayout>;
+const RoutesLayout: FC<IRoutesLayout> = ({ children }) => {
+    return <>{children}</>;
 };
 
-export default LandingPageLayout;
+export default RoutesLayout;

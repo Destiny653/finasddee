@@ -2,6 +2,48 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Header specific styles - using current font family */
+h1, h2, h3, h4, h5, h6 {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+/* Page Header Mobile Menu Styles */
+li#dis1 > a {
+  color: black !important;
+  width: min-content;
+  margin: auto;
+}
+
+#dis1 {
+  border: 1px solid green !important;
+}
+
+li#dis2 > a {
+  color: white !important;
+  width: min-content;
+  margin: auto;
+}
+
+li#dis3 > a {
+  color: white !important;
+  width: max-content;
+  margin: auto;
+}
+
+/* Utility classes for background colors */
+.background-yellow {
+  background-color: yellow;
+}
+
+.background-red {
+  background-color: #ffc4c9;
+}
+
+.background-red2 {
+  background-color: #cb943d !important;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

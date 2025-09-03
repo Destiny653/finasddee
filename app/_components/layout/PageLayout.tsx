@@ -1,12 +1,15 @@
 import React, { FC, ReactNode } from "react";
-import LandingPageFooter from "./footer";
+import PageHeader from "./header/PageHeader";
+import LandingPageFooter from "./landingPage/footer";
 
-interface IMainLandingPageLayout {
+interface IPageLayout {
     children: ReactNode;
 }
-const MainLandingPageLayout: FC<IMainLandingPageLayout> = ({ children }) => {
+
+const PageLayout: FC<IPageLayout> = ({ children }) => {
     return (
         <div className="w-screen min-h-screen relative overflow-x-hidden flex flex-col">
+            <PageHeader />
             <div className="flex-1 flex flex-col">
                 {children}
             </div>
@@ -15,4 +18,4 @@ const MainLandingPageLayout: FC<IMainLandingPageLayout> = ({ children }) => {
     );
 };
 
-export default MainLandingPageLayout;
+export default PageLayout;

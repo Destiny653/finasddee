@@ -6,10 +6,13 @@ import NetworkSection from "./_components/networkSection/NetworkSection";
 import TestimonialsSection from "./_components/testimonialsSection/TestimonialsSection";
 import SpecialOfferSection from "./_components/specialOfferSection/SpecialOfferSection";
 import FaqSection from "./_components/faqSection/FaqSection";
+import LandingPageNavBar from "@/app/_components/layout/landingPage/navbar";
+import MainLandingPageLayout from "@/app/_components/layout/landingPage/MainLandingPageLayout";
 
 const HomePage = () => {
     return (
-        <>
+        <MainLandingPageLayout>
+            <LandingPageNavBar />
             <HeroSection />
             <HowItWorksSection />
             <WhyChooseUsSection />
@@ -17,7 +20,7 @@ const HomePage = () => {
             <TestimonialsSection />
             <SpecialOfferSection />
             <FaqSection />
-        </>
+        </MainLandingPageLayout>
     );
 };
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const LandingPageFooter = () => {
     return (
-        <footer className="pb-4 text-white" style={{ backgroundColor: '#b8860b' }}>
+        <footer className="pb-4 pt-8 border-t text-white" style={{ backgroundColor: '#b8860b' }}>
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Information Section */}
