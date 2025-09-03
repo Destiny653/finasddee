@@ -6,21 +6,34 @@ const HeroSection = () => {
     return (
         <section
             className={cn(
-                "bg-[url(/assets/images/new_cover_photo.jpg)] bg-cover bg-no-repeat relative ",
-                "before:absolute before:inset-0 before:bg-gray-900/70",
+                "relative min-h-screen flex items-center overflow-hidden pb-15 pt-6",
+                "before:absolute before:inset-0 before:bg-black before:opacity-60 before:z-10",
             )}
         >
-            <div className="w-screen min-h-screen py-16 max-w-6xl mx-auto grid grid-cols-8 items-center relative ">
-                <div className="col-span-5 text-white">
-                    <h3 className="text-4xl font-bold">
-                        A better way to Send Money
-                    </h3>
-                    <h6 className="text-bold text-lg">
-                        {` You've got the money. We've got the speed.`}
-                    </h6>
-                </div>
-                <div className="col-span-3">
-                    <DetailsStep onNext={() => {}} />
+            {/* Static background */}
+            <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                    backgroundImage: 'url(/assets/images/new_cover_photo.jpg)',
+                }}
+            />
+            <div className="container mx-auto px-4 relative z-20">
+                <div className="flex flex-col lg:flex-row items-center pt-24 lg:pt-32">
+                    {/* Left content */}
+                    <div className="lg:w-7/12 xl:w-7/12 text-center lg:text-left pb-8 lg:pb-0">
+                        <h2 className="text-6xl lg:text-7xl text-white font-normal mb-4">
+                            <span className="font-light text-4xl lg:text-5xl block">A better way to</span>
+                            Send Money
+                        </h2>
+                        <p className="text-xl text-white mb-4">You&apos;ve got the money. We&apos;ve got the speed.</p>
+                    </div>
+
+                    {/* Right form */}
+                    <div className="lg:w-5/12 xl:w-5/12 mt-8 lg:mt-0 p-4 w-full">
+                        <div className="relative z-30">
+                            <DetailsStep onNext={() => {}} />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
