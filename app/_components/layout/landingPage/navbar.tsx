@@ -14,8 +14,8 @@ export function MainHeader() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent text-white z-20 shadow-md">
-      <div className="container mx-auto px-4">
+    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-bold z-20 shadow-md ">
+      <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
@@ -23,9 +23,9 @@ export function MainHeader() {
               <Image
                 src="/assets/images/pic/logoRed.png"
                 alt="Finasddee"
-                className="h-32 w-auto"
-                width={500}
-                height={500}
+                className="h-40 w-auto"
+                width={600}
+                height={600}
               />
             </Link>
           </div>
@@ -57,7 +57,7 @@ export function MainHeader() {
             <Link href="/login" className="text-white hover:text-gold-light transition-colors">Login</Link>
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-9 px-3 text-sm font-medium transition-colors"
+              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-10 text-sm font-medium transition-colors"
             >
               Register
             </Link>

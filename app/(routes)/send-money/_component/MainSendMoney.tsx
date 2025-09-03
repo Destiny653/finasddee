@@ -34,7 +34,7 @@ const MainSendMoney = () => {
     };
 
     return (
-        <div className="flex-1 flex flex-col w-full items-center justify-center py-16 ">
+        <div className="flex-1 flex flex-col w-full items-center justify-center py-16 overflow-hidden">
             <div className="flex items-end ">
                 {steps.map((items, i) => (
                     <Fragment key={"items" + items}>
@@ -59,9 +59,9 @@ const MainSendMoney = () => {
                 ))}
             </div>
 
-            <div className=" w-full max-w-5xl grid grid-cols-8 mt-16 gap-4">
-                <div className="col-span-5">{renderSteps()}</div>
-                <div className="col-span-3 size-full flex gap-2 flex-col">
+            <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-8 mt-16 gap-4 px-4">
+                <div className="lg:col-span-5">{renderSteps()}</div>
+                <div className="lg:col-span-3 size-full flex gap-2 flex-col">
                     <SideSummeryCard />
                     <Card className="rounded-sm shadow-none">
                         <CardContent>

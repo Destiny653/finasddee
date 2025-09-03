@@ -15,7 +15,7 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
     onNext,
 }) => {
     return (
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md mx-auto">
+        <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg mx-auto overflow-hidden">
             <style jsx>{`
                 .text-5 {
                     font-size: 1.5rem;

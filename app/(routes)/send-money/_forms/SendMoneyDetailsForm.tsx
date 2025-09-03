@@ -69,7 +69,7 @@ const SendMoneyDetailsForm = () => {
     }, [youSend, selectedSendCurrency, selectedRecipientCountry]);
     return (
         
-        <div className="w-full">
+        <div className="w-full overflow-hidden">
             <style jsx>{`
                 .form-label {
                     font-weight: 500;
@@ -84,6 +84,9 @@ const SendMoneyDetailsForm = () => {
                     border: 1px solid #e5e7eb;
                     background-color: #f9fafb;
                     border-radius: 0.375rem;
+                    width: 100%;
+                    max-width: 100%;
+                    box-sizing: border-box;
                 }
 
                 .form-control:focus, .form-select:focus {
@@ -96,6 +99,10 @@ const SendMoneyDetailsForm = () => {
                     border: 1px solid #e5e7eb;
                     border-radius: 0.375rem;
                     background-color: #f9fafb;
+                    width: 100%;
+                    max-width: 100%;
+                    overflow: hidden;
+                    box-sizing: border-box;
                 }
 
                 .input-group-text {
@@ -138,17 +145,11 @@ const SendMoneyDetailsForm = () => {
                     font-size: 1.1rem;
                 }
 
-                .delivery-methods-row {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 1rem;
-                }
-
                 .delivery-methods-label {
                     color: #6b7280;
                     font-weight: 500;
                     margin: 0;
+                    display: block;
                 }
             `}</style>
 
@@ -216,12 +217,11 @@ const SendMoneyDetailsForm = () => {
             </div>
 
             {/* Delivery Methods */}
-            <div className="delivery-methods-row mb-4">
-                <p className="delivery-methods-label">Delivery methods</p>
+            <div className="mb-4">
+                <p className="delivery-methods-label mb-2">Delivery methods</p>
                 <select
                     id="delivery_methods"
-                    className="form-select"
-                    style={{ width: '200px' }}
+                    className="form-select w-full"
                     value={selectedDeliveryMethod}
                     onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
                 >
@@ -239,7 +239,8 @@ const SendMoneyDetailsForm = () => {
                     display: 'flex',
                     alignItems: 'stretch',
                     width: '100%',
-                    maxWidth: '100%'
+                    maxWidth: '100%',
+                    overflow: 'hidden'
                 }}>
                     <span className="input-group-text" style={{
                         display: 'flex',
@@ -247,7 +248,8 @@ const SendMoneyDetailsForm = () => {
                         padding: '0.75rem',
                         borderRight: 'none',
                         minWidth: '40px',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        flexShrink: 0
                     }}>$</span>
                     <input
                         type="number"
@@ -271,14 +273,15 @@ const SendMoneyDetailsForm = () => {
                         className="form-select"
                         required
                         style={{
-                            width: '180px',
-                            minWidth: '180px',
-                            maxWidth: '180px',
+                            width: '140px',
+                            minWidth: '140px',
+                            maxWidth: '140px',
                             border: 'none',
                             backgroundColor: '#f9fafb',
                             borderLeft: 'none',
                             borderRadius: '0 0.375rem 0.375rem 0',
-                            fontSize: '14px'
+                            fontSize: '13px',
+                            flexShrink: 0
                         }}
                         value={selectedSendCurrency}
                         onChange={(e) => setSelectedSendCurrency(e.target.value)}
