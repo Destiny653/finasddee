@@ -43,7 +43,7 @@ const FaqSection = () => {
     };
 
     return (
-        <section className="section py-16 text-white" id="faq-section" style={{ backgroundColor: '#b8860b' }}>
+        <section className="section py-16 pb-34 text-white" id="faq-section" style={{ backgroundColor: '#b8860b' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-6xl text-center font-normal text-white mb-4">
                     Frequently Asked Questions
@@ -55,7 +55,7 @@ const FaqSection = () => {
                     </a>
                 </p>
 
-                <div className="row">
+                <div className="row px-20">
                     <div className="col-md-10 col-lg-8 mx-auto">
                         <hr className="mb-0" style={{ borderColor: '#d1d5db' }} />
                         <div className="accordion accordion-flush arrow-end" id="popularTopics">
@@ -121,16 +121,6 @@ const FaqSection = () => {
                         </div>
                         <hr className="mt-0" style={{ borderColor: '#d1d5db' }} />
                     </div>
-                </div>
-
-                <div className="text-center mt-4">
-                    <a
-                        href="faq"
-                        className="inline-flex items-center text-white text-xl hover:underline"
-                    >
-                        See more FAQ
-                        <i className="fas fa-chevron-right text-lg ml-2"></i>
-                    </a>
                 </div>
             </div>
         </section>

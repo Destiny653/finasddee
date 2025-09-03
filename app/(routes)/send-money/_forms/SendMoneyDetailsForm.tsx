@@ -1,4 +1,6 @@
 "use client";
+import { div } from "framer-motion/client";
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
 export enum transferTypeEnum {
@@ -66,6 +68,7 @@ const SendMoneyDetailsForm = () => {
         calculateConversion();
     }, [youSend, selectedSendCurrency, selectedRecipientCountry]);
     return (
+        
         <div className="w-full">
             <style jsx>{`
                 .form-label {
@@ -150,7 +153,7 @@ const SendMoneyDetailsForm = () => {
             `}</style>
 
             {/* Sender Country */}
-            <div className="mb-4">
+            <div className="mb-4 z-30 ">
                 <label htmlFor="youSendCountry" className="form-label">Sender Country</label>
                 <select
                     id="youSendCountry"
@@ -318,6 +321,7 @@ const SendMoneyDetailsForm = () => {
 
             {/* Continue Button */}
             <div className="mb-6">
+                <Link href={'/send-money?transferType=' + transferTypeEnum.ACCOUNT}>
                 <button
                     type="button"
                     className="btn btn-primary w-full py-3 text-white font-semibold"
@@ -332,6 +336,7 @@ const SendMoneyDetailsForm = () => {
                 >
                     Continue
                 </button>
+                </Link>
             </div>
 
             {/* Security badges */}
@@ -339,7 +344,7 @@ const SendMoneyDetailsForm = () => {
                 <div className="mb-3 flex justify-center items-center space-x-4">
                     <img src="/assets/images/security pics/credit-card.png" alt="Credit Card" className="h-8" />
                     <img src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" className="h-8" />
-                    <img src="/assets/images/security pics/partner5.gif" alt="Sofort Banking" className="h-8" />
+                    {/* <img src="/assets/images/security pics/partner5.gif" alt="Sofort Banking" className="h-8" /> */}
                 </div>
                 <p className="text-sm text-gray-600 flex items-start justify-center">
                     <i className="fa fa-lock text-lg mr-2 mt-1"></i>

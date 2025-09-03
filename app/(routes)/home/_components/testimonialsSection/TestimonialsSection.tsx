@@ -55,7 +55,7 @@ const TestimonialsSection = () => {
     };
 
     return (
-        <section className="section py-16" style={{ backgroundColor: '#ffff00' }}>
+        <section className="section py-16 flex items-center justify-center" style={{ backgroundColor: '#ffff00' }}>
             <div className="container">
                 <h2 className="text-6xl text-center font-normal text-black mb-4">
                     What people say about Finasddee
@@ -64,7 +64,7 @@ const TestimonialsSection = () => {
                     A payments experience people love to talk about
                 </p>
 
-                <div className="row">
+                <div className="row px-20">
                     <div className="col-lg-10 col-xl-8 mx-auto">
                         <div className="owl-carousel owl-theme" style={{ position: 'relative' }}>
                             {/* Testimonial Content */}
