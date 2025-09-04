@@ -307,13 +307,13 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
             </div>
 
             {/* Summary */}
-            <div className="mt-6 mb-6">
-                <div className="summary-row">
+            <div className="mt-6 mb-6 font-semibold">
+                <div className="summary-row border-b border-r-gray-100">
                     <span>Receiver gets</span>
                     <span>{recipientGets}</span>
                 </div>
 
-                <div className="summary-row">
+                <div className="summary-row border-b border-r-gray-100">
                     <span>Total Fees</span>
                     <span>{fees}</span>
                 </div>
@@ -353,7 +353,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                     <img src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" className="h-8" />
                     {/* <img src="/assets/images/security pics/partner5.gif" alt="Sofort Banking" className="h-8" /> */}
                 </div>
-                <p className="text-sm text-gray-600 flex items-start justify-center">
+                <p className=" text-gray-600 flex items-start justify-center text-lg">
                     <i className="fa fa-lock text-lg mr-2 mt-1"></i>
                     <span>We are Authorised and Regulated by the Financial Conduct Authority (US Dollars).</span>
                 </p>

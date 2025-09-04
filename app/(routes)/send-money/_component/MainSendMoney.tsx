@@ -82,7 +82,7 @@ const MainSendMoney = () => {
                     <div className="col-span-5">{renderSteps()}</div>
                     <div className="col-span-3 size-full flex gap-2 flex-col">
                         <SideSummeryCard />
-                        <Card className="rounded-sm shadow-none">
+                        <Card className="rounded-sm shadow-none border-none">
                             <CardContent>
                                 <CustomTextarea label="Payment Purpose" />
                             </CardContent>

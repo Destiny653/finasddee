@@ -14,7 +14,7 @@ const SideSummeryCard = () => {
         you_spend: `USD ${110}`,
     };
     return (
-        <Card className="w-full shadow-none rounded-sm sticky top-[3rem]">
+        <Card className="w-full shadow-none rounded-sm sticky top-[3rem] border-none">
             <CardHeader>
                 <CardTitle className="capitalize text-xl font-semibold pb-3">
                     Exchange Rate

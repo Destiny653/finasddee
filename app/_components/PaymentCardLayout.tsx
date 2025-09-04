@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import React, { FC, ReactNode } from "react";
 
 interface IPaymentCardLayout {
@@ -15,10 +17,10 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
     onNext,
 }) => {
     return (
-        <Card className="rounded-sm shadow-none w-full ">
-            <CardHeader className="border-b">
+        <Card className="rounded-sm shadow-none w-full border-none bg-white">
+            <CardHeader className="border-b border-gray-100">
                 <CardTitle className="text-2xl capitalize">{title}</CardTitle>
-                <CardDescription>{description}</CardDescription>
+                <CardDescription className="text-lg">{description}</CardDescription>
             </CardHeader>
             <CardContent>{children}</CardContent>
             <CardFooter className="flex flex-col gap-4">
