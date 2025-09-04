@@ -14,8 +14,8 @@ const CustomInput: FC<ICustomInput> = ({
     ...props
 }) => {
     return (
-        <div className="relative ">
-            <p className="font-sans font-semibold  capitalize text-sm leading-[18px] mb-2">
+        <div className="relative space-y-2 ">
+            <p className="font-sans font-semibold  capitalize text-sm leading-[18px]">
                 {label}
             </p>
             <div className="relative h-fit">

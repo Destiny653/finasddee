@@ -42,15 +42,15 @@ const RegistrationReview = ({ data, onAmend }: { data: FormData; onAmend: () => 
     }
 
     return (
-        <Card className="rounded-sm shadow-none w-full md:min-w-3xl">
-            <CardHeader className="border-b">
+        <Card className="rounded-sm shadow-none w-full md:min-w-3xl border-0 bg-white">
+            <CardHeader className="border-b border-gray-100">
                 <CardTitle className="text-2xl capitalize">Review Registration</CardTitle>
                 <CardDescription>Please review your details before submitting</CardDescription>
             </CardHeader>
             <CardContent>
                 <div className="w-full flex flex-col gap-6">
                     {/* Login Details Header */}
-                    <div className="border-b pb-4">
+                    <div className="border-b border-gray-100 pb-4">
                         <h3 className="text-lg font-semibold mb-4">Login Details</h3>
                         <div className="w-full flex flex-col gap-4">
                             <div>
@@ -67,7 +67,7 @@ const RegistrationReview = ({ data, onAmend }: { data: FormData; onAmend: () => 
                     </div>
 
                     {/* Personal Information */}
-                    <div className="border-b pb-4">
+                    <div className="border-b border-gray-100 pb-4">
                         <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
                         <div className="w-full flex flex-col gap-4">
                             <div className="w-full grid grid-cols-2 gap-4">
@@ -94,7 +94,7 @@ const RegistrationReview = ({ data, onAmend }: { data: FormData; onAmend: () => 
                     </div>
 
                     {/* Contact Information */}
-                    <div className="border-b pb-4">
+                    <div className="border-b border-gray-100 pb-4">
                         <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
                         <div className="w-full flex flex-col gap-4">
                             <div>
@@ -113,14 +113,14 @@ const RegistrationReview = ({ data, onAmend }: { data: FormData; onAmend: () => 
                 <div className="w-ful flex gap-4 ml-auto">
                     <Button
                         onClick={handleAmend}
-                        variant="outline"
-                        className="w-ful py-6 text-lg font-semibold"
+                        variant="secondary"
+                        className="w-ful py-6 text-lg hover:bg-gray-300 transition-all duration-200"
                     >
                         Amend Details
                     </Button>
                     <Button
                         onClick={handleSubmit}
-                        className="w-ful py-6 text-lg text-white font-semibold bg-[#c99207] hover:bg-[#ac7d08]"
+                        className="w-ful py-6 text-lg text-white bg-[#c99207] hover:bg-[#ac7d08]"
                     >
                         Submit
                     </Button>

@@ -13,24 +13,28 @@ export function PageHeader() {
 
   return (
     <header
-      className="relative mb-8 font-sans font-bold bg-white text-lg  border-b border-gray-200"
+      className="relative mb-8 font-sans font-bold bg-[#0e1e33] text-lg  border-b border-gray-200"
       style={{ marginBottom: '30px' }}
     >
-      <div className="container mx-auto px-4 max-w-[1440px]">
+      <div className="container mx-auto px-4 py-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-0">
           {/* Logo Section */}
           <div className="flex items-center">
-            <div className="logo mr-3">
-              <Link href="/" className="flex items-center" title="Finasddee">
+            <Link href="/" className="flex items-center" title="Finasddee">
+              <div className="logo mr-3 flex flex-col items-center justify-center">
                 <Image
-                  src="/assets/images/pic/logoRed.png"
+                  src="/Frame.png"
                   alt="finasddee"
-                  width={180}
-                  height={60}
-                  className="w-[170px] h-auto"
+                  width={400}
+                  height={400}
+                  className="w-auto h-[80px]"
                 />
-              </Link>
-            </div>
+                <div className='text-white flex flex-col items-center'>
+                  <h2 className='text-2xl'>FINASDDEE</h2>
+                  <span className='text-lg text-center font-[500]'>Credit Line</span>
+                </div>
+              </div>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
@@ -44,8 +48,8 @@ export function PageHeader() {
 
             {/* Mobile Navigation */}
             <nav className="lg:hidden">
-              <div 
-                id="header-nav" 
+              <div
+                id="header-nav"
                 className={cn(
                   "absolute top-full left-0 right-0 bg-white shadow-lg transition-all duration-300 z-50",
                   isMenuOpen ? "block" : "hidden"
@@ -58,7 +62,7 @@ export function PageHeader() {
                   >
                     <Link
                       href="/login"
-                      className="text-center block text-black w-min mx-auto"
+                      className="text-center block text-white w-min mx-auto"
                       onClick={toggleMenu}
                     >
                       Login
@@ -86,16 +90,16 @@ export function PageHeader() {
             <nav className="flex items-center space-x-4">
               <ul className="flex items-center space-x-4">
                 <li className="hidden lg:block">
-                  <Link 
+                  <Link
                     href="/signin"
-                    className="text-black hover:text-[#b8860b] transition-colors"
+                    className="text-white hover:text-[#b8860b] transition-colors"
                   >
                     Login
                   </Link>
                 </li>
                 <li className="hidden lg:flex items-center h-auto">
-                  <Link 
-                    href="/sign-up"
+                  <Link
+                    href="/registration-service"
                     className="inline-flex items-center justify-center py-6 rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-10 px-6 font-medium transition-colors"
                   >
                     Register

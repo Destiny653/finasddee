@@ -55,7 +55,7 @@ export function CustomCombobox({
                 </p>
             )}
             <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild className="b-gray-100">
+                <PopoverTrigger asChild className="border-0 bg-gray-100">
                     <Button
                         variant="outline"
                         role="combobox"
@@ -78,14 +78,14 @@ export function CustomCombobox({
                 <PopoverContent
                     className={cn(
                         "p-0",
-                        optionFullWidth && "w-full min-w-[30rem]",
+                        optionFullWidth && "w-full min-w-[40rem] border-0",
                     )}
                 >
-                    <Command className="!w-full ">
-                        <CommandInput placeholder="Search options..." />
-                        <CommandList >
-                            <CommandEmpty>{emptyLabel}</CommandEmpty>
-                            <CommandGroup >
+                    <Command className="!w-full border-0 ">
+                        <CommandInput className="border-0 " placeholder="Search options..." />
+                        <CommandList className="border-0" >
+                            <CommandEmpty className="border-0">{emptyLabel}</CommandEmpty>
+                            <CommandGroup className="border-0" >
                                 {options.map((item, index) => (
                                     <CommandItem
                                         key={`${item.value}-${index}`}

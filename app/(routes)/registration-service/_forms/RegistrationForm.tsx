@@ -60,13 +60,14 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
         >
             <div className="w-full flex flex-col gap-6 md:min-w-2xl">
                 <div>
-                    <h3 className="text-lg font-semibold mb-4">Login Details</h3>
+                    <h3 className="text-lg font-semibold">Login Details</h3>
                     <div className="w-full flex flex-col gap-4">
                         <CustomCombobox
                             options={CountryOptions}
                             emptyLabel="No country found"
                             label="Country"
                             placeholder="Select country"
+                            className="py-6 md:py-8"
                             value={selectedCountry}
                             onSelectChange={(value) => {
                                 setSelectedCountry(value);
@@ -76,20 +77,21 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                         />
                         <CustomInput
                             label="Username"
+                            className="bg-gray-100 py-6 md:py-8"
                             placeholder="Enter username"
                             {...register("username")}
                         />
                         {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
                         <CustomPassword
                             label="Password"
-                            className="py-6"
+                            className="py-6 md:py-8 bg-gray-100"
                             placeholder="Enter password"
                             {...register("password")}
                         />
                         {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
                         <CustomPassword
                             label="Verify Password"
-                            className="py-6"
+                            className="py-6 md:py-8 bg-gray-100"
 
                             placeholder="Verify password"
                             {...register("verifyPassword")}
@@ -103,11 +105,13 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                         <div className="w-full grid grid-cols-2 gap-4">
                             <CustomInput
                                 label="First Name"
+                                className="py-6 md:py-8"
                                 placeholder="First name"
                                 {...register("firstName")}
                             />
                             <CustomInput
                                 label="Last Name"
+                                className="py-6 md:py-8"
                                 placeholder="Last name"
                                 {...register("lastName")}
                             />
@@ -116,25 +120,27 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                         {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
                         <CustomInput
                             label="Date of Birth"
+                            className="py-6 md:py-8"
                             type="date"
                             {...register("dateOfBirth")}
                         />
                         {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
                         <CustomInput
                             label="Agent Referral Code"
+                            className="py-6 md:py-8"
                             placeholder="Enter referral code"
                             {...register("agentReferralCode")}
                         />
-                        <div>
+                        <div className="space-y-6">
                             <p className="font-sans text-sm text-muted-foreground font-semibold leading-[18px] mb-2">
                                 Mobile
                             </p>
-                            <div className="flex items-end w-full">
+                            <div className="flex items-end w-full border p-0 h-fit rounded-lg bg-gray-100 border-gray-100">
                                 <CustomCombobox
                                     value={selectedDialCode}
                                     options={dialCodeOptions}
                                     emptyLabel="No dial code found"
-                                    className="rounded-r-none border-r-0 w-1/3 bg-gray-100 border-y"
+                                    className="rounded-r-none border-r-0 m-0 py-2"
                                     placeholder="Select dial code"
                                     onSelectChange={(value) => {
                                         setSelectedDialCode(value);
@@ -145,7 +151,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                                     <CustomInput
                                         placeholder="Enter mobile number"
                                         type="tel"
-                                        className="rounded-l-none flex-1 w-full bg-white py-[25px]"
+                                        className="rounded-l-none border-0 border-l md:py-7 flex-1 m-0 w-full py-[25px]"
                                         {...register("mobileNumber")}
                                     />
                                 </div>

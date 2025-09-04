@@ -300,12 +300,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
 
             {/* Summary */}
             <div className="mt-6 mb-6 font-semibold">
-                <div className="summary-row border-b border-r-gray-100">
+                <div className="summary-row border-b border-gray-100">
                     <span>Receiver gets</span>
                     <span>{recipientGets}</span>
                 </div>
 
-                <div className="summary-row border-b border-r-gray-100">
+                <div className="summary-row border-b border-gray-100">
                     <span>Total Fees</span>
                     <span>{fees}</span>
                 </div>

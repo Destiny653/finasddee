@@ -7,12 +7,12 @@ interface IRegistrationLayout {
 
 const RegistrationLayout: FC<IRegistrationLayout> = ({ children }) => {
     return (
-        <>
+        <div className="bg-gray-100">
             <PageHeader />
-            <div className="w-screen  overflow-hidden py-20 flex items-center justify-center">
+            <div className="w-screen overflow-hidden py-20 flex items-center justify-center">
                 {children}
             </div>
-        </>
+        </div>
     );
 };
 
