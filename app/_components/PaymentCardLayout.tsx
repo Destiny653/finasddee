@@ -4,7 +4,7 @@ interface IPaymentCardLayout {
     children: ReactNode;
     title: string;
     description?: string;
-    buttonLabel: string;
+    buttonLabel?: string;
     onNext?: () => void;
 }
 const PaymentCardLayout: FC<IPaymentCardLayout> = ({
@@ -15,28 +15,23 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
     onNext,
 }) => {
     return (
-        <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg mx-auto overflow-hidden">
-            <style jsx>{`
-                .text-5 {
-                    font-size: 1.5rem;
-                    font-weight: 600;
-                    color: #111827;
-                    margin-bottom: 1.5rem;
-                }
-
-                hr {
-                    border: none;
-                    height: 1px;
-                    background-color: #e5e7eb;
-                    margin: 1.5rem -2rem;
-                }
-            `}</style>
-
-            <h3 className="text-5 text-center">Send Money</h3>
-            <hr />
-
-            {children}
-        </div>
+        <Card className="rounded-sm shadow-none w-full ">
+            <CardHeader className="border-b">
+                <CardTitle className="text-2xl capitalize">{title}</CardTitle>
+                <CardDescription>{description}</CardDescription>
+            </CardHeader>
+            <CardContent>{children}</CardContent>
+            <CardFooter className="flex flex-col gap-4">
+                {buttonLabel && onNext && (
+                    <Button
+                        onClick={onNext}
+                        className="w-full py-6 text-lg text-white font-semibold bg-[#c99207] hover:bg-[#ac7d08]"
+                    >
+                        {buttonLabel}
+                    </Button>
+                )}
+            </CardFooter>
+        </Card>
     );
 };
 

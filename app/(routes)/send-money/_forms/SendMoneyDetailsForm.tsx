@@ -1,7 +1,7 @@
 "use client";
 import { div } from "framer-motion/client";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, FC } from "react";
 
 export enum transferTypeEnum {
     ACCOUNT = "account",
@@ -9,7 +9,10 @@ export enum transferTypeEnum {
     MOBILE_TRANSFER = "mobile-transfer",
 }
 
-const SendMoneyDetailsForm = () => {
+interface ISendMoneyDetailsForm {
+    onNext?: () => void;
+}
+const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
     const [youSend, setYouSend] = useState('');
     const [recipientGets, setRecipientGets] = useState('0.0');
     const [fees, setFees] = useState('0.0');
@@ -68,7 +71,7 @@ const SendMoneyDetailsForm = () => {
         calculateConversion();
     }, [youSend, selectedSendCurrency, selectedRecipientCountry]);
     return (
-        
+
         <div className="w-full overflow-hidden">
             <style jsx>{`
                 .form-label {
@@ -113,7 +116,7 @@ const SendMoneyDetailsForm = () => {
                 }
 
                 .btn-primary {
-                    background-color: #b8860b;
+                    background-color: #c99207;
                     border-color: #b8860b;
                     padding: 12px;
                     font-weight: 500;
@@ -121,7 +124,7 @@ const SendMoneyDetailsForm = () => {
                 }
 
                 .btn-primary:hover {
-                    background-color: #9a7209;
+                    background-color: #ac7d08;
                     border-color: #9a7209;
                 }
 
@@ -264,7 +267,7 @@ const SendMoneyDetailsForm = () => {
                         style={{
                             flex: '1',
                             minWidth: '0',
-                            border:'0'
+                            border: '0'
                         }}
                     />
                     <select
@@ -323,21 +326,23 @@ const SendMoneyDetailsForm = () => {
 
             {/* Continue Button */}
             <div className="mb-6">
-                <Link href={'/send-money?transferType=' + transferTypeEnum.ACCOUNT}>
-                <button
-                    type="button"
-                    className="btn btn-primary w-full py-3 text-white font-semibold"
-                    onClick={() => {
-                        const amount = parseFloat(youSend);
-                        if (!amount || amount <= 0) {
-                            alert('Please enter a valid amount to send.');
-                            return;
-                        }
-                        alert('Proceeding to payment page...');
-                    }}
-                >
-                    Continue
-                </button>
+                <Link href={'/send-money'}>
+                    <button
+                        type="button"
+                        className="btn btn-primary w-full py-3 text-white font-semibold"
+                        onClick={() => {
+                            const amount = parseFloat(youSend);
+                            if (!amount || amount <= 0) {
+                                alert('Please enter a valid amount to send.');
+                                return;
+                            }
+                            if (onNext) {
+                                onNext();
+                            }
+                        }}
+                    >
+                        Continue
+                    </button>
                 </Link>
             </div>
 

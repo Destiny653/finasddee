@@ -3,7 +3,7 @@ import React from 'react';
 const SpecialOfferSection = () => {
     return (
         <section
-            className="relative py-20 bg-cover bg-center bg-no-repeat"
+            className="relative py-20 bg-cover bg-center bg-no-repeat bg-fixed"
             style={{
                 backgroundImage: "url('/assets/images/bg/image-2.jpg')"
             }}

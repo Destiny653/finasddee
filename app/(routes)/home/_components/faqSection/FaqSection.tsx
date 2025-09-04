@@ -9,7 +9,7 @@ interface FAQItem {
 }
 
 const FaqSection = () => {
-    const [openIndex, setOpenIndex] = useState<number | null>(0); // First item open by default
+    const [openIndex, setOpenIndex] = useState<number | null>(null); // No item open by default
 
     const faqs: FAQItem[] = [
         {
@@ -87,7 +87,7 @@ const FaqSection = () => {
                                             </span>
                                             <ChevronUp
                                                 className={`text-white transition-transform ${
-                                                    openIndex === index ? 'rotate-0' : 'rotate-180'
+                                                    openIndex === index ? 'rotate-0' : 'rotate-0'
                                                 }`}
                                                 style={{
                                                     transform: openIndex === index ? 'rotate(0deg)' : 'rotate(180deg)',

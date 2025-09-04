@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import HeroSection from "./_components/heroSection/heroSection";
 import HowItWorksSection from "./_components/howItWorksSection/HowItWorksSection";
 import WhyChooseUsSection from "./_components/whyChooseUsSection/WhyChooseUsSection";
@@ -11,7 +11,8 @@ import MainLandingPageLayout from "@/app/_components/layout/landingPage/MainLand
 
 const HomePage = () => {
     return (
-        <MainLandingPageLayout>
+        // <MainLandingPageLayout>
+        <>
             <LandingPageNavBar />
             <HeroSection />
             <HowItWorksSection />
@@ -20,7 +21,8 @@ const HomePage = () => {
             <TestimonialsSection />
             <SpecialOfferSection />
             <FaqSection />
-        </MainLandingPageLayout>
+        </>
+        // {/* </MainLandingPageLayout> */}
     );
 };
 

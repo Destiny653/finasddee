@@ -4,10 +4,10 @@ import PageLayout from "@/app/_components/layout/PageLayout";
 
 const SendMoneyPage = () => {
     return (
-        <PageLayout>
-            <MainSendMoney />
-        </PageLayout>
-    );
+    <PageLayout>
+        <MainSendMoney />
+    </PageLayout>
+    )
 };
 
 export default SendMoneyPage;

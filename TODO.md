@@ -1,0 +1,13 @@
+# Send Money Step Progression Fix
+
+## Completed Tasks
+- [x] Add "Continue" button to PaymentCardLayout component
+- [x] Modify DetailsStep to pass onNext to SendMoneyDetailsForm
+- [x] Update SendMoneyDetailsForm to accept onNext and call it on button click
+- [x] Remove Link wrapper from button in SendMoneyDetailsForm
+- [x] Make buttonLabel optional in PaymentCardLayout
+- [x] Conditionally render button in PaymentCardLayout only if buttonLabel and onNext provided
+- [x] Remove buttonLabel and onNext from DetailsStep PaymentCardLayout to avoid duplicate buttons
+
+## Summary
+The changes ensure that when users fill in the details step and click "Continue", the step changes to the recipient step. The form includes validation for the amount, and upon successful validation, it calls the onNext function to proceed to the next step. Other steps (recipient and payment) use the button from PaymentCardLayout for consistency.
