@@ -62,7 +62,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                             <p className="font-sans  text-sm text-muted-foreground font-semibold leading-[18px] ">
                                 Mobile number
                             </p>
-                            <div className="flex items-end w-full bg-gray-100 border border-gray-100 rounded-lg">
+                            <div className="flex items-end w-full h-fit bg-gray-100 border border-gray-100 rounded-lg">
                                 <CustomCombobox
                                     value={"+237"}
                                     options={dailCodeOptions}
@@ -71,7 +71,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                                     // label="Reeiver Country"
                                     placeholder="Select currency code"
                                 />
-                                <div className="w-full">
+                                <div className="w-full ">
                                     <CustomInput
                                         placeholder=""
                                         type="tel"

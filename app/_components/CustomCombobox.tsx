@@ -50,7 +50,7 @@ export function CustomCombobox({
     return (
 <div className={`relative rounded-l-lg `}>
             {label && (
-                <p className="font-sans  text-sm  font-semibold leading-[18px] mb-2">
+                <p className="font-sans  text-sm text-gray-500  font-semibold leading-[18px] mb-2">
                     {label}
                 </p>
             )}
