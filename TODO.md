@@ -15,11 +15,12 @@ The changes ensure that when users fill in the details step and click "Continue"
 ## Add Search to Send Money Form Dropdowns
 
 ## Pending Tasks
-- [ ] Import CustomCombobox in SendMoneyDetailsForm.tsx
-- [ ] Define options arrays for sender countries, receiver countries, delivery methods, and sending currencies
-- [ ] Replace sender country select with CustomCombobox
-- [ ] Replace receiver country select with CustomCombobox
-- [ ] Replace delivery methods select with CustomCombobox
-- [ ] Replace sending currency select with CustomCombobox, adjusting styling for input group
-- [ ] Test search functionality in all dropdowns
-- [ ] Verify styling consistency
+- [x] Import CustomCombobox in SendMoneyDetailsForm.tsx
+- [x] Define options arrays for sender countries, receiver countries, delivery methods, and sending currencies
+- [x] Replace sender country select with CustomCombobox
+- [x] Replace receiver country select with CustomCombobox
+- [x] Replace delivery methods select with CustomCombobox
+- [x] Replace sending currency select with CustomCombobox, adjusting styling for input group
+- [x] Test search functionality in all dropdowns
+- [x] Verify styling consistency
+- [x] Fix dropdown width to match select field width and make responsive
