@@ -12,7 +12,7 @@ const HeroSection = () => {
         >
             {/* Static background */}
             <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover bg-center bg-fixed"
                 style={{
                     backgroundImage: 'url(/assets/images/new_cover_photo.jpg)',
                 }}

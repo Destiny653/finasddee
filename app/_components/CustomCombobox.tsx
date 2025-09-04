@@ -28,6 +28,7 @@ interface ICustomCombobox extends React.ComponentProps<"button"> {
     placeholder?: string;
     label?: string;
     value?: string;
+    defaultValue?: string;
     optionFullWidth?: boolean;
     onSelectChange?: (value: string) => void;
 }
@@ -38,28 +39,29 @@ export function CustomCombobox({
     placeholder = "Select option...",
     label,
     value: newVal,
+    defaultValue,
     className,
     optionFullWidth,
     onSelectChange: onChange,
 }: ICustomCombobox) {
     const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState(newVal);
+    const [value, setValue] = React.useState(newVal ?? defaultValue ?? (options.length > 0 ? options[0].value : ""));
 
     return (
-        <div className="relative ">
+<div className={`relative rounded-l-lg ${className}`}>
             {label && (
                 <p className="font-sans  text-sm  font-semibold leading-[18px] mb-2">
                     {label}
                 </p>
             )}
             <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
+                <PopoverTrigger asChild className="b-gray-100">
                     <Button
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
                         className={cn(
-                            "w-full p-6 bg-[#F5F5F5] rounded-sm shadow-none border border-[#E5E7EB] opacity-100 justify-between pr-4 pl-4 text-left font-normal hover:bg-[#F5F5F5]",
+                            "w-full p-6 b-[#F5F5F5] rounded-sm shadow-none  opacity-100 justify-between pr-4 pl-4 text-left font-normal hover:bg-[#F5F5F5]",
                             className,
                         )}
                     >
@@ -76,7 +78,7 @@ export function CustomCombobox({
                 <PopoverContent
                     className={cn(
                         "p-0",
-                        optionFullWidth && "w-full min-w-[30rem]",
+                        optionFullWidth && "w-full min-w-[30rem",
                     )}
                 >
                     <Command className="!w-full">
@@ -84,9 +86,9 @@ export function CustomCombobox({
                         <CommandList>
                             <CommandEmpty>{emptyLabel}</CommandEmpty>
                             <CommandGroup>
-                                {options.map((item) => (
+                                {options.map((item, index) => (
                                     <CommandItem
-                                        key={item.value}
+                                        key={`${item.value}-${index}`}
                                         value={item.value}
                                         onSelect={(currentValue) => {
                                             onChange?.(currentValue);
@@ -98,14 +100,6 @@ export function CustomCombobox({
                                             setOpen(false);
                                         }}
                                     >
-                                        <CheckIcon
-                                            className={cn(
-                                                "mr-2 h-4 w-4",
-                                                value === item.value
-                                                    ? "opacity-100"
-                                                    : "opacity-0",
-                                            )}
-                                        />
                                         {item.label}
                                     </CommandItem>
                                 ))}

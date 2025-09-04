@@ -13,8 +13,7 @@ export function PageHeader() {
 
   return (
     <header
-      id="header"
-      className="relative mb-8 font-sans font-bold text-lg shadow-lg border-b border-gray-200"
+      className="relative mb-8 font-sans font-bold bg-white text-lg shadow-lg border-b border-gray-200"
       style={{ marginBottom: '30px' }}
     >
       <div className="container mx-auto px-4 max-w-[1440px]">
@@ -28,7 +27,7 @@ export function PageHeader() {
                   alt="finasddee"
                   width={180}
                   height={60}
-                  className="w-[180px] h-auto"
+                  className="w-[170px] h-auto"
                 />
               </Link>
             </div>
@@ -88,7 +87,7 @@ export function PageHeader() {
               <ul className="flex items-center space-x-4">
                 <li className="hidden lg:block">
                   <Link 
-                    href="/login"
+                    href="/signin"
                     className="text-black hover:text-[#b8860b] transition-colors"
                   >
                     Login
@@ -96,7 +95,7 @@ export function PageHeader() {
                 </li>
                 <li className="hidden lg:flex items-center h-auto">
                   <Link 
-                    href="/signup"
+                    href="/sign-up"
                     className="inline-flex items-center justify-center py-6 rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-10 px-6 font-medium transition-colors"
                   >
                     Register
