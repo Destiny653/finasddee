@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { CustomTheme } from "@/app/_utils/theme";
 import { cn } from "@/lib/utils";
 import Image from "next/image";

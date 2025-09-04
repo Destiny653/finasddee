@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import { ChevronsUpDownIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import {
     Command,
     CommandEmpty,
@@ -61,7 +61,7 @@ export function CustomCombobox({
                         role="combobox"
                         aria-expanded={open}
                         className={cn(
-                            "w-full p-6 b-[#F5F5F5] rounded-sm shadow-none  opacity-100 justify-between pr-4 pl-4 text-left font-normal hover:bg-[#F5F5F5]",
+                            "w-full p-6 b-[#F5F5F5] rounded-sm shadow-none opacity-100 justify-between pr-4 pl-4 text-left font-normal text-black ",
                             className,
                         )}
                     >
@@ -69,7 +69,7 @@ export function CustomCombobox({
                             options.find((item) => item.value === value)?.label
                         ) : (
                             <p className="text-muted-foreground">
-                                {placeholder}
+                                {/* {placeholder} */}
                             </p>
                         )}
                         <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -99,6 +99,7 @@ export function CustomCombobox({
                                             );
                                             setOpen(false);
                                         }}
+                                        className="hover:bg-transparent"
                                     >
                                         {item.label}
                                     </CommandItem>

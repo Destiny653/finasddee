@@ -1,5 +1,5 @@
 import CustomInput from "@/app/_components/CustomInput";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Mail } from "lucide-react";
 import React from "react";
 

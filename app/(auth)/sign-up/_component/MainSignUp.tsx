@@ -1,8 +1,5 @@
 "use client";
-import CustomInput from "@/app/_components/CustomInput";
-import { Mail } from "lucide-react";
 import SignUpForm from "../_forms/SignUpForm";
-import { div } from "framer-motion/client";
 import Link from "next/link";
 
 const MainSignUp = () => {

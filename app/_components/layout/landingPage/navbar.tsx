@@ -4,7 +4,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import Image from 'next/image'
 
 
@@ -102,7 +101,7 @@ export function MainHeader() {
                 <Link
                   href="/login"
                   onClick={toggleMenu}
-                  className="inline-flex items-center justify-center rounded-md border border-white text-white hover:bg-white hover:text-black h-9 px-3 text-sm font-medium transition-colors"
+                  className="inline-flex items-center justify-center rounded-md border border-white text-white  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
                 >
                   Login
                 </Link>

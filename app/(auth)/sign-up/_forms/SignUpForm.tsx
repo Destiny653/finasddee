@@ -1,7 +1,7 @@
 import { CheckBoxField } from "@/app/_components/CustomCheckbox";
 import CustomInput from "@/app/_components/CustomInput";
 import CustomPassword from "@/app/_components/CustomPassword";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { ChevronDown, Mail } from "lucide-react";
 
 const SignUpForm = () => {

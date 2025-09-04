@@ -6,7 +6,7 @@ import React, { FC, useState } from "react";
 
 interface IReceiverStep {
     onNext: () => void;
-    onDataChange: (data: any) => void;
+    onDataChange: (data: unknown) => void;
 }
 const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
     const [firstName, setFirstName] = useState('');

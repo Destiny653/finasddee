@@ -31,7 +31,7 @@ const HeroSection = () => {
                     {/* Right form */}
                     <div className="lg:w-5/12 xl:w-5/12 mt-8 lg:mt-0 p-4 w-full">
                         <div className="relative z-30">
-                            <DetailsStep onNext={() => {}} />
+<DetailsStep onNext={() => {}} onDataChange={() => {}} />
                         </div>
                     </div>
                 </div>

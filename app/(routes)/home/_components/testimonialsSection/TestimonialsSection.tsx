@@ -74,7 +74,7 @@ const TestimonialsSection = () => {
                                         <i className="fa fa-quote-left"></i>
                                     </p>
                                     <p className="text-xl text-gray-800 mb-4">
-                                        "{testimonials[currentSlide].quote}"
+                                        &ldquo;{testimonials[currentSlide].quote}&rdquo;
                                     </p>
                                     <strong className="block font-medium text-lg text-gray-900">
                                         {testimonials[currentSlide].author}

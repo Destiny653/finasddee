@@ -1,18 +1,17 @@
 "use client";
 import CustomTextarea from "@/app/_components/CustomTextarea";
 import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
 import { Fragment, useState, useEffect, FC } from "react";
 import SideSummeryCard from "./sideSummeryCard";
 import DetailsStep from "./steps/DetailsStep";
 import PaymentStep from "./steps/paymentStep";
 import ReceiverStep from "./steps/recieverStep";
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
-import Link from "next/link";
+
 
 interface IReviewStep {
-    detailsData: Record<string, any>;
-    receiverData: Record<string, any>;
+    detailsData: Record<string, unknown>;
+    receiverData: Record<string, unknown>;
     onNext: () => void;
 }
 const ReviewStep: FC<IReviewStep> = ({ detailsData, receiverData, onNext }) => {
@@ -56,8 +55,8 @@ const MainSendMoney = () => {
     const [activeStep, setActiveStep] = useState(0);
 
     // State to hold form data for review step
-    const [detailsData, setDetailsData] = useState({});
-    const [receiverData, setReceiverData] = useState({});
+    const [detailsData, setDetailsData] = useState<Record<string, unknown>>({});
+    const [receiverData, setReceiverData] = useState<Record<string, unknown>>({});
 
     const onNextStep = () =>
         setActiveStep((prev) => {
@@ -86,9 +85,17 @@ const MainSendMoney = () => {
     const renderSteps = () => {
         switch (activeStep) {
             case 0:
-                return <DetailsStep onNext={onNextStep} onDataChange={setDetailsData} />;
+                return <DetailsStep onNext={onNextStep} onDataChange={(data) => {
+                    if (typeof data === 'object' && data !== null) {
+                        setDetailsData(data as Record<string, unknown>);
+                    }
+                }} />;
             case 1:
-                return <ReceiverStep onNext={onNextStep} onDataChange={setReceiverData} />;
+                return <ReceiverStep onNext={onNextStep} onDataChange={(data) => {
+                    if (typeof data === 'object' && data !== null) {
+                        setReceiverData(data as Record<string, unknown>);
+                    }
+                }} />;
             case 2:
                 return <ReviewStep detailsData={detailsData} receiverData={receiverData} onNext={onNextStep} />;
             case 3:

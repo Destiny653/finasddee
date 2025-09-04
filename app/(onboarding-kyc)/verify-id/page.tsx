@@ -1,7 +1,8 @@
 import React from "react";
+import KycVerifyIdForm from "./_components/KycVerifyIdForm";
 
 const KycVerifyIdPage = () => {
-    return <div>KycVerifyIdPage</div>;
+    return <KycVerifyIdForm />;
 };
 
 export default KycVerifyIdPage;

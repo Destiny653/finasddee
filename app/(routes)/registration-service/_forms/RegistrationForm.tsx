@@ -6,8 +6,6 @@ import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
 import CountryList from "country-list-with-dial-code-and-flag";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 
 interface FormData {
     country: string;
@@ -22,18 +20,7 @@ interface FormData {
     mobileNumber: string;
 }
 
-const schema = yup.object().shape({
-    country: yup.string().required("Country is required"),
-    username: yup.string().email("Invalid email").required("Username is required"),
-    password: yup.string().min(8, "Password must be at least 8 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/, "Password must contain at least one uppercase, one lowercase, one number, and one special character").required("Password is required"),
-    verifyPassword: yup.string().oneOf([yup.ref('password')], "Passwords must match").required("Verify password is required"),
-    firstName: yup.string().required("First name is required"),
-    lastName: yup.string().required("Last name is required"),
-    dateOfBirth: yup.string().required("Date of birth is required"),
-    agentReferralCode: yup.string().optional(),
-    mobileDialCode: yup.string().required("Dial code is required"),
-    mobileNumber: yup.string().required("Mobile number is required"),
-});
+
 
 const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormData>();

@@ -43,7 +43,7 @@ export default function RootLayout({
                 />
 
                 {/* jQuery */}
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+                <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
             </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased h-full overflow-x-hidden`}

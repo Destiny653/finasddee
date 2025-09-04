@@ -154,7 +154,7 @@ export default function ContactPage() {
             <div className="relative container mx-auto px-4 text-center text-white">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Awesome Customer Support</h2>
               <p className="text-lg md:text-xl mb-6 max-w-3xl mx-auto">
-                Have you any query? Don't worry. We have great people ready to help you whenever you need it.
+                Have you any query? Don&apos;t worry. We have great people ready to help you whenever you need it.
               </p>
               <Link href="#" className="inline-block bg-white text-[#cc9408] px-6 py-3 font-semibold rounded shadow hover:shadow-md transition">
                 Find out more

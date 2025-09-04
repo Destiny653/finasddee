@@ -1,8 +1,8 @@
 "use client";
-import { div } from "framer-motion/client";
 import Link from "next/link";
-import React, { useState, useEffect, FC } from "react";
+import React, { useState, useEffect, useCallback, useMemo, FC } from "react";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
+import Image from "next/image";
 
 export enum transferTypeEnum {
     ACCOUNT = "account",
@@ -12,7 +12,7 @@ export enum transferTypeEnum {
 
 interface ISendMoneyDetailsForm {
     onNext?: () => void;
-    onDataChange?: (data: any) => void;
+    onDataChange?: (data: unknown) => void;
 }
 const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange }) => {
     const [youSend, setYouSend] = useState('');
@@ -25,24 +25,24 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('BANK');
 
     // Exchange rates (sample rates for demonstration)
-    const exchangeRates: { [key: string]: { [key: string]: number } } = {
+    const exchangeRates = useMemo((): { [key: string]: { [key: string]: number } } => ({
         'AUD': { 'USD': 0.67, 'EUR': 0.62, 'GBP': 0.53, 'CNY': 4.8, 'ALL': 62.5 },
         'USD': { 'AUD': 1.49, 'EUR': 0.92, 'GBP': 0.79, 'CNY': 7.2, 'ALL': 93.2 },
         'EUR': { 'USD': 1.09, 'AUD': 1.61, 'GBP': 0.86, 'CNY': 7.8, 'ALL': 101.5 },
         'GBP': { 'USD': 1.27, 'AUD': 1.89, 'EUR': 1.16, 'CNY': 9.1, 'ALL': 118.3 },
         'CNY': { 'USD': 0.14, 'AUD': 0.21, 'EUR': 0.13, 'GBP': 0.11, 'ALL': 12.9 }
-    };
+    }), []);
 
-    const currencyMap: { [key: string]: string } = {
+    const currencyMap = useMemo((): { [key: string]: string } => ({
         'Albania': 'ALL', 'Algeria': 'DZD', 'Australia': 'AUD', 'Bahamas': 'BSD',
         'Belarus': 'BYN', 'Cambodia': 'KHR', 'China': 'CNY', 'Croatia': 'HRK',
         'Germany': 'EUR', 'Iran': 'IRR', 'Italy': 'EUR', 'Latvia': 'EUR',
         'Morocco': 'MAD', 'Nepal': 'NPR', 'Romania': 'RON', 'Russia': 'RUB',
         'Serbia': 'RSD', 'Spain': 'EUR', 'United Kingdom': 'GBP',
         'United States': 'USD', 'Vietnam': 'VND'
-    };
+    }), []);
 
-    const calculateConversion = () => {
+    const calculateConversion = useCallback(() => {
         const amount = parseFloat(youSend) || 0;
         const recipientCurrency = currencyMap[selectedRecipientCountry];
 
@@ -67,11 +67,11 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             setFees('0.0');
             setTotalToPay('0.00');
         }
-    };
+    }, [youSend, selectedSendCurrency, selectedRecipientCountry, currencyMap, exchangeRates]);
 
     useEffect(() => {
         calculateConversion();
-    }, [youSend, selectedSendCurrency, selectedRecipientCountry]);
+    }, [youSend, selectedSendCurrency, selectedRecipientCountry, calculateConversion]);
     return (
 
         <div className="w-full overflow-hidden">
@@ -356,9 +356,9 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             {/* Security badges */}
             <div className="text-center">
                 <div className="mb-3 flex justify-center items-center space-x-4">
-                    <img src="/assets/images/security pics/credit-card.png" alt="Credit Card" className="h-8" />
-                    <img src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" className="h-8" />
-                    {/* <img src="/assets/images/security pics/partner5.gif" alt="Sofort Banking" className="h-8" /> */}
+                    <Image src="/assets/images/security pics/credit-card.png" alt="Credit Card" width={32} height={32} />
+                    <Image src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" width={32} height={32} />
+                    {/* <Image src="/assets/images/security pics/partner5.gif" alt="Sofort Banking" width={32} height={32} /> */}
                 </div>
                 <p className=" text-gray-600 flex items-start justify-center text-lg">
                     <i className="fa fa-lock text-lg mr-2 mt-1"></i>

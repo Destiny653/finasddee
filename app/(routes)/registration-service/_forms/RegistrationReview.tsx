@@ -1,6 +1,6 @@
 "use client";
 import CustomInput from "@/app/_components/CustomInput";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import {
     Card,
     CardContent,

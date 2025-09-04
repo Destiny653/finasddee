@@ -4,7 +4,7 @@ import SendMoneyDetailsForm from "../../../_forms/SendMoneyDetailsForm";
 
 interface IDetailsStep {
     onNext: () => void;
-    onDataChange: (data: any) => void;
+    onDataChange: (data: unknown) => void;
 }
 const DetailsStep: FC<IDetailsStep> = ({ onNext, onDataChange }) => {
     return (
