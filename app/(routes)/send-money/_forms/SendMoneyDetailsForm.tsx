@@ -2,6 +2,7 @@
 import { div } from "framer-motion/client";
 import Link from "next/link";
 import React, { useState, useEffect, FC } from "react";
+import { CustomCombobox } from "@/app/_components/CustomCombobox";
 
 export enum transferTypeEnum {
     ACCOUNT = "account",
@@ -159,80 +160,82 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
             {/* Sender Country */}
             <div className="mb-4 z-30 ">
                 <label htmlFor="youSendCountry" className="form-label">Sender Country</label>
-                <select
-                    id="youSendCountry"
-                    className="form-select w-full"
-                    required
+                <CustomCombobox
+                    options={[
+                        { value: "Australia", label: "🇦🇺 Australia" },
+                        { value: "Bahrain", label: "🇧🇭 Bahrain" },
+                        { value: "Brazil", label: "🇧🇷 Brazil" },
+                        { value: "Canada", label: "🇨🇦 Canada" },
+                        { value: "China", label: "🇨🇳 China" },
+                        { value: "Denmark", label: "🇩🇰 Denmark" },
+                        { value: "France", label: "🇫🇷 France" },
+                        { value: "Germany", label: "🇩🇪 Germany" },
+                        { value: "Iceland", label: "🇮🇸 Iceland" },
+                        { value: "Italy", label: "🇮🇹 Italy" },
+                        { value: "New Zealand", label: "🇳🇿 New Zealand" },
+                        { value: "Norway", label: "🇳🇴 Norway" },
+                        { value: "Russia", label: "🇷🇺 Russia" },
+                        { value: "Spain", label: "🇪🇸 Spain" },
+                        { value: "United Kingdom", label: "🇬🇧 United Kingdom" },
+                        { value: "United States", label: "🇺🇸 United States" },
+                        { value: "Vietnam", label: "🇻🇳 Vietnam" },
+                    ]}
                     value={selectedSenderCountry}
-                    onChange={(e) => setSelectedSenderCountry(e.target.value)}
-                >
-                    <option value="Australia">🇦🇺 Australia</option>
-                    <option value="Bahrain">🇧🇭 Bahrain</option>
-                    <option value="Brazil">🇧🇷 Brazil</option>
-                    <option value="Canada">🇨🇦 Canada</option>
-                    <option value="China">🇨🇳 China</option>
-                    <option value="Denmark">🇩🇰 Denmark</option>
-                    <option value="France">🇫🇷 France</option>
-                    <option value="Germany">🇩🇪 Germany</option>
-                    <option value="Iceland">🇮🇸 Iceland</option>
-                    <option value="Italy">🇮🇹 Italy</option>
-                    <option value="New Zealand">🇳🇿 New Zealand</option>
-                    <option value="Norway">🇳🇴 Norway</option>
-                    <option value="Russia">🇷🇺 Russia</option>
-                    <option value="Spain">🇪🇸 Spain</option>
-                    <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                    <option value="United States">🇺🇸 United States</option>
-                    <option value="Vietnam">🇻🇳 Vietnam</option>
-                </select>
+                    onSelectChange={setSelectedSenderCountry}
+                    placeholder="Select sender country"
+                    className="w-ful"
+                />
             </div>
 
             {/* Receiver Country */}
             <div className="mb-4">
                 <label htmlFor="recipientCountry" className="form-label">Receivers Country</label>
-                <select
-                    id="recipientCountry"
-                    className="form-select w-full"
+                <CustomCombobox
+                    options={[
+                        { value: "Albania", label: "🇦🇱 Albania" },
+                        { value: "Algeria", label: "🇩🇿 Algeria" },
+                        { value: "Australia", label: "🇦🇺 Australia" },
+                        { value: "Bahamas", label: "🇧🇸 Bahamas" },
+                        { value: "Belarus", label: "🇧🇾 Belarus" },
+                        { value: "Cambodia", label: "🇰🇭 Cambodia" },
+                        { value: "China", label: "🇨🇳 China" },
+                        { value: "Croatia", label: "🇭🇷 Croatia" },
+                        { value: "Germany", label: "🇩🇪 Germany" },
+                        { value: "Iran", label: "🇮🇷 Iran" },
+                        { value: "Italy", label: "🇮🇹 Italy" },
+                        { value: "Latvia", label: "🇱🇻 Latvia" },
+                        { value: "Morocco", label: "🇲🇦 Morocco" },
+                        { value: "Nepal", label: "🇳🇵 Nepal" },
+                        { value: "Romania", label: "🇷🇴 Romania" },
+                        { value: "Russia", label: "🇷🇺 Russia" },
+                        { value: "Serbia", label: "🇷🇸 Serbia" },
+                        { value: "Spain", label: "🇪🇸 Spain" },
+                        { value: "United Kingdom", label: "🇬🇧 United Kingdom" },
+                        { value: "United States", label: "🇺🇸 United States" },
+                        { value: "Vietnam", label: "🇻🇳 Vietnam" },
+                    ]}
                     value={selectedRecipientCountry}
-                    onChange={(e) => setSelectedRecipientCountry(e.target.value)}
-                >
-                    <option value="Albania">🇦🇱 Albania</option>
-                    <option value="Algeria">🇩🇿 Algeria</option>
-                    <option value="Australia">🇦🇺 Australia</option>
-                    <option value="Bahamas">🇧🇸 Bahamas</option>
-                    <option value="Belarus">🇧🇾 Belarus</option>
-                    <option value="Cambodia">🇰🇭 Cambodia</option>
-                    <option value="China">🇨🇳 China</option>
-                    <option value="Croatia">🇭🇷 Croatia</option>
-                    <option value="Germany">🇩🇪 Germany</option>
-                    <option value="Iran">🇮🇷 Iran</option>
-                    <option value="Italy">🇮🇹 Italy</option>
-                    <option value="Latvia">🇱🇻 Latvia</option>
-                    <option value="Morocco">🇲🇦 Morocco</option>
-                    <option value="Nepal">🇳🇵 Nepal</option>
-                    <option value="Romania">🇷🇴 Romania</option>
-                    <option value="Russia">🇷🇺 Russia</option>
-                    <option value="Serbia">🇷🇸 Serbia</option>
-                    <option value="Spain">🇪🇸 Spain</option>
-                    <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                    <option value="United States">🇺🇸 United States</option>
-                    <option value="Vietnam">🇻🇳 Vietnam</option>
-                </select>
+                    onSelectChange={setSelectedRecipientCountry}
+                    placeholder="Select receiver country"
+                    className="w-full"
+                />
             </div>
 
             {/* Delivery Methods */}
             <div className="mb-4">
                 <p className="delivery-methods-label mb-2">Delivery methods</p>
-                <select
-                    id="delivery_methods"
-                    className="form-select w-full"
+                <CustomCombobox
+                    options={[
+                        { value: "BANK", label: "BANK TRANSFER" },
+                        { value: "Bitcoin", label: "Bitcoin" },
+                        { value: "PAYPAL", label: "PAYPAL" },
+                        { value: "SKRILL", label: "SKRILL" },
+                    ]}
                     value={selectedDeliveryMethod}
-                    onChange={(e) => setSelectedDeliveryMethod(e.target.value)}
-                >
-                    <option value="BANK">BANK TRANSFER</option>
-                    <option value="Bitcoin">Bitcoin</option>
-                    <option value="PAYPAL">PAYPAL</option>
-                    <option value="SKRILL">SKRILL</option>
-                </select>
+                    onSelectChange={setSelectedDeliveryMethod}
+                    placeholder="Select delivery method"
+                    className="w-full"
+                />
             </div>
 
             {/* Sending Currency */}
@@ -270,39 +273,28 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                             border: '0'
                         }}
                     />
-                    <select
-                        id="youSendCurrency"
-                        className="form-select"
-                        required
-                        style={{
-                            width: '200px',
-                            minWidth: '140px',
-                            // maxWidth: '140px',
-                            border: 'none',
-                            backgroundColor: '#f9fafb',
-                            borderLeft: 'none',
-                            borderRadius: '0 0.375rem 0.375rem 0',
-                            fontSize: '13px',
-                            flexShrink: 0
-                        }}
+                    <CustomCombobox
+                        options={[
+                            { value: "AUD", label: "🇦🇺 Australian Dollar A$" },
+                            { value: "BHD", label: "🇧🇭 Bahraini Dinar BD" },
+                            { value: "BRL", label: "🇧🇷 Real R$" },
+                            { value: "CAD", label: "🇨🇦 Canadian Dollar Can$" },
+                            { value: "CNY", label: "🇨🇳 Chinese Yuan ¥" },
+                            { value: "DKK", label: "🇩🇰 Danish Krone Dkr" },
+                            { value: "EUR", label: "🇪🇺 Euro €" },
+                            { value: "ISK", label: "🇮🇸 Icelandic Krona Kr" },
+                            { value: "NZD", label: "🇳🇿 New Zealand Dollar $" },
+                            { value: "NOK", label: "🇳🇴 Norwegian Krone kr" },
+                            { value: "RUB", label: "🇷🇺 Ruble р." },
+                            { value: "GBP", label: "🇬🇧 Pound Sterling £" },
+                            { value: "USD", label: "🇺🇸 United States Dollar $" },
+                            { value: "VND", label: "🇻🇳 Dong ₫" },
+                        ]}
                         value={selectedSendCurrency}
-                        onChange={(e) => setSelectedSendCurrency(e.target.value)}
-                    >
-                        <option value="AUD">🇦🇺 Australian Dollar A$</option>
-                        <option value="BHD">🇧🇭 Bahraini Dinar BD</option>
-                        <option value="BRL">🇧🇷 Real R$</option>
-                        <option value="CAD">🇨🇦 Canadian Dollar Can$</option>
-                        <option value="CNY">🇨🇳 Chinese Yuan ¥</option>
-                        <option value="DKK">🇩🇰 Danish Krone Dkr</option>
-                        <option value="EUR">🇪🇺 Euro €</option>
-                        <option value="ISK">🇮🇸 Icelandic Krona Kr</option>
-                        <option value="NZD">🇳🇿 New Zealand Dollar $</option>
-                        <option value="NOK">🇳🇴 Norwegian Krone kr</option>
-                        <option value="RUB">🇷🇺 Ruble р.</option>
-                        <option value="GBP">🇬🇧 Pound Sterling £</option>
-                        <option value="USD">🇺🇸 United States Dollar $</option>
-                        <option value="VND">🇻🇳 Dong ₫</option>
-                    </select>
+                        onSelectChange={setSelectedSendCurrency}
+                        placeholder="Select currency"
+                        className="w-[200px] min-w-[140px]"
+                    />
                 </div>
             </div>
 

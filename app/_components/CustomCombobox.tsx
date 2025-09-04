@@ -78,14 +78,14 @@ export function CustomCombobox({
                 <PopoverContent
                     className={cn(
                         "p-0",
-                        optionFullWidth && "w-full min-w-[30rem",
+                        optionFullWidth && "w-full min-w-[30rem]",
                     )}
                 >
-                    <Command className="!w-full">
+                    <Command className="!w-full ">
                         <CommandInput placeholder="Search options..." />
-                        <CommandList>
+                        <CommandList >
                             <CommandEmpty>{emptyLabel}</CommandEmpty>
-                            <CommandGroup>
+                            <CommandGroup >
                                 {options.map((item, index) => (
                                     <CommandItem
                                         key={`${item.value}-${index}`}

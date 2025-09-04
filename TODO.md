@@ -11,3 +11,15 @@
 
 ## Summary
 The changes ensure that when users fill in the details step and click "Continue", the step changes to the recipient step. The form includes validation for the amount, and upon successful validation, it calls the onNext function to proceed to the next step. Other steps (recipient and payment) use the button from PaymentCardLayout for consistency.
+
+## Add Search to Send Money Form Dropdowns
+
+## Pending Tasks
+- [ ] Import CustomCombobox in SendMoneyDetailsForm.tsx
+- [ ] Define options arrays for sender countries, receiver countries, delivery methods, and sending currencies
+- [ ] Replace sender country select with CustomCombobox
+- [ ] Replace receiver country select with CustomCombobox
+- [ ] Replace delivery methods select with CustomCombobox
+- [ ] Replace sending currency select with CustomCombobox, adjusting styling for input group
+- [ ] Test search functionality in all dropdowns
+- [ ] Verify styling consistency
