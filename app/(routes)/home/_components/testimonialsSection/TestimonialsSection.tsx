@@ -55,31 +55,31 @@ const TestimonialsSection = () => {
     };
 
     return (
-        <section className="section py-16 flex items-center justify-center" style={{ backgroundColor: '#ffff00' }}>
-            <div className="container">
-                <h2 className="text-6xl text-center font-normal text-black mb-4">
+        <section className="section py-8 md:py-12 lg:py-16 flex items-center justify-center" style={{ backgroundColor: '#ffff00' }}>
+            <div className="container mx-auto px-4">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-normal text-black mb-4">
                     What people say about Finasddee
                 </h2>
-                <p className="text-xl text-center text-black mb-4">
+                <p className="text-lg md:text-xl text-center text-black mb-4">
                     A payments experience people love to talk about
                 </p>
 
-                <div className="row px-20">
-                    <div className="col-lg-10 col-xl-8 mx-auto">
+                <div className="px-4 md:px-8 lg:px-12">
+                    <div className="max-w-4xl xl:max-w-5xl mx-auto">
                         <div className="owl-carousel owl-theme" style={{ position: 'relative' }}>
                             {/* Testimonial Content */}
                             <div className="item">
                                 <div className="testimonial rounded text-center p-4 bg-white shadow-lg">
-                                    <p className="text-6xl text-gray-400 opacity-20 mb-2">
+                                    <p className="text-4xl md:text-5xl lg:text-6xl text-gray-400 opacity-20 mb-2">
                                         <i className="fa fa-quote-left"></i>
                                     </p>
-                                    <p className="text-xl text-gray-800 mb-4">
+                                    <p className="text-lg md:text-xl text-gray-800 mb-4">
                                         &ldquo;{testimonials[currentSlide].quote}&rdquo;
                                     </p>
-                                    <strong className="block font-medium text-lg text-gray-900">
+                                    <strong className="block font-medium text-base md:text-lg text-gray-900">
                                         {testimonials[currentSlide].author}
                                     </strong>
-                                    <span className="text-gray-600">
+                                    <span className="text-sm md:text-base text-gray-600">
                                         {testimonials[currentSlide].position}
                                     </span>
                                 </div>

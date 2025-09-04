@@ -99,14 +99,14 @@ export function MainHeader() {
               </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
                 <Link
-                  href="/login"
+                  href="/signin"
                   onClick={toggleMenu}
                   className="inline-flex items-center justify-center rounded-md border border-white text-white  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
                 >
                   Login
                 </Link>
                 <Link
-                  href="/signup"
+                  href="/registration-service"
                   onClick={toggleMenu}
                   className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-9 px-3 text-sm font-medium transition-colors"
                 >

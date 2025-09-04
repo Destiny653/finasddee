@@ -43,20 +43,20 @@ const FaqSection = () => {
     };
 
     return (
-        <section className="section py-16 pb-34 text-white" id="faq-section" style={{ backgroundColor: '#b8860b' }}>
+        <section className="section py-8 md:py-12 lg:py-16 text-white" id="faq-section" style={{ backgroundColor: '#b8860b' }}>
             <div className="container mx-auto px-4">
-                <h2 className="text-6xl text-center font-normal text-white mb-4">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-normal text-white mb-4">
                     Frequently Asked Questions
                 </h2>
-                <p className="text-xl text-center text-white mb-12">
+                <p className="text-lg md:text-xl text-center text-white mb-12">
                     Can&apos;t find it here? Check out our{' '}
                     <a href="help" className="text-white underline hover:no-underline">
                         Help center
                     </a>
                 </p>
 
-                <div className="row px-20">
-                    <div className="col-md-10 col-lg-8 mx-auto">
+                <div className="px-4 md:px-8 lg:px-12">
+                    <div className="max-w-4xl lg:max-w-5xl mx-auto">
                         <hr className="mb-0" style={{ borderColor: '#d1d5db' }} />
                         <div className="accordion accordion-flush arrow-end" id="popularTopics">
                             {faqs.map((faq, index) => (
