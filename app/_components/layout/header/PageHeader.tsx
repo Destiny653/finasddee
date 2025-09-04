@@ -13,11 +13,11 @@ export function PageHeader() {
 
   return (
     <header
-      className="relative mb-8 font-sans font-bold bg-white text-lg shadow-lg border-b border-gray-200"
+      className="relative mb-8 font-sans font-bold bg-white text-lg  border-b border-gray-200"
       style={{ marginBottom: '30px' }}
     >
       <div className="container mx-auto px-4 max-w-[1440px]">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-0">
           {/* Logo Section */}
           <div className="flex items-center">
             <div className="logo mr-3">
