@@ -13,8 +13,7 @@ export function PageHeader() {
 
   return (
     <header
-      className="relative mb-8 font-sans font-bold bg-[#0e1e33] text-lg  border-b border-gray-200"
-      style={{ marginBottom: '30px' }}
+      className="relative font-sans font-bold bg-[#0e1e33] text-lg  border-b border-gray-200"
     >
       <div className="container mx-auto px-4 py-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-0">
@@ -23,16 +22,16 @@ export function PageHeader() {
             <Link href="/" className="flex items-center" title="Finasddee">
               <div className="logo mr-3 flex flex-col items-center justify-center">
                 <Image
-                  src="/Frame.png"
+                  src="/Group.png"
                   alt="finasddee"
                   width={400}
                   height={400}
                   className="w-auto h-[80px]"
                 />
-                <div className='text-white flex flex-col items-center'>
+                {/* <div className='text-white flex flex-col items-center'>
                   <h2 className='text-2xl'>FINASDDEE</h2>
                   <span className='text-lg text-center font-[500]'>Credit Line</span>
-                </div>
+                </div> */}
               </div>
             </Link>
 

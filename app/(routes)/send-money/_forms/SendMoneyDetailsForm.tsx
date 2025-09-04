@@ -158,7 +158,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
             `}</style>
 
             {/* Sender Country */}
-            <div className="mb-4 z-30 ">
+            <div className="mb-4 z-30 flex flex-col">
                 <label htmlFor="youSendCountry" className="form-label">Sender Country</label>
                 <CustomCombobox
                     options={[
@@ -183,12 +183,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                     value={selectedSenderCountry}
                     onSelectChange={setSelectedSenderCountry}
                     placeholder="Select sender country"
-                    className="w-ful"
+                    className="w-full md:py-8"
                 />
             </div>
 
             {/* Receiver Country */}
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col">
                 <label htmlFor="recipientCountry" className="form-label">Receivers Country</label>
                 <CustomCombobox
                     options={[
@@ -217,12 +217,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                     value={selectedRecipientCountry}
                     onSelectChange={setSelectedRecipientCountry}
                     placeholder="Select receiver country"
-                    className="w-full"
+                    className="w-full md:py-8"
                 />
             </div>
 
             {/* Delivery Methods */}
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col gap-2">
                 <p className="delivery-methods-label mb-2">Delivery methods</p>
                 <CustomCombobox
                     options={[
@@ -234,12 +234,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                     value={selectedDeliveryMethod}
                     onSelectChange={setSelectedDeliveryMethod}
                     placeholder="Select delivery method"
-                    className="w-full"
+                    className="w-full md:py-8"
                 />
             </div>
 
             {/* Sending Currency */}
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col">
                 <label htmlFor="youSend" className="form-label">Sending Currency</label>
                 <div className="input-group" style={{
                     display: 'flex',
@@ -293,14 +293,14 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                         value={selectedSendCurrency}
                         onSelectChange={setSelectedSendCurrency}
                         placeholder="Select currency"
-                        className="w-[200px] min-w-[140px]"
+                        className="w-[200px] min-w-[140px] md:py-8"
                     />
                 </div>
             </div>
 
             {/* Summary */}
-            <div className="mt-6 mb-6 font-semibold">
-                <div className="summary-row border-b border-gray-100">
+            <div className="mt-6 mb-6 font-semibold ">
+                <div className="summary-row border-b  border-gray-100">
                     <span>Receiver gets</span>
                     <span>{recipientGets}</span>
                 </div>
@@ -321,7 +321,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                 <Link href={'/send-money'}>
                     <button
                         type="button"
-                        className="btn btn-primary w-full py-3 text-white font-semibold"
+                        className="btn btn-primary w-full md:h-16 text-white font-semibold"
                         onClick={() => {
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {

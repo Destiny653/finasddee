@@ -26,18 +26,28 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext }) => {
         >
             <div className="w-full flex flex-col gap-4">
                 <div className="w-full grid grid-cols-2 gap-4">
-                    <CustomInput label="First name" placeholder="first name" />
+                    <CustomInput
+                        label="First name"
+                        className="md:py-8"
+                        placeholder="first name"
+                    />
                     <CustomInput
                         label="Middle name"
                         placeholder="Middle name"
+                        className="md:py-8"
                     />
-                    <CustomInput label="last name" placeholder="last name" />
+                    <CustomInput
+                        label="last name"
+                        className="md:py-8"
+                        placeholder="last name" />
                     <CustomInput
                         label="Receiver's email (Optional)"
+                        className="md:py-8"
                         placeholder="Example@gmail.com"
                     />
                     <CustomInput
                         label="Receiver's contact"
+                        className="md:py-8"
                         placeholder="Enter recievers contact"
                     />
                     <CustomCombobox
@@ -51,25 +61,38 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext }) => {
                         label="Organization type"
                         placeholder="Select "
                         optionFullWidth
+                        className="md:py-8"
                     />
                 </div>
                 <CustomInput
                     label="Receiver's Address line 1"
+                    className="md:py-8"
                     placeholder="Enter recievers address"
                 />
                 <CustomInput
                     label="Receiver's Address line 2"
+                    className="md:py-8"
                     placeholder="Enter recievers address"
                 />
                 <CustomInput
                     label="Receiver's Address line 3"
+                    className="md:py-8"
                     placeholder="Enter recievers address"
                 />
-                <div className="w-full grid grid-cols-2 gap-4">
-                    <CustomInput label="city" placeholder="city" />
-                    <CustomInput label="state" placeholder="state" />
+                <div className="w-full grid grid-cols-2 items-center justify-center gap-4">
+                    <CustomInput
+                        label="city"
+                        className="md:py-8"
+                        placeholder="city"
+                    />
+                    <CustomInput
+                        label="state"
+                        className="md:py-8"
+                        placeholder="state"
+                    />
                     <CustomInput
                         label="zip code"
+                        className="md:py-8 "
                         placeholder="enter receivers postal code"
                     />
                     <CustomCombobox
@@ -78,18 +101,19 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext }) => {
                         label="Receiver's country"
                         placeholder="Select Country"
                         optionFullWidth
+                        className="md:py-8"
                     />
                 </div>
-                <div>
+                <div className="flex flex-col gap-2">
                     <p className="font-sans  text-sm text-muted-foreground font-semibold leading-[18px] ">
                         Telephone
                     </p>
-                    <div className="flex items-end w-full">
+                    <div className="flex items-end w-full bg-gray-100 border-gray-200 border rounded-lg">
                         <CustomCombobox
                             value={"+237"}
                             options={dailCodeOptions}
                             emptyLabel="No currency code found"
-                            className="rounded-r-none border-r-0 w-full"
+                            className="rounded-r-none border-r-0 w-full md:py-7"
                             // label="Reeiver Country"
                             placeholder="Select currency code"
                         />
@@ -97,7 +121,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext }) => {
                             <CustomInput
                                 placeholder=""
                                 type="tel"
-                                className="rounded-l-none flex-1 w-full bg-white"
+                                className="border-0 md:py-7 rounded-none flex-1 w-full border-l"
                             />
                         </div>
                     </div>

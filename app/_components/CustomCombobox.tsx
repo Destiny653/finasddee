@@ -48,7 +48,7 @@ export function CustomCombobox({
     const [value, setValue] = React.useState(newVal ?? defaultValue ?? (options.length > 0 ? options[0].value : ""));
 
     return (
-<div className={`relative rounded-l-lg ${className}`}>
+<div className={`relative rounded-l-lg `}>
             {label && (
                 <p className="font-sans  text-sm  font-semibold leading-[18px] mb-2">
                     {label}

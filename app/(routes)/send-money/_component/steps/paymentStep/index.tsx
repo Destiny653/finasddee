@@ -58,16 +58,16 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
             default:
                 return (
                     <>
-                        <div>
+                        <div className="flex flex-col gap-2">
                             <p className="font-sans  text-sm text-muted-foreground font-semibold leading-[18px] ">
                                 Mobile number
                             </p>
-                            <div className="flex items-end w-full">
+                            <div className="flex items-end w-full bg-gray-100 border border-gray-100 rounded-lg">
                                 <CustomCombobox
                                     value={"+237"}
                                     options={dailCodeOptions}
                                     emptyLabel="No currency code found"
-                                    className="rounded-r-none border-r-0 w-full"
+                                    className="rounded-r-none border-r-0 w-full md:py-7"
                                     // label="Reeiver Country"
                                     placeholder="Select currency code"
                                 />
@@ -75,7 +75,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                                     <CustomInput
                                         placeholder=""
                                         type="tel"
-                                        className="rounded-l-none flex-1 w-full bg-white"
+                                        className="rounded-l-none flex-1 w-full md:py-7 border-0 border-l"
                                     />
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                         <CustomCombobox
                             options={[{ label: "MTN MOMO", value: "MTN MOMO" }]}
                             emptyLabel="No provider found"
-                            className="rounded-r-none border-r-0 w-full"
+                            className="rounded-lg border-r-0 w-full md:py-8"
                             label="Mobile number network"
                             placeholder="Select mobile network"
                         />
