@@ -14,7 +14,7 @@ export function MainHeader() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-bold z-20 shadow-md ">
+    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-20 shadow-md ">
       <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -24,8 +24,8 @@ export function MainHeader() {
                 src="/assets/images/pic/logoRed.png"
                 alt="Finasddee"
                 className="h-40 w-auto"
-                width={600}
-                height={600}
+                width={500}
+                height={500}
               />
             </Link>
           </div>

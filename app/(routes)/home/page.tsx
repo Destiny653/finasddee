@@ -11,18 +11,18 @@ import MainLandingPageLayout from "@/app/_components/layout/landingPage/MainLand
 
 const HomePage = () => {
     return (
-        // <MainLandingPageLayout>
-        <>
-            <LandingPageNavBar />
-            <HeroSection />
-            <HowItWorksSection />
-            <WhyChooseUsSection />
-            <NetworkSection />
-            <TestimonialsSection />
-            <SpecialOfferSection />
-            <FaqSection />
-        </>
-        // {/* </MainLandingPageLayout> */}
+        <MainLandingPageLayout>
+            <>
+                <LandingPageNavBar />
+                <HeroSection />
+                <HowItWorksSection />
+                <WhyChooseUsSection />
+                <NetworkSection />
+                <TestimonialsSection />
+                <SpecialOfferSection />
+                <FaqSection />
+            </>
+        </MainLandingPageLayout>
     );
 };
 

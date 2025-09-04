@@ -13,6 +13,7 @@ const PageLayout: FC<IPageLayout> = ({ children }) => {
             <div className="flex-1 flex flex-col">
                 {children}
             </div>
+            <LandingPageFooter/>
         </div>
     );
 };

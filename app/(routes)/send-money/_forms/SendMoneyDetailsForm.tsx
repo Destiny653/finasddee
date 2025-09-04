@@ -12,8 +12,9 @@ export enum transferTypeEnum {
 
 interface ISendMoneyDetailsForm {
     onNext?: () => void;
+    onDataChange?: (data: any) => void;
 }
-const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
+const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange }) => {
     const [youSend, setYouSend] = useState('');
     const [recipientGets, setRecipientGets] = useState('0.0');
     const [fees, setFees] = useState('0.0');
@@ -322,16 +323,30 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext }) => {
                     <button
                         type="button"
                         className="btn btn-primary w-full md:h-16 text-white font-semibold"
-                        onClick={() => {
-                            const amount = parseFloat(youSend);
-                            if (!amount || amount <= 0) {
-                                alert('Please enter a valid amount to send.');
-                                return;
-                            }
-                            if (onNext) {
-                                onNext();
-                            }
-                        }}
+                                onClick={() => {
+                                    const amount = parseFloat(youSend);
+                                    if (!amount || amount <= 0) {
+                                        import("sonner").then(({ toast }) => {
+                                            toast.error('Please enter a valid amount to send.');
+                                        });
+                                        return;
+                                    }
+                                    if (onDataChange) {
+                                        onDataChange({
+                                            youSend,
+                                            recipientGets,
+                                            fees,
+                                            totalToPay,
+                                            selectedSenderCountry,
+                                            selectedRecipientCountry,
+                                            selectedSendCurrency,
+                                            selectedDeliveryMethod
+                                        });
+                                    }
+                                    if (onNext) {
+                                        onNext();
+                                    }
+                                }}
                     >
                         Continue
                     </button>

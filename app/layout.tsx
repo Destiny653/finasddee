@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { AppQueryProvider } from "./_components/AppQueryProvider";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -48,6 +49,7 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased h-full overflow-x-hidden`}
             >
                 <AppQueryProvider>{children}</AppQueryProvider>
+                <Toaster />
             </body>
         </html>
     );
