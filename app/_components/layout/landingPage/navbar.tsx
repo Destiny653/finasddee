@@ -55,7 +55,7 @@ export function MainHeader() {
           <div className="hidden lg:flex items-center space-x-8 text-xl">
             <Link href="/login" className="text-white hover:text-gold-light transition-colors">Login</Link>
             <Link
-              href="/signup"
+              href="/registration-service"
               className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-8 font-medium transition-colors text-xl"
             >
               Register
