@@ -2,6 +2,7 @@ import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import CustomInput from "@/app/_components/CustomInput";
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
 import CountryList from "country-list-with-dial-code-and-flag";
+import { User, Mail, Phone, MapPin, Building2, Hash } from "lucide-react";
 import React, { FC, useState } from "react";
 
 interface IReceiverStep {
@@ -69,6 +70,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="first name"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
+                        icon={User}
                     />
                     <CustomInput
                         label="Middle name"
@@ -76,6 +78,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         className="md:py-8"
                         value={middleName}
                         onChange={(e) => setMiddleName(e.target.value)}
+                        icon={User}
                     />
                     <CustomInput
                         label="last name"
@@ -83,6 +86,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="last name"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
+                        icon={User}
                     />
                     <CustomInput
                         label="Receiver's email (Optional)"
@@ -90,6 +94,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="Example@gmail.com"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        icon={Mail}
                     />
                     <CustomInput
                         label="Receiver's contact"
@@ -97,6 +102,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="Enter recievers contact"
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
+                        icon={Phone}
                     />
                     <CustomCombobox
                         options={[
@@ -120,6 +126,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                     placeholder="Enter recievers address"
                     value={address1}
                     onChange={(e) => setAddress1(e.target.value)}
+                    icon={MapPin}
                 />
                 <CustomInput
                     label="Receiver's Address line 2"
@@ -127,6 +134,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                     placeholder="Enter recievers address"
                     value={address2}
                     onChange={(e) => setAddress2(e.target.value)}
+                    icon={MapPin}
                 />
                 <CustomInput
                     label="Receiver's Address line 3"
@@ -134,6 +142,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                     placeholder="Enter recievers address"
                     value={address3}
                     onChange={(e) => setAddress3(e.target.value)}
+                    icon={MapPin}
                 />
                 <div className="w-full grid grid-cols-2 items-center justify-center gap-4">
                     <CustomInput
@@ -142,6 +151,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="city"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}
+                        icon={Building2}
                     />
                     <CustomInput
                         label="state"
@@ -149,6 +159,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="state"
                         value={state}
                         onChange={(e) => setState(e.target.value)}
+                        icon={Building2}
                     />
                     <CustomInput
                         label="zip code"
@@ -156,6 +167,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         placeholder="enter receivers postal code"
                         value={zipCode}
                         onChange={(e) => setZipCode(e.target.value)}
+                        icon={Hash}
                     />
                     <CustomCombobox
                         options={CountryOptions}
@@ -189,6 +201,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                                 className="border-0 md:py-7 rounded-none flex-1 w-full border-l"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
+                                icon={Phone}
                             />
                         </div>
                     </div>

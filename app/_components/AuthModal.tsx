@@ -8,6 +8,19 @@ import SignUpForm from '@/app/(auth)/sign-up/_forms/SignUpForm'
 import RegistrationForm from '@/app/(routes)/registration-service/_forms/RegistrationForm'
 import RegistrationReview from '@/app/(routes)/registration-service/_forms/RegistrationReview'
 
+interface FormData {
+    country: string;
+    username: string;
+    password: string;
+    verifyPassword: string;
+    firstName: string;
+    lastName: string;
+    dateOfBirth: string;
+    agentReferralCode?: string;
+    mobileDialCode: string;
+    mobileNumber: string;
+}
+
 type AuthFormType = 'signin' | 'signup' | 'register' | 'registration-review' | 'registration-success'
 
 interface AuthModalProps {
@@ -18,7 +31,7 @@ interface AuthModalProps {
 
 const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) => {
   const [currentForm, setCurrentForm] = useState<AuthFormType>(initialForm)
-  const [registrationData, setRegistrationData] = useState<any>(null)
+  const [registrationData, setRegistrationData] = useState<FormData | null>(null)
 
   useEffect(() => {
     if (isOpen) {
@@ -56,7 +69,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
     }, 50)
   }
 
-  const handleRegistrationSubmit = (data: any) => {
+  const handleRegistrationSubmit = (data: FormData) => {
     console.log('Registration data:', data)
     // Handle registration submission
     setRegistrationData(data);
@@ -84,7 +97,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
             <SignInForm />
             <div className="text-center space-y-2">
               <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <button
                   onClick={() => handleFormSwitch('signup')}
                   className="text-[#cc9408] hover:text-[#b8860b] font-medium"
@@ -155,7 +168,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                   </button>
                 </p>
                 <p className="text-sm text-gray-600">
-                  Don't have an account?{' '}
+                  Don&apos;t have an account?{' '}
                   <button
                     onClick={() => handleFormSwitch('signup')}
                     className="text-[#cc9408] hover:text-[#b8860b] font-medium"
@@ -174,7 +187,9 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Review Registration</h2>
               <p className="text-gray-600">Please review your details before submitting</p>
             </div> */}
-            <RegistrationReview data={registrationData} onAmend={handleAmendDetails} onFinalSubmit={handleFinalSubmit} />
+            {registrationData && (
+              <RegistrationReview data={registrationData} onAmend={handleAmendDetails} onFinalSubmit={handleFinalSubmit} />
+            )}
           </div>
         )
       case 'registration-success':
