@@ -13,7 +13,7 @@ export function MainHeader() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-20 shadow-md ">
+    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-40 shadow-md ">
       <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -56,7 +56,7 @@ export function MainHeader() {
             <Link href="/login" className="text-white hover:text-gold-light transition-colors">Login</Link>
             <Link
               href="/registration-service"
-              className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-12 px-8 font-medium transition-colors text-xl"
+              className="inline-flex items-center justify-center rounded-md bg-[#cc9408] text-white hover:bg-[#e9a907] h-12 px-8 font-medium transition-colors text-xl"
             >
               Register
             </Link>

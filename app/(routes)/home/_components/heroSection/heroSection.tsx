@@ -17,7 +17,7 @@ const HeroSection = () => {
                     backgroundImage: 'url(/assets/images/new_cover_photo.jpg)',
                 }}
             />
-            <div className="container mx-auto px-4 relative z-20">
+            <div className="container mx-auto px-4 relative">
                 <div className="flex flex-col lg:flex-row items-center pt-24 lg:pt-32">
                     {/* Left content */}
                     <div className="lg:w-7/12 xl:w-7/12 text-center lg:text-left pb-8 lg:pb-0">
@@ -29,7 +29,7 @@ const HeroSection = () => {
                     </div>
 
                     {/* Right form */}
-                    <div className="lg:w-5/12 xl:w-5/12 mt-8 lg:mt-0 p-4 w-full">
+                    <div className="lg:w-5/12 xl:w-5/12 mt-8 lg:mt-0 p-4 w-full z-40">
                         <div className="relative z-30">
 <DetailsStep onNext={() => {}} onDataChange={() => {}} />
                         </div>

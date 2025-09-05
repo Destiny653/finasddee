@@ -43,7 +43,7 @@ const FaqSection = () => {
     };
 
     return (
-        <section className="section py-8 md:py-12 lg:py-16 text-white" id="faq-section" style={{ backgroundColor: '#b8860b' }}>
+        <section className="section py-8 md:py-12 lg:py-16 text-white" id="faq-section" style={{ backgroundColor: '#cc9408' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-normal text-white mb-4">
                     Frequently Asked Questions
