@@ -20,7 +20,7 @@ const HeroSection = () => {
             <div className="container mx-auto px-4 relative">
                 <div className="flex flex-col lg:flex-row items-center pt-24 lg:pt-32">
                     {/* Left content */}
-                    <div className="lg:w-7/12 xl:w-7/12 text-center lg:text-left pb-8 lg:pb-0">
+                    <div className="lg:w-7/12 xl:w-7/12 text-center lg:text-left pb-8 lg:pb-0 z-40">
                         <h2 className="text-6xl lg:text-7xl text-white font-normal mb-4">
                             <span className="font-light text-4xl lg:text-5xl block">A better way to</span>
                             Send Money

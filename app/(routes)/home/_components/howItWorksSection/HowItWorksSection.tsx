@@ -54,9 +54,9 @@ const HowItWorksSection = () => {
                 
                 <div className="text-center mt-8">
                     <a
-                        href="/signup"
+                        href="/sign-up"
                         className="inline-block text-white px-8 py-3 rounded-lg font-semibold transition-colors"
-                        style={{ backgroundColor: '#b8860b' }}
+                        style={{ backgroundColor: '#cc9408' }}
                     >
                         Sign up Now
                     </a>
