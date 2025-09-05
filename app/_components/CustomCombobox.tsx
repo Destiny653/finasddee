@@ -48,7 +48,7 @@ export function CustomCombobox({
     const [value, setValue] = React.useState(newVal ?? defaultValue ?? (options.length > 0 ? options[0].value : ""));
 
     return (
-<div className={`relative rounded-l-lg `}>
+        <div className={`relative rounded-l-lg `}>
             {label && (
                 <p className="font-sans  text-sm text-gray-500  font-semibold leading-[18px] mb-2">
                     {label}
@@ -61,7 +61,7 @@ export function CustomCombobox({
                         role="combobox"
                         aria-expanded={open}
                         className={cn(
-                            "w-full p-6 b-[#F5F5F5] rounded-sm shadow-none opacity-100 justify-between pr-4 pl-4 text-left font-normal text-black ",
+                            "w-full p-6 b-[#F5F5F5] relative rounded-sm shadow-none opacity-100 justify-between pr-4 pl-4 text-left font-normal text-black ",
                             className,
                         )}
                     >
@@ -72,7 +72,7 @@ export function CustomCombobox({
                                 {/* {placeholder} */}
                             </p>
                         )}
-                        <ChevronsUpDownIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        <ChevronsUpDownIcon className="ml-2 absolute top-1/3.5 right-1 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent

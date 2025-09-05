@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useState, useEffect, useCallback, useMemo, FC } from "react";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import Image from "next/image";
+import { DollarSign } from "lucide-react";
 
 export enum transferTypeEnum {
     ACCOUNT = "account",
@@ -257,7 +258,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                         minWidth: '40px',
                         justifyContent: 'center',
                         flexShrink: 0
-                    }}>$</span>
+                    }}><DollarSign size={16} /></span>
                     <input
                         type="number"
                         className="form-control outline-0 rounded-none border-0"
