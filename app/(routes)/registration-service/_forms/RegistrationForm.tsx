@@ -4,6 +4,7 @@ import CustomInput from "@/app/_components/CustomInput";
 import CustomPassword from "@/app/_components/CustomPassword";
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
 import CountryList from "country-list-with-dial-code-and-flag";
+import { User, Lock, Calendar, Phone, Hash } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -21,7 +22,7 @@ interface FormData {
 }
 
 const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) => {
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormData>();
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm<FormData>();
 
     const allCountries = CountryList.getAll();
     const CountryOptions = allCountries.map((items) => ({
@@ -33,8 +34,8 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
         value: items?.dialCode,
     }));
 
-    const [selectedCountry, setSelectedCountry] = useState("");
-    const [selectedDialCode, setSelectedDialCode] = useState("");
+    const [selectedCountry, setSelectedCountry] = useState("Australia");
+    const [selectedDialCode, setSelectedDialCode] = useState("+61");
 
     return (
         <PaymentCardLayout
@@ -64,6 +65,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                             label="Username"
                             className="bg-gray-100 py-6 md:py-8"
                             placeholder="Enter username"
+                            icon={User}
                             {...register("username")}
                         />
                         {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
@@ -87,18 +89,20 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                     <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
                     <div className="w-full flex flex-col gap-4">
                         <div className="w-full grid grid-cols-2 gap-4">
-                            <CustomInput
-                                label="First Name"
-                                className="py-6 md:py-8"
-                                placeholder="First name"
-                                {...register("firstName")}
-                            />
-                            <CustomInput
-                                label="Last Name"
-                                className="py-6 md:py-8"
-                                placeholder="Last name"
-                                {...register("lastName")}
-                            />
+                        <CustomInput
+                            label="First Name"
+                            className="py-6 md:py-8"
+                            placeholder="First name"
+                            icon={User}
+                            {...register("firstName")}
+                        />
+                        <CustomInput
+                            label="Last Name"
+                            className="py-6 md:py-8"
+                            placeholder="Last name"
+                            icon={User}
+                            {...register("lastName")}
+                        />
                         </div>
                         {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName.message}</p>}
                         {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
@@ -106,6 +110,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                             label="Date of Birth"
                             className="py-6 md:py-8"
                             type="date"
+                            icon={Calendar}
                             {...register("dateOfBirth")}
                         />
                         {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
@@ -113,6 +118,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                             label="Agent Referral Code"
                             className="py-6 md:py-8"
                             placeholder="Enter referral code"
+                            icon={Hash}
                             {...register("agentReferralCode")}
                         />
                         <div className="space-y-6">
@@ -124,7 +130,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                                     value={selectedDialCode}
                                     options={dialCodeOptions}
                                     emptyLabel="No dial code found"
-                                    className="rounded-r-none border-r-0 m-0 py-2"
+                                    className="rounded-r-none border-r-0 m-0 w-[100px] py-2 md:py-7"
                                     placeholder="Select dial code"
                                     onSelectChange={(value) => {
                                         setSelectedDialCode(value);
@@ -136,6 +142,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                                         placeholder="Enter mobile number"
                                         type="tel"
                                         className="rounded-l-none border-0 border-l md:py-7 flex-1 m-0 w-full py-[25px]"
+                                        icon={Phone}
                                         {...register("mobileNumber")}
                                     />
                                 </div>

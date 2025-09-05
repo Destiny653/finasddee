@@ -16,20 +16,36 @@ interface AuthModalProps {
   initialForm?: AuthFormType
 }
 
-const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialForm = 'signin' }) => {
+const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) => {
   const [currentForm, setCurrentForm] = useState<AuthFormType>(initialForm)
   const [registrationData, setRegistrationData] = useState<any>(null)
 
   useEffect(() => {
     if (isOpen) {
       setCurrentForm(initialForm)
+      // Store original scroll position
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = 'unset'
+      // Restore original scroll position
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
     }
 
     return () => {
-      document.body.style.overflow = 'unset'
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
     }
   }, [isOpen, initialForm])
 
@@ -53,6 +69,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialForm = 's
 
   const handleFinalSubmit = () => {
     setCurrentForm('registration-success');
+    setRegistrationData(null);
   }
 
   const renderForm = () => {
@@ -199,7 +216,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialForm = 's
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-60"
+            className="fixed inset-0 bg-black bg-opacity-50 z-[60]"
             onClick={onClose}
           />
 
@@ -214,13 +231,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialForm = 's
               stiffness: 300,
               duration: 0.5
             }}
-            className="fixed inset-0 z-[70] bg-white overflow-y-auto"
+            className="fixed inset-0 z-[70] bg-white overflow-hidden"
           >
-            <div className="min-h-screen flex items-center justify-center p-6 md:p-8">
+            <div className="min-h-screen flex items-center justify-center overflow-y-scroll p-6 md:p-8">
               {/* Close button */}
               <button
                 onClick={onClose}
-                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full transition-colors z-[80]"
+                className="absolute top-4 right-4 p-2 hover:bg-gray-100 rounded-full  transition-colors z-[80]"
                 aria-label="Close modal"
               >
                 <X size={24} className="text-gray-500 fixed right-10" />
@@ -239,7 +256,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, initialForm = 's
                     stiffness: 300,
                     duration: 0.3
                   }}
-                  className="w-full max-w-md mx-auto"
+                  className="w-full max-w-2xl mx-auto max-h-[80vh]"
                 >
                   {renderForm()}
                 </motion.div>

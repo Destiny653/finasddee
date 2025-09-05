@@ -30,7 +30,7 @@ const CustomInput: FC<ICustomInput> = ({
                     ? (() => {
                           const Icon = icon;
                           return (
-                              <Icon className="size-[18px] absolute top-1/2 right-4 -translate-y-1/2" />
+                              <Icon className="size-[18px] absolute top-1/2 right-4 -translate-y-1/2 text-gray-500" />
                           );
                       })()
                     : null}

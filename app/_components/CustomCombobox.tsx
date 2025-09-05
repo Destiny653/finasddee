@@ -77,9 +77,10 @@ export function CustomCombobox({
                 </PopoverTrigger>
                 <PopoverContent
                     className={cn(
-                        "p-0 w-[var(--radix-popover-trigger-width)] min-w-[100px] max-w-[90vw]",
-                        optionFullWidth && "w-full border-0",
+                        "p-0",
+                        optionFullWidth ? "w-full border-0" : "w-[var(--radix-popover-trigger-width)]",
                     )}
+                    style={optionFullWidth ? {} : { width: 'var(--radix-popover-trigger-width)' }}
                 >
                     <Command className="!w-full border-0 ">
                         <CommandInput className="border-0 " placeholder="Search options..." />
