@@ -24,13 +24,16 @@ interface FormData {
     mobileNumber: string;
 }
 
-const RegistrationReview = ({ data, onAmend }: { data: FormData; onAmend: () => void }) => {
+const RegistrationReview = ({ data, onAmend, onFinalSubmit }: { data: FormData; onAmend: () => void; onFinalSubmit?: () => void }) => {
     const [emailVerificationCode, setEmailVerificationCode] = useState("");
 
     const handleSubmit = () => {
         // Handle final submission
         console.log("Submitting data:", data, "Verification code:", emailVerificationCode);
         // API call here
+        if (onFinalSubmit) {
+            onFinalSubmit();
+        }
     };
 
     const handleAmend = () => {

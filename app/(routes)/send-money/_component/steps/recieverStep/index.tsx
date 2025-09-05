@@ -177,7 +177,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                             value={dialCode}
                             options={dailCodeOptions}
                             emptyLabel="No currency code found"
-                            className="rounded-r-none border-r-0 w-full md:py-7"
+                            className="rounded-r-none border-r-0 w-[100px] md:py-7"
                             // label="Reeiver Country"
                             placeholder="Select currency code"
                             onSelectChange={setDialCode}

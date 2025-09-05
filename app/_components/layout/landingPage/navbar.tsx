@@ -1,19 +1,31 @@
-
 'use client'
 
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
+import AuthModal from '@/app/_components/AuthModal'
 
+type AuthFormType = 'signin' | 'signup' | 'register'
 
 export function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const [currentAuthForm, setCurrentAuthForm] = useState<AuthFormType>('signin')
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
+  const openAuthModal = (formType: AuthFormType) => {
+    setCurrentAuthForm(formType)
+    setIsAuthModalOpen(true)
+    setIsMenuOpen(false) // Close mobile menu if open
+  }
+
+  const closeAuthModal = () => {
+    setIsAuthModalOpen(false)
+  }
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-40 shadow-md ">
+    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-50 shadow-md ">
       <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -53,13 +65,18 @@ export function MainHeader() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-8 text-xl">
-            <Link href="/login" className="text-white hover:text-gold-light transition-colors">Login</Link>
-            <Link
-              href="/registration-service"
+            <button
+              onClick={() => openAuthModal('signin')}
+              className="text-white hover:text-gold-light transition-colors"
+            >
+              Login
+            </button>
+            <button
+              onClick={() => openAuthModal('register')}
               className="inline-flex items-center justify-center rounded-md bg-[#cc9408] text-white hover:bg-[#e9a907] h-12 px-8 font-medium transition-colors text-xl"
             >
               Register
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -98,25 +115,36 @@ export function MainHeader() {
                 Our Network
               </Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
-                <Link
-                  href="/signin"
-                  onClick={toggleMenu}
-                  className="inline-flex items-center justify-center rounded-md border border-white text-white  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/registration-service"
-                  onClick={toggleMenu}
-                  className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-9 px-3 text-sm font-medium transition-colors"
-                >
-                  Register
-                </Link>
+              <button
+                onClick={() => {
+                  openAuthModal('signin')
+                  toggleMenu()
+                }}
+                className="inline-flex items-center justify-center rounded-md border border-white text-white  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
+              >
+                Login
+              </button>
+              <button
+                onClick={() => {
+                  openAuthModal('register')
+                  toggleMenu()
+                }}
+                className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-9 px-3 text-sm font-medium transition-colors"
+              >
+                Register
+              </button>
               </div>
             </nav>
           </div>
         )}
       </div>
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={closeAuthModal}
+        initialForm={currentAuthForm}
+      />
     </header>
   )
 }

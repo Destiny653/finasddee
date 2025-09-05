@@ -20,8 +20,6 @@ interface FormData {
     mobileNumber: string;
 }
 
-
-
 const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) => {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm<FormData>();
 
@@ -79,7 +77,6 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                         <CustomPassword
                             label="Verify Password"
                             className="py-6 md:py-8 bg-gray-100"
-
                             placeholder="Verify password"
                             {...register("verifyPassword")}
                         />
