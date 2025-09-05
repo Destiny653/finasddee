@@ -325,10 +325,10 @@ const TransactionApp = () => {
   const groupedTransactions = groupTransactionsByDate();
 
   return (
-    <>
+    <div className='bg-gray-100'>
       <PageHeader />
-      <div className="max-w-4xl mx-auto my-8 bg-gray-50 min-h-screen p-4 md:p-6">
-        <div className="bg-white rounded-lg shadow-sm">
+      <div className="max-w-4xl mx-auto my-8 min-h-screen p-4 md:p-6">
+        <div className="bg-white rounded-lg ">
           {Object.keys(groupedTransactions).length === 0 ? (
             <div className="px-4 py-6 text-center text-gray-500">
               No transactions found.
@@ -377,7 +377,7 @@ const TransactionApp = () => {
         {selectedTransaction && showStatus && <StatusModal />}
       </div>
       <LandingPageFooter />
-    </>
+    </div>
   );
 };
 
