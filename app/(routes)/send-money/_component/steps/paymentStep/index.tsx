@@ -67,7 +67,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                                     value={"+237"}
                                     options={dailCodeOptions}
                                     emptyLabel="No currency code found"
-                                    className="rounded-r-none border-r-0 w-full md:py-7"
+                                    className="rounded-r-none border-r-0 w-[100px] md:py-7"
                                     // label="Reeiver Country"
                                     placeholder="Select currency code"
                                 />
