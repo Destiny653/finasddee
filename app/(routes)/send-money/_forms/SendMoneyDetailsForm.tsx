@@ -160,7 +160,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             `}</style>
 
             {/* Sender Country */}
-            <div className="mb-4 z-30 flex flex-col">
+            <div className="mb-4 flex flex-col">
                 <label htmlFor="youSendCountry" className="form-label">Sender Country</label>
                 <CustomCombobox
                     options={[

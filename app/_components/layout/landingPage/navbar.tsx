@@ -25,7 +25,7 @@ export function MainHeader() {
     setIsAuthModalOpen(false)
   }
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-50 shadow-md ">
+    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-50 ">
       <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
