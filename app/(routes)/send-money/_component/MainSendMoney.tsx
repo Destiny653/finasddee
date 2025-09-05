@@ -7,6 +7,8 @@ import DetailsStep from "./steps/DetailsStep";
 import PaymentStep from "./steps/paymentStep";
 import ReceiverStep from "./steps/recieverStep";
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
+import { useAuth } from "@/app/_hooks/useAuth";
+import AuthModal from "@/app/_components/AuthModal";
 
 
 interface IReviewStep {
@@ -54,17 +56,69 @@ const MainSendMoney = () => {
     const steps = ["details", "recipient", "review", "payment"];
     const [activeStep, setActiveStep] = useState(0);
 
+    // Authentication
+    const { isAuthenticated, user } = useAuth();
+
+    // Auth modal state
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    const [authModalInitialForm, setAuthModalInitialForm] = useState<'signin' | 'signup'>('signin');
+
     // State to hold form data for review step
     const [detailsData, setDetailsData] = useState<Record<string, unknown>>({});
     const [receiverData, setReceiverData] = useState<Record<string, unknown>>({});
 
-    const onNextStep = () =>
+    const onNextStep = () => {
         setActiveStep((prev) => {
+            const nextStep = prev + 1;
+
+            // Check if user is trying to proceed from details step (step 0) to recipient step (step 1)
+            if (nextStep === 1 && !isAuthenticated) {
+                // Persist form data for unauthenticated user
+                const formData = {
+                    detailsData,
+                    receiverData,
+                    currentStep: prev,
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('sendMoneyFormData', JSON.stringify(formData));
+
+                // Open auth modal
+                setIsAuthModalOpen(true);
+                setAuthModalInitialForm('signin');
+
+                // Don't proceed to next step
+                return prev;
+            }
+
             if (prev >= steps.length - 1) {
                 return steps.length - 1;
             }
-            return prev + 1;
+            return nextStep;
         });
+    };
+
+    // Restore persisted data after authentication
+    useEffect(() => {
+        if (isAuthenticated && user) {
+            const persistedData = localStorage.getItem('sendMoneyFormData');
+            if (persistedData) {
+                try {
+                    const { detailsData: savedDetails, receiverData: savedReceiver, currentStep } = JSON.parse(persistedData);
+                    setDetailsData(savedDetails || {});
+                    setReceiverData(savedReceiver || {});
+                    setActiveStep(currentStep || 0);
+                    localStorage.removeItem('sendMoneyFormData');
+
+                    // Show success message
+                    import("sonner").then(({ toast }) => {
+                        toast.success("Welcome back! Your form data has been restored.");
+                    });
+                } catch (error) {
+                    console.error('Error restoring persisted form data:', error);
+                }
+            }
+        }
+    }, [isAuthenticated, user]);
 
     // Refresh alert
     useEffect(() => {
@@ -187,6 +241,13 @@ const MainSendMoney = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Auth Modal */}
+            <AuthModal
+                isOpen={isAuthModalOpen}
+                onClose={() => setIsAuthModalOpen(false)}
+                initialForm={authModalInitialForm}
+            />
         </>
     );
 };

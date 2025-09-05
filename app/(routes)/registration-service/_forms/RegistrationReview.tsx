@@ -30,6 +30,10 @@ const RegistrationReview = ({ data, onAmend, onFinalSubmit }: { data: FormData; 
     const handleSubmit = () => {
         // Handle final submission
         console.log("Submitting data:", data, "Verification code:", emailVerificationCode);
+        // Save registration data persistently
+        localStorage.setItem('registrationData', JSON.stringify(data));
+        // Mark registration as complete
+        localStorage.setItem('registrationComplete', 'true');
         // API call here
         if (onFinalSubmit) {
             onFinalSubmit();

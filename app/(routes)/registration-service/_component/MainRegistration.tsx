@@ -22,6 +22,8 @@ const MainRegistration = () => {
     const [formData, setFormData] = useState<FormData | null>(null);
 
     const handleFormSubmit = (data: FormData) => {
+        // Save registration data to localStorage
+        localStorage.setItem('registrationData', JSON.stringify(data));
         setFormData(data);
         setShowReview(true);
     };

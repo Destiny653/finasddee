@@ -47,6 +47,13 @@ export function CustomCombobox({
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState(newVal ?? defaultValue ?? (options.length > 0 ? options[0].value : ""));
 
+    // Sync with external value changes
+    React.useEffect(() => {
+        if (newVal !== undefined && newVal !== value) {
+            setValue(newVal);
+        }
+    }, [newVal, value]);
+
     return (
         <div className={`relative rounded-l-lg `}>
             {label && (
@@ -69,7 +76,7 @@ export function CustomCombobox({
                             options.find((item) => item.value === value)?.label
                         ) : (
                             <p className="text-muted-foreground">
-                                {/* {placeholder} */}
+                                {placeholder}
                             </p>
                         )}
                         <ChevronsUpDownIcon className="ml-2 absolute top-1/3.5 right-1 h-4 w-4 shrink-0 opacity-50" />
