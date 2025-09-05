@@ -4,7 +4,7 @@ import CustomInput from "@/app/_components/CustomInput";
 import CustomPassword from "@/app/_components/CustomPassword";
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
 import CountryList from "country-list-with-dial-code-and-flag";
-import { User, Lock, Calendar, Phone, Hash } from "lucide-react";
+import { User, Calendar, Phone, Hash } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 

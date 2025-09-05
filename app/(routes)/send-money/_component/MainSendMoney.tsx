@@ -1,6 +1,6 @@
 "use client";
 import CustomTextarea from "@/app/_components/CustomTextarea";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Fragment, useState, useEffect, FC } from "react";
 import SideSummeryCard from "./sideSummeryCard";
 import DetailsStep from "./steps/DetailsStep";
@@ -139,7 +139,48 @@ const MainSendMoney = () => {
                     <div className="col-span-3 size-full flex gap-2 flex-col">
                         <SideSummeryCard />
                         <Card className="rounded-sm shadow-none border-none">
+                            <CardHeader>
+                                <CardTitle>Beneficiary Details</CardTitle>
+                            </CardHeader>
                             <CardContent>
+                                {Object.keys(receiverData).length > 0 ? (
+                                    <div className="space-y-3 mb-4">
+                                        <div className="grid grid-cols-1 gap-2 text-sm">
+                                            {(receiverData.firstName || receiverData.lastName) ? (
+                                                <div className="flex justify-between">
+                                                    <span className="text-muted-foreground">Name:</span>
+                                                    <span className="font-medium">{`${String(receiverData.firstName || '')} ${String(receiverData.lastName || '')}`.trim()}</span>
+                                                </div>
+                                            ) : null}
+                                            {receiverData.email ? (
+                                                <div className="flex justify-between">
+                                                    <span className="text-muted-foreground">Email:</span>
+                                                    <span className="font-medium">{String(receiverData.email as string)}</span>
+                                                </div>
+                                            ) : null}
+                                            {receiverData.contact ? (
+                                                <div className="flex justify-between">
+                                                    <span className="text-muted-foreground">Contact:</span>
+                                                    <span className="font-medium">{String(receiverData.contact as string)}</span>
+                                                </div>
+                                            ) : null}
+                                            {receiverData.country ? (
+                                                <div className="flex justify-between">
+                                                    <span className="text-muted-foreground">Country:</span>
+                                                    <span className="font-medium">{String(receiverData.country as string)}</span>
+                                                </div>
+                                            ) : null}
+                                            {receiverData.city ? (
+                                                <div className="flex justify-between">
+                                                    <span className="text-muted-foreground">City:</span>
+                                                    <span className="font-medium">{String(receiverData.city as string)}</span>
+                                                </div>
+                                            ) : null}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <p className="text-muted-foreground text-sm mb-4">No beneficiary details added yet</p>
+                                )}
                                 <CustomTextarea label="Payment Purpose" />
                             </CardContent>
                         </Card>
