@@ -24,6 +24,7 @@
         "country-list-with-dial-code-and-flag": "^5.1.1",
         "framer-motion": "^12.23.12",
         "input-otp": "^1.4.2",
+        "jspdf": "^3.0.2",
         "lucide-react": "^0.542.0",
         "next": "15.5.2",
         "react": "19.1.0",
@@ -31,6 +32,7 @@
         "react-hook-form": "^7.62.0",
         "sonner": "^2.0.7",
         "tailwind-merge": "^3.3.1",
+        "uuid": "^11.1.0",
         "yup": "^1.7.0"
     },
     "devDependencies": {

@@ -22,7 +22,7 @@ export function PageHeader() {
   return (
     <>
       <header
-        className="relative font-sans font-bold bg-[#0e1e33] text-lg  border-b border-gray-200"
+        className="relative font-sans font-bold bg-[#0e1e33] text-lg border-b border-gray-200"
       >
         <div className="container mx-auto px-4 py-4 max-w-[1440px]">
           <div className="flex items-center justify-between py-0">
@@ -42,7 +42,7 @@ export function PageHeader() {
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden p-2 text-black hover:text-[#b8860b] transition-colors"
+                className="lg:hidden p-2 text-white hover:text-[#b8860b] transition-colors"
                 type="button"
                 onClick={toggleMenu}
                 aria-label="Toggle navigation"
@@ -55,41 +55,74 @@ export function PageHeader() {
                 <div
                   id="header-nav"
                   className={cn(
-                    "absolute top-full left-0 right-0 bg-white shadow-lg transition-all duration-300 z-50",
+                    "absolute top-full left-0 right-0 bg-[#0e1e33] shadow-lg transition-all duration-300 z-50 border-t border-gray-600",
                     isMenuOpen ? "block" : "hidden"
                   )}
                 >
                   <ul className="flex flex-col p-4 space-y-4">
+                    <li>
+                      <Link
+                        href="/transactions"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="text-white hover:text-[#b8860b] transition-colors block py-2"
+                      >
+                        Transactions
+                      </Link>
+                    </li>
                     <li
                       id="dis1"
-                      className="btn border border-green-500 rounded px-2 py-1 mt-2.5 lg:hidden"
+                      className="btn border border-[#b8860b] rounded px-4 py-2 mt-2.5 lg:hidden"
                     >
                       <button
                         onClick={() => {
                           openAuthModal('signin')
                           setIsMenuOpen(false)
                         }}
-                        className="text-center block text-white w-min mx-auto"
+                        className="text-center block text-white w-full"
                       >
                         Login
                       </button>
                     </li>
                     <li
                       id="dis2"
-                      className="btn bg-[#b8860b] text-white rounded px-2 py-1 mt-2.5 lg:hidden"
+                      className="btn bg-[#b8860b] text-white rounded px-4 py-2 mt-2.5 lg:hidden hover:bg-[#9a7209] transition-colors"
                     >
                       <button
                         onClick={() => {
                           openAuthModal('register')
                           setIsMenuOpen(false)
                         }}
-                        className="text-center block text-white w-min mx-auto"
+                        className="text-center block text-white w-full"
                       >
                         Register
                       </button>
                     </li>
                   </ul>
                 </div>
+              </nav>
+            </div>
+
+            {/* Center Navigation - Desktop Transaction Link */}
+            <div className="hidden lg:block">
+              <nav>
+                <ul className="flex items-center gap-4">
+                  <li>
+                    <Link
+                      href="/transactions"
+                      className="text-white hover:text-[#b8860b] transition-colors font-medium"
+                    >
+                      Transactions
+                    </Link>
+                  </li>
+                   <li>
+                    <Link
+                      href="/track-transactions"
+                      className="text-white hover:text-[#b8860b] transition-colors font-medium"
+                    >
+                      Track transaction
+                    </Link>
+                  </li>
+                </ul>
               </nav>
             </div>
 

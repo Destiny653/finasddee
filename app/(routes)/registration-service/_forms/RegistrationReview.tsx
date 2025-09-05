@@ -28,13 +28,21 @@ const RegistrationReview = ({ data, onAmend, onFinalSubmit }: { data: FormData; 
     const [emailVerificationCode, setEmailVerificationCode] = useState("");
 
     const handleSubmit = () => {
-        // Handle final submission
-        console.log("Submitting data:", data, "Verification code:", emailVerificationCode);
-        // Save registration data persistently
-        localStorage.setItem('registrationData', JSON.stringify(data));
-        // Mark registration as complete
-        localStorage.setItem('registrationComplete', 'true');
-        // API call here
+        // Prepare data for storage, including email verification code
+        const authData = {
+            ...data,
+            emailVerificationCode,
+            registrationComplete: true,
+            registeredAt: new Date().toISOString(), // Add timestamp for reference
+        };
+
+        // Save registration data to localStorage for authentication
+        localStorage.setItem('authData', JSON.stringify(authData));
+
+        // Log for debugging (remove in production)
+        console.log("Stored auth data:", authData);
+
+        // Call onFinalSubmit if provided
         if (onFinalSubmit) {
             onFinalSubmit();
         }
@@ -117,17 +125,17 @@ const RegistrationReview = ({ data, onAmend, onFinalSubmit }: { data: FormData; 
                 </div>
             </CardContent>
             <CardFooter className="flex flex-col gap-4">
-                <div className="w-ful flex gap-4 ml-auto">
+                <div className="w-full flex gap-4 ml-auto">
                     <Button
                         onClick={handleAmend}
                         variant="secondary"
-                        className="w-ful py-6 text-lg hover:bg-gray-300 transition-all duration-200"
+                        className="w-full py-6 text-lg hover:bg-gray-300 transition-all duration-200"
                     >
                         Amend Details
                     </Button>
                     <Button
                         onClick={handleSubmit}
-                        className="w-ful py-6 text-lg text-white bg-[#c99207] hover:bg-[#ac7d08]"
+                        className="w-full py-6 text-lg text-white bg-[#c99207] hover:bg-[#ac7d08]"
                     >
                         Submit
                     </Button>

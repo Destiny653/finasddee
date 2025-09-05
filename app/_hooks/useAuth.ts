@@ -1,4 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 // Types for authentication
 export interface User {
@@ -25,18 +26,38 @@ export interface AuthState {
   error: Error | null;
 }
 
-// Mock auth API functions - replace with real API calls
+// Auth API functions
 const authAPI = {
   login: async (credentials: LoginCredentials): Promise<{ user: User; token: string }> => {
-    // Simulate API call
+    // Simulate API call delay
     await new Promise(resolve => setTimeout(resolve, 1000));
-    // Mock successful login
-    return { user: { id: 1, email: credentials.email }, token: 'mock-token' };
+
+    // Retrieve signup data from localStorage
+    const authData = JSON.parse(localStorage.getItem('authData') || '{}');
+
+    // Check if credentials match stored data (assuming email corresponds to username)
+    if (
+      authData.username === credentials.email &&
+      authData.password === credentials.password &&
+      authData.registrationComplete
+    ) {
+      // Mock successful login
+      const user = { id: 1, email: credentials.email };
+      const token = 'mock-token-' + Math.random().toString(36).substr(2);
+      toast.success('Login successful!');
+      return { user, token };
+    } else {
+      const error = new Error('Invalid email or password');
+      toast.error('Invalid email or password');
+      throw error;
+    }
   },
   register: async (data: RegisterData): Promise<{ user: User; token: string }> => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    return { user: { id: 1, email: data.email }, token: 'mock-token' };
+    const user = { id: 1, email: data.email };
+    const token = 'mock-token-' + Math.random().toString(36).substr(2);
+    return { user, token };
   },
   logout: async (): Promise<boolean> => {
     await new Promise(resolve => setTimeout(resolve, 500));
@@ -45,23 +66,19 @@ const authAPI = {
   getCurrentUser: async (): Promise<User> => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 500));
-    // Mock user data - in real app, check localStorage or cookies
+    // Check localStorage for auth token
     const token = localStorage.getItem('auth-token');
     if (token) {
-      return { id: 1, email: 'user@example.com' };
+      const authData = JSON.parse(localStorage.getItem('authData') || '{}');
+      if (authData.username) {
+        return { id: 1, email: authData.username };
+      }
     }
     throw new Error('Not authenticated');
   }
 };
 
-export const useAuth = (): AuthState & {
-  login: (credentials: LoginCredentials) => void;
-  register: (data: RegisterData) => void;
-  logout: () => void;
-  isLoginLoading: boolean;
-  isRegisterLoading: boolean;
-  isLogoutLoading: boolean;
-} => {
+export const useAuth = () => {
   const queryClient = useQueryClient();
 
   const { data: user, isLoading, error } = useQuery<User, Error>({
@@ -77,6 +94,9 @@ export const useAuth = (): AuthState & {
       localStorage.setItem('auth-token', data.token);
       queryClient.setQueryData(['auth', 'user'], data.user);
     },
+    onError: (error: Error) => {
+      // Error toast is handled in authAPI.login
+    },
   });
 
   const registerMutation = useMutation({
@@ -91,7 +111,9 @@ export const useAuth = (): AuthState & {
     mutationFn: authAPI.logout,
     onSuccess: () => {
       localStorage.removeItem('auth-token');
+      localStorage.removeItem('authData'); // Clear authData on logout
       queryClient.removeQueries({ queryKey: ['auth'] });
+      toast.success('Logged out successfully!');
     },
   });
 
@@ -100,7 +122,17 @@ export const useAuth = (): AuthState & {
     isAuthenticated: !!user,
     isLoading,
     error,
-    login: loginMutation.mutate,
+    login: (credentials: LoginCredentials, onSuccess?: () => void) => {
+      loginMutation.mutate(credentials, {
+        onSuccess: (data) => {
+          // Default onSuccess behavior
+          localStorage.setItem('auth-token', data.token);
+          queryClient.setQueryData(['auth', 'user'], data.user);
+          // Call custom onSuccess callback if provided
+          onSuccess?.();
+        },
+      });
+    },
     register: registerMutation.mutate,
     logout: logoutMutation.mutate,
     isLoginLoading: loginMutation.isPending,

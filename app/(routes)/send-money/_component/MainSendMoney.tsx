@@ -9,13 +9,15 @@ import ReceiverStep from "./steps/recieverStep";
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
 import { useAuth } from "@/app/_hooks/useAuth";
 import AuthModal from "@/app/_components/AuthModal";
-
+import { toast } from "sonner";
+import { v4 as uuidv4 } from 'uuid';
 
 interface IReviewStep {
     detailsData: Record<string, unknown>;
     receiverData: Record<string, unknown>;
     onNext: () => void;
 }
+
 const ReviewStep: FC<IReviewStep> = ({ detailsData, receiverData, onNext }) => {
     return (
         <PaymentCardLayout
@@ -67,6 +69,29 @@ const MainSendMoney = () => {
     const [detailsData, setDetailsData] = useState<Record<string, unknown>>({});
     const [receiverData, setReceiverData] = useState<Record<string, unknown>>({});
 
+    const saveTransaction = () => {
+        // Create transaction object
+        const transaction = {
+            id: uuidv4(), // Unique identifier for the transaction
+            detailsData,
+            receiverData,
+            timestamp: new Date().toISOString(),
+            userId: user?.id || null, // Associate with authenticated user, if available
+        };
+
+        // Retrieve existing transactions from localStorage
+        const existingTransactions = JSON.parse(localStorage.getItem('transactions') || '[]') as any[];
+
+        // Append new transaction
+        const updatedTransactions = [...existingTransactions, transaction];
+
+        // Save to localStorage
+        localStorage.setItem('transactions', JSON.stringify(updatedTransactions));
+
+        // Show success notification
+        toast.success('Transaction saved successfully!');
+    };
+
     const onNextStep = () => {
         setActiveStep((prev) => {
             const nextStep = prev + 1;
@@ -90,6 +115,12 @@ const MainSendMoney = () => {
                 return prev;
             }
 
+            // Save transaction when reaching the final step (payment step)
+            if (nextStep === steps.length) {
+                saveTransaction();
+                return prev; // Prevent advancing beyond the last step
+            }
+
             if (prev >= steps.length - 1) {
                 return steps.length - 1;
             }
@@ -110,9 +141,7 @@ const MainSendMoney = () => {
                     localStorage.removeItem('sendMoneyFormData');
 
                     // Show success message
-                    import("sonner").then(({ toast }) => {
-                        toast.success("Welcome back! Your form data has been restored.");
-                    });
+                    toast.success("Welcome back! Your form data has been restored.");
                 } catch (error) {
                     console.error('Error restoring persisted form data:', error);
                 }
@@ -126,10 +155,7 @@ const MainSendMoney = () => {
         if (hasData) {
             const handleBeforeUnload = (e: BeforeUnloadEvent) => {
                 e.preventDefault();
-                // e.returnValue = 'You have unsaved data. Are you sure you want to leave?';
-                import("sonner").then(({ toast }) => {
-                    toast.error("You have unsaved data. Are you sure you want to leave?");
-                });
+                toast.error("You have unsaved data. Are you sure you want to leave?");
             };
             window.addEventListener('beforeunload', handleBeforeUnload);
             return () => window.removeEventListener('beforeunload', handleBeforeUnload);
@@ -161,7 +187,6 @@ const MainSendMoney = () => {
 
     return (
         <>
-          
             <div className="flex-1 flex flex-col w-full items-center justify-center py-16 ">
                 <div className="flex flex-col gap-4 w-full max-w-6xl">
                     {/* Step Labels */}
