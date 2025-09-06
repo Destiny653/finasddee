@@ -13,7 +13,7 @@ import React, { useState } from "react";
 
 interface FormData {
     country: string;
-    username: string;
+    email: string;
     password: string;
     verifyPassword: string;
     firstName: string;
@@ -69,8 +69,8 @@ const RegistrationReview = ({ data, onAmend, onFinalSubmit }: { data: FormData; 
                         <h3 className="text-lg font-semibold mb-4">Login Details</h3>
                         <div className="w-full flex flex-col gap-4">
                             <div>
-                                <p className="font-sans text-sm font-semibold leading-[18px] mb-2">Username</p>
-                                <p className="text-muted-foreground">{data.username}</p>
+                                <p className="font-sans text-sm font-semibold leading-[18px] mb-2">Email</p>
+                                <p className="text-muted-foreground">{data.email}</p>
                             </div>
                             <CustomInput
                                 label="Email Verification Code"

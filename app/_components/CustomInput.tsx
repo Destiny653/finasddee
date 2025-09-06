@@ -14,14 +14,14 @@ const CustomInput: FC<ICustomInput> = ({
     ...props
 }) => {
     return (
-        <div className="relative flex flex-col gap-2">
-            <p className={`font-sans font-semibold  capitalize text-sm leading-[18px] ${label !== "" && 'pb-'}`}>
+        <div className="relative flex flex-col">
+            <p className={`font-sans font-semibold capitalize text-sm leading-[18px]`}>
                 {label}
             </p>
             <div className="relative h-fit">
                     <Input
                     className={cn(
-                        " p-6 md:py-8 bg-[#F5F5F5] rounded-sm border shadow-none border-[#E5E7EB] opacity-100 text-black ",
+                        " md:py-8 mt-3 bg-[#F5F5F5] rounded-sm border shadow-none border-[#E5E7EB] opacity-100 text-black ",
                         className,
                     )}
                     {...props}

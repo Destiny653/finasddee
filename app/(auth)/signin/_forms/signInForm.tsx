@@ -9,12 +9,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useAuth, LoginCredentials } from "@/app/_hooks/useAuth";
+import { useAuth } from "@/app/_hooks/useAuth";
 
 // Validation schema
 const signInSchema = yup.object().shape({
-  email: yup.string().email("Invalid email format").required("Email is required"),
-  password: yup.string().min(4, "Password must be at least 6 characters").required("Password is required"),
+  email: yup
+    .string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+    ),
+  rememberMe: yup.boolean().optional(), // Make rememberMe optional to match FormData
 });
 
 const SignInForm = () => {
@@ -24,21 +35,25 @@ const SignInForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<LoginCredentials>({
+  } = useForm({
     resolver: yupResolver(signInSchema),
+    mode: "onChange",
   });
 
-  const onSubmit = (data: LoginCredentials) => {
-    login(data, () => {
+  const onSubmit = (data: yup.InferType<typeof signInSchema>) => {
+    const { rememberMe, ...loginData } = data;
+    login(loginData, () => {
       reset(); // Clear form on successful login
     });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 text-gray-800">
       <CustomInput
         label="Email"
         icon={Mail}
+        type="email"
+        placeholder="Enter your email"
         {...register("email")}
         disabled={isLoginLoading}
       />
@@ -52,7 +67,11 @@ const SignInForm = () => {
       {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
       {error && <p className="text-red-500 text-sm">{error.message}</p>}
       <div className="flex items-center justify-between my-3">
-        <CheckBoxField id="notify" label="Remember me"  />
+        <CheckBoxField
+          id="rememberMe"
+          label="Remember me"
+          {...register("rememberMe")}
+        />
         <Link
           href={{
             pathname: "/verify-email",

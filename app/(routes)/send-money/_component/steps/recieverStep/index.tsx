@@ -180,7 +180,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                         onSelectChange={setCountry}
                     />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="">
                     <p className="font-sans  text-sm text-muted-foreground font-semibold leading-[18px] ">
                         Telephone
                     </p>
@@ -189,7 +189,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                             value={dialCode}
                             options={dailCodeOptions}
                             emptyLabel="No currency code found"
-                            className="rounded-r-none border-r-0 w-[100px] md:py-7"
+                            className="rounded-r-none border-r-0 w-[100px] md:py-8"
                             // label="Reeiver Country"
                             placeholder="Select currency code"
                             onSelectChange={setDialCode}
@@ -198,7 +198,7 @@ const ReceiverStep: FC<IReceiverStep> = ({ onNext, onDataChange }) => {
                             <CustomInput
                                 placeholder=""
                                 type="tel"
-                                className="border-0 md:py-7 rounded-none flex-1 w-full border-l"
+                                className="border-0 md:py-8 rounded-none m-0 flex-1 w-full border-l"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                                 icon={Phone}

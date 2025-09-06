@@ -37,7 +37,7 @@ const authAPI = {
 
     // Check if credentials match stored data (assuming email corresponds to username)
     if (
-      authData.username === credentials.email &&
+      authData.email === credentials.email &&
       authData.password === credentials.password &&
       authData.registrationComplete
     ) {

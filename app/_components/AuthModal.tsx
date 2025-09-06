@@ -10,7 +10,7 @@ import RegistrationReview from '@/app/(routes)/registration-service/_forms/Regis
 
 interface FormData {
     country: string;
-    username: string;
+    email: string;
     password: string;
     verifyPassword: string;
     firstName: string;
@@ -81,7 +81,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
   }
 
   const handleFinalSubmit = () => {
-    setCurrentForm('registration-success');
+    setCurrentForm('signin');
     setRegistrationData(null);
   }
 
@@ -96,15 +96,6 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
             </div>
             <SignInForm />
             <div className="text-center space-y-2">
-              <p className="text-sm text-gray-600">
-                Don&apos;t have an account?{' '}
-                <button
-                  onClick={() => handleFormSwitch('signup')}
-                  className="text-[#cc9408] hover:text-[#b8860b] font-medium"
-                >
-                  Sign up
-                </button>
-              </p>
               <p className="text-sm text-gray-600">
                 Need to register as a service?{' '}
                 <button
@@ -150,14 +141,14 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
       case 'register':
         return (
           <div className='flex items-center justify-center'>
-            <div className="space-y-6  flex-col">
+            <div className="space-y-0  flex-col">
 
               {/* <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Register Service</h2>
               <p className="text-gray-600">Register your service with us.</p>
             </div> */}
               <RegistrationForm onSubmit={handleRegistrationSubmit} />
-              <div className="text-center space-y-2">
+              <div className="text-center space-y-2 mb-4">
                 <p className="text-sm text-gray-600">
                   Already have an account?{' '}
                   <button
@@ -165,15 +156,6 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                     className="text-[#cc9408] hover:text-[#b8860b] font-medium"
                   >
                     Sign in
-                  </button>
-                </p>
-                <p className="text-sm text-gray-600">
-                  Don&apos;t have an account?{' '}
-                  <button
-                    onClick={() => handleFormSwitch('signup')}
-                    className="text-[#cc9408] hover:text-[#b8860b] font-medium"
-                  >
-                    Sign up
                   </button>
                 </p>
               </div>
@@ -199,7 +181,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
               <h2 className="text-3xl font-bold text-green-600 mb-2">Registration Successful!</h2>
               <p className="text-gray-600">Your registration has been submitted successfully.</p>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-gray-50 p-6 rounded-lg text-gray-800">
               <h3 className="text-lg font-semibold mb-4">Registration Details</h3>
               <div className="space-y-2 text-sm">
                 <p><strong>Status:</strong> Pending Review</p>
@@ -248,7 +230,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
             }}
             className="fixed inset-0 z-[70] bg-white overflow-hidden"
           >
-            <div className="min-h-screen flex items-center justify-center overflow-y-scroll p-6 md:p-8">
+            <div className="min-h-screen flex items-center justify-center overflow-y-scroll ">
               {/* Close button */}
               <button
                 onClick={onClose}
@@ -271,7 +253,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                     stiffness: 300,
                     duration: 0.3
                   }}
-                  className="w-full max-w-2xl mx-auto max-h-[80vh]"
+                  className="w-full max-w-2xl mx-auto max-h-[100vh]"
                 >
                   {renderForm()}
                 </motion.div>

@@ -67,7 +67,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                                     value={"+237"}
                                     options={dailCodeOptions}
                                     emptyLabel="No currency code found"
-                                    className="rounded-r-none border-r-0 w-[100px] md:py-7"
+                                    className="rounded-r-none border-r-0 w-[100px] md:py-8"
                                     // label="Reeiver Country"
                                     placeholder="Select currency code"
                                 />
@@ -75,7 +75,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                                     <CustomInput
                                         placeholder=""
                                         type="tel"
-                                        className="rounded-l-none flex-1 w-full md:py-7 border-0 border-l"
+                                        className="rounded-l-none flex-1 w-full m-0 md:py-8 border-0 border-l"
                                     />
                                 </div>
                             </div>
@@ -83,7 +83,7 @@ const PaymentStep: FC<IPaymentStep> = ({ onNext }) => {
                         <CustomCombobox
                             options={[{ label: "MTN MOMO", value: "MTN MOMO" }]}
                             emptyLabel="No provider found"
-                            className="rounded-lg border-r-0 w-full md:py-8"
+                            className="rounded-lg border-r-0 w-full m-0 md:py-8"
                             label="Mobile number network"
                             placeholder="Select mobile network"
                         />
