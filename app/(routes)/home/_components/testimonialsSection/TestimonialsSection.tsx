@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TestimonialsSection = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
     const testimonials = [
         {
@@ -41,17 +43,30 @@ const TestimonialsSection = () => {
     // Auto-advance slides
     useEffect(() => {
         const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+            goToSlide((currentSlide + 1) % testimonials.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, [testimonials.length]);
+    }, [currentSlide, testimonials.length]);
+
+    const goToSlide = (slideIndex: number) => {
+        if (isTransitioning) return;
+        setIsTransitioning(true);
+        setCurrentSlide(slideIndex);
+
+        // Reset transition state after animation completes
+        setTimeout(() => {
+            setIsTransitioning(false);
+        }, 500);
+    };
 
     const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+        const nextIndex = (currentSlide + 1) % testimonials.length;
+        goToSlide(nextIndex);
     };
 
     const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+        const prevIndex = (currentSlide - 1 + testimonials.length) % testimonials.length;
+        goToSlide(prevIndex);
     };
 
     return (
@@ -66,72 +81,98 @@ const TestimonialsSection = () => {
 
                 <div className="px-4 md:px-8 lg:px-12">
                     <div className="max-w-4xl xl:max-w-5xl mx-auto">
-                        <div className="owl-carousel owl-theme" style={{ position: 'relative' }}>
-                            {/* Testimonial Content */}
-                            <div className="item">
-                                <div className="testimonial rounded text-center p-4 bg-white shadow-lg">
-                                    <p className="text-4xl md:text-5xl lg:text-6xl text-gray-400 opacity-20 mb-2">
-                                        <i className="fa fa-quote-left"></i>
-                                    </p>
-                                    <p className="text-lg md:text-xl text-gray-800 mb-4">
-                                        &ldquo;{testimonials[currentSlide].quote}&rdquo;
-                                    </p>
-                                    <strong className="block font-medium text-base md:text-lg text-gray-900">
-                                        {testimonials[currentSlide].author}
-                                    </strong>
-                                    <span className="text-sm md:text-base text-gray-600">
-                                        {testimonials[currentSlide].position}
-                                    </span>
-                                </div>
+                        <div className="relative overflow-hidden">
+                            {/* Slider Container */}
+                            <div
+                                className="flex transition-transform duration-500 ease-in-out"
+                                style={{
+                                    transform: `translateX(-${currentSlide * 100}%)`
+                                }}
+                            >
+                                {testimonials.map((testimonial, index) => (
+                                    <div
+                                        key={index}
+                                        className="w-full flex-shrink-0"
+                                    >
+                                        <div className="testimonial rounded text-center bg-white shadow-lg mx-0">
+                                            {/* Quote Icon */}
+                                            <div className="text-5xl md:text-7xl text-gray-300 opacity-30 mb-4 leading-none">
+                                                <i className="fa fa-quote-left"></i>
+                                            </div>
+                                            {/* Quote Text */}
+                                            <p className="text-lg md:text-xl text-gray-800 mb-6 leading-relaxed">
+                                                {testimonial.quote}
+                                            </p>
+
+                                            {/* Author Info */}
+                                            <div className=" pt-2">
+                                                <strong className="block font-semibold text-base md:text-lg text-gray-900 mb-1">
+                                                    {testimonial.author}
+                                                </strong>
+                                                <span className="text-sm md:text-base text-gray-600">
+                                                    {testimonial.position}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
 
-                            {/* Owl Navigation */}
-                            <div className="owl-nav" style={{
-                                position: 'absolute',
-                                top: '50%',
-                                width: '100%',
-                                display: 'flex',
-                                justifyContent: 'space-between',
-                                transform: 'translateY(-50%)',
-                                pointerEvents: 'none'
-                            }}>
+                            {/* Navigation Arrows */}
+                            <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center transform -translate-y-1/2 pointer-events-none px-2">
                                 <button
                                     type="button"
-                                    className="owl-prev bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow"
+                                    className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 pointer-events-auto disabled:opacity-50 disabled:cursor-not-allowed"
                                     onClick={prevSlide}
-                                    style={{ pointerEvents: 'auto' }}
+                                    disabled={isTransitioning}
                                 >
-                                    <i className="fa fa-chevron-left text-gray-600"></i>
+                                    <ChevronLeft className="w-5 h-5 text-gray-600" />
                                 </button>
                                 <button
                                     type="button"
-                                    className="owl-next bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-shadow"
+                                    className="bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110 pointer-events-auto disabled:opacity-50 disabled:cursor-not-allowed"
                                     onClick={nextSlide}
-                                    style={{ pointerEvents: 'auto' }}
+                                    disabled={isTransitioning}
                                 >
-                                    <i className="fa fa-chevron-right text-gray-600"></i>
+                                    <ChevronRight className="w-5 h-5 text-gray-600" />
                                 </button>
                             </div>
 
-                            {/* Owl Dots */}
-                            <div className="owl-dots flex justify-center mt-6 space-x-2">
+                            {/* Dots Navigation */}
+                            <div className="flex justify-center mt-8 space-x-2">
                                 {testimonials.map((_, index) => (
                                     <button
                                         key={index}
-                                        onClick={() => setCurrentSlide(index)}
-                                        className={`owl-dot w-3 h-3 rounded-full transition-colors ${
-                                            index === currentSlide ? 'bg-gray-800 active' : 'bg-gray-300'
-                                        }`}
+                                        onClick={() => goToSlide(index)}
+                                        disabled={isTransitioning}
+                                        className={`w-3 h-3 rounded-full transition-all duration-300 disabled:cursor-not-allowed ${index === currentSlide
+                                                ? 'bg-gray-800 scale-125'
+                                                : 'bg-gray-400 hover:bg-gray-600'
+                                            }`}
                                         type="button"
-                                    >
-                                        <span></span>
-                                    </button>
+                                        aria-label={`Go to testimonial ${index + 1}`}
+                                    />
                                 ))}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <style jsx>{`
+                .testimonial {
+                    min-height: 280px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+                
+                @media (max-width: 768px) {
+                    .testimonial {
+                        min-height: 320px;
+                    }
+                }
+            `}</style>
         </section>
     );
 };

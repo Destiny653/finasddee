@@ -13,7 +13,6 @@ const HomePage = () => {
     return (
         <MainLandingPageLayout>
             <>
-                <LandingPageNavBar />
                 <HeroSection />
                 <HowItWorksSection />
                 <WhyChooseUsSection />

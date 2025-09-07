@@ -49,7 +49,7 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 text-gray-800">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-4 gap-6 text-gray-800">
       <CustomInput
         label="Email"
         icon={Mail}
@@ -57,6 +57,7 @@ const SignInForm = () => {
         placeholder="Enter your email"
         {...register("email")}
         disabled={isLoginLoading}
+        className="py-8"
       />
       {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
       <CustomPassword

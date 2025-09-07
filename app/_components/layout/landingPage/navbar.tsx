@@ -25,7 +25,7 @@ export function MainHeader() {
     setIsAuthModalOpen(false)
   }
   return (
-    <header className="absolute top-0 left-0 right-0 bg-transparent text-white font-[500] z-50 ">
+    <header className="absolute top-0 left-0 right-0  text-white font-[500] z-50 ">
       <div className="container mx-auto px-4 max-w-[1440px]">
         <div className="flex items-center justify-between py-4">
           {/* Logo */}
@@ -91,25 +91,25 @@ export function MainHeader() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-dark-blue/95 backdrop-blur-sm rounded-lg mt-2 p-4">
+          <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg mt-0 p-4 relative bottom-12">
             <nav className="flex flex-col space-y-4">
               <Link
                 href="#how-it-works"
-                className="text-white hover:text-gold-light transition-colors py-2"
+                className="text-black hover:text-gold-light transition-colors py-2"
                 onClick={toggleMenu}
               >
                 How it works
               </Link>
               <Link
                 href="/faq"
-                className="text-white hover:text-gold-light transition-colors py-2"
+                className="text-black hover:text-gold-light transition-colors py-2"
                 onClick={toggleMenu}
               >
                 Help
               </Link>
               <Link
                 href="#network-section"
-                className="text-white hover:text-gold-light transition-colors py-2"
+                className="text-black hover:text-gold-light transition-colors py-2"
                 onClick={toggleMenu}
               >
                 Our Network
@@ -120,7 +120,7 @@ export function MainHeader() {
                   openAuthModal('signin')
                   toggleMenu()
                 }}
-                className="inline-flex items-center justify-center rounded-md border border-white text-white  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
+                className="inline-flex items-center justify-center rounded-md border border-white text-black  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
               >
                 Login
               </button>

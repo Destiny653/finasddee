@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import { FileText, Upload, X, Eye } from "lucide-react";
@@ -91,7 +90,7 @@ const KYCVerificationForm = () => {
     if (!files || files.length === 0) {
       return "At least one file is required";
     }
-    if (files.length < 2) {
+    if (files.length > 2) {
       return "Maximum 2 files allowed (front and back of ID)";
     }
     return true;
@@ -163,60 +162,58 @@ const KYCVerificationForm = () => {
   };
 
   return (
-    <div className=" w-2xl mx-auto p-6 bg-white">
+    <div className="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto p-4 sm:p-6 bg-white">
       {/* Header */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Identity Verification</h1>
-        <p className="text-gray-500">Complete the following steps to verify your account</p>
+      <div className="text-center mb-6 sm:mb-8">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Identity Verification</h1>
+        <p className="text-sm sm:text-base text-gray-500">Complete the following steps to verify your account</p>
       </div>
 
       {/* Progress Tabs */}
-      <div className="flex justify-center mb-8">
-        <div className="flex bg-gray-100 rounded-lg p-1 w-fit">
+      <div className="flex justify-center mb-6 sm:mb-8">
+        <div className="flex bg-gray-100 rounded-lg p-1 w-full sm:w-fit">
           <button
             type="button"
             onClick={() => setCurrentStep('identity')}
-            className={`px-8 py-3 rounded-md font-medium transition-all ${currentStep === 'identity'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-              } ${isStepCompleted('identity') ? 'text-green-600' : ''}`}
+            className={`flex-1 sm:px-6 md:px-8 py-2 sm:py-3 rounded-md font-medium text-xs sm:text-sm md:text-base transition-all ${
+              currentStep === 'identity' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+            } ${isStepCompleted('identity') ? 'text-green-600' : ''}`}
           >
             Identity Verification
             {isStepCompleted('identity') && (
-              <span className="ml-2 text-green-600">✓</span>
+              <span className="ml-1 sm:ml-2 text-green-600">✓</span>
             )}
           </button>
           <button
             type="button"
             onClick={() => setCurrentStep('address')}
-            className={`px-8 py-3 rounded-md font-medium transition-all ${currentStep === 'address'
-                ? 'bg-white text-gray-900 shadow-sm'
-                : 'text-gray-500 hover:text-gray-700'
-              } ${isStepCompleted('address') ? 'text-green-600' : ''}`}
+            className={`flex-1 sm:px-6 md:px-8 py-2 sm:py-3 rounded-md font-medium text-xs sm:text-sm md:text-base transition-all ${
+              currentStep === 'address' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+            } ${isStepCompleted('address') ? 'text-green-600' : ''}`}
             disabled={!isStepCompleted('identity')}
           >
             Address Verification
             {isStepCompleted('address') && (
-              <span className="ml-2 text-green-600">✓</span>
+              <span className="ml-1 sm:ml-2 text-green-600">✓</span>
             )}
           </button>
         </div>
       </div>
 
       {/* Form Content */}
-      <div className=" mx-auto">
+      <div className="w-full">
         {currentStep === 'identity' && (
-          <form onSubmit={identityForm.handleSubmit(onIdentitySubmit)} className="space-y-8">
+          <form onSubmit={identityForm.handleSubmit(onIdentitySubmit)} className="space-y-6 sm:space-y-8">
             {/* Document Type Selection */}
             <div>
-              <label className="block text-lg font-medium text-gray-900 mb-4">
+              <label className="block text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-2 sm:mb-3 md:mb-4">
                 Select Identity Verification Document
               </label>
               <CustomCombobox
                 options={documentTypeOptions}
                 emptyLabel="No document type found"
                 placeholder="National ID"
-                className="w-full py-8"
+                className="w-full py-2 sm:py-3 md:py-4"
                 value={selectedDocumentType}
                 onSelectChange={(value) => {
                   setSelectedDocumentType(value);
@@ -227,7 +224,7 @@ const KYCVerificationForm = () => {
 
             {/* File Upload Section */}
             <div>
-              <label className="block text-lg font-medium text-gray-900 mb-6">
+              <label className="block text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-3 sm:mb-4 md:mb-6">
                 Upload front and back of your identity document (up to 2 files)
               </label>
 
@@ -240,7 +237,7 @@ const KYCVerificationForm = () => {
                 }}
                 render={({ field: { onChange, value } }) => (
                   <div
-                    className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors relative"
+                    className="border-2 border-dashed border-gray-300 rounded-lg p-6 sm:p-8 md:p-12 text-center hover:border-gray-400 transition-colors relative"
                     onClick={(e) => handleUploadClick(e, identityFileInputRef)}
                   >
                     <input
@@ -251,16 +248,16 @@ const KYCVerificationForm = () => {
                       onChange={(e) => handleFileSelect(e, onChange, value)}
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <div className="flex flex-col items-center space-y-4 pointer-events-none">
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Upload className="w-8 h-8 text-gray-400" />
+                    <div className="flex flex-col items-center space-y-3 sm:space-y-4 pointer-events-none">
+                      <div className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Upload className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-gray-400" />
                       </div>
 
-                      <div className="space-y-2">
-                        <p className="text-sm font-medium text-teal-600">
+                      <div className="space-y-1 sm:space-y-2">
+                        <p className="text-xs sm:text-sm font-medium text-teal-600">
                           Max 2 files (front and back)
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs sm:text-sm text-gray-500">
                           Click to select or drag and drop files here
                         </p>
                       </div>
@@ -270,31 +267,31 @@ const KYCVerificationForm = () => {
               />
 
               {identityForm.formState.errors.identityDocument && (
-                <p className="text-red-500 text-sm mt-2">
+                <p className="text-red-500 text-xs sm:text-sm mt-1 sm:mt-2">
                   {identityForm.formState.errors.identityDocument.message}
                 </p>
               )}
 
               {/* Display selected files */}
               {identityForm.watch("identityDocument") && (
-                <div className="mt-4 space-y-2">
-                  <p className="text-sm font-medium text-gray-700">Selected files (up to 2):</p>
+                <div className="mt-3 sm:mt-4 space-y-2">
+                  <p className="text-xs sm:text-sm font-medium text-gray-700">Selected files (up to 2):</p>
                   {Array.from(identityForm.watch("identityDocument") || []).map((file, index) => (
                     <div
                       key={`${file.name}-${index}`}
-                      className="flex items-center justify-between space-x-2 text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-blue-500"
+                      className="flex items-center justify-between space-x-2 text-xs sm:text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-blue-500"
                     >
                       <div className="flex items-center space-x-2 flex-1 truncate">
-                        <FileText className="w-4 h-4" />
+                        <FileText className="w-3 sm:w-4 h-3 sm:h-4" />
                         <span className="truncate">{file.name}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
                         <button
                           type="button"
                           onClick={() => handleFileClick(file)}
-                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-2 py-1 rounded"
+                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-1 sm:px-2 py-0.5 sm:py-1 rounded"
                         >
-                          <Eye className="w-3 h-3" />
+                          <Eye className="w-2 sm:w-3 h-2 sm:h-3" />
                           <span>Preview</span>
                         </button>
                         <button
@@ -303,9 +300,9 @@ const KYCVerificationForm = () => {
                             e.stopPropagation();
                             removeFile(index, identityForm.watch("identityDocument"), identityForm.setValue, "identityDocument");
                           }}
-                          className="text-gray-400 hover:text-gray-600 bg-gray-100 px-2 py-1 rounded"
+                          className="text-gray-400 hover:text-gray-600 bg-gray-100 px-1 sm:px-2 py-0.5 sm:py-1 rounded"
                         >
-                          <X className="w-4 h-4" />
+                          <X className="w-3 sm:w-4 h-3 sm:h-4" />
                         </button>
                       </div>
                     </div>
@@ -319,7 +316,7 @@ const KYCVerificationForm = () => {
               <button
                 type="submit"
                 disabled={identityForm.formState.isSubmitting}
-                className="bg-slate-800 text-white px-8 py-3 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+                className="bg-slate-800 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base"
               >
                 <span>Complete</span>
                 <span>→</span>
@@ -329,18 +326,18 @@ const KYCVerificationForm = () => {
         )}
 
         {currentStep === 'address' && (
-          <form onSubmit={addressForm.handleSubmit(onAddressSubmit)} className="space-y-8">
+          <form onSubmit={addressForm.handleSubmit(onAddressSubmit)} className="space-y-6 sm:space-y-8">
             {/* Address Verification Instructions */}
-            <div className="text-center space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">Address Verification</h2>
-              <p className="text-gray-600">
+            <div className="text-center space-y-2 sm:space-y-3 md:space-y-4">
+              <h2 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Address Verification</h2>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600">
                 Please upload document(s) that show your current address (utility bill, bank statement, etc. - up to 2 files)
               </p>
             </div>
 
             {/* Address Document Upload */}
             <div>
-              <label className="block text-lg font-medium text-gray-900 mb-6">
+              <label className="block text-sm sm:text-base md:text-lg font-medium text-gray-900 mb-3 sm:mb-4 md:mb-6">
                 Upload address verification document(s) (up to 2 files)
               </label>
 
@@ -353,7 +350,7 @@ const KYCVerificationForm = () => {
                 }}
                 render={({ field: { onChange, value } }) => (
                   <div
-                    className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors relative"
+                    className="border-2 border-dashed border-gray-300 rounded-lg p-6 sm:p-8 md:p-12 text-center hover:border-gray-400 transition-colors relative"
                     onClick={(e) => handleUploadClick(e, addressFileInputRef)}
                   >
                     <input
@@ -364,21 +361,21 @@ const KYCVerificationForm = () => {
                       onChange={(e) => handleFileSelect(e, onChange, value)}
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                     />
-                    <div className="flex flex-col items-center space-y-4 pointer-events-none">
-                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
-                        <Upload className="w-8 h-8 text-gray-400" />
+                    <div className="flex flex-col items-center space-y-3 sm:space-y-4 pointer-events-none">
+                      <div className="w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Upload className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8 text-gray-400" />
                       </div>
 
-                      <div className="space-y-2">
-                        <p className="text-sm font-medium text-teal-600">
+                      <div className="space-y-1 sm:space-y-2">
+                        <p className="text-xs sm:text-sm font-medium text-teal-600">
                           Max 2 files
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-xs sm:text-sm text-gray-500">
                           Click to select or drag and drop files here
                         </p>
                       </div>
 
-                      <div className="text-xs text-gray-400 space-y-1">
+                      <div className="text-[10px] sm:text-xs text-gray-400 space-y-1">
                         <p>Accepted documents:</p>
                         <p>• Utility Bill (electricity, water, gas)</p>
                         <p>• Bank Statement</p>
@@ -391,31 +388,31 @@ const KYCVerificationForm = () => {
               />
 
               {addressForm.formState.errors.addressDocument && (
-                <p className="text-red-500 text-sm mt-2">
+                <p className="text-red-500 text-xs sm:text-sm mt-1 sm:mt-2">
                   {addressForm.formState.errors.addressDocument.message}
                 </p>
               )}
 
               {/* Display selected files */}
               {addressForm.watch("addressDocument") && (
-                <div className="mt-4 space-y-2">
-                  <p className="text-sm font-medium text-gray-700">Selected files (up to 2):</p>
+                <div className="mt-3 sm:mt-4 space-y-2">
+                  <p className="text-xs sm:text-sm font-medium text-gray-700">Selected files (up to 2):</p>
                   {Array.from(addressForm.watch("addressDocument") || []).map((file, index) => (
                     <div
                       key={`${file.name}-${index}`}
-                      className="flex items-center justify-between space-x-2 text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-green-500"
+                      className="flex items-center justify-between space-x-2 text-xs sm:text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-green-500"
                     >
                       <div className="flex items-center space-x-2 flex-1 truncate">
-                        <FileText className="w-4 h-4" />
+                        <FileText className="w-3 sm:w-4 h-3 sm:h-4" />
                         <span className="truncate">{file.name}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
                         <button
                           type="button"
                           onClick={() => handleFileClick(file)}
-                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-2 py-1 rounded"
+                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-1 sm:px-2 py-0.5 sm:py-1 rounded"
                         >
-                          <Eye className="w-3 h-3" />
+                          <Eye className="w-2 sm:w-3 h-2 sm:h-3" />
                           <span>Preview</span>
                         </button>
                         <button
@@ -424,9 +421,9 @@ const KYCVerificationForm = () => {
                             e.stopPropagation();
                             removeFile(index, addressForm.watch("addressDocument"), addressForm.setValue, "addressDocument");
                           }}
-                          className="text-gray-400 hover:text-gray-600 bg-gray-100 px-2 py-1 rounded"
+                          className="text-gray-400 hover:text-gray-600 bg-gray-100 px-1 sm:px-2 py-0.5 sm:py-1 rounded"
                         >
-                          <X className="w-4 h-4" />
+                          <X className="w-3 sm:w-4 h-3 sm:h-4" />
                         </button>
                       </div>
                     </div>
@@ -436,18 +433,18 @@ const KYCVerificationForm = () => {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between">
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-3 sm:gap-4">
               <button
                 type="button"
                 onClick={() => setCurrentStep('identity')}
-                className="bg-gray-200 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-300 transition-colors"
+                className="bg-gray-200 text-gray-700 px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-lg hover:bg-gray-300 transition-colors text-sm sm:text-base w-full sm:w-auto"
               >
                 ← Back
               </button>
               <button
                 type="submit"
                 disabled={addressForm.formState.isSubmitting}
-                className="bg-slate-800 text-white px-8 py-3 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+                className="bg-slate-800 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center space-x-1 sm:space-x-2 text-sm sm:text-base w-full sm:w-auto"
               >
                 <span>Complete</span>
                 <span>→</span>
@@ -459,21 +456,22 @@ const KYCVerificationForm = () => {
 
       {/* Image Preview Modal */}
       {selectedImageUrl && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000054] bg-opacity-50">
-          <div className="relative max-w-4xl maxchill                max-h-full p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 sm:p-6">
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl max-h-[90vh] p-2 sm:p-4">
             <button
               type="button"
               onClick={closeImageModal}
-              className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-lg z-10"
+              className="absolute -top-3 sm:-top-4 -right-3 sm:-right-4 bg-white rounded-full p-1.5 sm:p-2 shadow-lg z-10"
             >
-              <X className="w-6 h-6 text-gray-600" />
+              <X className="w-4 sm:w-6 h-4 sm:h-6 text-gray-600" />
             </button>
             <Image
               src={selectedImageUrl}
               alt="Uploaded file preview"
-              height={600}
               width={600}
-              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-lg"
+              height={600}
+              className="max-w-full max-h-[80vh] sm:max-h-[85vh] object-contain rounded-lg shadow-lg"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 60vw, 50vw"
             />
           </div>
         </div>

@@ -51,6 +51,10 @@ export const IDDetailsForm = ({
 
     // Register fields for validation
     register("idType", { required: "ID type is required" });
+    register("accounts", {
+        validate: (accounts) =>
+            accounts.every((account) => account.bankBranch) || "Bank/Branch is required for all accounts"
+    });
 
     const addAccount = () => {
         setAccounts([...accounts, { accountNumber: "", bankBranch: "" }]);
@@ -70,18 +74,18 @@ export const IDDetailsForm = ({
             buttonLabel="Save Changes"
             onNext={handleSubmit(onSubmit)}
         >
-            <div className="w-full flex flex-col gap-6">
+            <div className="w-full flex flex-col gap-4 sm:gap-6">
                 {/* ID Details Section */}
                 <div>
-                    <h3 className="text-lg font-semibold mb-4">ID Details</h3>
-                    <div className="w-full flex flex-col gap-4">
+                    <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">ID Details</h3>
+                    <div className="w-full flex flex-col gap-3 sm:gap-4">
                         <div>
-                            <label className="block text-sm font-medium mb-2">ID Type:</label>
+                            <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">ID Type:</label>
                             <CustomCombobox
                                 options={idTypeOptions}
                                 emptyLabel="No ID type found"
                                 placeholder="Please Select ..."
-                                className="py-6 md:py-8 w-full"
+                                className="py-2 sm:py-3 md:py-4 w-full"
                                 value={selectedIdType}
                                 onSelectChange={(value) => {
                                     setSelectedIdType(value);
@@ -89,13 +93,13 @@ export const IDDetailsForm = ({
                                 }}
                             />
                             {errors.idType && (
-                                <p className="text-red-500 text-sm mt-1">{errors.idType.message}</p>
+                                <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.idType.message}</p>
                             )}
                         </div>
 
                         <CustomInput
                             label="ID Details:"
-                            className="py-6 md:py-8 bg-gray-100"
+                            className="py-2 sm:py-3 md:py-4 bg-gray-100"
                             placeholder="Enter ID details"
                             icon={FileText}
                             {...register("idDetails", {
@@ -107,47 +111,47 @@ export const IDDetailsForm = ({
                             })}
                         />
                         {errors.idDetails && (
-                            <p className="text-red-500 text-sm mt-1">{errors.idDetails.message}</p>
+                            <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.idDetails.message}</p>
                         )}
                     </div>
                 </div>
 
                 {/* Optional Transfer Methods Info */}
-                <div className="bg-gray-50 p-4 rounded-md">
-                    <p className="text-sm text-gray-600">
+                <div className="bg-gray-50 p-3 sm:p-4 rounded-md">
+                    <p className="text-xs sm:text-sm text-gray-600">
                         The following Transfer Methods are all optional on this page, however if you wish to enter them here it will make the Send Money process quicker.
                     </p>
                 </div>
 
                 {/* Account Transfer Section */}
-                <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-md">
-                    <p className="text-sm text-blue-700">
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-3 sm:p-4 rounded-md">
+                    <p className="text-xs sm:text-sm text-blue-700">
                         Enter Account Transfer information if you wish to make Account Transfer remittances to this beneficiary.
                     </p>
                 </div>
 
                 <div>
-                    <h3 className="text-lg font-semibold mb-4">Account Transfer</h3>
-                    <div className="w-full flex flex-col gap-6">
+                    <h3 className="text-base sm:text-lg font-semibold mb-2 sm:mb-3">Account Transfer</h3>
+                    <div className="w-full flex flex-col gap-4 sm:gap-6">
                         {accounts.map((account, index) => (
-                            <div key={index} className="rounded-lg p-4 bg-gray-50">
-                                <div className="flex justify-between items-center mb-4">
-                                    <h4 className="text-md font-medium">Account {index + 1}</h4>
+                            <div key={index} className="rounded-lg p-3 sm:p-4 bg-gray-50">
+                                <div className="flex justify-between items-center mb-2 sm:mb-3">
+                                    <h4 className="text-sm sm:text-md font-medium">Account {index + 1}</h4>
                                     {accounts.length > 1 && (
                                         <button
                                             type="button"
                                             onClick={() => removeAccount(index)}
-                                            className="text-red-500 text-sm hover:underline"
+                                            className="text-red-500 text-xs sm:text-sm hover:underline"
                                         >
                                             Remove Account
                                         </button>
                                     )}
                                 </div>
                                 
-                                <div className="flex flex-col gap-4">
+                                <div className="flex flex-col gap-3 sm:gap-4">
                                     <CustomInput
                                         label="Account Number:"
-                                        className="py-6 md:py-8 bg-white"
+                                        className="py-2 sm:py-3 md:py-4 bg-white"
                                         placeholder="Enter account number"
                                         icon={CreditCard}
                                         {...register(`accounts.${index}.accountNumber` as const, {
@@ -159,13 +163,13 @@ export const IDDetailsForm = ({
                                         })}
                                     />
                                     {errors.accounts?.[index]?.accountNumber && (
-                                        <p className="text-red-500 text-sm">
+                                        <p className="text-red-500 text-xs sm:text-sm">
                                             {errors.accounts[index]?.accountNumber?.message}
                                         </p>
                                     )}
 
                                     <div>
-                                        <label className="block text-sm font-medium mb-2">
+                                        <label className="block text-xs sm:text-sm font-medium mb-1 sm:mb-2">
                                             Bank/Branch: <span className="text-red-500">*</span>
                                         </label>
                                         <div className="flex items-center gap-2">
@@ -173,7 +177,7 @@ export const IDDetailsForm = ({
                                                 options={bankBranchOptions}
                                                 emptyLabel="No bank found"
                                                 placeholder="Find Bank & Branch"
-                                                className="py-6 md:py-8 flex-1"
+                                                className="py-2 sm:py-3 md:py-4 flex-1"
                                                 value={account.bankBranch}
                                                 onSelectChange={(value) => {
                                                     const newAccounts = [...accounts];
@@ -184,7 +188,7 @@ export const IDDetailsForm = ({
                                             />
                                         </div>
                                         {errors.accounts?.[index]?.bankBranch && (
-                                            <p className="text-red-500 text-sm mt-1">
+                                            <p className="text-red-500 text-xs sm:text-sm mt-1">
                                                 {errors.accounts[index]?.bankBranch?.message}
                                             </p>
                                         )}
@@ -196,7 +200,7 @@ export const IDDetailsForm = ({
                         <button
                             type="button"
                             onClick={addAccount}
-                            className="w-full py-3 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:border-blue-400 hover:text-blue-500 transition-colors"
+                            className="w-full py-2 sm:py-3 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 text-sm sm:text-base hover:border-blue-400 hover:text-blue-500 transition-colors"
                         >
                             + Add Another Account
                         </button>
