@@ -9,7 +9,7 @@ import PageHeader from "@/app/_components/layout/header/PageHeader";
 const KycVerifyIdPage = () => {
     const [currentForm, setCurrentForm] = useState<"verify" | "cash" | "id">("verify");
 
-    const handleSubmit = (data: any) => {
+    const handleSubmit = (data:any) => {
         console.log("Form submitted:", data);
         // Handle form submission here
     };

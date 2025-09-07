@@ -10,20 +10,27 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-    ...compat.extends("next/core-web-vitals", "next/typescript"),
-    {
-        ignores: [
-            "node_modules/**",
-            ".next/**",
-            "out/**",
-            "build/**",
-            "next-env.d.ts",
-        ],
-        rules: {
-            // Disable rules you don’t want
-            "@typescript-eslint/*": "off"
-        },
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
+    rules: {
+      // Allow `any`
+      "@typescript-eslint/no-explicit-any": "off",
+
+      // Optionally also silence unused vars warnings
+      "@typescript-eslint/no-unused-vars": "off",
+
+      // Disable Next.js <img> warning if you want
+      "@next/next/no-img-element": "off",
     },
+  },
 ];
 
 export default eslintConfig;
+

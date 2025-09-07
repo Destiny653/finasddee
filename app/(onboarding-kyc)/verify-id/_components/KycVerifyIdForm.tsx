@@ -5,6 +5,7 @@ import React, { useState, useRef } from "react";
 import { useForm, Controller, UseFormSetValue } from "react-hook-form";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import { FileText, Upload, X, Eye } from "lucide-react";
+import Image from "next/image";
 
 interface IdentityFormData {
   documentType: string;
@@ -175,11 +176,10 @@ const KYCVerificationForm = () => {
           <button
             type="button"
             onClick={() => setCurrentStep('identity')}
-            className={`px-8 py-3 rounded-md font-medium transition-all ${
-              currentStep === 'identity'
+            className={`px-8 py-3 rounded-md font-medium transition-all ${currentStep === 'identity'
                 ? 'bg-white text-gray-900 shadow-sm'
                 : 'text-gray-500 hover:text-gray-700'
-            } ${isStepCompleted('identity') ? 'text-green-600' : ''}`}
+              } ${isStepCompleted('identity') ? 'text-green-600' : ''}`}
           >
             Identity Verification
             {isStepCompleted('identity') && (
@@ -189,11 +189,10 @@ const KYCVerificationForm = () => {
           <button
             type="button"
             onClick={() => setCurrentStep('address')}
-            className={`px-8 py-3 rounded-md font-medium transition-all ${
-              currentStep === 'address'
+            className={`px-8 py-3 rounded-md font-medium transition-all ${currentStep === 'address'
                 ? 'bg-white text-gray-900 shadow-sm'
                 : 'text-gray-500 hover:text-gray-700'
-            } ${isStepCompleted('address') ? 'text-green-600' : ''}`}
+              } ${isStepCompleted('address') ? 'text-green-600' : ''}`}
             disabled={!isStepCompleted('identity')}
           >
             Address Verification
@@ -469,9 +468,11 @@ const KYCVerificationForm = () => {
             >
               <X className="w-6 h-6 text-gray-600" />
             </button>
-            <img
+            <Image
               src={selectedImageUrl}
               alt="Uploaded file preview"
+              height={600}
+              width={600}
               className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-lg"
             />
           </div>
