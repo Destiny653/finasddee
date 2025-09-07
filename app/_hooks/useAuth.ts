@@ -94,7 +94,7 @@ export const useAuth = () => {
       localStorage.setItem('auth-token', data.token);
       queryClient.setQueryData(['auth', 'user'], data.user);
     },
-    onError: (error: Error) => {
+    onError: () => {
       // Error toast is handled in authAPI.login
     },
   });

@@ -22,7 +22,7 @@ interface FormData {
 }
 
 const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) => {
-    const { register, handleSubmit, formState: { errors }, setValue, watch, reset } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm<FormData>({
         mode: "onChange",
         defaultValues: {
             country: "Australia",
@@ -35,6 +35,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
         label: `${items?.flag} ${items?.name} (${items?.dialCode})`,
         value: items?.name,
     }));
+    console.log("countries: ", CountryOptions);
     const dialCodeOptions = allCountries.map((items) => ({
         label: `${items?.flag} ${items?.dialCode}`,
         value: items?.dialCode,
@@ -45,6 +46,10 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
 
     // Watch password for verifyPassword comparison
     const password = watch("password");
+
+    // Register fields for validation
+    register("country", { required: "Country is required" });
+    register("mobileDialCode", { required: "Dial code is required" });
 
     return (
         <PaymentCardLayout
@@ -197,7 +202,7 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
                                     <CustomInput
                                         placeholder="Enter mobile number"
                                         type="tel"
-                                        className="rounded-l-none border-0 border-l md:py-8 flex-1 m-0 w-full "
+                                        className="rounded-l-none border-0 border-l md:py-8 flex-1 m-0 w-full"
                                         icon={Phone}
                                         {...register("mobileNumber", {
                                             required: "Mobile number is required",

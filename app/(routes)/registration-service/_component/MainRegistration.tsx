@@ -6,7 +6,7 @@ import RegistrationReview from "../_forms/RegistrationReview";
 
 interface FormData {
     country: string;
-    username: string;
+    email: string;
     password: string;
     verifyPassword: string;
     firstName: string;

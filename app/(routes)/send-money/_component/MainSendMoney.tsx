@@ -12,6 +12,14 @@ import AuthModal from "@/app/_components/AuthModal";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from 'uuid';
 
+interface Transaction {
+    id: string;
+    detailsData: Record<string, unknown>;
+    receiverData: Record<string, unknown>;
+    timestamp: string;
+    userId: string | null;
+}
+
 interface IReviewStep {
     detailsData: Record<string, unknown>;
     receiverData: Record<string, unknown>;

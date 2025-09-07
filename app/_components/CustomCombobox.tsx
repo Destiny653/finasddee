@@ -84,7 +84,7 @@ export function CustomCombobox({
                 </PopoverTrigger>
                 <PopoverContent
                     className={cn(
-                        "p-0",
+                        "p-0 z-[100]",
                         optionFullWidth ? "w-full border-0" : "w-[var(--radix-popover-trigger-width)]",
                     )}
                     style={optionFullWidth ? {} : { width: 'var(--radix-popover-trigger-width)' }}
