@@ -1,133 +1,484 @@
 "use client";
 
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
-import CustomFileUpload from "@/app/_components/CustomFileUpload";
+import React, { useState, useRef } from "react";
 
-interface FormData {
-    passport: FileList | null;
-    driversLicense: FileList | null;
-    nationalIdCard: FileList | null;
-    utilityBill: FileList | null;
-    bankStatement: FileList | null;
+import { useForm, Controller, UseFormSetValue } from "react-hook-form";
+import { CustomCombobox } from "@/app/_components/CustomCombobox";
+import { FileText, Upload, X, Eye } from "lucide-react";
+
+interface IdentityFormData {
+  documentType: string;
+  identityDocument: FileList | null;
 }
 
-const KycVerifyIdForm = () => {
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-    } = useForm<FormData>({
-        defaultValues: {
-            passport: null,
-            driversLicense: null,
-            nationalIdCard: null,
-            utilityBill: null,
-            bankStatement: null,
-        },
-    });
+interface AddressFormData {
+  addressDocument: FileList | null;
+}
 
-    const onSubmit = (data: FormData) => {
-        console.log("Form Data:", data);
-        // TODO: handle form submission, e.g. upload files to server
-    };
+const KYCVerificationForm = () => {
+  const [currentStep, setCurrentStep] = useState<'identity' | 'address'>('identity');
+  const [completedSteps, setCompletedSteps] = useState<string[]>([]);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null);
+  const identityFileInputRef = useRef<HTMLInputElement>(null);
+  const addressFileInputRef = useRef<HTMLInputElement>(null);
 
-    return (
-        <PaymentCardLayout
-            title="Verify Your Identity"
-            description="Please upload the required documents to verify your identity."
-            buttonLabel="Submit"
-            onNext={handleSubmit(onSubmit)}
-        >
-            <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-                <Controller
-                    name="passport"
-                    control={control}
-                    rules={{ required: "Passport is required" }}
-                    render={({ field }) => (
-                        <CustomFileUpload
-                            label="Passport"
-                            accept="image/*,.pdf"
-                            onChange={(files) => field.onChange(files)}
-                            className={errors.passport ? "border-red-500" : ""}
-                        />
-                    )}
-                />
-                {errors.passport && (
-                    <p className="text-red-500 text-sm">{errors.passport.message}</p>
+  // Identity Verification Form
+  const identityForm = useForm<IdentityFormData>({
+    defaultValues: {
+      documentType: "National ID",
+      identityDocument: null,
+    },
+  });
+
+  // Address Verification Form
+  const addressForm = useForm<AddressFormData>({
+    defaultValues: {
+      addressDocument: null,
+    },
+  });
+
+  const documentTypeOptions = [
+    { label: "National ID", value: "National ID" },
+    { label: "Passport", value: "Passport" },
+    { label: "Driver's License", value: "Driver's License" },
+    { label: "Voter's Card", value: "Voter's Card" },
+  ];
+
+  const [selectedDocumentType, setSelectedDocumentType] = useState("National ID");
+
+  const onIdentitySubmit = (data: IdentityFormData) => {
+    const filesArray = data.identityDocument ? Array.from(data.identityDocument).map(file => ({
+      name: file.name,
+      size: file.size,
+      type: file.type
+    })) : [];
+    console.log("Identity Verification Data:", { ...data, identityDocument: filesArray });
+    setCompletedSteps([...completedSteps, 'identity']);
+    setCurrentStep('address');
+  };
+
+  const onAddressSubmit = (data: AddressFormData) => {
+    const filesArray = data.addressDocument ? Array.from(data.addressDocument).map(file => ({
+      name: file.name,
+      size: file.size,
+      type: file.type
+    })) : [];
+    console.log("Address Verification Data:", { ...data, addressDocument: filesArray });
+    setCompletedSteps([...completedSteps, 'address']);
+    alert("KYC Verification completed successfully!");
+  };
+
+  const isStepCompleted = (step: string) => completedSteps.includes(step);
+
+  const handleFileClick = (file: File) => {
+    if (file.type.startsWith('image/')) {
+      const url = URL.createObjectURL(file);
+      setSelectedImageUrl(url);
+    } else {
+      alert('Preview not available for this file type. Please open with a PDF viewer.');
+    }
+  };
+
+  const closeImageModal = () => {
+    if (selectedImageUrl) {
+      URL.revokeObjectURL(selectedImageUrl);
+      setSelectedImageUrl(null);
+    }
+  };
+
+  const validateIdentityFiles = (files: FileList | null) => {
+    if (!files || files.length === 0) {
+      return "At least one file is required";
+    }
+    if (files.length < 2) {
+      return "Maximum 2 files allowed (front and back of ID)";
+    }
+    return true;
+  };
+
+  const validateAddressFiles = (files: FileList | null) => {
+    if (!files || files.length === 0) {
+      return "At least one file is required";
+    }
+    if (files.length > 2) {
+      return "Maximum 2 files allowed for address verification";
+    }
+    return true;
+  };
+
+  const handleUploadClick = (e: React.MouseEvent<HTMLDivElement>, ref: React.RefObject<HTMLInputElement | null>) => {
+    if (e.target === e.currentTarget) {
+      ref.current?.click();
+    }
+  };
+
+  const handleFileSelect = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    onChange: (files: FileList | null) => void,
+    existingFiles: FileList | null
+  ) => {
+    const newFiles = e.target.files;
+    if (newFiles) {
+      const maxFiles = 2;
+      const currentFilesArray = existingFiles ? Array.from(existingFiles) : [];
+      const newFilesArray = Array.from(newFiles);
+      const combinedFilesArray = [...currentFilesArray, ...newFilesArray].slice(0, maxFiles);
+
+      if (combinedFilesArray.length > maxFiles) {
+        alert(`Maximum ${maxFiles} file(s) allowed.`);
+        e.target.value = '';
+        return;
+      }
+
+      const dataTransfer = new DataTransfer();
+      combinedFilesArray.forEach(file => dataTransfer.items.add(file));
+      onChange(dataTransfer.files.length > 0 ? dataTransfer.files : null);
+
+      console.log("Selected files array:", combinedFilesArray.map(file => ({
+        name: file.name,
+        size: file.size,
+        type: file.type
+      })));
+    }
+  };
+
+  const removeFile = (
+    index: number,
+    files: FileList | null,
+    setValue: UseFormSetValue<IdentityFormData> | UseFormSetValue<AddressFormData>,
+    fieldName: "identityDocument" | "addressDocument"
+  ) => {
+    if (!files) return;
+    const newFiles = Array.from(files).filter((_, i) => i !== index);
+    const dataTransfer = new DataTransfer();
+    newFiles.forEach(file => dataTransfer.items.add(file));
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (setValue as any)(fieldName, dataTransfer.files.length > 0 ? dataTransfer.files : null);
+    console.log("Remaining files after removal:", newFiles.map(file => ({
+      name: file.name,
+      size: file.size,
+      type: file.type
+    })));
+  };
+
+  return (
+    <div className=" w-2xl mx-auto p-6 bg-white">
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Identity Verification</h1>
+        <p className="text-gray-500">Complete the following steps to verify your account</p>
+      </div>
+
+      {/* Progress Tabs */}
+      <div className="flex justify-center mb-8">
+        <div className="flex bg-gray-100 rounded-lg p-1 w-fit">
+          <button
+            type="button"
+            onClick={() => setCurrentStep('identity')}
+            className={`px-8 py-3 rounded-md font-medium transition-all ${
+              currentStep === 'identity'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
+            } ${isStepCompleted('identity') ? 'text-green-600' : ''}`}
+          >
+            Identity Verification
+            {isStepCompleted('identity') && (
+              <span className="ml-2 text-green-600">✓</span>
+            )}
+          </button>
+          <button
+            type="button"
+            onClick={() => setCurrentStep('address')}
+            className={`px-8 py-3 rounded-md font-medium transition-all ${
+              currentStep === 'address'
+                ? 'bg-white text-gray-900 shadow-sm'
+                : 'text-gray-500 hover:text-gray-700'
+            } ${isStepCompleted('address') ? 'text-green-600' : ''}`}
+            disabled={!isStepCompleted('identity')}
+          >
+            Address Verification
+            {isStepCompleted('address') && (
+              <span className="ml-2 text-green-600">✓</span>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Form Content */}
+      <div className=" mx-auto">
+        {currentStep === 'identity' && (
+          <form onSubmit={identityForm.handleSubmit(onIdentitySubmit)} className="space-y-8">
+            {/* Document Type Selection */}
+            <div>
+              <label className="block text-lg font-medium text-gray-900 mb-4">
+                Select Identity Verification Document
+              </label>
+              <CustomCombobox
+                options={documentTypeOptions}
+                emptyLabel="No document type found"
+                placeholder="National ID"
+                className="w-full py-8"
+                value={selectedDocumentType}
+                onSelectChange={(value) => {
+                  setSelectedDocumentType(value);
+                  identityForm.setValue("documentType", value, { shouldValidate: true });
+                }}
+              />
+            </div>
+
+            {/* File Upload Section */}
+            <div>
+              <label className="block text-lg font-medium text-gray-900 mb-6">
+                Upload front and back of your identity document (up to 2 files)
+              </label>
+
+              <Controller
+                name="identityDocument"
+                control={identityForm.control}
+                rules={{
+                  required: "Identity document is required",
+                  validate: validateIdentityFiles
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <div
+                    className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors relative"
+                    onClick={(e) => handleUploadClick(e, identityFileInputRef)}
+                  >
+                    <input
+                      ref={identityFileInputRef}
+                      type="file"
+                      accept="image/*,.pdf"
+                      multiple
+                      onChange={(e) => handleFileSelect(e, onChange, value)}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                    <div className="flex flex-col items-center space-y-4 pointer-events-none">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Upload className="w-8 h-8 text-gray-400" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="text-sm font-medium text-teal-600">
+                          Max 2 files (front and back)
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          Click to select or drag and drop files here
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 )}
+              />
 
-                <Controller
-                    name="driversLicense"
-                    control={control}
-                    rules={{ required: "Driver's License is required" }}
-                    render={({ field }) => (
-                        <CustomFileUpload
-                            label="Driver's License"
-                            accept="image/*,.pdf"
-                            onChange={(files) => field.onChange(files)}
-                            className={errors.driversLicense ? "border-red-500" : ""}
-                        />
-                    )}
-                />
-                {errors.driversLicense && (
-                    <p className="text-red-500 text-sm">{errors.driversLicense.message}</p>
-                )}
+              {identityForm.formState.errors.identityDocument && (
+                <p className="text-red-500 text-sm mt-2">
+                  {identityForm.formState.errors.identityDocument.message}
+                </p>
+              )}
 
-                <Controller
-                    name="nationalIdCard"
-                    control={control}
-                    rules={{ required: "National ID Card is required" }}
-                    render={({ field }) => (
-                        <CustomFileUpload
-                            label="National ID Card"
-                            accept="image/*,.pdf"
-                            onChange={(files) => field.onChange(files)}
-                            className={errors.nationalIdCard ? "border-red-500" : ""}
-                        />
-                    )}
-                />
-                {errors.nationalIdCard && (
-                    <p className="text-red-500 text-sm">{errors.nationalIdCard.message}</p>
-                )}
+              {/* Display selected files */}
+              {identityForm.watch("identityDocument") && (
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm font-medium text-gray-700">Selected files (up to 2):</p>
+                  {Array.from(identityForm.watch("identityDocument") || []).map((file, index) => (
+                    <div
+                      key={`${file.name}-${index}`}
+                      className="flex items-center justify-between space-x-2 text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-blue-500"
+                    >
+                      <div className="flex items-center space-x-2 flex-1 truncate">
+                        <FileText className="w-4 h-4" />
+                        <span className="truncate">{file.name}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          type="button"
+                          onClick={() => handleFileClick(file)}
+                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-2 py-1 rounded"
+                        >
+                          <Eye className="w-3 h-3" />
+                          <span>Preview</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeFile(index, identityForm.watch("identityDocument"), identityForm.setValue, "identityDocument");
+                          }}
+                          className="text-gray-400 hover:text-gray-600 bg-gray-100 px-2 py-1 rounded"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
-                <Controller
-                    name="utilityBill"
-                    control={control}
-                    rules={{ required: "Utility Bill is required" }}
-                    render={({ field }) => (
-                        <CustomFileUpload
-                            label="Utility Bill"
-                            accept="image/*,.pdf"
-                            onChange={(files) => field.onChange(files)}
-                            className={errors.utilityBill ? "border-red-500" : ""}
-                        />
-                    )}
-                />
-                {errors.utilityBill && (
-                    <p className="text-red-500 text-sm">{errors.utilityBill.message}</p>
-                )}
+            {/* Submit Button */}
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                disabled={identityForm.formState.isSubmitting}
+                className="bg-slate-800 text-white px-8 py-3 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+              >
+                <span>Complete</span>
+                <span>→</span>
+              </button>
+            </div>
+          </form>
+        )}
 
-                <Controller
-                    name="bankStatement"
-                    control={control}
-                    rules={{ required: "Bank Statement is required" }}
-                    render={({ field }) => (
-                        <CustomFileUpload
-                            label="Bank Statement"
-                            accept="image/*,.pdf"
-                            onChange={(files) => field.onChange(files)}
-                            className={errors.bankStatement ? "border-red-500" : ""}
-                        />
-                    )}
-                />
-                {errors.bankStatement && (
-                    <p className="text-red-500 text-sm">{errors.bankStatement.message}</p>
+        {currentStep === 'address' && (
+          <form onSubmit={addressForm.handleSubmit(onAddressSubmit)} className="space-y-8">
+            {/* Address Verification Instructions */}
+            <div className="text-center space-y-4">
+              <h2 className="text-xl font-semibold text-gray-900">Address Verification</h2>
+              <p className="text-gray-600">
+                Please upload document(s) that show your current address (utility bill, bank statement, etc. - up to 2 files)
+              </p>
+            </div>
+
+            {/* Address Document Upload */}
+            <div>
+              <label className="block text-lg font-medium text-gray-900 mb-6">
+                Upload address verification document(s) (up to 2 files)
+              </label>
+
+              <Controller
+                name="addressDocument"
+                control={addressForm.control}
+                rules={{
+                  required: "Address document is required",
+                  validate: validateAddressFiles
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <div
+                    className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center hover:border-gray-400 transition-colors relative"
+                    onClick={(e) => handleUploadClick(e, addressFileInputRef)}
+                  >
+                    <input
+                      ref={addressFileInputRef}
+                      type="file"
+                      accept="image/*,.pdf"
+                      multiple
+                      onChange={(e) => handleFileSelect(e, onChange, value)}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                    <div className="flex flex-col items-center space-y-4 pointer-events-none">
+                      <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center">
+                        <Upload className="w-8 h-8 text-gray-400" />
+                      </div>
+
+                      <div className="space-y-2">
+                        <p className="text-sm font-medium text-teal-600">
+                          Max 2 files
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          Click to select or drag and drop files here
+                        </p>
+                      </div>
+
+                      <div className="text-xs text-gray-400 space-y-1">
+                        <p>Accepted documents:</p>
+                        <p>• Utility Bill (electricity, water, gas)</p>
+                        <p>• Bank Statement</p>
+                        <p>• Government Letter</p>
+                        <p>• Rental Agreement</p>
+                      </div>
+                    </div>
+                  </div>
                 )}
-            </form>
-        </PaymentCardLayout>
-    );
+              />
+
+              {addressForm.formState.errors.addressDocument && (
+                <p className="text-red-500 text-sm mt-2">
+                  {addressForm.formState.errors.addressDocument.message}
+                </p>
+              )}
+
+              {/* Display selected files */}
+              {addressForm.watch("addressDocument") && (
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm font-medium text-gray-700">Selected files (up to 2):</p>
+                  {Array.from(addressForm.watch("addressDocument") || []).map((file, index) => (
+                    <div
+                      key={`${file.name}-${index}`}
+                      className="flex items-center justify-between space-x-2 text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-green-500"
+                    >
+                      <div className="flex items-center space-x-2 flex-1 truncate">
+                        <FileText className="w-4 h-4" />
+                        <span className="truncate">{file.name}</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          type="button"
+                          onClick={() => handleFileClick(file)}
+                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-2 py-1 rounded"
+                        >
+                          <Eye className="w-3 h-3" />
+                          <span>Preview</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeFile(index, addressForm.watch("addressDocument"), addressForm.setValue, "addressDocument");
+                          }}
+                          className="text-gray-400 hover:text-gray-600 bg-gray-100 px-2 py-1 rounded"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-between">
+              <button
+                type="button"
+                onClick={() => setCurrentStep('identity')}
+                className="bg-gray-200 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-300 transition-colors"
+              >
+                ← Back
+              </button>
+              <button
+                type="submit"
+                disabled={addressForm.formState.isSubmitting}
+                className="bg-slate-800 text-white px-8 py-3 rounded-lg hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center space-x-2"
+              >
+                <span>Complete</span>
+                <span>→</span>
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+
+      {/* Image Preview Modal */}
+      {selectedImageUrl && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000054] bg-opacity-50">
+          <div className="relative max-w-4xl maxchill                max-h-full p-4">
+            <button
+              type="button"
+              onClick={closeImageModal}
+              className="absolute -top-4 -right-4 bg-white rounded-full p-2 shadow-lg z-10"
+            >
+              <X className="w-6 h-6 text-gray-600" />
+            </button>
+            <img
+              src={selectedImageUrl}
+              alt="Uploaded file preview"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
-export default KycVerifyIdForm;
+export default KYCVerificationForm;

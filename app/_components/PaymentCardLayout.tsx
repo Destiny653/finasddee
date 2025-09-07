@@ -27,7 +27,7 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
                 {buttonLabel && onNext && (
                     <Button
                         onClick={onNext}
-                        className="w-full py-6 md:h-16 text-lg text-white font-semibold bg-[#c99207] hover:bg-[#ac7d08]"
+                        className="w-full py-6 md:h-16 text-lg text-white font-semibold bg-[#dda822] hover:bg-[#ac7d08]"
                     >
                         {buttonLabel}
                     </Button>

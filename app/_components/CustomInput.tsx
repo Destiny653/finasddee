@@ -15,7 +15,7 @@ const CustomInput: FC<ICustomInput> = ({
 }) => {
     return (
         <div className="relative flex flex-col">
-            <p className={`font-sans font-semibold capitalize text-sm leading-[18px]`}>
+            <p className={` font-semibold capitalize text-sm leading-[18px]`}>
                 {label}
             </p>
             <div className="relative h-fit">

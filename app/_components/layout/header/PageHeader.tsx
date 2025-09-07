@@ -22,7 +22,7 @@ export function PageHeader() {
   return (
     <>
       <header
-        className="relative font-sans font-bold bg-[#0e1e33] text-lg border-b border-gray-200"
+        className="relative font-bold bg-[#0e1e33] text-lg border-b border-gray-200"
       >
         <div className="container mx-auto px-4 py-4 max-w-[1440px]">
           <div className="flex items-center justify-between py-0">
@@ -42,7 +42,7 @@ export function PageHeader() {
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden p-2 text-white hover:text-[#b8860b] transition-colors"
+                className="lg:hidden p-2 text-white hover:text-[#dda822] transition-colors"
                 type="button"
                 onClick={toggleMenu}
                 aria-label="Toggle navigation"
@@ -64,14 +64,25 @@ export function PageHeader() {
                       <Link
                         href="/transactions"
                         onClick={() => setIsMenuOpen(false)}
-                        className="text-white hover:text-[#b8860b] transition-colors block py-2"
+                        className="text-white hover:text-[#dda822] transition-colors block py-2"
                       >
                         Transactions
                       </Link>
                     </li>
+                     <li>
+                    <Link
+                      href="/track-transactions"
+                      className="text-white hover:text-[#dda822] transition-colors font-medium"
+                    >
+                      Track transaction
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href='/verify-id' className='text-white hover:text-[#dda822] font-medium' >KYC</Link>
+                  </li>
                     <li
                       id="dis1"
-                      className="btn border border-[#b8860b] rounded px-4 py-2 mt-2.5 lg:hidden"
+                      className="btn border border-[#dda822] rounded px-4 py-2 mt-2.5 lg:hidden"
                     >
                       <button
                         onClick={() => {
@@ -85,7 +96,7 @@ export function PageHeader() {
                     </li>
                     <li
                       id="dis2"
-                      className="btn bg-[#b8860b] text-white rounded px-4 py-2 mt-2.5 lg:hidden hover:bg-[#9a7209] transition-colors"
+                      className="btn bg-[#dda822] text-white rounded px-4 py-2 mt-2.5 lg:hidden hover:bg-[#9a7209] transition-colors"
                     >
                       <button
                         onClick={() => {
@@ -109,7 +120,7 @@ export function PageHeader() {
                   <li>
                     <Link
                       href="/transactions"
-                      className="text-white hover:text-[#b8860b] transition-colors font-medium"
+                      className="text-white hover:text-[#dda822] transition-colors font-medium"
                     >
                       Transactions
                     </Link>
@@ -117,10 +128,13 @@ export function PageHeader() {
                    <li>
                     <Link
                       href="/track-transactions"
-                      className="text-white hover:text-[#b8860b] transition-colors font-medium"
+                      className="text-white hover:text-[#dda822] transition-colors font-medium"
                     >
                       Track transaction
                     </Link>
+                  </li>
+                  <li>
+                    <Link href='/verify-id' className='text-white hover:text-[#dda822] font-medium' >KYC</Link>
                   </li>
                 </ul>
               </nav>
@@ -133,7 +147,7 @@ export function PageHeader() {
                   <li className="hidden lg:block">
                     <button
                       onClick={() => openAuthModal('signin')}
-                      className="text-white hover:text-[#b8860b] transition-colors"
+                      className="text-white hover:text-[#dda822] transition-colors"
                     >
                       Login
                     </button>
@@ -141,7 +155,7 @@ export function PageHeader() {
                   <li className="hidden lg:flex items-center h-auto">
                     <button
                       onClick={() => openAuthModal('register')}
-                      className="inline-flex items-center justify-center py-6 rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-10 px-6 font-medium transition-colors"
+                      className="inline-flex items-center justify-center py-6 rounded-md bg-[#dda822] text-white hover:bg-[#9a7209] h-10 px-6 font-medium transition-colors"
                     >
                       Register
                     </button>
