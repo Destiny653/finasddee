@@ -1,5 +1,6 @@
-# Fix TypeScript Type Error in Registration Service
+# ESLint Errors Fix Plan
 
-## Tasks
-- [x] Add 'email' property to FormData interface in MainRegistration.tsx
-- [ ] Verify the build passes after the fix
+- [x] Fix signInForm.tsx: Remove unused 'rememberMe' destructuring in onSubmit function
+- [x] Fix MainSendMoney.tsx: Uncomment Transaction interface and replace any[] with Transaction[]
+- [x] Fix auth.ts: Replace 'any' type in register function parameter with proper interface
+- [x] Verify fixes by running production build

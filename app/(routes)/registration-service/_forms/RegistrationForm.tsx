@@ -35,7 +35,6 @@ const RegistrationForm = ({ onSubmit }: { onSubmit: (data: FormData) => void }) 
         label: `${items?.flag} ${items?.name} (${items?.dialCode})`,
         value: items?.name,
     }));
-    console.log("countries: ", CountryOptions);
     const dialCodeOptions = allCountries.map((items) => ({
         label: `${items?.flag} ${items?.dialCode}`,
         value: items?.dialCode,

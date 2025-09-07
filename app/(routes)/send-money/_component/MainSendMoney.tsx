@@ -88,7 +88,7 @@ const MainSendMoney = () => {
         };
 
         // Retrieve existing transactions from localStorage
-        const existingTransactions = JSON.parse(localStorage.getItem('transactions') || '[]') as any[];
+        const existingTransactions = JSON.parse(localStorage.getItem('transactions') || '[]') as Transaction[];
 
         // Append new transaction
         const updatedTransactions = [...existingTransactions, transaction];

@@ -8,7 +8,7 @@ const authAPI = {
     // Mock successful login
     return { user: { id: 1, email: credentials.email }, token: 'mock-token' };
   },
-  register: async (data: any) => {
+  register: async (data: Record<string, unknown>) => {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     return { user: { id: 1, ...data }, token: 'mock-token' };

@@ -41,7 +41,7 @@ const SignInForm = () => {
   });
 
   const onSubmit = (data: yup.InferType<typeof signInSchema>) => {
-    const { rememberMe, ...loginData } = data;
+    const loginData = { email: data.email, password: data.password };
     // TODO: Implement remember me functionality if needed
     login(loginData, () => {
       reset(); // Clear form on successful login

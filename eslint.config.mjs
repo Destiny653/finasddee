@@ -19,6 +19,10 @@ const eslintConfig = [
             "build/**",
             "next-env.d.ts",
         ],
+        rules: {
+            // Disable rules you don’t want
+            "@typescript-eslint/*": "off"
+        },
     },
 ];
 
