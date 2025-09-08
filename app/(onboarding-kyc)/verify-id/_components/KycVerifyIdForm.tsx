@@ -456,7 +456,7 @@ const KYCVerificationForm = () => {
 
       {/* Image Preview Modal */}
       {selectedImageUrl && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4 sm:p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#00000031] bg-opacity-50 p-4 sm:p-6">
           <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl max-h-[90vh] p-2 sm:p-4">
             <button
               type="button"
