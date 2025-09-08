@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import AuthModal from '@/app/_components/AuthModal'
+import { handleScroll } from '@/app/_utils/smoothScoll'
+
 
 type AuthFormType = 'signin' | 'signup' | 'register'
 
@@ -43,24 +45,28 @@ export function MainHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8 text-xl">
+           <button onClick={(e)=>handleScroll('how-it-works')} >
             <Link
               href="#how-it-works"
               className="text-white hover:text-gold-light transition-colors"
             >
               How it works
             </Link>
+           </button>
             <Link
               href="/faq"
               className="text-white hover:text-gold-light transition-colors"
             >
               Help
             </Link>
+            <button onClick={()=>handleScroll('network-section')}>
             <Link
               href="#network-section"
               className="text-white hover:text-gold-light transition-colors"
             >
               Our Network
             </Link>
+            </button>
           </nav>
 
           {/* Desktop Auth Buttons */}

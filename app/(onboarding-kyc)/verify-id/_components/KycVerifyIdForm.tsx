@@ -279,17 +279,17 @@ const KYCVerificationForm = () => {
                   {Array.from(identityForm.watch("identityDocument") || []).map((file, index) => (
                     <div
                       key={`${file.name}-${index}`}
-                      className="flex items-center justify-between space-x-2 text-xs sm:text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-blue-500"
+                      className="flex items-center justify-between w-fit space-x-2 text-xs sm:text-sm text-gray-600 p-2 bg-gray-50 rounded border-l-4 border-blue-500"
                     >
-                      <div className="flex items-center space-x-2 flex-1 truncate">
+                      <div className="flex items-center flex-1 truncate">
                         <FileText className="w-3 sm:w-4 h-3 sm:h-4" />
                         <span className="truncate">{file.name}</span>
                       </div>
-                      <div className="flex items-center space-x-1 sm:space-x-2">
+                      <div className="flex items-center sm:space-x-2">
                         <button
                           type="button"
                           onClick={() => handleFileClick(file)}
-                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-1 sm:px-2 py-0.5 sm:py-1 rounded"
+                          className="text-blue-600 hover:text-blue-800 flex items-center text-xs bg-blue-100 box-border sm:px-2 py-0.5 sm:py-1 rounded"
                         >
                           <Eye className="w-2 sm:w-3 h-2 sm:h-3" />
                           <span>Preview</span>
@@ -406,11 +406,11 @@ const KYCVerificationForm = () => {
                         <FileText className="w-3 sm:w-4 h-3 sm:h-4" />
                         <span className="truncate">{file.name}</span>
                       </div>
-                      <div className="flex items-center space-x-1 sm:space-x-2">
+                      <div className="flex items-center sm:space-x-2">
                         <button
                           type="button"
                           onClick={() => handleFileClick(file)}
-                          className="text-blue-600 hover:text-blue-800 flex items-center space-x-1 text-xs bg-blue-100 px-1 sm:px-2 py-0.5 sm:py-1 rounded"
+                          className="text-blue-600 hover:text-blue-800 flex items-center text-xs bg-blue-100 sm:px-2 py-0.5 sm:py-1 rounded"
                         >
                           <Eye className="w-2 sm:w-3 h-2 sm:h-3" />
                           <span>Preview</span>
