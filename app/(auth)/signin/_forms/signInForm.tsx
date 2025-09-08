@@ -5,7 +5,7 @@ import CustomPassword from "@/app/_components/CustomPassword";
 import { Button } from "@/components/ui/Button";
 import { Mail } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -28,8 +28,12 @@ const signInSchema = yup.object().shape({
   rememberMe: yup.boolean().optional(), // Make rememberMe optional to match FormData
 });
 
-const SignInForm = () => {
+interface signInProps {
+  onClose?: ()=> void
+}
+const SignInForm = ({onClose}:signInProps)=> {
   const { login, isLoginLoading, error } = useAuth();
+  const [logIn, setLogIn] = useState(false)
   const {
     register,
     handleSubmit,
@@ -39,11 +43,14 @@ const SignInForm = () => {
     resolver: yupResolver(signInSchema),
     mode: "onChange",
   });
+  useEffect(()=>{ return},[login])
 
   const onSubmit = (data: yup.InferType<typeof signInSchema>) => {
     const loginData = { email: data.email, password: data.password };
     // TODO: Implement remember me functionality if needed
     login(loginData, () => {
+      setLogIn(true)
+      onClose && onClose()
       reset(); // Clear form on successful login
     });
   };
@@ -83,9 +90,9 @@ const SignInForm = () => {
           Recover Password
         </Link>
       </div>
-      <Button type="submit" className="h-[52px]" disabled={isLoginLoading}>
+      <button type="submit" className="h-[58px] font-semibold text-white rounded-lg bg-[#e2ae02] hover:bg-[#eeb704]" disabled={isLoginLoading}>
         {isLoginLoading ? "Signing in..." : "Sign in"}
-      </Button>
+      </button>
     </form>
   );
 };

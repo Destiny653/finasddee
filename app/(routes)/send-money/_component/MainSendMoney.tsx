@@ -222,7 +222,7 @@ const MainSendMoney = () => {
                     </div>
                 </div>
 
-                <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl grid grid-cols-1 lg:grid-cols-8 mt-8 sm:mt-12 md:mt-16 gap-4 sm:gap-6">
+                <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl grid grid-cols-1 lg:grid-cols-8 mt-8 sm:mt-12 md:mt-16 gap-4 justify-center  sm:gap-6">
                     <div className="lg:col-span-5">{renderSteps()}</div>
                     <div className="lg:col-span-3 flex flex-col gap-3 sm:gap-4">
                         <SideSummeryCard />

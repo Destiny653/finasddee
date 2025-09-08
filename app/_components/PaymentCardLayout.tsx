@@ -17,7 +17,7 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
     onNext,
 }) => {
     return (
-        <Card className="rounded-sm shadow-none w-full border-none bg-white my-8">
+        <Card className="rounded-sm shadow-none w-full border-none bg-white">
             <CardHeader className="border-b border-gray-100">
                 <CardTitle className="text-2xl capitalize">{title}</CardTitle>
                 <CardDescription className="text-lg">{description}</CardDescription>
@@ -27,7 +27,7 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
                 {buttonLabel && onNext && (
                     <Button
                         onClick={onNext}
-                        className="w-full py-6 md:h-16 text-lg text-white font-semibold bg-[#dda822] hover:bg-[#ac7d08]"
+                        className="w-full py-6 md:h-16 text-lg text-white font-semibold bg-[#dda822] hover:bg-[#eba800]"
                     >
                         {buttonLabel}
                     </Button>

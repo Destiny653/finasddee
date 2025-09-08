@@ -95,7 +95,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
               <h2 className="text-3xl font-bold text-gray-900 mb-2">Sign In</h2>
               <p className="text-gray-600">Welcome back! Please sign in to your account.</p>
             </div>
-            <SignInForm />
+            <SignInForm onClose={onClose} />
             <div className="text-center space-y-2">
               <p className="text-sm text-gray-600">
                 Need to register as a service?{' '}
@@ -193,7 +193,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
             <div className="text-center">
               <button
                 onClick={onClose}
-                className="bg-[#cc9408] hover:bg-[#b8860b] text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="bg-[#cc9408] hover:bg-[#e9a700] text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Close
               </button>

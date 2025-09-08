@@ -17,7 +17,7 @@ const FaqSection = () => {
     };
 
     return (
-        <section className="py-6 sm:py-8 md:py-12 lg:py-16 text-white" id="faq-section" style={{ backgroundColor: '#cc9408' }}>
+        <section className="py-6 sm:py-8 md:py-12 lg:py-16 text-white bg-[#e2ae02] " id="faq-section" >
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-normal text-white mb-3 sm:mb-4 md:mb-6">
                     Frequently Asked Questions
@@ -50,7 +50,6 @@ const FaqSection = () => {
                                             alignItems: 'center'
                                         }}
                                         onClick={() => toggleFAQ(index)}
-                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(154, 114, 9, 0.3)'}
                                         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                                         aria-expanded={openIndex === index}
                                         aria-controls={`collapse${index + 1}`}

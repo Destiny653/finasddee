@@ -68,8 +68,7 @@ const HowItWorksSection = () => {
                 <div className="text-center mt-8">
                     <span
                      onClick={() => openAuthModal('register')}
-                        className="inline-block text-white px-8 py-3 rounded-lg font-semibold transition-colors"
-                        style={{ backgroundColor: '#cc9408' }}
+                        className="inline-block text-white px-8 py-3 rounded-lg font-semibold transition-colors bg-[#e2ae02] hover:bg-[#d8a603]"
                     >
                         Sign up Now
                     </span>
