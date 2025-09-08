@@ -92,7 +92,7 @@ const TestimonialsSection = () => {
                                 {testimonials.map((testimonial, index) => (
                                     <div
                                         key={index}
-                                        className="w-full flex-shrink-0"
+                                        className="w-full flex-shrink-0 px-2"
                                     >
                                         <div className="testimonial rounded text-center bg-white shadow-lg mx-0">
                                             {/* Quote Icon */}

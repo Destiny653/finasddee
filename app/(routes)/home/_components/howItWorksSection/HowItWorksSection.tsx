@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AuthModal from '@/app/_components/AuthModal'
 
 const HowItWorksSection = () => {
+
+      const [isMenuOpen, setIsMenuOpen] = useState(false)
+      const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+      const [authModalInitialForm, setAuthModalInitialForm] = useState<'signin' | 'signup' | 'register'>('signin')
+    
+      const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+      const openAuthModal = (form: 'signin' | 'signup' | 'register') => {
+        setAuthModalInitialForm(form)
+        setIsAuthModalOpen(true)
+      }
+      const closeAuthModal = () => setIsAuthModalOpen(false)
+
     return (
-        <section className="py-16" id="landing-page-send" style={{ backgroundColor: '#ffff00' }}>
+        <section className="py-16" id="how-it-works" style={{ backgroundColor: '#ffff00' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl lg:text-5xl text-center font-bold text-black mb-4">
                     The simple way to send money
@@ -53,15 +66,16 @@ const HowItWorksSection = () => {
                 </div>
                 
                 <div className="text-center mt-8">
-                    <a
-                        href="/sign-up"
+                    <span
+                     onClick={() => openAuthModal('register')}
                         className="inline-block text-white px-8 py-3 rounded-lg font-semibold transition-colors"
                         style={{ backgroundColor: '#cc9408' }}
                     >
                         Sign up Now
-                    </a>
+                    </span>
                 </div>
             </div>
+                  <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} initialForm={authModalInitialForm} />
         </section>
     );
 };

@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import AuthModal from '@/app/_components/AuthModal'
 
 const SpecialOfferSection = () => {
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+    const [authModalInitialForm, setAuthModalInitialForm] = useState<'signin' | 'signup' | 'register'>('signin')
+
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+    const openAuthModal = (form: 'signin' | 'signup' | 'register') => {
+        setAuthModalInitialForm(form)
+        setIsAuthModalOpen(true)
+    }
+    const closeAuthModal = () => setIsAuthModalOpen(false)
+
     return (
         <section
             className="relative py-20 bg-cover bg-center bg-no-repeat bg-fixed"
@@ -16,14 +29,15 @@ const SpecialOfferSection = () => {
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-normal text-white mb-6 md:mb-0 md:mr-8 max-w-2xl">
                         Sign up today and get your first transaction fee free!
                     </h2>
-                    <a
-                        href="/signup"
+                    <span
+                        onClick={() => openAuthModal('register')}
                         className="inline-block border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition-colors whitespace-nowrap"
                     >
                         Sign up Now
-                    </a>
+                    </span>
                 </div>
             </div>
+            <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} initialForm={authModalInitialForm} />
         </section>
     );
 };
