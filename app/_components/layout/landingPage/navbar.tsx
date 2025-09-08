@@ -110,7 +110,7 @@ export function MainHeader() {
               </button>
               <Link
                 href="/faq"
-                className="text-black hover:text-gold-light transition-colors py-2"
+                className="text-black hover:text-gold-light text-center transition-colors py-2"
                 onClick={toggleMenu}
               >
                 Help
