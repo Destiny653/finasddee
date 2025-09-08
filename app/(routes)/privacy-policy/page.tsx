@@ -18,13 +18,13 @@ export default function PrivacyPolicyPage() {
     <>
       {/* <Preloader /> */}
 
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-gray-100">
         {/* Header */}
         <PageHeader />
 
         {/* Page Header / Breadcrumb */}
-        <section className="py-12 bg-gold-dark text-white">
-          <div className="container mx-auto px-4">
+        <section className="bg-gold-dark text-white">
+          <div className="bg-gray-700 mx-auto px-4 py-12">
             <div className="text-center">
               <nav className="mb-2 text-white/80">
                 <ol className="inline-flex items-center space-x-2">
@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
 
         {/* Content */}
         <main>
-          <section className="py-10 bg-white">
+          <section className="py-10 ">
             <div className="container mx-auto px-4 text-black">
               <div className="max-w-4xl mx-auto">
                 <h3 className="text-2xl font-bold mb-4">Collection and Use of Personal Information</h3>
