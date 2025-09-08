@@ -1,4 +1,5 @@
 "use client";
+
 import CustomTextarea from "@/app/_components/CustomTextarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Fragment, useState, useEffect, FC } from "react";
@@ -34,25 +35,25 @@ const ReviewStep: FC<IReviewStep> = ({ detailsData, receiverData, onNext }) => {
             buttonLabel="Continue to Payment"
             onNext={onNext}
         >
-            <div className="w-full flex flex-col gap-4 ">
-                <div className="mb-4">
-                    <h3 className="font-semibold text-2xl">Send Money Details</h3>
-                    <div className="grid grid-cols-2 gap-4">
+            <div className="w-full flex flex-col gap-3 sm:gap-4">
+                <div className="mb-3 sm:mb-4">
+                    <h3 className="font-semibold text-lg sm:text-xl md:text-2xl">Send Money Details</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                         {Object.entries(detailsData).map(([key, value]) => (
-                            <div key={key} className="flex gap-2">
-                                <label className="text-md text-gray-700 capitalize">{key.replace(/([A-Z])/g, ' $1')} :</label>
-                                <p className="text-md text-gray-900 font-semibold">{String(value)}</p>
+                            <div key={key} className="flex flex-col sm:flex-row sm:gap-2">
+                                <label className="text-sm sm:text-md text-gray-700 capitalize">{key.replace(/([A-Z])/g, ' $1')}:</label>
+                                <p className="text-sm sm:text-md text-gray-900 font-semibold">{String(value)}</p>
                             </div>
                         ))}
                     </div>
                 </div>
                 <div>
-                    <h3 className="font-semibold text-2xl">Receiver Information</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <h3 className="font-semibold text-lg sm:text-xl md:text-2xl">Receiver Information</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                         {Object.entries(receiverData).map(([key, value]) => (
-                            <div key={key} className="flex gap-2">
-                                <label className="text-md text-gray-700 capitalize">{key.replace(/([A-Z])/g, ' $1')} :</label>
-                                <p className="text-md text-gray-900 font-semibold">{String(value)}</p>
+                            <div key={key} className="flex flex-col sm:flex-row sm:gap-2">
+                                <label className="text-sm sm:text-md text-gray-700 capitalize">{key.replace(/([A-Z])/g, ' $1')}:</label>
+                                <p className="text-sm sm:text-md text-gray-900 font-semibold">{String(value)}</p>
                             </div>
                         ))}
                     </div>
@@ -195,22 +196,22 @@ const MainSendMoney = () => {
 
     return (
         <>
-            <div className="flex-1 flex flex-col w-full items-center justify-center py-16 ">
-                <div className="flex flex-col gap-4 w-full max-w-6xl">
+            <div className="flex-1 flex flex-col w-full items-center justify-center py-8 sm:py-12 md:py-16">
+                <div className="flex flex-col gap-3 sm:gap-4 w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl">
                     {/* Step Labels */}
-                    <div className="flex justify-between">
+                    <div className="flex sm:flex-row justify-between gap-2 px-2 sm:gap-0">
                         {steps.map((items, i) => (
-                            <p key={`label-${i}`} className="text-lg capitalize font-medium">{items}</p>
+                            <p key={`label-${i}`} className="text-sm sm:text-base md:text-lg capitalize font-medium text-center sm:text-left">{items}</p>
                         ))}
                     </div>
 
                     {/* Circles and Lines */}
-                    <div className="flex items-center">
+                    <div className="flex items-center px-2">
                         {steps.map((items, i) => (
                             <Fragment key={"items" + items}>
-                                <div className="w-6 h-6 rounded-full border-2 border-gray-400 flex items-center justify-center p-1 z-10 bg-white">
+                                <div className="w-5 sm:w-6 h-5 sm:h-6 rounded-full border-2 border-gray-400 flex items-center justify-center p-1 z-10 bg-white">
                                     {activeStep === i && (
-                                        <div className="w-3 h-3 bg-yellow-700 rounded-full transition-colors duration-200" />
+                                        <div className="w-2 sm:w-3 h-2 sm:h-3 bg-yellow-700 rounded-full transition-colors duration-200" />
                                     )}
                                 </div>
                                 {i < steps.length - 1 && (
@@ -221,52 +222,52 @@ const MainSendMoney = () => {
                     </div>
                 </div>
 
-                <div className=" w-full max-w-5xl grid grid-cols-8 mt-16 gap-4">
-                    <div className="col-span-5">{renderSteps()}</div>
-                    <div className="col-span-3 size-full flex gap-2 flex-col">
+                <div className="w-full max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl grid grid-cols-1 lg:grid-cols-8 mt-8 sm:mt-12 md:mt-16 gap-4 sm:gap-6">
+                    <div className="lg:col-span-5">{renderSteps()}</div>
+                    <div className="lg:col-span-3 flex flex-col gap-3 sm:gap-4">
                         <SideSummeryCard />
                         <Card className="rounded-sm shadow-none border-none">
                             <CardHeader>
-                                <CardTitle>Beneficiary Details</CardTitle>
+                                <CardTitle className="text-base sm:text-lg md:text-xl">Beneficiary Details</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 {Object.keys(receiverData).length > 0 ? (
-                                    <div className="space-y-3 mb-4">
-                                        <div className="grid grid-cols-1 gap-2 text-sm">
+                                    <div className="space-y-2 sm:space-y-3 mb-3 sm:mb-4">
+                                        <div className="grid grid-cols-1 gap-1 sm:gap-2 text-xs sm:text-sm">
                                             {(receiverData.firstName || receiverData.lastName) ? (
-                                                <div className="flex justify-between">
+                                                <div className="flex flex-col sm:flex-row sm:justify-between">
                                                     <span className="text-muted-foreground">Name:</span>
                                                     <span className="font-medium">{`${String(receiverData.firstName || '')} ${String(receiverData.lastName || '')}`.trim()}</span>
                                                 </div>
                                             ) : null}
                                             {receiverData.email ? (
-                                                <div className="flex justify-between">
+                                                <div className="flex flex-col sm:flex-row sm:justify-between">
                                                     <span className="text-muted-foreground">Email:</span>
-                                                    <span className="font-medium">{String(receiverData.email as string)}</span>
+                                                    <span className="font-medium">{String(receiverData.email)}</span>
                                                 </div>
                                             ) : null}
                                             {receiverData.contact ? (
-                                                <div className="flex justify-between">
+                                                <div className="flex flex-col sm:flex-row sm:justify-between">
                                                     <span className="text-muted-foreground">Contact:</span>
-                                                    <span className="font-medium">{String(receiverData.contact as string)}</span>
+                                                    <span className="font-medium">{String(receiverData.contact)}</span>
                                                 </div>
                                             ) : null}
                                             {receiverData.country ? (
-                                                <div className="flex justify-between">
+                                                <div className="flex flex-col sm:flex-row sm:justify-between">
                                                     <span className="text-muted-foreground">Country:</span>
-                                                    <span className="font-medium">{String(receiverData.country as string)}</span>
+                                                    <span className="font-medium">{String(receiverData.country)}</span>
                                                 </div>
                                             ) : null}
                                             {receiverData.city ? (
-                                                <div className="flex justify-between">
+                                                <div className="flex flex-col sm:flex-row sm:justify-between">
                                                     <span className="text-muted-foreground">City:</span>
-                                                    <span className="font-medium">{String(receiverData.city as string)}</span>
+                                                    <span className="font-medium">{String(receiverData.city)}</span>
                                                 </div>
                                             ) : null}
                                         </div>
                                     </div>
                                 ) : (
-                                    <p className="text-muted-foreground text-sm mb-4">No beneficiary details added yet</p>
+                                    <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4">No beneficiary details added yet</p>
                                 )}
                                 <CustomTextarea label="Payment Purpose" />
                             </CardContent>

@@ -25,9 +25,9 @@ export function PageHeader() {
         className="relative font-bold bg-[#0e1e33] text-lg border-b border-gray-200"
       >
         <div className="container mx-auto px-4 py-4 max-w-[1440px]">
-          <div className="flex items-center justify-between py-0">
+          <div className="flex items-center py-0">
             {/* Logo Section */}
-            <div className="flex items-center">
+            <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center" title="Finasddee">
                 <div className="logo mr-3 flex flex-col items-center justify-center">
                   <Image
@@ -35,14 +35,14 @@ export function PageHeader() {
                     alt="finasddee"
                     width={400}
                     height={400}
-                    className="w-auto h-[80px]"
+                    className="w-auto md:h-[80px] h-[50px]"
                   />
                 </div>
               </Link>
 
               {/* Mobile Menu Button */}
               <button
-                className="lg:hidden p-2 text-white hover:text-[#dda822] transition-colors"
+                className="lg:hidden absolute right-4 p-2 text-white hover:text-[#dda822] transition-colors"
                 type="button"
                 onClick={toggleMenu}
                 aria-label="Toggle navigation"
