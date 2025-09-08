@@ -152,7 +152,6 @@ const KYCVerificationForm = () => {
     const newFiles = Array.from(files).filter((_, i) => i !== index);
     const dataTransfer = new DataTransfer();
     newFiles.forEach(file => dataTransfer.items.add(file));
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (setValue as any)(fieldName, dataTransfer.files.length > 0 ? dataTransfer.files : null);
     console.log("Remaining files after removal:", newFiles.map(file => ({
       name: file.name,

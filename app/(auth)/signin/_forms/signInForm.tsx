@@ -43,7 +43,9 @@ const SignInForm = ({onClose}:signInProps)=> {
     resolver: yupResolver(signInSchema),
     mode: "onChange",
   });
-  useEffect(()=>{ return},[login])
+  useEffect(() => {
+    // This effect currently does nothing but is syntactically correct
+  }, [login])
 
   const onSubmit = (data: yup.InferType<typeof signInSchema>) => {
     const loginData = { email: data.email, password: data.password };

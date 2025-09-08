@@ -127,8 +127,8 @@ export function HelpPageContent() {
             <Card className="p-6 flex items-center border-0 shadow-none">
               <Mail size={48} className="text-gold-dark mr-4 flex-shrink-0 text-[#ffc504]" />
               <div>
-                <h5 className="text-xl font-bold mb-2">Can't find what you're looking for?</h5>
-                <p className="text-gray-600">We want to answer all of your queries. Get in touch and we'll get back to you as soon as we can. <Link href="/contact" className="text-gold-dark hover:underline">Contact us <ChevronRight size={12} className="inline" /></Link></p>
+                <h5 className="text-xl font-bold mb-2">Can&apos;t find what you&apos;re looking for?</h5>
+                <p className="text-gray-600">We want to answer all of your queries. Get in touch and we&apos;ll get back to you as soon as we can. <Link href="/contact" className="text-gold-dark hover:underline">Contact us <ChevronRight size={12} className="inline" /></Link></p>
               </div>
             </Card>
             <Card className="p-6 flex items-center border-0 shadow-none">

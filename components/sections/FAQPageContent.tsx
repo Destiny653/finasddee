@@ -13,7 +13,7 @@ export function FAQPageContent() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl lg:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
           <p className="text-lg text-black/90">
-            Can't find it here? Check out our{' '}
+            Can&apos;t find it here? Check out our{' '}
             <Link href="/help" className="text-black underline hover:text-gold-dark transition-colors">Help center</Link>.
           </p>
         </div>

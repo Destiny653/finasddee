@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const TestimonialsSection = () => {
@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
         return () => clearInterval(timer);
     }, [currentSlide, testimonials.length]);
 
-    const goToSlide = (slideIndex: number) => {
+    const goToSlide = useCallback((slideIndex: number) => {
         if (isTransitioning) return;
         setIsTransitioning(true);
         setCurrentSlide(slideIndex);
@@ -57,7 +57,7 @@ const TestimonialsSection = () => {
         setTimeout(() => {
             setIsTransitioning(false);
         }, 500);
-    };
+    }, [isTransitioning]);
 
     const nextSlide = () => {
         const nextIndex = (currentSlide + 1) % testimonials.length;
