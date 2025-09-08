@@ -99,6 +99,7 @@ export function MainHeader() {
         {isMenuOpen && (
           <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg mt-0 p-4 relative bottom-12">
             <nav className="flex flex-col space-y-4">
+              <button onClick={()=>(handleScroll('how-it-works'))}>
               <Link
                 href="#how-it-works"
                 className="text-black hover:text-gold-light transition-colors py-2"
@@ -106,6 +107,7 @@ export function MainHeader() {
               >
                 How it works
               </Link>
+              </button>
               <Link
                 href="/faq"
                 className="text-black hover:text-gold-light transition-colors py-2"
@@ -113,6 +115,7 @@ export function MainHeader() {
               >
                 Help
               </Link>
+              <button onClick={()=>(handleScroll('network-section'))}>
               <Link
                 href="#network-section"
                 className="text-black hover:text-gold-light transition-colors py-2"
@@ -120,6 +123,7 @@ export function MainHeader() {
               >
                 Our Network
               </Link>
+              </button>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
               <button
                 onClick={() => {
