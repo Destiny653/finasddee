@@ -25,7 +25,7 @@ export function PageHeader() {
         className="relative font-bold bg-[#0e1e33] text-lg border-b border-gray-200"
       >
         <div className="container mx-auto px-4 py-4 max-w-[1440px]">
-          <div className="flex items-center py-0">
+          <div className="flex items-center justify-between py-0">
             {/* Logo Section */}
             <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center" title="Finasddee">
