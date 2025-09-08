@@ -17,7 +17,7 @@ const PaymentCardLayout: FC<IPaymentCardLayout> = ({
     onNext,
 }) => {
     return (
-        <Card className="rounded-sm shadow-none w-full border-none bg-white">
+        <Card className="rounded-sm shadow-none w-full border-none bg-white my-8">
             <CardHeader className="border-b border-gray-100">
                 <CardTitle className="text-2xl capitalize">{title}</CardTitle>
                 <CardDescription className="text-lg">{description}</CardDescription>

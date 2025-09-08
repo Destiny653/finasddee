@@ -162,7 +162,7 @@ const KYCVerificationForm = () => {
   };
 
   return (
-    <div className="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto p-4 sm:p-6 bg-white">
+    <div className="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto p-4 sm:p-6 bg-white rounded-lg">
       {/* Header */}
       <div className="text-center mb-6 sm:mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Identity Verification</h1>
@@ -175,7 +175,7 @@ const KYCVerificationForm = () => {
           <button
             type="button"
             onClick={() => setCurrentStep('identity')}
-            className={`flex-1 sm:px-6 md:px-8 py-2 sm:py-3 rounded-md font-medium text-xs sm:text-sm md:text-base transition-all ${
+            className={`flex-1 sm:px-6 md:px-8 py-2 sm:py-1 rounded-md font-medium text-xs sm:text-sm md:text-base transition-all ${
               currentStep === 'identity' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
             } ${isStepCompleted('identity') ? 'text-green-600' : ''}`}
           >
@@ -187,7 +187,7 @@ const KYCVerificationForm = () => {
           <button
             type="button"
             onClick={() => setCurrentStep('address')}
-            className={`flex-1 sm:px-6 md:px-8 py-2 sm:py-3 rounded-md font-medium text-xs sm:text-sm md:text-base transition-all ${
+            className={`flex-1 sm:px-6 md:px-8 py-2 sm:py-1 rounded-md font-medium text-xs sm:text-sm md:text-base transition-all ${
               currentStep === 'address' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
             } ${isStepCompleted('address') ? 'text-green-600' : ''}`}
             disabled={!isStepCompleted('identity')}
@@ -213,7 +213,7 @@ const KYCVerificationForm = () => {
                 options={documentTypeOptions}
                 emptyLabel="No document type found"
                 placeholder="National ID"
-                className="w-full py-2 sm:py-3 md:py-4"
+                className="w-full py-8"
                 value={selectedDocumentType}
                 onSelectChange={(value) => {
                   setSelectedDocumentType(value);

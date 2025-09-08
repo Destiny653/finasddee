@@ -229,7 +229,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
               stiffness: 300,
               duration: 0.5
             }}
-            className="fixed inset-0 z-[70] bg-white overflow-hidden"
+            className="fixed inset-0 z-[70] bg-gray-100 overflow-hidden"
           >
             <div className="min-h-screen flex items-center justify-center overflow-y-scroll ">
               {/* Close button */}

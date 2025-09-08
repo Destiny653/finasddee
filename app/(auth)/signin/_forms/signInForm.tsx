@@ -49,7 +49,7 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-4 gap-6 text-gray-800">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col px-6 rounded-lg py-6 bg-white gap-6 text-gray-800">
       <CustomInput
         label="Email"
         icon={Mail}

@@ -85,7 +85,7 @@ export const IDDetailsForm = ({
                                 options={idTypeOptions}
                                 emptyLabel="No ID type found"
                                 placeholder="Please Select ..."
-                                className="py-2 sm:py-3 md:py-4 w-full"
+                                className=" py-8 w-full"
                                 value={selectedIdType}
                                 onSelectChange={(value) => {
                                     setSelectedIdType(value);
@@ -99,7 +99,7 @@ export const IDDetailsForm = ({
 
                         <CustomInput
                             label="ID Details:"
-                            className="py-2 sm:py-3 md:py-4 bg-gray-100"
+                            className=" sm:py-3 py-8 bg-gray-100"
                             placeholder="Enter ID details"
                             icon={FileText}
                             {...register("idDetails", {
@@ -151,7 +151,7 @@ export const IDDetailsForm = ({
                                 <div className="flex flex-col gap-3 sm:gap-4">
                                     <CustomInput
                                         label="Account Number:"
-                                        className="py-2 sm:py-3 md:py-4 bg-white"
+                                        className="sm:py-3 py-8 bg-white"
                                         placeholder="Enter account number"
                                         icon={CreditCard}
                                         {...register(`accounts.${index}.accountNumber` as const, {
