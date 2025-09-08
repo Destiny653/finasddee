@@ -8,7 +8,7 @@ const LandingPageFooter = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                     {/* Information Section */}
-                    <div className="mb-4 sm:mb-6">
+                    <div className="mb-4 sm:mb-6 font-semibold">
                         <h4 className="text-base sm:text-lg font-normal uppercase mb-2 sm:mb-3 text-white">
                             Information
                         </h4>
@@ -37,7 +37,7 @@ const LandingPageFooter = () => {
                     </div>
 
                     {/* Help and Support Section */}
-                    <div className="mb-4 sm:mb-6">
+                    <div className="mb-4 sm:mb-6 font-semibold">
                         <h4 className="text-base sm:text-lg font-normal uppercase mb-2 sm:mb-3 text-white">
                             Help and Support
                         </h4>
