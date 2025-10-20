@@ -4,6 +4,25 @@ import React, { useState, useEffect, useCallback, useMemo, FC } from "react";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import Image from "next/image";
 import { DollarSign } from "lucide-react";
+import useSWR from 'swr';
+import debounce from 'lodash/debounce';
+
+// Types for API responses
+interface CountryData {
+    id: string;
+    name: string;
+    iso_code: string;
+    currency: string;
+}
+
+interface ChargesResponse {
+    source_currency: string;
+    source_amount: number;
+    rate: number;
+    destination_currency: string;
+    destination_amount: number;
+    total_charges: number;
+}
 
 export enum transferTypeEnum {
     ACCOUNT = "account",
@@ -15,64 +34,200 @@ interface ISendMoneyDetailsForm {
     onNext?: () => void;
     onDataChange?: (data: unknown) => void;
 }
+
 const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange }) => {
     const [youSend, setYouSend] = useState('');
     const [recipientGets, setRecipientGets] = useState('0.0');
     const [fees, setFees] = useState('0.0');
     const [totalToPay, setTotalToPay] = useState('0.00');
-    const [selectedSenderCountry, setSelectedSenderCountry] = useState('Australia');
-    const [selectedRecipientCountry, setSelectedRecipientCountry] = useState('Albania');
-    const [selectedSendCurrency, setSelectedSendCurrency] = useState('AUD');
+    const [selectedSenderCountry, setSelectedSenderCountry] = useState('United Kingdom');
+    const [selectedRecipientCountry, setSelectedRecipientCountry] = useState('Cameroon');
+    const [selectedSendCurrency, setSelectedSendCurrency] = useState('GBP');
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('BANK');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [countries, setCountries] = useState<CountryData[]>([]);
 
-    // Exchange rates (sample rates for demonstration)
-    const exchangeRates = useMemo((): { [key: string]: { [key: string]: number } } => ({
-        'AUD': { 'USD': 0.67, 'EUR': 0.62, 'GBP': 0.53, 'CNY': 4.8, 'ALL': 62.5 },
-        'USD': { 'AUD': 1.49, 'EUR': 0.92, 'GBP': 0.79, 'CNY': 7.2, 'ALL': 93.2 },
-        'EUR': { 'USD': 1.09, 'AUD': 1.61, 'GBP': 0.86, 'CNY': 7.8, 'ALL': 101.5 },
-        'GBP': { 'USD': 1.27, 'AUD': 1.89, 'EUR': 1.16, 'CNY': 9.1, 'ALL': 118.3 },
-        'CNY': { 'USD': 0.14, 'AUD': 0.21, 'EUR': 0.13, 'GBP': 0.11, 'ALL': 12.9 }
-    }), []);
+    // Function to fetch destination countries
+    const fetchDestinationCountries = async () => {
+        try {
+            const credentials = {
+                username: process.env.NEXT_PUBLIC_API_USERNAME,
+                password: process.env.NEXT_PUBLIC_API_PASSWORD,
+                pin: process.env.NEXT_PUBLIC_API_PIN,
+                submit: process.env.NEXT_PUBLIC_API_SUBMIT,
+            };
 
-    const currencyMap = useMemo((): { [key: string]: string } => ({
-        'Albania': 'ALL', 'Algeria': 'DZD', 'Australia': 'AUD', 'Bahamas': 'BSD',
-        'Belarus': 'BYN', 'Cambodia': 'KHR', 'China': 'CNY', 'Croatia': 'HRK',
-        'Germany': 'EUR', 'Iran': 'IRR', 'Italy': 'EUR', 'Latvia': 'EUR',
-        'Morocco': 'MAD', 'Nepal': 'NPR', 'Romania': 'RON', 'Russia': 'RUB',
-        'Serbia': 'RSD', 'Spain': 'EUR', 'United Kingdom': 'GBP',
-        'United States': 'USD', 'Vietnam': 'VND'
-    }), []);
-
-    const calculateConversion = useCallback(() => {
-        const amount = parseFloat(youSend) || 0;
-        const recipientCurrency = currencyMap[selectedRecipientCountry];
-
-        if (amount > 0 && selectedSendCurrency && recipientCurrency) {
-            let convertedAmount = amount;
-            let rate = 1;
-
-            if (exchangeRates[selectedSendCurrency] && exchangeRates[selectedSendCurrency][recipientCurrency]) {
-                rate = exchangeRates[selectedSendCurrency][recipientCurrency];
-                convertedAmount = amount * rate;
+            if (!credentials.username || !credentials.password || !credentials.pin || !credentials.submit) {
+                import("sonner").then(({ toast }) => {
+                    toast.error('API configuration error. Please contact support.');
+                });
+                throw new Error('Missing API credentials');
             }
 
-            // Calculate fees (2.5% of send amount)
-            const feesAmount = amount * 0.025;
-            const totalToPayAmount = amount + feesAmount;
+            const formData = new FormData();
+            Object.entries(credentials).forEach(([key, value]) => {
+                formData.append(key, value!);
+            });
 
-            setRecipientGets(convertedAmount.toFixed(2));
-            setFees(feesAmount.toFixed(2));
-            setTotalToPay(totalToPayAmount.toFixed(2));
-        } else {
+            const response = await fetch('https://test4.remit.by/finasddeetest/ws/country/getDestinationCountries', {
+                method: 'POST',
+                body: formData,
+            }).catch(error => {
+                import("sonner").then(({ toast }) => {
+                    toast.error('Network error. Please check your connection.');
+                });
+                throw error;
+            });
+
+            const xmlText = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+            const status = xmlDoc.querySelector('status')?.textContent;
+
+            if (status === 'FAIL') {
+                const message = xmlDoc.querySelector('message')?.textContent;
+                throw new Error(message || 'Failed to fetch countries');
+            }
+
+            const countryElements = xmlDoc.querySelectorAll('country');
+            const parsedCountries: CountryData[] = Array.from(countryElements).map(country => ({
+                id: country.querySelector('id')?.textContent || '',
+                name: country.querySelector('name')?.textContent || '',
+                iso_code: country.querySelector('iso_code')?.textContent || '',
+                currency: country.querySelector('currency')?.textContent || '',
+            }));
+
+            setCountries(parsedCountries);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch countries');
+            console.error('Error fetching countries:', err);
+            import("sonner").then(({ toast }) => {
+                toast.error('Failed to fetch available countries');
+            });
+        }
+    };
+
+    // Function to fetch transaction charges
+    const fetchTransactionCharges = useCallback(async (amount: string) => {
+        if (!amount || parseFloat(amount) <= 0) {
             setRecipientGets('0.0');
             setFees('0.0');
             setTotalToPay('0.00');
+            return;
         }
-    }, [youSend, selectedSendCurrency, selectedRecipientCountry, currencyMap, exchangeRates]);
+
+        setLoading(true);
+        try {
+            const credentials = {
+                username: process.env.NEXT_PUBLIC_API_USERNAME,
+                password: process.env.NEXT_PUBLIC_API_PASSWORD,
+                pin: process.env.NEXT_PUBLIC_API_PIN,
+                submit: process.env.NEXT_PUBLIC_API_SUBMIT,
+            };
+
+            if (!credentials.username || !credentials.password || !credentials.pin || !credentials.submit) {
+                throw new Error('Missing API credentials');
+            }
+
+            const formData = new FormData();
+            Object.entries(credentials).forEach(([key, value]) => {
+                formData.append(key, value!);
+            });
+
+            formData.append('destination_country', selectedRecipientCountry);
+            formData.append('trans_type', 'Account');
+            formData.append('payment_method', '3');
+            formData.append('service_level', '3');
+            formData.append('amount_type', 'SOURCE');
+            formData.append('amount_to_send', amount);
+            formData.append('destination_currency', 'XAF');
+            formData.append('source_currency', selectedSendCurrency);
+
+            const response = await fetch('https://test4.remit.by/finasddeetest/ws/transaction/getCharges', {
+                method: 'POST',
+                body: formData,
+            }).catch(error => {
+                import("sonner").then(({ toast }) => {
+                    toast.error('Network error. Please check your connection.');
+                });
+                throw error;
+            });
+
+            const xmlText = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+            const status = xmlDoc.querySelector('status')?.textContent;
+
+            if (status === 'FAIL') {
+                const message = xmlDoc.querySelector('message')?.textContent;
+                throw new Error(message || 'Failed to get charges');
+            }
+
+            const result = {
+                destination_amount: xmlDoc.querySelector('destination_amount')?.textContent || '0',
+                total_charges: xmlDoc.querySelector('total_charges')?.textContent || '0',
+            };
+
+            setRecipientGets(result.destination_amount);
+            setFees(result.total_charges);
+            const totalAmount = (parseFloat(amount) + parseFloat(result.total_charges)).toFixed(2);
+            setTotalToPay(totalAmount);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch charges');
+            console.error('Error fetching charges:', err);
+            
+            // Reset values on error
+            setRecipientGets('0.0');
+            setFees('0.0');
+            setTotalToPay('0.00');
+            import("sonner").then(({ toast }) => {
+                toast.error(err instanceof Error ? err.message : 'Failed to calculate charges');
+            });
+        } finally {
+            setLoading(false);
+        }
+    }, [selectedRecipientCountry, selectedSendCurrency]);
+
+    // Debounced version of fetchTransactionCharges
+    const debouncedFetchCharges = useMemo(
+        () => {
+            const debounced = (amount: string) => {
+                const timeoutId = setTimeout(() => {
+                    fetchTransactionCharges(amount);
+                }, 1000);
+                return () => clearTimeout(timeoutId);
+            };
+            return debounced;
+        },
+        [fetchTransactionCharges]
+    );
 
     useEffect(() => {
-        calculateConversion();
-    }, [youSend, selectedSendCurrency, selectedRecipientCountry, calculateConversion]);
+        fetchDestinationCountries();
+    }, []);
+
+    useEffect(() => {
+        if (youSend) {
+            const cleanup = debouncedFetchCharges(youSend);
+            return cleanup;
+        }
+    }, [youSend, debouncedFetchCharges]);
+
+    // Filter countries based on current implementation
+    const senderCountries = useMemo(() => 
+        [{ value: "United Kingdom", label: "🇬🇧 United Kingdom" }], 
+        []
+    );
+
+    const receiverCountries = useMemo(() => 
+        [{ value: "Cameroon", label: "🇨🇲 Cameroon" }],
+        []
+    );
+
+    // Check if form is ready to submit
+    const isFormReady = !loading && parseFloat(youSend) > 0 && parseFloat(recipientGets) > 0;
+
     return (
 
         <div className="w-full overflow-hidden">
@@ -163,29 +318,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             <div className="mb-4 flex flex-col">
                 <label htmlFor="youSendCountry" className="form-label">Sender Country</label>
                 <CustomCombobox
-                    options={[
-                        { value: "Australia", label: "🇦🇺 Australia" },
-                        { value: "Bahrain", label: "🇧🇭 Bahrain" },
-                        { value: "Brazil", label: "🇧🇷 Brazil" },
-                        { value: "Canada", label: "🇨🇦 Canada" },
-                        { value: "China", label: "🇨🇳 China" },
-                        { value: "Denmark", label: "🇩🇰 Denmark" },
-                        { value: "France", label: "🇫🇷 France" },
-                        { value: "Germany", label: "🇩🇪 Germany" },
-                        { value: "Iceland", label: "🇮🇸 Iceland" },
-                        { value: "Italy", label: "🇮🇹 Italy" },
-                        { value: "New Zealand", label: "🇳🇿 New Zealand" },
-                        { value: "Norway", label: "🇳🇴 Norway" },
-                        { value: "Russia", label: "🇷🇺 Russia" },
-                        { value: "Spain", label: "🇪🇸 Spain" },
-                        { value: "United Kingdom", label: "🇬🇧 United Kingdom" },
-                        { value: "United States", label: "🇺🇸 United States" },
-                        { value: "Vietnam", label: "🇻🇳 Vietnam" },
-                    ]}
+                    options={senderCountries}
                     value={selectedSenderCountry}
                     onSelectChange={setSelectedSenderCountry}
                     placeholder="Select sender country"
                     className="w-full md:py-8"
+                    disabled={true}
                 />
             </div>
 
@@ -193,33 +331,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             <div className="mb-4 flex flex-col">
                 <label htmlFor="recipientCountry" className="form-label">Receivers Country</label>
                 <CustomCombobox
-                    options={[
-                        { value: "Albania", label: "🇦🇱 Albania" },
-                        { value: "Algeria", label: "🇩🇿 Algeria" },
-                        { value: "Australia", label: "🇦🇺 Australia" },
-                        { value: "Bahamas", label: "🇧🇸 Bahamas" },
-                        { value: "Belarus", label: "🇧🇾 Belarus" },
-                        { value: "Cambodia", label: "🇰🇭 Cambodia" },
-                        { value: "China", label: "🇨🇳 China" },
-                        { value: "Croatia", label: "🇭🇷 Croatia" },
-                        { value: "Germany", label: "🇩🇪 Germany" },
-                        { value: "Iran", label: "🇮🇷 Iran" },
-                        { value: "Italy", label: "🇮🇹 Italy" },
-                        { value: "Latvia", label: "🇱🇻 Latvia" },
-                        { value: "Morocco", label: "🇲🇦 Morocco" },
-                        { value: "Nepal", label: "🇳🇵 Nepal" },
-                        { value: "Romania", label: "🇷🇴 Romania" },
-                        { value: "Russia", label: "🇷🇺 Russia" },
-                        { value: "Serbia", label: "🇷🇸 Serbia" },
-                        { value: "Spain", label: "🇪🇸 Spain" },
-                        { value: "United Kingdom", label: "🇬🇧 United Kingdom" },
-                        { value: "United States", label: "🇺🇸 United States" },
-                        { value: "Vietnam", label: "🇻🇳 Vietnam" },
-                    ]}
+                    options={receiverCountries}
                     value={selectedRecipientCountry}
                     onSelectChange={setSelectedRecipientCountry}
                     placeholder="Select receiver country"
                     className="w-full md:py-8"
+                    disabled={true}
                 />
             </div>
 
@@ -276,26 +393,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                         }}
                     />
                     <CustomCombobox
-                        options={[
-                            { value: "AUD", label: "🇦🇺 Australian Dollar A$" },
-                            { value: "BHD", label: "🇧🇭 Bahraini Dinar BD" },
-                            { value: "BRL", label: "🇧🇷 Real R$" },
-                            { value: "CAD", label: "🇨🇦 Canadian Dollar Can$" },
-                            { value: "CNY", label: "🇨🇳 Chinese Yuan ¥" },
-                            { value: "DKK", label: "🇩🇰 Danish Krone Dkr" },
-                            { value: "EUR", label: "🇪🇺 Euro €" },
-                            { value: "ISK", label: "🇮🇸 Icelandic Krona Kr" },
-                            { value: "NZD", label: "🇳🇿 New Zealand Dollar $" },
-                            { value: "NOK", label: "🇳🇴 Norwegian Krone kr" },
-                            { value: "RUB", label: "🇷🇺 Ruble р." },
-                            { value: "GBP", label: "🇬🇧 Pound Sterling £" },
-                            { value: "USD", label: "🇺🇸 United States Dollar $" },
-                            { value: "VND", label: "🇻🇳 Dong ₫" },
-                        ]}
+                        options={[{ value: "GBP", label: "🇬🇧 Pound Sterling £" }]}
                         value={selectedSendCurrency}
                         onSelectChange={setSelectedSendCurrency}
                         placeholder="Select currency"
                         className="w-[200px] min-w-[140px] md:py-8"
+                        disabled={true}
                     />
                 </div>
             </div>
@@ -323,33 +426,46 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 <Link href={'/send-money'}>
                     <button
                         type="button"
-                        className="bg-[#e2ae02] rounded-lg hover:bg-[#f1ba03] duration-200 w-full md:h-16 text-white font-semibold"
-                                onClick={() => {
-                                    const amount = parseFloat(youSend);
-                                    if (!amount || amount <= 0) {
-                                        import("sonner").then(({ toast }) => {
-                                            toast.error('Please enter a valid amount to send.');
-                                        });
-                                        return;
-                                    }
-                                    if (onDataChange) {
-                                        onDataChange({
-                                            youSend,
-                                            recipientGets,
-                                            fees,
-                                            totalToPay,
-                                            selectedSenderCountry,
-                                            selectedRecipientCountry,
-                                            selectedSendCurrency,
-                                            selectedDeliveryMethod
-                                        });
-                                    }
-                                    if (onNext) {
-                                        onNext();
-                                    }
-                                }}
+                        className={`bg-[#e2ae02] rounded-lg hover:bg-[#f1ba03] duration-200 w-full md:h-16 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        onClick={() => {
+                            const amount = parseFloat(youSend);
+                            if (!amount || amount <= 0) {
+                                import("sonner").then(({ toast }) => {
+                                    toast.error('Please enter a valid amount to send.');
+                                });
+                                return;
+                            }
+                            if (loading) {
+                                import("sonner").then(({ toast }) => {
+                                    toast.error('Please wait while we calculate the charges.');
+                                });
+                                return;
+                            }
+                            if (error) {
+                                import("sonner").then(({ toast }) => {
+                                    toast.error('There was an error. Please try again.');
+                                });
+                                return;
+                            }
+                            if (onDataChange) {
+                                onDataChange({
+                                    youSend,
+                                    recipientGets,
+                                    fees,
+                                    totalToPay,
+                                    selectedSenderCountry,
+                                    selectedRecipientCountry,
+                                    selectedSendCurrency,
+                                    selectedDeliveryMethod
+                                });
+                            }
+                            if (onNext) {
+                                onNext();
+                            }
+                        }}
+                        disabled={!isFormReady}
                     >
-                        Continue
+                        {loading ? 'Calculating...' : 'Continue'}
                     </button>
                 </Link>
             </div>
