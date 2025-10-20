@@ -27,16 +27,16 @@ export function MainHeader() {
     setIsAuthModalOpen(false)
   }
   return (
-    <header className="absolute top-0 left-0 right-0  text-white font-[500] z-50 ">
+    <header className="absolute top-0 left-0 right-0 bg-white text-gray-800 font-[500] z-50 shadow-sm">
       <div className="container mx-auto px-4 max-w-[1440px]">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-2">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image
-                src="/assets/images/pic/logoRed.png"
+                src="/assets/images/pic/Hor-logoRed-nobg.png"
                 alt="Finasddee"
-                className="h-40 w-auto"
+                className="h-30 w-auto"
                 width={500}
                 height={500}
               />
@@ -44,25 +44,25 @@ export function MainHeader() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8 text-xl">
+          <nav className="hidden lg:flex items-center space-x-8 text-base">
            <button onClick={(e)=>handleScroll('how-it-works')} >
             <Link
               href="#how-it-works"
-              className="text-white hover:text-gold-light transition-colors"
+              className="text-gray-800 hover:text-[#cc9408] transition-colors"
             >
               How it works
             </Link>
            </button>
             <Link
               href="/faq"
-              className="text-white hover:text-gold-light transition-colors"
+              className="text-gray-800 hover:text-[#cc9408] transition-colors"
             >
               Help
             </Link>
             <button onClick={()=>handleScroll('network-section')}>
             <Link
               href="#network-section"
-              className="text-white hover:text-gold-light transition-colors"
+              className="text-gray-800 hover:text-[#cc9408] transition-colors"
             >
               Our Network
             </Link>
@@ -70,16 +70,16 @@ export function MainHeader() {
           </nav>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex items-center space-x-8 text-xl">
+          <div className="hidden lg:flex items-center space-x-8 text-base">
             <button
               onClick={() => openAuthModal('signin')}
-              className="text-white hover:text-gold-light transition-colors"
+              className="text-gray-800 hover:text-[#cc9408] transition-colors"
             >
               Login
             </button>
             <button
               onClick={() => openAuthModal('register')}
-              className="inline-flex items-center justify-center rounded-md bg-[#cc9408] text-white hover:bg-[#e9a907] h-12 px-8 font-medium transition-colors text-xl"
+              className="inline-flex items-center justify-center rounded-md bg-[#cc9408] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors text-lg"
             >
               Register
             </button>
@@ -88,7 +88,7 @@ export function MainHeader() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 text-white hover:text-gold-light transition-colors"
+            className="lg:hidden p-2 text-gray-800 hover:text-[#cc9408] transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
