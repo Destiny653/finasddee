@@ -36,7 +36,7 @@ export function MainHeader() {
               <Image
                 src="/assets/images/pic/Hor-logoRed-nobg.png"
                 alt="Finasddee"
-                className="h-30 w-auto"
+                className="h-15 w-auto"
                 width={500}
                 height={500}
               />

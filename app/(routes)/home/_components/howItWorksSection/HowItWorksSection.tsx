@@ -17,7 +17,7 @@ const HowItWorksSection = () => {
 
     return (
         // <section className="py-16" id="how-it-works" style={{ backgroundColor: '#4169E1' }}>
-        <section className="py-16" id="how-it-works" style={{ backgroundColor: '#305CDE', color: 'white' }}>
+        <section className="py-16" id="how-it-works" style={{ backgroundColor: '#082642', color: 'white' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl lg:text-5xl text-center font-bold text-white mb-4">
                     The simple way to send money

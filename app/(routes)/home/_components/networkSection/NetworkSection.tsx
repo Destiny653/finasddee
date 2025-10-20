@@ -26,7 +26,7 @@ const NetworkSection = () => {
     ];
 
     return (
-        <section className="py-8 sm:py-12 md:py-16 bg-white" id="network-section">
+        <section className="py-8 sm:py-12 md:py-16 " id="network-section" style={{ backgroundColor: '#f1f1f1', color: 'white' }}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-8 sm:mb-12 md:mb-16">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 pb-2 sm:pb-4">
