@@ -4,17 +4,19 @@ import Link from 'next/link';
 
 const AppDownloadSection = () => {
     return (
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden bg-[#ce9739]" style={{
+            paddingBottom: '4rem',
+        }}>
             <div className="flex flex-col lg:flex-row">
                 {/* Left section with background image - Desktop */}
-                <div className="hidden lg:block lg:w-1/2 min-h-[600px] bg-cover bg-center bg-no-repeat bg-[#ce9739]"
+                <div className="hidden lg:block lg:w-1/2 min-h-[600px] bg-cover bg-center bg-no-repeat"
                     style={{
                         backgroundImage: "url('/assets/images/pic/conver.png')"
                     }}>
                 </div>
 
                 {/* Mobile Image Section */}
-                <div className="block lg:hidden w-full bg-[#ce9739]">
+                <div className="block lg:hidden w-full">
                     <div className="relative w-full max-w-[400px] mx-auto pt-16 px-4 pb-0">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#ce9739] rounded-[40px] transform translate-y-4 scale-[0.95] blur-xl"></div>
                         <Image
@@ -28,7 +30,7 @@ const AppDownloadSection = () => {
                 </div>
 
                 {/* Main colored section */}
-                <div className="lg:w-1/2 bg-[#ce9739]">
+                <div className="lg:w-1/2">
                     <div className="px-4 pt-4 lg:pt-24 lg:px-12">
                         {/* Mobile App Image (visible on mobile) */}
                         <div className="lg:w-1/2 mb-10 lg:mb-0 relative lg:hidden">
@@ -117,7 +119,9 @@ const AppDownloadSection = () => {
                         </div>
                     </div>
                 </div>
+                
             </div>
+            
         </section>
     );
 };
