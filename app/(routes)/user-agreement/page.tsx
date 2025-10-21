@@ -48,7 +48,7 @@ export default function UserAgreementPage() {
                   1.1 These &quot;Terms and Conditions&quot; govern the terms under which you may access and use this website and the services associated with it (together, the &quot;Service&quot;). By accessing, registering with, and using the Service, you agree to be bound by the terms of the Terms and Conditions. If you do not wish to be bound by the Terms and Conditions, do not access, register with, or use the Service. The language of these Terms and Conditions is English, and all Services, instructions, and transactions carried out in connection with it shall be in English.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  1.2 In these Terms and Conditions, the terms &quot;SiaRemit&quot;, &quot;we&quot;, &quot;us&quot;, and &quot;our&quot; refer to AGPAYTECH Limited trading as SiaRemit, together with its employees, directors, affiliates, successors, and assigns. AGPAYTECH Limited is a company registered number 7952651 in England and Wales, with its registered office at 3rd Floor, 86-90 Paul Street, London EC2A 4NE, United Kingdom. It is Authorised and Regulated by the Financial Conduct Authority (FCA) under the Payment Service Regulations 2009 for the provision of payment services. Registration number: 585091.
+                  1.2 In these Terms and Conditions, the terms &quot;Finasddee&quot;, &quot;we&quot;, &quot;us&quot;, and &quot;our&quot; refer to AGPAYTECH Limited trading as Finasddee, together with its employees, directors, affiliates, successors, and assigns. AGPAYTECH Limited is a company registered number 7952651 in England and Wales, with its registered office at 3rd Floor, 86-90 Paul Street, London EC2A 4NE, United Kingdom. It is Authorised and Regulated by the Financial Conduct Authority (FCA) under the Payment Service Regulations 2009 for the provision of payment services. Registration number: 585091.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
                   1.3 The terms &quot;you&quot; and &quot;your&quot; refer to users of the Service, whether in their capacity as Senders, Recipients, or visitors to this website.
@@ -73,7 +73,7 @@ export default function UserAgreementPage() {
                   <li><strong>&quot;Recipient&quot;</strong> means someone who receives money through the Service.</li>
                   <li><strong>&quot;Sender&quot;</strong> means someone who uses the Service to send money.</li>
                   <li><strong>&quot;Service Fee&quot;</strong> means the fee plus any additional charges applicable to each Transaction.</li>
-                  <li><strong>&quot;Service Provider&quot;</strong> means a local bank, money exchange house, or other third-party service providers in the Destination Country with whom SiaRemit works in providing the Service.</li>
+                  <li><strong>&quot;Service Provider&quot;</strong> means a local bank, money exchange house, or other third-party service providers in the Destination Country with whom Finasddee works in providing the Service.</li>
                   <li><strong>&quot;Transaction&quot;</strong> means a specific instruction to send money through the Service.</li>
                   <li><strong>&quot;Transaction Amount&quot;</strong> means the amount of money that the Sender wishes to send to the Recipient, excluding any applicable fees and prior to any foreign exchange conversion.</li>
                 </ul>
@@ -87,7 +87,7 @@ export default function UserAgreementPage() {
                   3.2 We are not obliged to process any particular Transaction. When you submit a Transaction, you are requesting that we process the Transaction on your behalf. We may, in our sole discretion, choose whether or not to accept the offer to process that Transaction. However, if we decide not to process the Transaction, we will notify you promptly of that decision and repay the money paid to us.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  3.3 SiaRemit reserves the right to modify or discontinue the Service or any part of the Service without notice, at any time and from time to time. We may, in our absolute discretion, refuse any Transaction or limit the amount to be transferred, either on a per-transaction basis or on an aggregate basis, and either on individual accounts or on related accounts.
+                  3.3 Finasddee reserves the right to modify or discontinue the Service or any part of the Service without notice, at any time and from time to time. We may, in our absolute discretion, refuse any Transaction or limit the amount to be transferred, either on a per-transaction basis or on an aggregate basis, and either on individual accounts or on related accounts.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
                   3.4 We may, in our sole discretion, refuse Transactions from certain Senders or to certain Recipients, including but not limited to entities and individuals on restricted or prohibited lists issued from time to time by the UK Government and the European Union. In addition, not all Payment Instruments are available to all customers at all times, and we may, in our sole discretion, refuse Transactions funded from certain Payment Instruments.
@@ -96,7 +96,7 @@ export default function UserAgreementPage() {
                   3.5 We will attempt to process Transactions promptly, but any Transaction may be delayed or cancelled for a number of reasons including but not limited to: our efforts to verify your identity; to validate your Transaction instructions; to contact you; or otherwise to comply with applicable law; or due to variations in business hours and currency availability.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  3.6 We will attempt to provide Senders and Recipients with up-to-date information regarding the location and opening hours of our Service Providers by means of information on our website. However, you agree that SiaRemit shall not be held responsible for any inaccuracies that may appear in that information or any consequential loss which may result from incorrect or incomplete information.
+                  3.6 We will attempt to provide Senders and Recipients with up-to-date information regarding the location and opening hours of our Service Providers by means of information on our website. However, you agree that Finasddee shall not be held responsible for any inaccuracies that may appear in that information or any consequential loss which may result from incorrect or incomplete information.
                 </p>
 
                 {/* 4. YOUR OBLIGATIONS */}
@@ -109,7 +109,7 @@ export default function UserAgreementPage() {
                     You will not access, use, or attempt to use the Service as a Sender unless you are at least 18 years old, and that you have the legal capacity to form a binding legal contract in the relevant jurisdiction.
                   </li>
                   <li className="mb-4">
-                    For each Transaction that you submit, you will pay us the Service Fee in addition to the Transaction Amount. Payment becomes due at the time that you submit your Transaction. If you submit a Transaction that results in SiaRemit becoming liable for charges including but not limited to chargeback or other fees, you agree to reimburse us for all such fees.
+                    For each Transaction that you submit, you will pay us the Service Fee in addition to the Transaction Amount. Payment becomes due at the time that you submit your Transaction. If you submit a Transaction that results in Finasddee becoming liable for charges including but not limited to chargeback or other fees, you agree to reimburse us for all such fees.
                   </li>
                   <li className="mb-4">
                     In connection with your registration and use of the Service, you will:
@@ -123,27 +123,27 @@ export default function UserAgreementPage() {
                     </p>
                   </li>
                   <li className="mb-4">
-                    When you pay for a Transaction in one currency and the Recipient is paid in another currency, there will be a difference between the exchange rate at which we buy foreign currency and the exchange rate provided to you. SiaRemit and its Service Providers usually make a small profit in these circumstances. If such account is denominated in another currency, the amount to be received by the Recipient will be reduced by the amount of extra charges incurred by reason of the incorrect information given by you, and we will have no obligation to make good such reduction.
+                    When you pay for a Transaction in one currency and the Recipient is paid in another currency, there will be a difference between the exchange rate at which we buy foreign currency and the exchange rate provided to you. Finasddee and its Service Providers usually make a small profit in these circumstances. If such account is denominated in another currency, the amount to be received by the Recipient will be reduced by the amount of extra charges incurred by reason of the incorrect information given by you, and we will have no obligation to make good such reduction.
                   </li>
                   <li className="mb-4">
                     When you are sending money under these Terms and Conditions, it is your responsibility to make sure all the Transaction details are accurate before submission. Once a Transaction has been submitted for processing, it is not normally possible to change any of its details. You will be given the opportunity to confirm Transactions before submission, and you must check the details carefully.
                   </li>
                   <li className="mb-4">
-                    SiaRemit will have no responsibility for any fees or charges you may incur by the use of a particular Payment Instrument to fund a Transaction. These may include but are not limited to unauthorised overdraft fees imposed by banks if there are insufficient funds in your bank account or &quot;cash advance&quot; fees and additional interest which may be imposed by credit card providers if they treat use of the Service as a cash transaction rather than a &quot;purchase transaction&quot;.
+                    Finasddee will have no responsibility for any fees or charges you may incur by the use of a particular Payment Instrument to fund a Transaction. These may include but are not limited to unauthorised overdraft fees imposed by banks if there are insufficient funds in your bank account or &quot;cash advance&quot; fees and additional interest which may be imposed by credit card providers if they treat use of the Service as a cash transaction rather than a &quot;purchase transaction&quot;.
                   </li>
                   <li className="mb-4">
-                    You will only use the Service to send money to people that you know personally and not to pay for goods or services. If, in breach of this clause, you choose to pay third parties for goods and services using the Service, you acknowledge that SiaRemit has no control over, and is not responsible for, the quality, safety, legality, or delivery of such goods or services, and that any such use of the Service is entirely at your own risk. If SiaRemit reasonably believes you are using the Service to purchase goods or services, we reserve the right to cancel your Transaction(s).
+                    You will only use the Service to send money to people that you know personally and not to pay for goods or services. If, in breach of this clause, you choose to pay third parties for goods and services using the Service, you acknowledge that Finasddee has no control over, and is not responsible for, the quality, safety, legality, or delivery of such goods or services, and that any such use of the Service is entirely at your own risk. If Finasddee reasonably believes you are using the Service to purchase goods or services, we reserve the right to cancel your Transaction(s).
                   </li>
                   <li className="mb-4">
-                    Both you and the Recipients will only act on your own behalf. You may not submit or receive a Transaction on behalf of a third person. If you intend to submit or receive a Transaction on behalf of a company, business, or any entity other than a human individual, you must first inform SiaRemit of your desire to do so and provide us with any additional information about the entity we may request in order that we may decide whether to permit the Transaction.
+                    Both you and the Recipients will only act on your own behalf. You may not submit or receive a Transaction on behalf of a third person. If you intend to submit or receive a Transaction on behalf of a company, business, or any entity other than a human individual, you must first inform Finasddee of your desire to do so and provide us with any additional information about the entity we may request in order that we may decide whether to permit the Transaction.
                   </li>
                   <li className="mb-4">
-                    In using the Service, you will comply with these Terms and Conditions as well as any applicable laws, rules, or regulations. It is a breach of these Terms and Conditions to use the Service to send money (a) to a Recipient who has violated the Terms and Conditions, or (b) in connection with illegal activity including without limitation money-laundering, fraud, and the funding of terrorist organisations. If you use the Service in connection with illegal activity, SiaRemit may report you to the appropriate legal authorities.
+                    In using the Service, you will comply with these Terms and Conditions as well as any applicable laws, rules, or regulations. It is a breach of these Terms and Conditions to use the Service to send money (a) to a Recipient who has violated the Terms and Conditions, or (b) in connection with illegal activity including without limitation money-laundering, fraud, and the funding of terrorist organisations. If you use the Service in connection with illegal activity, Finasddee may report you to the appropriate legal authorities.
                   </li>
                   <li className="mb-4">
-                    When using our website or the Service or when interacting with SiaRemit, with another user, or with a third party, you will not:
+                    When using our website or the Service or when interacting with Finasddee, with another user, or with a third party, you will not:
                     <ul className="list-disc pl-6 mt-2 space-y-2">
-                      <li>Breach these Terms and Conditions, or any other agreement between you and SiaRemit;</li>
+                      <li>Breach these Terms and Conditions, or any other agreement between you and Finasddee;</li>
                       <li>Open more than one account, without our prior written permission;</li>
                       <li>Provide false, inaccurate, or misleading information;</li>
                       <li>Allow anyone else access to your registration details, and will keep those details secure;</li>
@@ -153,7 +153,7 @@ export default function UserAgreementPage() {
                     </ul>
                   </li>
                   <li className="mb-4">
-                    SiaRemit may, as necessary in providing the Service, store all information required of a Recipient to prove his or her identity or associated with their specific Transaction. Such proofs may include a suitable form of valid, unexpired identification from a list of acceptable papers provided by the Service Provider, and/or a Transaction tracking number, a personal identification number (PIN), a &quot;password&quot;, a &quot;secret word&quot;, or other similar identifiers.
+                    Finasddee may, as necessary in providing the Service, store all information required of a Recipient to prove his or her identity or associated with their specific Transaction. Such proofs may include a suitable form of valid, unexpired identification from a list of acceptable papers provided by the Service Provider, and/or a Transaction tracking number, a personal identification number (PIN), a &quot;password&quot;, a &quot;secret word&quot;, or other similar identifiers.
                   </li>
                 </ol>
 
@@ -187,7 +187,7 @@ export default function UserAgreementPage() {
                   6.3 By accepting these Terms and Conditions, you authorise us to make any inquiries we consider necessary to validate the information that you provide to us. We may do this directly, for example by asking you for additional information, requiring you to take steps to confirm ownership of your Payment Instruments or email address; or by verifying your information against third-party databases; or through other sources.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  6.4 Data Privacy Policy. You consent to our processing your personal information for the purposes of providing the Service, including for verification purposes as set out in this clause. You also consent to the use of such data for communicating with you, and for statutory, accounting, and archival purposes. You acknowledge that you have read and consented to SiaRemit&apos;s Data Privacy Policy. The Data Privacy Policy can be found by clicking here: <Link href="/privacy-policy" className="text-gold-dark hover:underline">Data Privacy Policy</Link>
+                  6.4 Data Privacy Policy. You consent to our processing your personal information for the purposes of providing the Service, including for verification purposes as set out in this clause. You also consent to the use of such data for communicating with you, and for statutory, accounting, and archival purposes. You acknowledge that you have read and consented to Finasddee&apos;s Data Privacy Policy. The Data Privacy Policy can be found by clicking here: <Link href="/privacy-policy" className="text-gold-dark hover:underline">Data Privacy Policy</Link>
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
                   6.5 <strong>Government Disclosures.</strong> We may be required by law to provide information about you and your Transactions to government or other competent authorities as described in our Data Privacy Policy. You acknowledge and consent to our doing this.
@@ -196,10 +196,10 @@ export default function UserAgreementPage() {
                 {/* 7. INTELLECTUAL PROPERTY */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">7. Intellectual Property</h2>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  7.1 The SiaRemit website and the SiaRemit Service, the content, and all intellectual property relating to them and contained in them (including but not limited to copyrights, patents, database rights, trademarks, and service marks) are owned by us, our affiliates, or third parties. All right, title, and interest in and to the SiaRemit Online Site and the SiaRemit Online Service shall remain our property and/or the property of such other third parties.
+                  7.1 The Finasddee website and the Finasddee Service, the content, and all intellectual property relating to them and contained in them (including but not limited to copyrights, patents, database rights, trademarks, and service marks) are owned by us, our affiliates, or third parties. All right, title, and interest in and to the Finasddee Online Site and the Finasddee Online Service shall remain our property and/or the property of such other third parties.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  7.2 The SiaRemit website and the SiaRemit Service may be used only for the purposes permitted by these Terms and Conditions or described on this website. You are authorised solely to view and to retain a copy of the pages of the SiaRemit website for your own personal use. You may not duplicate, publish, modify, create derivative works from, participate in the transfer or sale of, post on the internet, or in any way distribute or exploit the SiaRemit website, the SiaRemit Service, or any portion thereof for any public or commercial use without our express written permission. You may not: (a) use any robot, spider, scraper, or other automated device to access the SiaRemit website or the SiaRemit Service; and/or (b) remove or alter any copyright, trademark, or other proprietary notice or legend displayed on the SiaRemit website (or printed pages of the website). The name SiaRemit and other names and indicia of ownership of SiaRemit&apos;s products and/or services referred to on the SiaRemit website are our exclusive marks or the exclusive marks of other third parties. Other product, service, and company names appearing on the website may be trademarks of their respective owners.
+                  7.2 The Finasddee website and the Finasddee Service may be used only for the purposes permitted by these Terms and Conditions or described on this website. You are authorised solely to view and to retain a copy of the pages of the Finasddee website for your own personal use. You may not duplicate, publish, modify, create derivative works from, participate in the transfer or sale of, post on the internet, or in any way distribute or exploit the Finasddee website, the Finasddee Service, or any portion thereof for any public or commercial use without our express written permission. You may not: (a) use any robot, spider, scraper, or other automated device to access the Finasddee website or the Finasddee Service; and/or (b) remove or alter any copyright, trademark, or other proprietary notice or legend displayed on the Finasddee website (or printed pages of the website). The name Finasddee and other names and indicia of ownership of Finasddee&apos;s products and/or services referred to on the Finasddee website are our exclusive marks or the exclusive marks of other third parties. Other product, service, and company names appearing on the website may be trademarks of their respective owners.
                 </p>
 
                 {/* 8. WARRANTIES AND LIABILITY */}
@@ -232,10 +232,10 @@ export default function UserAgreementPage() {
                   8.7 Where you are sending a money transfer to a Recipient who is not registered with us, you agree to accept the provisions of this clause 11 not only for yourself, but also on behalf of the Recipient.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  8.8 Your relationship is with SiaRemit only. You agree that no affiliate or agent of SiaRemit owes you any duty of care when performing a task which would otherwise have to be performed by SiaRemit under its agreement with you.
+                  8.8 Your relationship is with Finasddee only. You agree that no affiliate or agent of Finasddee owes you any duty of care when performing a task which would otherwise have to be performed by Finasddee under its agreement with you.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  8.9 You agree to indemnify and hold harmless SiaRemit, our subsidiaries, affiliates, officers, directors, employees, agents, independent contractors, advertisers, partners, and co-branders from all loss, damage, claims, actions, or demands, including reasonable legal fees, arising out of your use or misuse of this website or Service, all activities that occur under your password or account e-mail login, your violation of these Terms and Conditions, or any other violation of the rights of another person or party.
+                  8.9 You agree to indemnify and hold harmless Finasddee, our subsidiaries, affiliates, officers, directors, employees, agents, independent contractors, advertisers, partners, and co-branders from all loss, damage, claims, actions, or demands, including reasonable legal fees, arising out of your use or misuse of this website or Service, all activities that occur under your password or account e-mail login, your violation of these Terms and Conditions, or any other violation of the rights of another person or party.
                 </p>
 
                 {/* 9. ELECTRONIC COMMUNICATIONS */}
@@ -248,7 +248,7 @@ export default function UserAgreementPage() {
                   <li>Your records of transactions through the Service.</li>
                   <li>Any initial, periodic, or other disclosures or notices provided in connection with the Service, including without limitation those required by law.</li>
                   <li>Any customer service communications, including without limitation communications with respect to claims of error or unauthorised use of the Service.</li>
-                  <li>Any other communication related to the Service or SiaRemit.</li>
+                  <li>Any other communication related to the Service or Finasddee.</li>
                 </ul>
                 <p className="text-base md:text-lg leading-relaxed mb-4 mt-4">
                   9.2 The Service does not allow for Communications to be provided in paper format or through other non-electronic means. You may withdraw your consent to receive Communications electronically, but if you do, your use of the Service shall be terminated. In order to withdraw your consent, you must contact us using our contact information at the end of these Terms and Conditions.
@@ -258,10 +258,10 @@ export default function UserAgreementPage() {
                 </p>
                 <ul className="list-disc pl-6 text-base md:text-lg leading-relaxed space-y-2">
                   <li>An Internet browser that supports 128-bit encryption, such as Internet Explorer version 4.0 or above;</li>
-                  <li>An e-mail account and e-mail software capable of interfacing with SiaRemit&apos;s e-mail servers;</li>
+                  <li>An e-mail account and e-mail software capable of interfacing with Finasddee&apos;s e-mail servers;</li>
                   <li>A personal computer, operating system, and telecommunications connections to the Internet capable of supporting the foregoing;</li>
                   <li>Sufficient electronic storage capacity on your computer&apos;s hard drive or other data storage unit; and</li>
-                  <li>A printer that is capable of printing from your browser and e-mail software. In addition, you must promptly update us with any change in your email address by updating your profile at <Link href="/" className="text-gold-dark hover:underline">www.siaremit.com</Link>.</li>
+                  <li>A printer that is capable of printing from your browser and e-mail software. In addition, you must promptly update us with any change in your email address by updating your profile at <Link href="/" className="text-gold-dark hover:underline">www.Finasddee.com</Link>.</li>
                 </ul>
 
                 {/* 10. TERMINATION */}
@@ -282,7 +282,7 @@ export default function UserAgreementPage() {
                 {/* 11. COMPLAINTS */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">11. Complaints</h2>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  11.1 If you wish to make a complaint about any aspect of the SiaRemit service, please send your complaint in writing to the address shown on the Contact Us page or by email to <a href="mailto:support@siaremit.com" className="text-gold-dark hover:underline">support@siaremit.com</a>.
+                  11.1 If you wish to make a complaint about any aspect of the Finasddee service, please send your complaint in writing to the address shown on the Contact Us page or by email to <a href="mailto:support@Finasddee.com" className="text-gold-dark hover:underline">support@Finasddee.com</a>.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
                   11.2 We will acknowledge receipt of your complaint within 2 business days. We will investigate your complaint and come back to you with the results of our investigation no later than 7 business days of receipt of your complaint. If you are not satisfied with the manner in which we have dealt with your complaint, or the outcome, then you may refer the matter to the Financial Ombudsman Service, South Quay Plaza, 183 Marsh Wall, London E14 9SR, Tel No 0800 0234 567, Email: complaint.info@financial-ombudsman.org.uk.
@@ -294,7 +294,7 @@ export default function UserAgreementPage() {
                   12.1 Governing law: this Agreement will be governed by English law, and the parties submit to the exclusive jurisdiction of the English Courts.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  12.2 No Waiver: The failure of SiaRemit to exercise or enforce any right or provision of the Terms and Conditions shall not constitute a waiver of such right or provision.
+                  12.2 No Waiver: The failure of Finasddee to exercise or enforce any right or provision of the Terms and Conditions shall not constitute a waiver of such right or provision.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
                   12.3 Modification: We may modify these Terms and Conditions from time to time without notice to you, except as may be required by law. You can review the most current version of the Terms and Conditions at any time by reviewing this website. You may terminate your use of the Service if you do not agree with any modification or amendment. If you use the Service after the effective date of an amendment or modification, you shall be deemed to have accepted that amendment or modification. You agree that you shall not modify these Terms and Conditions and acknowledge that any attempts by you to modify these Terms and Conditions shall be void.
@@ -312,19 +312,19 @@ export default function UserAgreementPage() {
                 {/* Security */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">Security</h2>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  We take security very seriously at SiaRemit, and we work hard, using state-of-the-art security measures, to make sure that your information remains secure. The SiaRemit Service is a safe and convenient way to send money to friends and family and to other people that you trust. However, we do advise you to consider very carefully before sending money to anyone that you do not know well. In particular, you should be very cautious of deals or offers that seem too good to be true – they may be scams. If you are aware of anyone or any entity that is using the Service inappropriately, please email us using our <Link href="/contact" className="text-gold-dark hover:underline">contact form</Link>. Similarly, if you receive any emails, purporting to be from SiaRemit, which you suspect may be &quot;phishing&quot; (fake) emails, please forward them to us using our <Link href="/contact" className="text-gold-dark hover:underline">contact form</Link>.
+                  We take security very seriously at Finasddee, and we work hard, using state-of-the-art security measures, to make sure that your information remains secure. The Finasddee Service is a safe and convenient way to send money to friends and family and to other people that you trust. However, we do advise you to consider very carefully before sending money to anyone that you do not know well. In particular, you should be very cautious of deals or offers that seem too good to be true – they may be scams. If you are aware of anyone or any entity that is using the Service inappropriately, please email us using our <Link href="/contact" className="text-gold-dark hover:underline">contact form</Link>. Similarly, if you receive any emails, purporting to be from Finasddee, which you suspect may be &quot;phishing&quot; (fake) emails, please forward them to us using our <Link href="/contact" className="text-gold-dark hover:underline">contact form</Link>.
                 </p>
 
                 {/* Contact Information */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8">Contact Information</h2>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  Questions, notices, and requests for refunds or further information should be sent to SiaRemit, as follows: <Link href="/contact" className="text-gold-dark hover:underline">online</Link>.
+                  Questions, notices, and requests for refunds or further information should be sent to Finasddee, as follows: <Link href="/contact" className="text-gold-dark hover:underline">online</Link>.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
                   By telephone at +447441426016; <br />
                   By fax at +447441426016; <br />
-                  By email at <a href="mailto:support@siaremit.com" className="text-gold-dark hover:underline">support@siaremit.com</a>; <br />
-                  Or by mail at: SiaRemit, attn: Customer Service, 3rd Floor, 86-90 Paul Street, London EC2A 4NE, United Kingdom.
+                  By email at <a href="mailto:support@Finasddee.com" className="text-gold-dark hover:underline">support@Finasddee.com</a>; <br />
+                  Or by mail at: Finasddee, attn: Customer Service, 3rd Floor, 86-90 Paul Street, London EC2A 4NE, United Kingdom.
                 </p>
               </div>
             </div>

@@ -70,7 +70,7 @@ const TestimonialsSection = () => {
     };
 
     return (
-        <section className="section py-8 md:py-12 lg:py-16 flex items-center justify-center" style={{ backgroundColor: '#e2ae02' }}>
+        <section className="section py-8 md:py-12 lg:py-16 flex items-center justify-center" style={{ backgroundColor: '#ce9739' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl text-center font-normal text-black mb-4">
                     What people say about Finasddee

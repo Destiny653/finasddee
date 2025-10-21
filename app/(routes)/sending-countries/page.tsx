@@ -4,23 +4,24 @@ import CountryList from 'country-list-with-dial-code-and-flag';
 const SendingCountries = () => {
   // Define the countries we want to display based on the original HTML
   const sendingCountryCodes = [
-    'AU', // Australia
-    'BH', // Bahrain
-    'BR', // Brazil
-    'CA', // Canada
-    'CN', // China
-    'DK', // Denmark
-    'FR', // France
-    'DE', // Germany
-    'IS', // Iceland
-    'IT', // Italy
-    'NZ', // New Zealand
-    'NO', // Norway
-    'RU', // Russia
-    'ES', // Spain
+    // 'AU', // Australia
+    // 'BH', // Bahrain
+    // 'BR', // Brazil
+    // 'CA', // Canada
+    // 'CN', // China
+    // 'DK', // Denmark
+    // 'FR', // France
+    // 'DE', // Germany
+    // 'IS', // Iceland
+    // 'IT', // Italy
+    // 'NZ', // New Zealand
+    // 'NO', // Norway
+    // 'RU', // Russia
+    // 'ES', // Spain
     'GB', // United Kingdom
-    'US', // United States
-    'VN'  // Vietnam
+    // 'US', // United States
+    // 'VN'  // Vietnam
+    // 'CM' // Cameroon
   ];
 
   // Get country data for our specific countries

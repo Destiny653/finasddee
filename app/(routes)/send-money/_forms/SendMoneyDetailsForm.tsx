@@ -245,7 +245,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                     padding: 0.75rem;
                     border: 1px solid #e5e7eb;
                     background-color: #f9fafb;
-                    border-radius: 0.375rem;
+                    border-radius: 1rem;
                     width: 100%;
                     max-width: 100%;
                     box-sizing: border-box;
@@ -259,7 +259,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
 
                 .input-group {
                     border: 1px solid #e5e7eb;
-                    border-radius: 0.375rem;
+                    border-radius: 1rem;
                     background-color: #f9fafb;
                     width: 100%;
                     max-width: 100%;
@@ -279,7 +279,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                     border-color: #b8860b;
                     padding: 12px;
                     font-weight: 500;
-                    border-radius: 0.375rem;
+                    border-radius: 1rem;
                 }
 
                 .btn-primary:hover {
@@ -427,7 +427,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 <Link href={'/send-money'}>
                     <button
                         type="button"
-                        className={`bg-[#e2ae02] rounded-lg hover:bg-[#f1ba03] duration-200 w-full md:h-16 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`bg-[#ce9739] rounded-4xl hover:bg-[#f1ba03] duration-200 w-full md:h-16 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
                         onClick={() => {
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {

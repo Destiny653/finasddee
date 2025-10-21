@@ -92,7 +92,7 @@ const SignInForm = ({onClose}:signInProps)=> {
           Recover Password
         </Link>
       </div>
-      <button type="submit" className="h-[58px] font-semibold text-white rounded-lg bg-[#e2ae02] hover:bg-[#eeb704]" disabled={isLoginLoading}>
+      <button type="submit" className="h-[58px] font-semibold text-white rounded-lg bg-[#ce9739] hover:bg-[#eeb704]" disabled={isLoginLoading}>
         {isLoginLoading ? "Signing in..." : "Sign in"}
       </button>
     </form>

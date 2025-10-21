@@ -50,11 +50,11 @@ export default function CookiePolicyPage() {
             <div className="container mx-auto px-4 text-black">
               <div className="max-w-4xl mx-auto">
                 <p>
-                  SiaRemit uses cookies to keep track of your preferences and profile information. Cookies are strings of text and numbers containing
+                  Finasddee uses cookies to keep track of your preferences and profile information. Cookies are strings of text and numbers containing
                   small amounts of information, which your computer or mobile device downloads when you visit a website.
                 </p>
 
-                <h4 className="text-xl font-bold mt-8 mb-3"><u>SiaRemit uses cookies for the following purposes:</u></h4>
+                <h4 className="text-xl font-bold mt-8 mb-3"><u>Finasddee uses cookies for the following purposes:</u></h4>
                 <ol className="list-decimal pl-6 space-y-2">
                   <li>To identify you when you sign in to our website.</li>
                   <li>To remember your country and language preferences.</li>

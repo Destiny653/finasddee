@@ -110,7 +110,7 @@ export default function PrivacyPolicyPage() {
                 <ul className="list-disc pl-6 space-y-2">
                   <li>as required by law such as to comply with a court order, subpoena, or similar legal process,</li>
                   <li>when we believe in good faith that disclosure is necessary to protect our rights, fulfil our legal or compliance obligations, protect your safety or the safety of others, investigate fraud, or respond to a governmental or regulatory request,</li>
-                  <li>if SiaRemit Ltd is involved in a merger, acquisition, or sale of all or a portion of its assets, you will be notified via email and/or a prominent notice on our website of any change in ownership or uses of your personal information, as well as any choices you may have regarding your personal information,</li>
+                  <li>if Finasddee Ltd is involved in a merger, acquisition, or sale of all or a portion of its assets, you will be notified via email and/or a prominent notice on our website of any change in ownership or uses of your personal information, as well as any choices you may have regarding your personal information,</li>
                   <li>to any other third party with your prior consent to do so.</li>
                 </ul>
 
@@ -122,13 +122,13 @@ export default function PrivacyPolicyPage() {
 
                 <p>
                   <strong>Cookies and Other Tracking Technologies</strong> Technologies such as: cookies, beacons, tags and scripts are used by
-                  SiaRemit Ltd and our marketing partners, affiliates, or analytics or service providers. These technologies are used in analyzing
+                  Finasddee Ltd and our marketing partners, affiliates, or analytics or service providers. These technologies are used in analyzing
                   trends, administering the website, tracking users movements around the website and to gather demographic information about our
                   user base as a whole. We may receive reports based on the use of these technologies by these companies on an individual as well as
                   aggregated basis.
                 </p>
                 <p>
-                  Third party data technologies are used within the SiaRemit app by SiaRemit Ltd and our marketing partners. These technologies are used
+                  Third party data technologies are used within the Finasddee app by Finasddee Ltd and our marketing partners. These technologies are used
                   to monitor app usage and track in-app events, and information from these technologies may be reported on both an individual and aggregate basis.
                 </p>
                 <p>
@@ -161,7 +161,7 @@ export default function PrivacyPolicyPage() {
                 </p>
 
                 <p>
-                  <strong>Links to Other Web Sites</strong> Our Site includes links to other Web sites whose privacy practices may differ from those of SiaRemit Ltd.
+                  <strong>Links to Other Web Sites</strong> Our Site includes links to other Web sites whose privacy practices may differ from those of Finasddee Ltd.
                   If you submit personal information to any of those sites, your information is governed by their privacy policies. We encourage you to carefully read
                   the privacy policy of any Web site you visit.
                 </p>
@@ -212,13 +212,13 @@ export default function PrivacyPolicyPage() {
                 <p>You can contact us about this privacy policy by writing or email us at the address below:</p>
                 <address className="not-italic">
                   <p>
-                    SiaRemit Ltd
+                    Finasddee Ltd
                     <br />
                     74 West street, Sittingbourne Kent
                     <br />
                     ME10 1AN
                     <br />
-                    Email: <a href="mailto:support@siaremit.com" className="text-gold-dark hover:underline">support@siaremit.com</a>
+                    Email: <a href="mailto:support@Finasddee.com" className="text-gold-dark hover:underline">support@Finasddee.com</a>
                     <br />
                     Phone: <a href="tel:+447441426016" className="text-gold-dark hover:underline">+447441426016</a>
                     <br />

@@ -1,3 +1,4 @@
+
 'use client'
 
 import { useState } from 'react'
@@ -47,7 +48,7 @@ export function MainHeader() {
           <nav className="hidden lg:flex items-center space-x-8 text-base">
            <button onClick={(e)=>handleScroll('how-it-works')} >
             <Link
-              href="#how-it-works"
+              href="/#how-it-works"
               className="text-gray-800 hover:text-[#cc9408] transition-colors"
             >
               How it works
@@ -61,7 +62,7 @@ export function MainHeader() {
             </Link>
             <button onClick={()=>handleScroll('network-section')}>
             <Link
-              href="#network-section"
+              href="/#network-section"
               className="text-gray-800 hover:text-[#cc9408] transition-colors"
             >
               Our Network
@@ -73,13 +74,13 @@ export function MainHeader() {
           <div className="hidden lg:flex items-center space-x-8 text-base">
             <button
               onClick={() => openAuthModal('signin')}
-              className="text-gray-800 hover:text-[#cc9408] transition-colors"
+              className="inline-flex items-center justify-center rounded-[50px] bg-[#cc9408] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
             >
               Login
             </button>
             <button
               onClick={() => openAuthModal('register')}
-              className="inline-flex items-center justify-center rounded-md bg-[#cc9408] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors text-lg"
+              className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 font-medium transition-colors"
             >
               Register
             </button>
@@ -130,7 +131,7 @@ export function MainHeader() {
                   openAuthModal('signin')
                   toggleMenu()
                 }}
-                className="inline-flex items-center justify-center rounded-md border border-white text-black  hover:text-black h-9 px-3 text-sm font-medium transition-colors"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#cc9408] text-white hover:bg-[#e9a907] h-9 px-6 text-sm font-medium transition-colors w-full"
               >
                 Login
               </button>
@@ -139,7 +140,7 @@ export function MainHeader() {
                   openAuthModal('register')
                   toggleMenu()
                 }}
-                className="inline-flex items-center justify-center rounded-md bg-[#b8860b] text-white hover:bg-[#9a7209] h-9 px-3 text-sm font-medium transition-colors"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-9 px-6 text-sm font-medium transition-colors w-full"
               >
                 Register
               </button>
