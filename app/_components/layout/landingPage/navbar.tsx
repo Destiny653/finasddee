@@ -71,7 +71,7 @@ export function MainHeader() {
           </nav>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex items-center space-x-8 text-base">
+          <div className="hidden lg:flex items-center space-x-6 text-base">
             <button
               onClick={() => openAuthModal('signin')}
               className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"

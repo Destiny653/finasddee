@@ -45,9 +45,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('BANK');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [countries, setCountries] = useState<CountryData[]>([]);
-
-    // Function to fetch destination countries
+    // Function to fetch transaction charges
     const fetchDestinationCountries = async () => {
         try {
             const credentials = {
@@ -97,7 +95,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 currency: country.querySelector('currency')?.textContent || '',
             }));
 
-            setCountries(parsedCountries);
+            // setCountries(parsedCountries);
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Failed to fetch countries');
             console.error('Error fetching countries:', err);
@@ -202,11 +200,6 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
         [fetchTransactionCharges]
     );
 
-    // Fetch destination countries on component mount
-    useEffect(() => {
-        fetchDestinationCountries();
-    }, []);
-
     // Update charges when amount changes
     useEffect(() => {
         const cleanup = debouncedFetchCharges(youSend);
@@ -221,13 +214,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                        parseFloat(recipientGets) > 0 &&
                        parseFloat(totalToPay) > 0;
 
-    // Convert fetched countries to the format needed for the ComboBox
-    const receiverCountries = useMemo(() => {
-        return countries.map(country => ({
-            value: country.name,
-            label: `${country.name} (${country.currency})`
-        }));
-    }, [countries]);
+    // Define available receiver countries
+    const receiverCountries = [
+        { value: "Cameroon", label: "🇨🇲 Cameroon (XAF)" }
+        // Add more countries here in the future
+        // { value: "Country", label: "🏳️ Country Name (CURRENCY)" }
+    ];
 
     const senderCountries = [
         { value: "United Kingdom", label: "�� United Kingdom (GBP)" }
@@ -317,7 +309,6 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             onSelectChange={setSelectedRecipientCountry}
                             placeholder="Select country"
                             className="h-full"
-                            disabled={true}
                         />
                     </div>
                 </div>
@@ -391,10 +382,10 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                     <Image src="/assets/images/security pics/credit-card.png" alt="Credit Card" width={32} height={32} />
                     <Image src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" width={32} height={32} />
                 </div>
-                <p className="text-gray-600 flex items-start justify-center text-lg">
+                {/* <p className="text-gray-600 flex items-start justify-center text-lg">
                     <i className="fa fa-lock text-lg mr-2 mt-1"></i>
                     <span>We are Authorised and Regulated by the Financial Conduct Authority (US Dollars).</span>
-                </p>
+                </p> */}
             </div>
         </div>
     );
