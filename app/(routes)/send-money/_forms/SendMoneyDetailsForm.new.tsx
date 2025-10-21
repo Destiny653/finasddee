@@ -5,8 +5,6 @@ import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import Image from "next/image";
 import { DollarSign } from "lucide-react";
 import useSWR from 'swr';
-// import debounce from 'lodash/debounce';
-// import debounce from 'lodash.debounce'
 
 // Types for API responses
 interface CountryData {
@@ -204,99 +202,51 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
         [fetchTransactionCharges]
     );
 
+    // Fetch destination countries on component mount
     useEffect(() => {
         fetchDestinationCountries();
     }, []);
 
+    // Update charges when amount changes
     useEffect(() => {
-        if (youSend) {
-            const cleanup = debouncedFetchCharges(youSend);
-            return cleanup;
-        }
+        const cleanup = debouncedFetchCharges(youSend);
+        return () => cleanup();
     }, [youSend, debouncedFetchCharges]);
 
-    // Filter countries based on current implementation
-    const senderCountries = useMemo(() => 
-        [{ value: "United Kingdom", label: "🇬🇧 United Kingdom" }], 
-        []
-    );
+    // Calculate if form is ready
+    const isFormReady = youSend !== '' && 
+                       parseFloat(youSend) > 0 && 
+                       !loading && 
+                       !error && 
+                       parseFloat(recipientGets) > 0 &&
+                       parseFloat(totalToPay) > 0;
 
-    const receiverCountries = useMemo(() => 
-        [{ value: "Cameroon", label: "🇨🇲 Cameroon" }],
-        []
-    );
+    // Convert fetched countries to the format needed for the ComboBox
+    const receiverCountries = useMemo(() => {
+        return countries.map(country => ({
+            value: country.name,
+            label: `${country.name} (${country.currency})`
+        }));
+    }, [countries]);
 
-    // Check if form is ready to submit
-    const isFormReady = !loading && parseFloat(youSend) > 0 && parseFloat(recipientGets) > 0;
+    const senderCountries = [
+        { value: "United Kingdom", label: "�� United Kingdom (GBP)" }
+    ];
 
     return (
-
-        <div className="w-full overflow-hidden">
+        <div>
             <style jsx>{`
                 .form-label {
+                    color: #6b7280;
                     font-weight: 500;
+                    margin: 0;
+                    display: block;
                     margin-bottom: 0.5rem;
-                    font-size: 16px;
-                    color: #6b7280;
-                }
-
-                .form-control, .form-select {
-                    font-size: 16px;
-                    padding: 0.75rem;
-                    border: 1px solid #e5e7eb;
-                    background-color: #f9fafb;
-                    border-radius: 1rem;
-                    width: 100%;
-                    max-width: 100%;
-                    box-sizing: border-box;
-                }
-
-                .form-control:focus, .form-select:focus {
-                    border-color: #d1d5db;
-                    box-shadow: none;
-                    background-color: #f9fafb;
-                }
-
-                .input-group {
-                    border: 1px solid #e5e7eb;
-                    border-radius: 1rem;
-                    background-color: #f9fafb;
-                    width: 100%;
-                    max-width: 100%;
-                    overflow: hidden;
-                    box-sizing: border-box;
-                }
-
-                .input-group-text {
-                    font-size: 16px;
-                    background-color: #f9fafb;
-                    border: none;
-                    color: #6b7280;
-                }
-
-                .btn-primary {
-                    background-color: #c99207;
-                    border-color: #b8860b;
-                    padding: 12px;
-                    font-weight: 500;
-                    border-radius: 1rem;
-                }
-
-                .btn-primary:hover {
-                    background-color: #ac7d08;
-                    border-color: #9a7209;
-                }
-
-                .btn-primary:focus {
-                    background-color: #9a7209;
-                    border-color: #9a7209;
-                    box-shadow: 0 0 0 0.2rem rgba(184, 134, 11, 0.25);
                 }
 
                 .summary-row {
                     display: flex;
                     justify-content: space-between;
-                    align-items: center;
                     padding: 0.75rem 0;
                     color: #6b7280;
                 }
@@ -306,113 +256,75 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                     color: #111827;
                     font-size: 1.1rem;
                 }
-
-                .delivery-methods-label {
-                    color: #6b7280;
-                    font-weight: 500;
-                    margin: 0;
-                    display: block;
-                }
             `}</style>
 
-            {/* Sender Country */}
-            <div className="mb-3 flex flex-col">
-                <label htmlFor="youSendCountry" className="form-label">Sender Country</label>
-                <CustomCombobox
-                    options={senderCountries}
-                    value={selectedSenderCountry}
-                    onSelectChange={setSelectedSenderCountry}
-                    placeholder="Select sender country"
-                    className="w-full md:py-6"
-                    disabled={true}
-                />
+            {/* You Send Section */}
+            <div className="mb-4 flex flex-col">
+                <label htmlFor="youSend" className="form-label">You Send</label>
+                <div className="flex bg-[#F5F5F5] rounded-sm border border-[#E5E7EB] overflow-hidden">
+                    {/* Amount Input Side */}
+                    <div className="flex-1 flex items-center">
+                        <span className="flex items-center justify-center px-3">
+                            <DollarSign size={14} className="text-gray-500" />
+                        </span>
+                        <input
+                            type="number"
+                            className="flex-1 bg-transparent outline-none py-3 px-2"
+                            placeholder="0"
+                            min="0"
+                            step="0.01"
+                            value={youSend}
+                            onChange={(e) => setYouSend(e.target.value)}
+                        />
+                    </div>
+                    
+                    {/* Country/Currency Selector Side */}
+                    <div className="w-[180px] border-l border-[#E5E7EB]">
+                        <CustomCombobox
+                            options={[{ value: "GBP", label: "🇬🇧 GBP" }]}
+                            value={selectedSendCurrency}
+                            onSelectChange={setSelectedSendCurrency}
+                            placeholder="Select currency"
+                            className="h-full"
+                            disabled={true}
+                        />
+                    </div>
+                </div>
             </div>
 
-            {/* Receiver Country */}
-            <div className="mb-3 flex flex-col">
-                <label htmlFor="recipientCountry" className="form-label">Receivers Country</label>
-                <CustomCombobox
-                    options={receiverCountries}
-                    value={selectedRecipientCountry}
-                    onSelectChange={setSelectedRecipientCountry}
-                    placeholder="Select receiver country"
-                    className="w-full md:py-6"
-                    disabled={true}
-                />
-            </div>
-
-            {/* Delivery Methods */}
-            {/* <div className="mb-4 flex flex-col gap-2">
-                <p className="delivery-methods-label mb-2">Delivery methods</p>
-                <CustomCombobox
-                    options={[
-                        { value: "BANK", label: "BANK TRANSFER" },
-                        { value: "Bitcoin", label: "Bitcoin" },
-                        { value: "PAYPAL", label: "PAYPAL" },
-                        { value: "SKRILL", label: "SKRILL" },
-                    ]}
-                    value={selectedDeliveryMethod}
-                    onSelectChange={setSelectedDeliveryMethod}
-                    placeholder="Select delivery method"
-                    className="w-full md:py-8"
-                />
-            </div> */}
-            
-
-            {/* Sending Currency */}
-            <div className="mb-3 flex flex-col">
-                <label htmlFor="youSend" className="form-label">Sending Currency</label>
-                <div className="input-group" style={{
-                    display: 'flex',
-                    alignItems: 'stretch',
-                    width: '100%',
-                    maxWidth: '100%',
-                    overflow: 'hidden'
-                }}>
-                    <span className="input-group-text" style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        padding: '0.5rem',
-                        borderRight: 'none',
-                        minWidth: '36px',
-                        justifyContent: 'center',
-                        flexShrink: 0
-                    }}><DollarSign size={14} /></span>
-                    <input
-                        type="number"
-                        className="form-control outline-0 rounded-none border-0 py-2 md:py-3"
-                        id="youSend"
-                        placeholder="0"
-                        name="amount"
-                        min="0"
-                        step="0.01"
-                        value={youSend}
-                        onChange={(e) => setYouSend(e.target.value)}
-                        style={{
-                            flex: '1',
-                            minWidth: '0',
-                            border: '0',
-                            fontSize: '0.95rem'
-                        }}
-                    />
-                    <CustomCombobox
-                        options={[{ value: "GBP", label: "🇬🇧 Pound Sterling £" }]}
-                        value={selectedSendCurrency}
-                        onSelectChange={setSelectedSendCurrency}
-                        placeholder="Select currency"
-                        className="w-[200px] min-w-[140px] md:py-8"
-                        disabled={true}
-                    />
+            {/* Receiver Gets Section */}
+            <div className="mb-4 flex flex-col">
+                <label htmlFor="recipientGets" className="form-label">Receiver Gets</label>
+                <div className="flex bg-[#F5F5F5] rounded-sm border border-[#E5E7EB] overflow-hidden">
+                    {/* Amount Display Side */}
+                    <div className="flex-1 flex items-center">
+                        <span className="flex items-center justify-center px-3">
+                            <DollarSign size={14} className="text-gray-500" />
+                        </span>
+                        <input
+                            type="text"
+                            className="flex-1 bg-transparent outline-none py-3 px-2"
+                            value={loading ? "Calculating..." : recipientGets}
+                            readOnly
+                        />
+                    </div>
+                    
+                    {/* Receiver Country Selector Side */}
+                    <div className="w-[180px] border-l border-[#E5E7EB]">
+                        <CustomCombobox
+                            options={receiverCountries}
+                            value={selectedRecipientCountry}
+                            onSelectChange={setSelectedRecipientCountry}
+                            placeholder="Select country"
+                            className="h-full"
+                            disabled={true}
+                        />
+                    </div>
                 </div>
             </div>
 
             {/* Summary */}
-            <div className="mt-6 mb-6 font-semibold ">
-                <div className="summary-row border-b  border-gray-100">
-                    <span>Receiver gets</span>
-                    <span>{recipientGets}</span>
-                </div>
-
+            <div className="mt-6 mb-6 font-semibold">
                 <div className="summary-row border-b border-gray-100">
                     <span>Total Fees</span>
                     <span>{fees}</span>
@@ -478,9 +390,8 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 <div className="mb-3 flex justify-center items-center space-x-4">
                     <Image src="/assets/images/security pics/credit-card.png" alt="Credit Card" width={32} height={32} />
                     <Image src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" width={32} height={32} />
-                    {/* <Image src="/assets/images/security pics/partner5.gif" alt="Sofort Banking" width={32} height={32} /> */}
                 </div>
-                <p className=" text-gray-600 flex items-start justify-center text-lg">
+                <p className="text-gray-600 flex items-start justify-center text-lg">
                     <i className="fa fa-lock text-lg mr-2 mt-1"></i>
                     <span>We are Authorised and Regulated by the Financial Conduct Authority (US Dollars).</span>
                 </p>

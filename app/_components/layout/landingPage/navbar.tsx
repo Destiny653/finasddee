@@ -49,21 +49,21 @@ export function MainHeader() {
            <button onClick={(e)=>handleScroll('how-it-works')} >
             <Link
               href="/#how-it-works"
-              className="text-gray-800 hover:text-[#cc9408] transition-colors"
+              className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
               How it works
             </Link>
            </button>
             <Link
               href="/faq"
-              className="text-gray-800 hover:text-[#cc9408] transition-colors"
+              className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
               Help
             </Link>
             <button onClick={()=>handleScroll('network-section')}>
             <Link
               href="/#network-section"
-              className="text-gray-800 hover:text-[#cc9408] transition-colors"
+              className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
               Our Network
             </Link>
@@ -74,7 +74,7 @@ export function MainHeader() {
           <div className="hidden lg:flex items-center space-x-8 text-base">
             <button
               onClick={() => openAuthModal('signin')}
-              className="inline-flex items-center justify-center rounded-[50px] bg-[#cc9408] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
+              className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
             >
               Login
             </button>
@@ -89,7 +89,7 @@ export function MainHeader() {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 text-gray-800 hover:text-[#cc9408] transition-colors"
+            className="lg:hidden p-2 text-gray-800 hover:text-[#ce9739] transition-colors"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -131,7 +131,7 @@ export function MainHeader() {
                   openAuthModal('signin')
                   toggleMenu()
                 }}
-                className="inline-flex items-center justify-center rounded-[50px] bg-[#cc9408] text-white hover:bg-[#e9a907] h-9 px-6 text-sm font-medium transition-colors w-full"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-9 px-6 text-sm font-medium transition-colors w-full"
               >
                 Login
               </button>

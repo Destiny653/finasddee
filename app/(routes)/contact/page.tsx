@@ -50,7 +50,7 @@ export default function ContactPage() {
               {/* Address */}
               <div className="bg-white shadow-md rounded h-full p-6 text-center">
                 <div className="flex items-center justify-center text-gold-dark mb-4">
-                  <MapPin size={36} className='text-[#cc9408]' />
+                  <MapPin size={36} className='text-[#ce9739]' />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Finasddee Inc.</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -63,7 +63,7 @@ export default function ContactPage() {
               {/* Telephone */}
               <div className="bg-white shadow-md rounded h-full p-6 text-center">
                 <div className="flex items-center justify-center text-gold-dark mb-4">
-                  <Phone size={36} className='text-[#cc9408]' />
+                  <Phone size={36} className='text-[#ce9739]' />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Telephone</h3>
                 <p className="text-gray-800 font-medium">+44 7441 426016</p>
@@ -73,7 +73,7 @@ export default function ContactPage() {
               {/* Business Inquiries */}
               <div className="bg-white shadow-md rounded h-full p-6 text-center">
                 <div className="flex items-center justify-center text-gold-dark mb-4">
-                  <Mail size={36} className='text-[#cc9408]' />
+                  <Mail size={36} className='text-[#ce9739]' />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Business Inquiries</h3>
                 <p>
@@ -145,18 +145,18 @@ export default function ContactPage() {
         </section>
 
           {/* Support Hero */}
-          <section className="relative py-20 bg-[#cc9408]">
+          <section className="relative py-20 bg-[#ce9739]">
             <div className="absolute inset-0 bg-gold-dark opacity-90"></div>
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: 'url(/images/bg/image-2.jpg)' }}
+              // style={{ backgroundImage: 'url(/images/bg/image-2.jpg)' }}
             />
             <div className="relative container mx-auto px-4 text-center text-white">
               <h2 className="text-4xl md:text-5xl font-bold mb-4">Awesome Customer Support</h2>
               <p className="text-lg md:text-xl mb-6 max-w-3xl mx-auto">
                 Have you any query? Don&apos;t worry. We have great people ready to help you whenever you need it.
               </p>
-              <Link href="#" className="inline-block bg-white text-[#cc9408] px-6 py-3 font-semibold rounded shadow hover:shadow-md transition">
+              <Link href="#" className="inline-block bg-white text-[#ce9739] px-6 py-3 font-semibold rounded shadow hover:shadow-md transition">
                 Find out more
               </Link>
             </div>

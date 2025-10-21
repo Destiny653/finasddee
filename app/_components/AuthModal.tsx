@@ -101,7 +101,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                 Need to register as a service?{' '}
                 <button
                   onClick={() => handleFormSwitch('register')}
-                  className="text-[#cc9408] hover:text-[#b8860b] font-medium"
+                  className="text-[#ce9739] hover:text-[#b8860b] font-medium"
                 >
                   Register Service
                 </button>
@@ -122,7 +122,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                 Already have an account?{' '}
                 <button
                   onClick={() => handleFormSwitch('signin')}
-                  className="text-[#cc9408] hover:text-[#b8860b] font-medium"
+                  className="text-[#ce9739] hover:text-[#b8860b] font-medium"
                 >
                   Sign in
                 </button>
@@ -131,7 +131,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                 Need to register as a service?{' '}
                 <button
                   onClick={() => handleFormSwitch('register')}
-                  className="text-[#cc9408] hover:text-[#b8860b] font-medium"
+                  className="text-[#ce9739] hover:text-[#b8860b] font-medium"
                 >
                   Register Service
                 </button>
@@ -154,7 +154,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
                   Already have an account?{' '}
                   <button
                     onClick={() => handleFormSwitch('signin')}
-                    className="text-[#cc9408] hover:text-[#b8860b] font-medium"
+                    className="text-[#ce9739] hover:text-[#b8860b] font-medium"
                   >
                     Sign in
                   </button>
@@ -193,7 +193,7 @@ const AuthModal = ({ isOpen, onClose, initialForm = 'signin' }: AuthModalProps) 
             <div className="text-center">
               <button
                 onClick={onClose}
-                className="bg-[#cc9408] hover:bg-[#e9a700] text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                className="bg-[#ce9739] hover:bg-[#e9a700] text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
                 Close
               </button>

@@ -17,7 +17,7 @@ const HomePage = () => {
                 <HowItWorksSection />
                 <WhyChooseUsSection />
                 <NetworkSection />
-                <TestimonialsSection />
+                {/* <TestimonialsSection /> */}
                 <SpecialOfferSection />
                 <FaqSection />
             </>

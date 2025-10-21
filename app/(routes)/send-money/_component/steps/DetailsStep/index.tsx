@@ -1,6 +1,7 @@
 import PaymentCardLayout from "@/app/_components/PaymentCardLayout";
 import { FC } from "react";
-import SendMoneyDetailsForm from "../../../_forms/SendMoneyDetailsForm";
+// import SendMoneyDetailsForm from "../../../_forms/SendMoneyDetailsForm";
+import SendMoneyDetailsForm from "../../../_forms/SendMoneyDetailsForm.new";
 
 interface IDetailsStep {
     onNext: () => void;

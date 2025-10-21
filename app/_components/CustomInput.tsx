@@ -21,7 +21,7 @@ const CustomInput: FC<ICustomInput> = ({
             <div className="relative h-fit">
                     <Input
                     className={cn(
-                        " md:py-8 mt-3 bg-[#F5F5F5] rounded-sm border shadow-none border-[#E5E7EB] opacity-100 text-black ",
+                        " md:py-6 mt-2 bg-[#F5F5F5] rounded-sm border shadow-none border-[#E5E7EB] opacity-100 text-black ",
                         className,
                     )}
                     {...props}
