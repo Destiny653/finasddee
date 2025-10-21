@@ -98,7 +98,7 @@ export function MainHeader() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg mt-0 p-4 relative bottom-12">
+          <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg p-4 absolute top-full left-0 right-0 mt-2 mx-4">
             <nav className="flex flex-col space-y-4">
               <button onClick={()=>(handleScroll('how-it-works'))}>
               <Link

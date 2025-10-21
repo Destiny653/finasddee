@@ -245,7 +245,7 @@ export function PageHeader() {
           </nav>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex items-center space-x-8 text-base">
+          <div className="hidden lg:flex items-center space-x-6 text-base">
             <button
               onClick={() => openAuthModal('signin')}
               className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
@@ -272,7 +272,7 @@ export function PageHeader() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg mt-0 p-4 relative bottom-12">
+          <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg p-4 absolute top-full left-0 right-0 mt-2 mx-4">
             <nav className="flex flex-col space-y-4">
               <button onClick={()=>(handleScroll('how-it-works'))}>
               <Link

@@ -8,6 +8,7 @@ import SpecialOfferSection from "./_components/specialOfferSection/SpecialOfferS
 import FaqSection from "./_components/faqSection/FaqSection";
 import LandingPageNavBar from "@/app/_components/layout/landingPage/navbar";
 import MainLandingPageLayout from "@/app/_components/layout/landingPage/MainLandingPageLayout";
+import AppDownloadSection from "./_components/appDownloadSection/AppDownloadSection";
 
 const HomePage = () => {
     return (
@@ -18,7 +19,8 @@ const HomePage = () => {
                 <WhyChooseUsSection />
                 <NetworkSection />
                 {/* <TestimonialsSection /> */}
-                <SpecialOfferSection />
+                {/* <SpecialOfferSection /> */}
+                <AppDownloadSection />
                 <FaqSection />
             </>
         </MainLandingPageLayout>
