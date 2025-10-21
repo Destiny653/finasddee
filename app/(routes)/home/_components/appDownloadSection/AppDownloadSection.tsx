@@ -9,14 +9,14 @@ const AppDownloadSection = () => {
         }}>
             <div className="flex flex-col lg:flex-row">
                 {/* Left section with background image - Desktop */}
-                <div className="hidden lg:block lg:w-1/2 min-h-[600px] bg-cover bg-center bg-no-repeat"
+                <div className="md:hidden lg:block lg:w-1/2 min-h-[600px] bg-cover bg-center bg-no-repeat"
                     style={{
                         backgroundImage: "url('/assets/images/pic/conver.png')"
                     }}>
                 </div>
 
                 {/* Mobile Image Section */}
-                <div className="block lg:hidden w-full">
+                {/* <div className="block lg:hidden w-full">
                     <div className="relative w-full max-w-[400px] mx-auto pt-16 px-4 pb-0">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#ce9739] rounded-[40px] transform translate-y-4 scale-[0.95] blur-xl"></div>
                         <Image
@@ -27,22 +27,23 @@ const AppDownloadSection = () => {
                             className="relative z-10 w-full h-auto rounded-[40px] shadow-2xl"
                         />
                     </div>
-                </div>
+                </div> */}
 
                 {/* Main colored section */}
                 <div className="lg:w-1/2">
+            
                     <div className="px-4 pt-4 lg:pt-24 lg:px-12">
                         {/* Mobile App Image (visible on mobile) */}
                         <div className="lg:w-1/2 mb-10 lg:mb-0 relative lg:hidden">
                             <div className="relative w-full max-w-[400px] mx-auto">
                                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-100 rounded-[40px] transform translate-y-4 scale-[0.95] blur-xl"></div>
-                                <Image
+                                {/* <Image
                                     src="/assets/images/pic/conver.png"
                                     alt="Finasddee Mobile App"
                                     width={400}
                                     height={800}
                                     className="relative z-10 w-full h-auto rounded-[40px] shadow-2xl"
-                                />
+                                /> */}
                             </div>
                         </div>
 
@@ -117,7 +118,7 @@ const AppDownloadSection = () => {
                                 </Link>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 
             </div>
