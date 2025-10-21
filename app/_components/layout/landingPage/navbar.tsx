@@ -34,7 +34,7 @@ export function MainHeader() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <Image
-                src="/assets/images/pic/Hor-logoRed-nobg.png"
+                src="/assets/images/pic/FinasddeeHorizontal.svg"
                 alt="Finasddee"
                 className="h-15 w-auto"
                 width={500}
