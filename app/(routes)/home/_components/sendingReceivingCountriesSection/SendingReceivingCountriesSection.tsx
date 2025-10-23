@@ -23,33 +23,45 @@ const SendingReceivingCountriesSection = () => {
   return (
     <section className="py-12 md:py-16" style={{ backgroundColor: "#F7F8FC" }}>
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          <div>
+        <div className="flex flex-col gap-8 md:gap-12">
+          {/* Header Section */}
+          <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-[#001E40] mb-3">
               Sending and receiving countries
             </h2>
-            <p className="text-[#4b5563] max-w-xl leading-7">
+            <p className="text-[#4b5563] leading-7">
               Whether you're supporting family abroad, managing finances across borders
               or sending emergency funds, we give you the flexibility to move money to the
               people and places that matter quickly, securely, and on your terms.
             </p>
           </div>
 
+          {/* Countries Grid Section */}
           <div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-8 gap-y-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-4 gap-4 md:gap-8">
               {countries.map((c) => (
-                <div key={c.code} className="flex items-center gap-3">
+                <div key={c.code} className="flex flex-col items-center text-center">
                   <div
-                    className="w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden flex items-center justify-center shadow-sm ring-1 ring-[#E5E7EB] bg-white"
+                    className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden flex items-center justify-center shadow-md mb-3"
+                    style={{ 
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                      border: '1px solid #E5E7EB'
+                    }}
                     aria-label={`${c.name} flag`}
-                    title={c.name}
+                    title={`Send money to ${c.name}`}
                   >
-                    <span className="text-2xl md:text-3xl select-none">
-                      {c.flag}
-                    </span>
+                    <img
+                      src={`https://flagcdn.com/w80/${c.code.toLowerCase()}.png`}
+                      srcSet={`https://flagcdn.com/w80/${c.code.toLowerCase()}.png 1x, https://flagcdn.com/w160/${c.code.toLowerCase()}.png 2x`}
+                      alt={`${c.name} flag`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#001E40]">{c.name}</p>
+                    <p className="text-sm md:text-base font-medium text-[#001E40] leading-snug">
+                      Send money to {c.name}
+                    </p>
                   </div>
                 </div>
               ))}
