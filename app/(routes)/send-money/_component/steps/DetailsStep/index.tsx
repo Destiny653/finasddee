@@ -9,12 +9,13 @@ interface IDetailsStep {
 }
 const DetailsStep: FC<IDetailsStep> = ({ onNext, onDataChange }) => {
     return (
-        <PaymentCardLayout
-            title="Amount"
-            description="Send your money at anytime, anywhere in the world."
-        >
-            <SendMoneyDetailsForm onNext={onNext} onDataChange={onDataChange} />
-        </PaymentCardLayout>
+        // <PaymentCardLayout
+        //     // title="Amount"
+        //     // description="Send your money at anytime, anywhere in the world."
+        // >
+        //     <SendMoneyDetailsForm onNext={onNext} onDataChange={onDataChange} />
+        // </PaymentCardLayout>
+        <SendMoneyDetailsForm onNext={onNext} onDataChange={onDataChange} />
     );
 };
 

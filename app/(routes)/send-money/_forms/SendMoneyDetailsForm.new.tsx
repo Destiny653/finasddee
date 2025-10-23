@@ -44,6 +44,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('BANK');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    
     const derivedRate = useMemo(() => {
         const amt = parseFloat(youSend || '0');
         const dest = parseFloat(recipientGets || '0');
@@ -222,51 +223,75 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
 
     // Define available receiver countries
     const receiverCountries = [
-        { value: "Cameroon", label: "🇨🇲 Cameroon (XAF)" }
-        // Add more countries here in the future
-        // { value: "Country", label: "🏳️ Country Name (CURRENCY)" }
+        { value: "Cameroon", label: "🇨🇲 XAF" }
     ];
 
-    const senderCountries = [
-        { value: "United Kingdom", label: "�� United Kingdom (GBP)" }
+    const senderCurrencies = [
+        { value: "GBP", label: "🇬🇧 GBP" }
     ];
 
     return (
-        <div>
+        <div className="max-w-md mx-auto bg-white rounded-lg shadow-sm p-6">
             <style jsx>{`
                 .form-label {
                     color: #6b7280;
+                    font-size: 14px;
                     font-weight: 500;
                     margin: 0;
                     display: block;
-                    margin-bottom: 0.5rem;
+                    margin-bottom: 8px;
                 }
 
                 .summary-row {
                     display: flex;
                     justify-content: space-between;
-                    padding: 0.75rem 0;
+                    padding: 12px 0;
                     color: #6b7280;
+                    font-size: 14px;
                 }
 
                 .summary-row.total {
                     font-weight: 600;
-                    color: #111827;
-                    font-size: 1.1rem;
+                    color: #1f2937;
+                    font-size: 16px;
+                    padding: 16px 0 12px 0;
                 }
-                .segmented button {
-                    border-radius: 6px;
+                
+                .delivery-btn {
+                    padding: 10px 16px;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    background: white;
+                    color: #374151;
+                    font-size: 14px;
+                    font-weight: 500;
+                    cursor: pointer;
+                    transition: all 0.2s;
                 }
+                
+                .delivery-btn:hover {
+                    background: #f9fafb;
+                }
+                
+                .delivery-btn.active {
+                    background: linear-gradient(135deg, #d4a23a 0%, #b8902f 100%);
+                    color: white;
+                    border-color: #d4a23a;
+                }
+                
                 .cta-btn {
                     position: relative;
                     overflow: hidden;
                     background: linear-gradient(90deg, #d4a23a 0%, #0b1f35 100%);
                     transition: transform 250ms ease, box-shadow 250ms ease;
+                    border-radius: 24px;
                 }
-                .cta-btn:hover {
+                
+                .cta-btn:hover:not(:disabled) {
                     box-shadow: 0 8px 24px rgba(11, 31, 53, 0.25);
-                    transform: translateY(-1px);
+                    transform: translateY(-2px);
                 }
+                
                 .cta-btn::before {
                     content: '';
                     position: absolute;
@@ -277,121 +302,151 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                     pointer-events: none;
                     z-index: 0;
                 }
-                .cta-btn:hover::before {
+                
+                .cta-btn:hover:not(:disabled)::before {
                     opacity: 1;
                 }
-                .cta-label { position: relative; z-index: 1; }
+                
+                .cta-label { 
+                    position: relative; 
+                    z-index: 1; 
+                }
+                
+                .input-wrapper {
+                    display: flex;
+                    align-items: center;
+                    background: white;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    height: 56px;
+                }
+                
+                .input-wrapper input {
+                    flex: 1;
+                    border: none;
+                    outline: none;
+                    padding: 0 16px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: #1f2937;
+                }
+                
+                .input-wrapper input::placeholder {
+                    color: #d1d5db;
+                }
+                
+                .currency-select {
+                    border-left: 1px solid #e5e7eb;
+                    min-width: 120px;
+                }
             `}</style>
-            <div className="mb-3 flex flex-col">
+
+            <div className="mb-4">
                 <label htmlFor="youSend" className="form-label">You're sending</label>
-                <div className="flex flex-col md:flex-row bg-white rounded-sm md:rounded-md border border-[#cfd5df] overflow-hidden focus-within:ring-2 focus-within:ring-[#1e6fb9]">
-                    <div className="flex-1 flex items-center">
-                        <span className="flex items-center justify-center px-3">
-                            <DollarSign size={16} className="text-gray-500" />
-                        </span>
-                        <input
-                            type="number"
-                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[16px] md:text-[18px] font-semibold"
-                            placeholder="0.00"
-                            min="0"
-                            step="0.01"
-                            value={youSend}
-                            onChange={(e) => setYouSend(e.target.value)}
-                        />
-                    </div>
-                    <div className="w-full md:w-[190px] border-t md:border-t-0 md:border-l border-[#E5E7EB] bg-[#f8fafc]">
+                <div className="input-wrapper">
+                    <input
+                        type="number"
+                        placeholder="100.00"
+                        min="0"
+                        step="0.01"
+                        value={youSend}
+                        onChange={(e) => setYouSend(e.target.value)}
+                    />
+                    <div className="currency-select">
                         <CustomCombobox
-                            options={[{ value: "GBP", label: "🇬🇧 GBP" }]}
+                            options={senderCurrencies}
                             value={selectedSendCurrency}
                             onSelectChange={setSelectedSendCurrency}
-                            placeholder="Select currency"
-                            className="h-full"
-                            disabled={true}
+                            placeholder="GBP"
+                            className="h-full border-0 rounded-none"
+                            // disabled={true}
                         />
                     </div>
                 </div>
             </div>
 
-            <div className="mb-2 flex flex-col">
+            <div className="mb-6">
                 <label htmlFor="recipientGets" className="form-label">Your receiver gets</label>
-                <div className="flex flex-col md:flex-row bg-[#F5F7FA] rounded-sm md:rounded-md border border-[#E5E7EB] overflow-hidden">
-                    <div className="flex-1 flex items-center">
-                        <span className="flex items-center justify-center px-3">
-                            <DollarSign size={16} className="text-gray-500" />
-                        </span>
-                        <input
-                            type="text"
-                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[15px] md:text-[16px] font-semibold text-gray-700"
-                            value={loading ? "Calculating..." : recipientGets}
-                            readOnly
-                        />
-                    </div>
-                    <div className="w-full md:w-[190px] border-t md:border-t-0 md:border-l border-[#E5E7EB] bg-white">
+                <div className="input-wrapper">
+                    <input
+                        type="text"
+                        value={loading ? "Calculating..." : recipientGets}
+                        readOnly
+                        style={{ color: '#6b7280' }}
+                    />
+                    <div className="currency-select">
                         <CustomCombobox
                             options={receiverCountries}
                             value={selectedRecipientCountry}
                             onSelectChange={setSelectedRecipientCountry}
                             placeholder="Select country"
-                            className="h-full"
+                            className="h-full border-0 rounded-none"
                         />
                     </div>
                 </div>
             </div>
 
-            <div className="mt-3">
-                {/* <p className="text-gray-600 text-sm font-medium mb-2">Delivery method</p>
-                <div className="segmented grid grid-cols-3 gap-2 mb-3">
+            {/* <div className="mb-6">
+                <p className="form-label">Delivery method</p>
+                <div className="grid grid-cols-3 gap-3">
                     <button
                         type="button"
-                        className={`px-4 py-2 border text-sm font-semibold ${selectedDeliveryMethod === 'BANK' ? 'bg-[#d7a845] text-white border-transparent' : 'bg-white text-gray-700 border-[#E5E7EB]'} `}
+                        className={`delivery-btn ${selectedDeliveryMethod === 'BANK' ? 'active' : ''}`}
                         onClick={() => setSelectedDeliveryMethod('BANK')}
                     >
                         FINASDDEE Bank
                     </button>
                     <button
                         type="button"
-                        className={`px-4 py-2 border text-sm font-semibold ${selectedDeliveryMethod === 'OTHER' ? 'bg-[#ffffff] text-gray-700 border-[#E5E7EB]' : 'bg-white text-gray-700 border-[#E5E7EB]'} `}
+                        className={`delivery-btn ${selectedDeliveryMethod === 'OTHER' ? 'active' : ''}`}
                         onClick={() => setSelectedDeliveryMethod('OTHER')}
                     >
                         Other Banks
                     </button>
                     <button
                         type="button"
-                        className={`px-4 py-2 border text-sm font-semibold ${selectedDeliveryMethod === 'MOBILE' ? 'bg-[#ffffff] text-gray-700 border-[#E5E7EB]' : 'bg-white text-gray-700 border-[#E5E7EB]'} `}
+                        className={`delivery-btn ${selectedDeliveryMethod === 'MOBILE' ? 'active' : ''}`}
                         onClick={() => setSelectedDeliveryMethod('MOBILE')}
                     >
                         Mobile wallet
                     </button>
-                </div> */}
+                </div>
+            </div> */}
 
-                <div className="border-t border-[#E5E7EB]" />
-
-                <div className="summary-row" style={{padding: '.5rem 0'}}>
+            <div className="border-t border-gray-200 mb-4">
+                <div className="summary-row">
                     <span>Exchange rate</span>
-                    <span className="font-semibold text-gray-800">{derivedRate ? derivedRate.toFixed(5) : '—'} XAF</span>
+                    <span className="font-semibold text-gray-800">
+                        {derivedRate ? derivedRate.toFixed(4) : '—'} XAF
+                    </span>
                 </div>
-                <div className="summary-row" style={{padding: '.5rem 0'}}>
+                <div className="summary-row">
                     <span>Our fees</span>
-                    <span className="font-semibold text-gray-800">{fees} {selectedSendCurrency}</span>
+                    <span className="font-semibold text-gray-800">
+                        {fees} {selectedSendCurrency}
+                    </span>
                 </div>
-                <div className="summary-row" style={{padding: '.5rem 0'}}>
+                <div className="summary-row">
                     <span>Delivery time</span>
-                    <span className="font-semibold text-[#0b548a]">Within minutes</span>
-                </div>
-
-                <div className="border-t border-[#E5E7EB]" />
-
-                <div className="summary-row total" style={{padding: '.6rem 0'}}>
-                    <span>Total Amount</span>
-                    <span className="text-[#0b548a]">{totalToPay} {selectedSendCurrency}</span>
+                    <span className="font-semibold text-[#001E40]">Within minutes</span>
                 </div>
             </div>
 
-            <div className="mb-2 mt-2">
+            <div className="border-t-2 border-gray-200">
+                <div className="summary-row total">
+                    <span>Total Amount</span>
+                    <span className="text-[#001E40] font-bold">
+                        {totalToPay} {selectedSendCurrency}
+                    </span>
+                </div>
+            </div>
+
+            <div className="mb-4">
                 <Link href={'/#'}>
                     <button
                         type="button"
-                        className={`cta-btn w-full h-12 md:h-12 text-white font-semibold rounded-md md:rounded-2xl shadow-md ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`cta-btn w-full h-14 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
                         onClick={() => {
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {
@@ -430,14 +485,18 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                         }}
                         disabled={!isFormReady}
                     >
-                        <span className="cta-label">{loading ? 'Calculating...' : 'Send now'}</span>
+                        <span className="cta-label">
+                            {loading ? 'Calculating...' : 'Send now'}
+                        </span>
                     </button>
                 </Link>
-                <p className="text-[12px] text-gray-500 mt-3">*Exchange rate shown is an estimate for an account-to-account transfer and subject to change.</p>
+                <p className="text-xs text-gray-500 mt-3 text-center">
+                    *Exchange rate shown is an estimate for an account-to-account transfer and subject to change.
+                </p>
             </div>
 
             <div className="text-center">
-                <div className="mb-3 flex justify-center items-center space-x-4">
+                <div className="flex justify-center items-center space-x-4">
                     <Image src="/assets/images/security pics/credit-card.png" alt="Credit Card" width={32} height={32} />
                     <Image src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" width={32} height={32} />
                 </div>
