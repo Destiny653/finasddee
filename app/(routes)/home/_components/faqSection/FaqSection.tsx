@@ -44,14 +44,14 @@ const FaqSection = () => {
     };
 
     return (
-        <section className="py-6 sm:py-8 md:py-12 lg:py-16 text-white bg-[#06325C]" id="faq-section" >
+        <section className="py-6 sm:py-8 md:py-12 lg:py-16 text-[#06325C]" id="faq-section" >
             <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-normal text-white mb-3 sm:mb-4 md:mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center font-normal text-[#06325C] mb-3 sm:mb-4 md:mb-6">
                     Frequently Asked Questions
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl text-center text-white mb-6 sm:mb-8 md:mb-12">
+                <p className="text-base sm:text-lg md:text-xl text-center text-[#06325C] mb-6 sm:mb-8 md:mb-12">
                     Can&apos;t find it here? Check out our{' '}
-                    <a href="help" className="text-white underline hover:no-underline">
+                    <a href="help" className="text-[#06325C] underline hover:no-underline">
                         Help center
                     </a>
                 </p>
@@ -63,7 +63,7 @@ const FaqSection = () => {
                             <div key={index} className="accordion-item" style={{ backgroundColor: 'transparent', border: 'none' }}>
                                 <h2 className="accordion-header" id={`heading${index + 1}`}>
                                     <button
-                                        className={`accordion-button text-white py-3 sm:py-4 md:py-5 px-0 ${openIndex !== index ? 'collapsed' : ''}`}
+                                        className={`accordion-button text-[#06325C] py-3 sm:py-4 md:py-5 px-0 ${openIndex !== index ? 'collapsed' : ''}`}
                                         type="button"
                                         style={{
                                             backgroundColor: 'transparent',
@@ -81,11 +81,11 @@ const FaqSection = () => {
                                         aria-expanded={openIndex === index}
                                         aria-controls={`collapse${index + 1}`}
                                     >
-                                        <span className="text-white text-sm px-2 sm:text-base md:text-lg font-medium">
+                                        <span className="text-[#06325C] text-sm px-2 sm:text-base md:text-lg font-medium">
                                             {faq.question}
                                         </span>
                                         <ChevronUp
-                                            className={`text-white transition-transform`}
+                                            className={`text-[#06325C] transition-transform`}
                                             style={{
                                                 transform: openIndex === index ? 'rotate(0deg)' : 'rotate(180deg)',
                                                 transition: 'transform 0.4s ease',
@@ -107,7 +107,7 @@ const FaqSection = () => {
                                     aria-labelledby={`heading${index + 1}`}
                                     data-bs-parent="#popularTopics"
                                 >
-                                    <div className="accordion-body text-white pb-3 sm:pb-4 md:pb-6 pt-2 sm:pt-3 md:pt-4">
+                                    <div className="accordion-body text-[#06325C] pb-3 sm:pb-4 md:pb-6 pt-2 sm:pt-3 md:pt-4">
                                         <div className="text-sm sm:text-base leading-relaxed whitespace-pre-line">
                                             {faq.answer}
                                         </div>
@@ -120,7 +120,7 @@ const FaqSection = () => {
                 <div className='flex item-center justify-center pt-12'>
                     <Link
                         href="/faq"
-                        className="inline-flex items-center text-lg text-white hover:text-gold-light transition-colors group"
+                        className="inline-flex items-center text-lg text-[#06325C] hover:text-gold-light transition-colors group"
                     >
                         See more FAQ
                         <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -1,90 +1,56 @@
 import React from 'react';
 import { CircleCheck } from 'lucide-react';
 
+const features = [
+    {
+        title: 'Multiple countries',
+        desc: 'Send money to multiple countries conveniently.',
+    },
+    {
+        title: 'Lower fees',
+        desc: 'We work to keep our fees among the lowest.',
+    },
+    {
+        title: 'Easy to use',
+        desc: 'A clean, intuitive experience across devices.',
+    },
+    {
+        title: 'Faster payments',
+        desc: 'Recipients typically receive funds within minutes.',
+    },
+];
+
 const WhyChooseUsSection = () => {
     return (
-        <section className="bg-white" style={{ margin: 0, padding: 0 }}>
-            <div className="flex flex-col lg:flex-row relative" style={{ margin: 0, padding: 0 }}>
-                {/* Left content */}
-                <div className="lg:w-1/2 px-4 sm:px-8 py-12 lg:py-20">
-                    <div className="container px-4 sm:px-8">
-                        <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-12">
-                            Why choose Finasddee?
-                        </h2>
-                        
-                        <div className="space-y-8">
-                            {/* Feature 1 */}
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0 mr-4">
-                                    <CircleCheck className="text-gray-700" size={32} />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                        Over 95+ countries
-                                    </h3>
-                                    <p className="text-gray-600">
-                                        Send money to over 90+ countries conveniently
-                                    </p>
-                                </div>
-                            </div>
+        <section className="bg-white py-16">
+            <div className="container mx-auto px-4">
+                <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-12">
+                    Why choose Finasddee?
+                </h2>
 
-                            {/* Feature 2 */}
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0 mr-4">
-                                    <CircleCheck className="text-gray-700" size={32} />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                        Lower Fees
-                                    </h3>
-                                    <p className="text-gray-600">
-                                        Finasddee guarantees the lowest fees
-                                    </p>
-                                </div>
-                            </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {features.map((f, idx) => (
+                        <div
+                            key={idx}
+                            className="group relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm transition-transform duration-200 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]"
+                        >
+                            {/* top accent line */}
+                            <div
+                                className="absolute left-0 right-0 top-0 h-0.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                                style={{ backgroundColor: '#ce9739' }}
+                            />
 
-                            {/* Feature 3 */}
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0 mr-4">
-                                    <CircleCheck className="text-gray-700" size={32} />
+                            <div className="flex items-start gap-3">
+                                <div className="mt-0.5">
+                                    <CircleCheck className="text-[#082642]" size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                        Easy to Use
-                                    </h3>
-                                    <p className="text-gray-600">
-                                        Finasddee maintains an engaging user experience
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Feature 4 */}
-                            <div className="flex items-start">
-                                <div className="flex-shrink-0 mr-4">
-                                    <CircleCheck className="text-gray-700" size={32} />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                                        Faster Payments
-                                    </h3>
-                                    <p className="text-gray-600">
-                                        Receiver typically receives funds immediately
-                                    </p>
+                                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{f.title}</h3>
+                                    <p className="text-sm text-gray-600 leading-6">{f.desc}</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                {/* Right image */}
-                <div 
-                    className="lg:w-1/2 min-h-96 lg:min-h-full bg-cover bg-center"
-                    style={{
-                        backgroundImage: 'url(/assets/images/cashless.jpg)',
-                        marginTop: 0
-                    }}
-                >
-                    {/* Background image container */}
+                    ))}
                 </div>
             </div>
         </section>

@@ -68,7 +68,7 @@ const LandingPageFooter = () => {
                     {/* Logo and Tagline Section */}
                     <div className="col-span-1 md:col-span-2 lg:col-span-1">
                         <Image
-                            src="/assets/images/pic/LogoWhite.png"
+                            src="/assets/images/pic/horLogoWhite.png"
                             alt="FINASDDEE Logo"
                             width={200}
                             height={67}
@@ -76,7 +76,7 @@ const LandingPageFooter = () => {
                             sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 240px"
                         />
                         <p className="text-white text-sm sm:text-base">
-                            Finasddee sends and receives in 150+ countries.
+                            Finasddee sends and receives in 2 countries.
                         </p>
                     </div>
                 </div>

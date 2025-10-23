@@ -17,66 +17,54 @@ const HowItWorksSection = () => {
 
     return (
         // <section className="py-16" id="how-it-works" style={{ backgroundColor: '#4169E1' }}>
-        <section className="py-16" id="how-it-works" style={{ backgroundColor: '#082642', color: 'white' }}>
+        <section className="py-16" id="how-it-works" style={{ backgroundColor: '#F7F8FC' }}>
             <div className="container mx-auto px-4">
-                <h2 className="text-4xl lg:text-5xl text-center font-bold text-white mb-4">
-                    The simple way to send money
+                <h2 className="text-4xl lg:text-5xl text-center font-bold text-[#0b0f1a] mb-2">
+                    How It Works
                 </h2>
-                <p className="text-lg text-center text-white mb-12 max-w-4xl mx-auto">
+                <p className="text-base lg:text-lg text-center text-[#4b5563] mb-10 max-w-3xl mx-auto">
                     Finasddee is the fastest way to send money to family, friends and businesses home and abroad
                 </p>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Step 1 */}
-                    <div className="text-center">
-                        <div className="mb-6">
-                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-3xl font-bold text-black">1</span>
-                            </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-4">Sign Up Your Account</h3>
-                        <p className="text-white text-base">
-                            Become a register user first, then log in to your account and enter your card or bank details that is required for you.
-                        </p>
-                    </div>
 
-                    {/* Step 2 */}
-                    <div className="text-center">
-                        <div className="mb-6">
-                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-3xl font-bold text-black">2</span>
+                {/* Timeline with numbered markers (desktop/tablet only) */}
+                <div className="relative hidden md:block">
+                    <div className="absolute left-0 right-0 top-4 h-[3px]" style={{ backgroundColor: '#082642' }} />
+                    <div className="grid grid-cols-3 lg:grid-cols-6 gap-6 relative">
+                        {[1,2,3,4,5,6].map((n) => (
+                            <div key={n} className="flex items-start justify-center">
+                                <div className="w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-semibold shadow-sm" style={{ backgroundColor: '#d7a845', borderColor: '#d7a845', color: 'white' }}>
+                                    {n}
+                                </div>
                             </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-4">Select Your Recipient</h3>
-                        <p className="text-white text-base">
-                            Enter your recipient&apos;s email address then add an amount with currency to send securely.
-                        </p>
-                    </div>
-
-                    {/* Step 3 */}
-                    <div className="text-center">
-                        <div className="mb-6">
-                            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-3xl font-bold text-black">3</span>
-                            </div>
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-4">Send Money</h3>
-                        <p className="text-white text-base">
-                            After sending money, the recipient will be notified via an email when money has been transferred to their account.
-                        </p>
+                        ))}
                     </div>
                 </div>
-                
-                {/* <div className="text-center mt-8">
-                    <span
-                     onClick={() => openAuthModal('register')}
-                        className="inline-block text-white px-8 py-3 rounded-lg font-semibold transition-colors bg-[#ce9739] hover:bg-[#d8a603]"
-                    >
-                        Sign up Now
-                    </span>
-                </div> */}
+
+                {/* Cards */}
+                <div className="mt-4 md:mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-5">
+                    {[
+                        { title: 'Sign up for free', desc: 'Register online or via our mobile app. Please have your email address ready.', icon: '🧭' },
+                        { title: 'Select country', desc: 'Choose the destination country and amount. See rates and fees transparently.', icon: '🌐' },
+                        { title: 'Add recipient', desc: 'Add mobile wallet or bank account details. Pick from previous recipients too.', icon: '👤' },
+                        { title: 'Verify your identity', desc: 'Complete standard KYC by verifying your preferred national ID.', icon: '🪪' },
+                        { title: 'Pay for your transfer', desc: 'Confirm the amount, fees and total—you always see what you pay.', icon: '💳' },
+                        { title: 'Track Sender', desc: 'Track status and manage recipients and transfers in your account.', icon: '📦' },
+                    ].map((s, idx) => (
+                        <div key={idx} className="relative bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                            {/* Mobile step badge */}
+                            <div className="md:hidden absolute -top-3 left-4 w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shadow-sm" style={{ backgroundColor: '#d7a845', color: 'white' }}>{idx + 1}</div>
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ backgroundColor: '#082642', color: 'white' }}>
+                                    <span>{s.icon}</span>
+                                </div>
+                                <h3 className="text-sm md:text-[15px] font-semibold text-[#111827] leading-snug">{s.title}</h3>
+                            </div>
+                            <p className="text-[13px] md:text-[14px] leading-5 text-[#4b5563]">{s.desc}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
-                  <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} initialForm={authModalInitialForm} />
+            <AuthModal isOpen={isAuthModalOpen} onClose={closeAuthModal} initialForm={authModalInitialForm} />
         </section>
     );
 };

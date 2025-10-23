@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback, useMemo, FC } from "react";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import Image from "next/image";
 import { DollarSign } from "lucide-react";
-import useSWR from 'swr';
 
 // Types for API responses
 interface CountryData {
@@ -45,6 +44,13 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('BANK');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const derivedRate = useMemo(() => {
+        const amt = parseFloat(youSend || '0');
+        const dest = parseFloat(recipientGets || '0');
+        if (!amt || !dest) return 0;
+        return dest / amt;
+    }, [youSend, recipientGets]);
+
     // Function to fetch transaction charges
     const fetchDestinationCountries = async () => {
         try {
@@ -173,7 +179,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Failed to fetch charges');
             console.error('Error fetching charges:', err);
-            
+
             // Reset values on error
             setRecipientGets('0.0');
             setFees('0.0');
@@ -207,12 +213,12 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     }, [youSend, debouncedFetchCharges]);
 
     // Calculate if form is ready
-    const isFormReady = youSend !== '' && 
-                       parseFloat(youSend) > 0 && 
-                       !loading && 
-                       !error && 
-                       parseFloat(recipientGets) > 0 &&
-                       parseFloat(totalToPay) > 0;
+    const isFormReady = youSend !== '' &&
+        parseFloat(youSend) > 0 &&
+        !loading &&
+        !error &&
+        parseFloat(recipientGets) > 0 &&
+        parseFloat(totalToPay) > 0;
 
     // Define available receiver countries
     const receiverCountries = [
@@ -248,30 +254,52 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                     color: #111827;
                     font-size: 1.1rem;
                 }
+                .segmented button {
+                    border-radius: 6px;
+                }
+                .cta-btn {
+                    position: relative;
+                    overflow: hidden;
+                    background: linear-gradient(90deg, #d4a23a 0%, #0b1f35 100%);
+                    transition: transform 250ms ease, box-shadow 250ms ease;
+                }
+                .cta-btn:hover {
+                    box-shadow: 0 8px 24px rgba(11, 31, 53, 0.25);
+                    transform: translateY(-1px);
+                }
+                .cta-btn::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(90deg, #0b1f35 0%, #d4a23a 100%);
+                    opacity: 0;
+                    transition: opacity 300ms ease;
+                    pointer-events: none;
+                    z-index: 0;
+                }
+                .cta-btn:hover::before {
+                    opacity: 1;
+                }
+                .cta-label { position: relative; z-index: 1; }
             `}</style>
-
-            {/* You Send Section */}
             <div className="mb-4 flex flex-col">
-                <label htmlFor="youSend" className="form-label">You Send</label>
-                <div className="flex bg-[#F5F5F5] rounded-sm border border-[#E5E7EB] overflow-hidden">
-                    {/* Amount Input Side */}
+                <label htmlFor="youSend" className="form-label">You're sending</label>
+                <div className="flex bg-white rounded-md border border-[#cfd5df] overflow-hidden focus-within:ring-2 focus-within:ring-[#1e6fb9]">
                     <div className="flex-1 flex items-center">
                         <span className="flex items-center justify-center px-3">
-                            <DollarSign size={14} className="text-gray-500" />
+                            <DollarSign size={16} className="text-gray-500" />
                         </span>
                         <input
                             type="number"
-                            className="flex-1 bg-transparent outline-none py-3 px-2"
-                            placeholder="0"
+                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[18px] font-semibold"
+                            placeholder="0.00"
                             min="0"
                             step="0.01"
                             value={youSend}
                             onChange={(e) => setYouSend(e.target.value)}
                         />
                     </div>
-                    
-                    {/* Country/Currency Selector Side */}
-                    <div className="w-[180px] border-l border-[#E5E7EB]">
+                    <div className="w-[190px] border-l border-[#E5E7EB] bg-[#f8fafc]">
                         <CustomCombobox
                             options={[{ value: "GBP", label: "🇬🇧 GBP" }]}
                             value={selectedSendCurrency}
@@ -284,25 +312,21 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 </div>
             </div>
 
-            {/* Receiver Gets Section */}
-            <div className="mb-4 flex flex-col">
-                <label htmlFor="recipientGets" className="form-label">Receiver Gets</label>
-                <div className="flex bg-[#F5F5F5] rounded-sm border border-[#E5E7EB] overflow-hidden">
-                    {/* Amount Display Side */}
+            <div className="mb-1 flex flex-col">
+                <label htmlFor="recipientGets" className="form-label">Your receiver gets</label>
+                <div className="flex bg-[#F5F7FA] rounded-md border border-[#E5E7EB] overflow-hidden">
                     <div className="flex-1 flex items-center">
                         <span className="flex items-center justify-center px-3">
-                            <DollarSign size={14} className="text-gray-500" />
+                            <DollarSign size={16} className="text-gray-500" />
                         </span>
                         <input
                             type="text"
-                            className="flex-1 bg-transparent outline-none py-3 px-2"
+                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[16px] font-semibold text-gray-700"
                             value={loading ? "Calculating..." : recipientGets}
                             readOnly
                         />
                     </div>
-                    
-                    {/* Receiver Country Selector Side */}
-                    <div className="w-[180px] border-l border-[#E5E7EB]">
+                    <div className="w-[190px] border-l border-[#E5E7EB] bg-white">
                         <CustomCombobox
                             options={receiverCountries}
                             value={selectedRecipientCountry}
@@ -314,25 +338,60 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 </div>
             </div>
 
-            {/* Summary */}
-            <div className="mt-6 mb-6 font-semibold">
-                <div className="summary-row border-b border-gray-100">
-                    <span>Total Fees</span>
-                    <span>{fees}</span>
+            <div className="mt-3">
+                {/* <p className="text-gray-600 text-sm font-medium mb-2">Delivery method</p>
+                <div className="segmented grid grid-cols-3 gap-2 mb-3">
+                    <button
+                        type="button"
+                        className={`px-4 py-2 border text-sm font-semibold ${selectedDeliveryMethod === 'BANK' ? 'bg-[#d7a845] text-white border-transparent' : 'bg-white text-gray-700 border-[#E5E7EB]'} `}
+                        onClick={() => setSelectedDeliveryMethod('BANK')}
+                    >
+                        FINASDDEE Bank
+                    </button>
+                    <button
+                        type="button"
+                        className={`px-4 py-2 border text-sm font-semibold ${selectedDeliveryMethod === 'OTHER' ? 'bg-[#ffffff] text-gray-700 border-[#E5E7EB]' : 'bg-white text-gray-700 border-[#E5E7EB]'} `}
+                        onClick={() => setSelectedDeliveryMethod('OTHER')}
+                    >
+                        Other Banks
+                    </button>
+                    <button
+                        type="button"
+                        className={`px-4 py-2 border text-sm font-semibold ${selectedDeliveryMethod === 'MOBILE' ? 'bg-[#ffffff] text-gray-700 border-[#E5E7EB]' : 'bg-white text-gray-700 border-[#E5E7EB]'} `}
+                        onClick={() => setSelectedDeliveryMethod('MOBILE')}
+                    >
+                        Mobile wallet
+                    </button>
+                </div> */}
+
+                <div className="border-t border-[#E5E7EB]" />
+
+                <div className="summary-row" style={{padding: '.5rem 0'}}>
+                    <span>Exchange rate</span>
+                    <span className="font-semibold text-gray-800">{derivedRate ? derivedRate.toFixed(5) : '—'} XAF</span>
+                </div>
+                <div className="summary-row" style={{padding: '.5rem 0'}}>
+                    <span>Our fees</span>
+                    <span className="font-semibold text-gray-800">{fees} {selectedSendCurrency}</span>
+                </div>
+                <div className="summary-row" style={{padding: '.5rem 0'}}>
+                    <span>Delivery time</span>
+                    <span className="font-semibold text-[#0b548a]">Within minutes</span>
                 </div>
 
-                <div className="summary-row total">
-                    <span>Amount To Pay</span>
-                    <span>{totalToPay}</span>
+                <div className="border-t border-[#E5E7EB]" />
+
+                <div className="summary-row total" style={{padding: '.6rem 0'}}>
+                    <span>Total Amount</span>
+                    <span className="text-[#0b548a]">{totalToPay} {selectedSendCurrency}</span>
                 </div>
             </div>
 
-            {/* Continue Button */}
-            <div className="mb-6">
-                <Link href={'/send-money'}>
+            <div className="mb-2 mt-2">
+                <Link href={'/#'}>
                     <button
                         type="button"
-                        className={`bg-[#082642] rounded-4xl hover:bg-[#05315b] duration-200 w-full md:h-16 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`cta-btn w-full md:h-12 text-white font-semibold rounded-2xl shadow-md ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
                         onClick={() => {
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {
@@ -371,21 +430,17 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                         }}
                         disabled={!isFormReady}
                     >
-                        {loading ? 'Calculating...' : 'Continue'}
+                        <span className="cta-label">{loading ? 'Calculating...' : 'Send now'}</span>
                     </button>
                 </Link>
+                <p className="text-[12px] text-gray-500 mt-3">*Exchange rate shown is an estimate for an account-to-account transfer and subject to change.</p>
             </div>
 
-            {/* Security badges */}
             <div className="text-center">
                 <div className="mb-3 flex justify-center items-center space-x-4">
                     <Image src="/assets/images/security pics/credit-card.png" alt="Credit Card" width={32} height={32} />
                     <Image src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" width={32} height={32} />
                 </div>
-                {/* <p className="text-gray-600 flex items-start justify-center text-lg">
-                    <i className="fa fa-lock text-lg mr-2 mt-1"></i>
-                    <span>We are Authorised and Regulated by the Financial Conduct Authority (US Dollars).</span>
-                </p> */}
             </div>
         </div>
     );
