@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronsUpDownIcon } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
@@ -42,6 +42,7 @@ export function CustomCombobox({
     defaultValue,
     className,
     optionFullWidth,
+    disabled,
     onSelectChange: onChange,
 }: ICustomCombobox) {
     const [open, setOpen] = React.useState(false);
@@ -55,45 +56,49 @@ export function CustomCombobox({
     }, [newVal, value]);
 
     return (
-        <div className={`relative rounded-l-lg `}>
+        <div className="relative w-full">
             {label && (
-                <p className="font-sans  text-sm text-gray-500  font-semibold leading-[18px] mb-2">
+                <p className="text-sm text-gray-500 font-semibold mb-2">
                     {label}
                 </p>
             )}
             <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild className="border-0 bg-gray-100">
+                <PopoverTrigger asChild>
                     <Button
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
+                        disabled={disabled}
                         className={cn(
-                            "w-full p-6 b-[#F5F5F5] relative rounded-sm shadow-none opacity-100 justify-between pr-4 pl-4 text-left font-normal text-black ",
+                            "w-full h-full justify-between bg-white hover:bg-gray-50 border-0 shadow-none font-medium text-gray-700 px-4",
+                            disabled && "opacity-60 cursor-not-allowed",
                             className,
                         )}
                     >
-                        {value ? (
-                            options.find((item) => item.value === value)?.label
-                        ) : (
-                            <p className="text-muted-foreground">
-                                {placeholder}
-                            </p>
-                        )}
-                        <ChevronsUpDownIcon className="ml-2 absolute top-1/3.5 right-1 h-4 w-4 shrink-0 opacity-50" />
+                        <span className="flex items-center gap-2">
+                            {value ? (
+                                options.find((item) => item.value === value)?.label
+                            ) : (
+                                <span className="text-gray-400">
+                                    {placeholder}
+                                </span>
+                            )}
+                        </span>
+                        <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent
                     className={cn(
                         "p-0 z-[100]",
-                        optionFullWidth ? "w-full border-0" : "w-[var(--radix-popover-trigger-width)]",
+                        optionFullWidth ? "w-full" : "w-[var(--radix-popover-trigger-width)]",
                     )}
                     style={optionFullWidth ? {} : { width: 'var(--radix-popover-trigger-width)' }}
                 >
-                    <Command className="!w-full border-0 ">
-                        <CommandInput className="border-0 " placeholder="Search options..." />
-                        <CommandList className="border-0" >
-                            <CommandEmpty className="border-0">{emptyLabel}</CommandEmpty>
-                            <CommandGroup className="border-0" >
+                    <Command>
+                        <CommandInput placeholder="Search options..." />
+                        <CommandList>
+                            <CommandEmpty>{emptyLabel}</CommandEmpty>
+                            <CommandGroup>
                                 {options.map((item, index) => (
                                     <CommandItem
                                         key={`${item.value}-${index}`}
@@ -107,7 +112,7 @@ export function CustomCombobox({
                                             );
                                             setOpen(false);
                                         }}
-                                        className="hover:bg-transparent"
+                                        className="cursor-pointer hover:bg-gray-100"
                                     >
                                         {item.label}
                                     </CommandItem>
