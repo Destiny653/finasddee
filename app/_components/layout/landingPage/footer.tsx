@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const LandingPageFooter = () => {
     return (
-        <footer className="py-6 sm:py-8 md:py-10 bg-[#082642] border-t text-white">
+        <footer className="py-6 sm:py-8 md:py-10 bg-[#001E40] border-t text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                     {/* Information Section */}

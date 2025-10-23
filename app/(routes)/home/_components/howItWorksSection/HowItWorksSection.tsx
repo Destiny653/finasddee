@@ -28,7 +28,7 @@ const HowItWorksSection = () => {
 
                 {/* Timeline with numbered markers (desktop/tablet only) */}
                 <div className="relative hidden md:block">
-                    <div className="absolute left-0 right-0 top-4 h-[3px]" style={{ backgroundColor: '#082642' }} />
+                    <div className="absolute left-0 right-0 top-4 h-[3px]" style={{ backgroundColor: '#001E40' }} />
                     <div className="grid grid-cols-3 lg:grid-cols-6 gap-6 relative">
                         {[1,2,3,4,5,6].map((n) => (
                             <div key={n} className="flex items-start justify-center">
@@ -47,14 +47,14 @@ const HowItWorksSection = () => {
                         { title: 'Select country', desc: 'Choose the destination country and amount. See rates and fees transparently.', icon: '🌐' },
                         { title: 'Add recipient', desc: 'Add mobile wallet or bank account details. Pick from previous recipients too.', icon: '👤' },
                         { title: 'Verify your identity', desc: 'Complete standard KYC by verifying your preferred national ID.', icon: '🪪' },
-                        { title: 'Pay for your transfer', desc: 'Confirm the amount, fees and total—you always see what you pay.', icon: '💳' },
+                        { title: 'Pay for your transfer', desc: 'Confirm the amount, fees and total, you always see what you pay.', icon: '💳' },
                         { title: 'Track Sender', desc: 'Track status and manage recipients and transfers in your account.', icon: '📦' },
                     ].map((s, idx) => (
                         <div key={idx} className="relative bg-white rounded-xl shadow-sm border border-gray-100 p-4">
                             {/* Mobile step badge */}
                             <div className="md:hidden absolute -top-3 left-4 w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shadow-sm" style={{ backgroundColor: '#d7a845', color: 'white' }}>{idx + 1}</div>
                             <div className="flex items-center gap-3 mb-2">
-                                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ backgroundColor: '#082642', color: 'white' }}>
+                                <div className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ backgroundColor: '#001E40', color: 'white' }}>
                                     <span>{s.icon}</span>
                                 </div>
                                 <h3 className="text-sm md:text-[15px] font-semibold text-[#111827] leading-snug">{s.title}</h3>
