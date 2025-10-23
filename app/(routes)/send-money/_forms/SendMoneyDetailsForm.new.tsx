@@ -282,16 +282,16 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 }
                 .cta-label { position: relative; z-index: 1; }
             `}</style>
-            <div className="mb-4 flex flex-col">
+            <div className="mb-3 flex flex-col">
                 <label htmlFor="youSend" className="form-label">You're sending</label>
-                <div className="flex bg-white rounded-md border border-[#cfd5df] overflow-hidden focus-within:ring-2 focus-within:ring-[#1e6fb9]">
+                <div className="flex flex-col md:flex-row bg-white rounded-sm md:rounded-md border border-[#cfd5df] overflow-hidden focus-within:ring-2 focus-within:ring-[#1e6fb9]">
                     <div className="flex-1 flex items-center">
                         <span className="flex items-center justify-center px-3">
                             <DollarSign size={16} className="text-gray-500" />
                         </span>
                         <input
                             type="number"
-                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[18px] font-semibold"
+                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[16px] md:text-[18px] font-semibold"
                             placeholder="0.00"
                             min="0"
                             step="0.01"
@@ -299,7 +299,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             onChange={(e) => setYouSend(e.target.value)}
                         />
                     </div>
-                    <div className="w-[190px] border-l border-[#E5E7EB] bg-[#f8fafc]">
+                    <div className="w-full md:w-[190px] border-t md:border-t-0 md:border-l border-[#E5E7EB] bg-[#f8fafc]">
                         <CustomCombobox
                             options={[{ value: "GBP", label: "🇬🇧 GBP" }]}
                             value={selectedSendCurrency}
@@ -312,21 +312,21 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 </div>
             </div>
 
-            <div className="mb-1 flex flex-col">
+            <div className="mb-2 flex flex-col">
                 <label htmlFor="recipientGets" className="form-label">Your receiver gets</label>
-                <div className="flex bg-[#F5F7FA] rounded-md border border-[#E5E7EB] overflow-hidden">
+                <div className="flex flex-col md:flex-row bg-[#F5F7FA] rounded-sm md:rounded-md border border-[#E5E7EB] overflow-hidden">
                     <div className="flex-1 flex items-center">
                         <span className="flex items-center justify-center px-3">
                             <DollarSign size={16} className="text-gray-500" />
                         </span>
                         <input
                             type="text"
-                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[16px] font-semibold text-gray-700"
+                            className="flex-1 bg-transparent outline-none py-2 px-2 text-[15px] md:text-[16px] font-semibold text-gray-700"
                             value={loading ? "Calculating..." : recipientGets}
                             readOnly
                         />
                     </div>
-                    <div className="w-[190px] border-l border-[#E5E7EB] bg-white">
+                    <div className="w-full md:w-[190px] border-t md:border-t-0 md:border-l border-[#E5E7EB] bg-white">
                         <CustomCombobox
                             options={receiverCountries}
                             value={selectedRecipientCountry}
@@ -391,7 +391,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 <Link href={'/#'}>
                     <button
                         type="button"
-                        className={`cta-btn w-full md:h-12 text-white font-semibold rounded-2xl shadow-md ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`cta-btn w-full h-12 md:h-12 text-white font-semibold rounded-md md:rounded-2xl shadow-md ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
                         onClick={() => {
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {
