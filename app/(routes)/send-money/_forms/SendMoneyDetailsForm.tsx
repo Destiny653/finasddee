@@ -429,7 +429,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 <Link href={'/send-money'}>
                     <button
                         type="button"
-                        className={`bg-[#082642] rounded-4xl hover:bg-[#05315b] duration-200 w-full md:h-16 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        className={`bg-[#001E40] rounded-4xl hover:bg-[#05315b] duration-200 w-full md:h-16 text-white font-semibold ${!isFormReady ? 'opacity-50 cursor-not-allowed' : ''}`}
                         onClick={() => {
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {

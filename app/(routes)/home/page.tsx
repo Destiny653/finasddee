@@ -9,6 +9,7 @@ import FaqSection from "./_components/faqSection/FaqSection";
 import LandingPageNavBar from "@/app/_components/layout/landingPage/navbar";
 import MainLandingPageLayout from "@/app/_components/layout/landingPage/MainLandingPageLayout";
 import AppDownloadSection from "./_components/appDownloadSection/AppDownloadSection";
+import SendingReceivingCountriesSection from "./_components/sendingReceivingCountriesSection/SendingReceivingCountriesSection";
 
 const HomePage = () => {
     return (
@@ -22,6 +23,7 @@ const HomePage = () => {
                 {/* <SpecialOfferSection /> */}
                 <AppDownloadSection />
                 <FaqSection />
+                <SendingReceivingCountriesSection />
             </>
         </MainLandingPageLayout>
     );

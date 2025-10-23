@@ -42,7 +42,7 @@ const WhyChooseUsSection = () => {
 
                             <div className="flex items-start gap-3">
                                 <div className="mt-0.5">
-                                    <CircleCheck className="text-[#082642]" size={24} />
+                                    <CircleCheck className="text-[#001E40]" size={24} />
                                 </div>
                                 <div>
                                     <h3 className="text-lg font-semibold text-gray-900 mb-1">{f.title}</h3>
