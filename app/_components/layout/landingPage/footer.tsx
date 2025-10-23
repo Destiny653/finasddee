@@ -76,7 +76,7 @@ const LandingPageFooter = () => {
                             sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 240px"
                         />
                         <p className="text-white text-sm sm:text-base">
-                            Finasddee sends and receives in 2 countries.
+                            Finasddee sends and receives in 8 countries.
                         </p>
                     </div>
                 </div>

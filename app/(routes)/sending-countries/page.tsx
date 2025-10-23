@@ -100,7 +100,8 @@ const SendingCountries = () => {
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-3xl font-bold text-blue-600 mb-2">
-                {sendingCountries.length}
+                {/* {sendingCountries.length} */}
+                8
               </div>
               <div className="text-gray-600">Sending Countries</div>
             </div>

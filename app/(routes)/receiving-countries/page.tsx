@@ -141,12 +141,13 @@ const ReceivingCountries = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-3xl font-bold mb-2">
-                  {receivingCountries.length}+
+                  {/* {receivingCountries.length}+ */}
+                  8+
                 </div>
                 <div className="text-green-100">Receiving Countries</div>
               </div>
               <div>
-                <div className="text-3xl font-bold mb-2">2</div>
+                <div className="text-3xl font-bold mb-2">8</div>
                 <div className="text-green-100">Total Countries</div>
               </div>
               <div>
