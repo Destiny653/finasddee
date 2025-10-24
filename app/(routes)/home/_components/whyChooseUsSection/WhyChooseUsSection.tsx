@@ -35,16 +35,16 @@ const WhyChooseUsSection = () => {
                         <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-12">
                             Why choose Finasddee?
                         </h2>
-        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
                             {features.map((f, idx) => (
                                 <div
                                     key={idx}
-                                    className="group relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm transition-transform duration-200 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]"
+                                    className="group relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm overflow-hidden transition-transform duration-200 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]"
                                 >
                                     {/* top accent line */}
                                     <div
-                                        className="absolute left-0 right-0 top-0 h-0.5 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+                                        className="pointer-events-none absolute left-0 right-0 top-0 h-1 rounded-t-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100"
                                         style={{ backgroundColor: '#ce9739' }}
                                     />
         
@@ -59,6 +59,7 @@ const WhyChooseUsSection = () => {
                                     </div>
                                 </div>
                             ))}
+                            </div>
                         </div>
                     </div>
                 </section>

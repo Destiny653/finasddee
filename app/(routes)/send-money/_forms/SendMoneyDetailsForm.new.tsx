@@ -223,11 +223,13 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
 
     // Define available receiver countries
     const receiverCountries = [
-        { value: "Cameroon", label: "🇨🇲 XAF" }
+        { value: "Cameroon", label: "🇨🇲 Cameroon — XAF" },
+        // Future: add more receiving destinations here with their currency
     ];
 
     const senderCurrencies = [
-        { value: "GBP", label: "🇬🇧 GBP" }
+        { value: "GBP", label: "🇬🇧 United Kingdom — GBP" },
+        // Future: add more sending countries/currencies if enabled
     ];
 
     return (
@@ -323,7 +325,8 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 }
                 
                 .input-wrapper input {
-                    flex: 1;
+                    flex: 0 0 40%;
+                    min-width: 0;
                     border: none;
                     outline: none;
                     padding: 0 16px;
@@ -338,7 +341,8 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 
                 .currency-select {
                     border-left: 1px solid #e5e7eb;
-                    min-width: 120px;
+                    flex: 0 0 60%;
+                    min-width: 0;
                 }
             `}</style>
 
@@ -358,8 +362,9 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             options={senderCurrencies}
                             value={selectedSendCurrency}
                             onSelectChange={setSelectedSendCurrency}
-                            placeholder="GBP"
+                            placeholder="Select currency"
                             className="h-full border-0 rounded-none"
+                            optionFullWidth
                             // disabled={true}
                         />
                     </div>
@@ -382,6 +387,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             onSelectChange={setSelectedRecipientCountry}
                             placeholder="Select country"
                             className="h-full border-0 rounded-none"
+                            optionFullWidth
                         />
                     </div>
                 </div>

@@ -70,18 +70,16 @@ export function CustomCombobox({
                         aria-expanded={open}
                         disabled={disabled}
                         className={cn(
-                            "w-full h-full justify-between bg-white hover:bg-gray-50 border-0 shadow-none font-medium text-gray-700 px-4",
+                            "w-full h-full justify-between bg-white hover:bg-gray-50 border-0 shadow-none font-medium text-gray-700 px-4 min-w-0 whitespace-nowrap",
                             disabled && "opacity-60 cursor-not-allowed",
                             className,
                         )}
                     >
-                        <span className="flex items-center gap-2">
+                        <span className="flex items-center gap-2 min-w-0">
                             {value ? (
-                                options.find((item) => item.value === value)?.label
+                                <span className="truncate">{options.find((item) => item.value === value)?.label}</span>
                             ) : (
-                                <span className="text-gray-400">
-                                    {placeholder}
-                                </span>
+                                <span className="text-gray-400 truncate">{placeholder}</span>
                             )}
                         </span>
                         <ChevronDown className="h-4 w-4 shrink-0 opacity-50" />
@@ -90,7 +88,9 @@ export function CustomCombobox({
                 <PopoverContent
                     className={cn(
                         "p-0 z-[100]",
-                        optionFullWidth ? "w-full" : "w-[var(--radix-popover-trigger-width)]",
+                        optionFullWidth
+                            ? "w-auto min-w-[240px] md:min-w-[280px]"
+                            : "w-[var(--radix-popover-trigger-width)]",
                     )}
                     style={optionFullWidth ? {} : { width: 'var(--radix-popover-trigger-width)' }}
                 >
