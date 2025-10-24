@@ -19,7 +19,7 @@ const countries: Country[] = [
   { code: "ZW", name: "Zimbabwe", flag: "🇿🇼" },
 ];
 
-const SendingReceivingCountriesSection = () => {
+const ReceivingCountriesSection = () => {
   return (
     <section className="py-12 md:py-16" style={{ backgroundColor: "#F7F8FC" }}>
       <div className="container mx-auto px-4">
@@ -27,7 +27,7 @@ const SendingReceivingCountriesSection = () => {
           {/* Header Section */}
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-[#001E40] mb-3">
-              Sending and receiving countries
+              Receiving Countries
             </h2>
             <p className="text-[#4b5563] leading-7">
               Whether you're supporting family abroad, managing finances across borders
@@ -73,4 +73,4 @@ const SendingReceivingCountriesSection = () => {
   );
 };
 
-export default SendingReceivingCountriesSection;
+export default ReceivingCountriesSection;
