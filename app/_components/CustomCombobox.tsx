@@ -23,6 +23,7 @@ interface ICustomCombobox extends React.ComponentProps<"button"> {
     options: {
         value: string;
         label: string;
+        fullLabel?: string;
     }[];
     emptyLabel?: React.ReactNode;
     placeholder?: string;
@@ -47,6 +48,29 @@ export function CustomCombobox({
 }: ICustomCombobox) {
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState(newVal ?? defaultValue ?? (options.length > 0 ? options[0].value : ""));
+    const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+    const [dropdownStyle, setDropdownStyle] = React.useState<React.CSSProperties | undefined>();
+
+    // When opened, size dropdown to the closest .input-wrapper (full row width)
+    React.useEffect(() => {
+        function measure() {
+            const el = triggerRef.current as HTMLElement | null;
+            if (!el) return;
+            const container = el.closest('.input-wrapper') as HTMLElement | null;
+            if (container) {
+                const containerRect = container.getBoundingClientRect();
+                const width = containerRect.width;
+                setDropdownStyle({ width });
+            } else {
+                setDropdownStyle(undefined);
+            }
+        }
+        if (open) {
+            measure();
+            window.addEventListener('resize', measure);
+            return () => window.removeEventListener('resize', measure);
+        }
+    }, [open]);
 
     // Sync with external value changes
     React.useEffect(() => {
@@ -65,6 +89,7 @@ export function CustomCombobox({
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                     <Button
+                        ref={triggerRef}
                         variant="outline"
                         role="combobox"
                         aria-expanded={open}
@@ -86,13 +111,15 @@ export function CustomCombobox({
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent
+                    sideOffset={0}
+                    align="end"
                     className={cn(
-                        "p-0 z-[100]",
+                        "p-0 z-[100] rounded-b-lg rounded-t-none border border-gray-200 shadow-sm overflow-hidden bg-white",
                         optionFullWidth
                             ? "w-auto min-w-[240px] md:min-w-[280px]"
                             : "w-[var(--radix-popover-trigger-width)]",
                     )}
-                    style={optionFullWidth ? {} : { width: 'var(--radix-popover-trigger-width)' }}
+                    style={optionFullWidth ? dropdownStyle : (dropdownStyle ?? { width: 'var(--radix-popover-trigger-width)' })}
                 >
                     <Command>
                         <CommandInput placeholder="Search options..." />
@@ -114,7 +141,16 @@ export function CustomCombobox({
                                         }}
                                         className="cursor-pointer hover:bg-gray-100"
                                     >
-                                        {item.label}
+                                        <div className="flex w-full items-center justify-between gap-3">
+                                            <span className="flex items-center gap-2 min-w-0">
+                                                <span className="truncate font-medium">{item.label}</span>
+                                            </span>
+                                            {item.fullLabel && (
+                                                <span className="text-gray-500 truncate max-w-[55%] text-sm text-right">
+                                                    {item.fullLabel}
+                                                </span>
+                                            )}
+                                        </div>
                                     </CommandItem>
                                 ))}
                             </CommandGroup>

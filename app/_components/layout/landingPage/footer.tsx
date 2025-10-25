@@ -7,6 +7,21 @@ const LandingPageFooter = () => {
         <footer className="py-6 sm:py-8 md:py-10 bg-[#001E40] border-t text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+                    {/* Logo and Tagline Section */}
+                    <div className="col-span-1 md:col-span-2 lg:col-span-1">
+                        <Image
+                            src="/assets/images/pic/horLogoWhite.png"
+                            alt="FINASDDEE Logo"
+                            width={200}
+                            height={67}
+                            className="mb-3 sm:mb-4 w-40 sm:w-48 md:w-56 lg:w-60"
+                            sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 240px"
+                        />
+                        <p className="text-white text-sm sm:text-base">
+                            Finasddee sends and receives in 8 countries.
+                        </p>
+                    </div>
+                    
                     {/* Information Section */}
                     <div className="mb-4 sm:mb-6 font-semibold">
                         <h4 className="text-base sm:text-lg font-normal uppercase mb-2 sm:mb-3 text-white">
@@ -63,21 +78,6 @@ const LandingPageFooter = () => {
                                 </Link>
                             </li>
                         </ul>
-                    </div>
-
-                    {/* Logo and Tagline Section */}
-                    <div className="col-span-1 md:col-span-2 lg:col-span-1">
-                        <Image
-                            src="/assets/images/pic/horLogoWhite.png"
-                            alt="FINASDDEE Logo"
-                            width={200}
-                            height={67}
-                            className="mb-3 sm:mb-4 w-40 sm:w-48 md:w-56 lg:w-60"
-                            sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, (max-width: 1024px) 224px, 240px"
-                        />
-                        <p className="text-white text-sm sm:text-base">
-                            Finasddee sends and receives in 8 countries.
-                        </p>
                     </div>
                 </div>
             </div>
