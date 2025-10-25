@@ -23,7 +23,8 @@ const ReferAFriend = () => {
             <div className="min-h-screen bg-white">
                 <style jsx>{`
                     .hero-section {
-                        background: linear-gradient(135deg, #ce9739 0%, #ffed4e 100%);
+                        // background: linear-gradient(135deg, #ce9739 0%, #ffed4e 100%);
+                        background-color: #ce9739;
                         position: relative;
                         overflow: hidden;
                     }
@@ -130,7 +131,7 @@ const ReferAFriend = () => {
                     }
 
                     .btn-yellow:hover {
-                        background: #ffed4e;
+                        background: #C88E29FF;
                         transform: scale(1.05);
                     }
 
@@ -244,7 +245,7 @@ const ReferAFriend = () => {
                                     Share a referral link
                                 </h3>
                                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                                    Go to the <Link href="#" className="text-blue-600 underline">Refer a Friend</Link> page, <Link href="#" className="text-blue-600 underline">Log in</Link> or <Link href="#" className="text-blue-600 underline">sign up</Link>, and then invite up to 20 friends by sharing your personal referral link.
+                                    Go to the <Link href="#" className="text-blue-600 underline">Refer a Friend</Link> page, <Link href="https://finasddee-test-orm.remit.by/en" className="text-blue-600 underline">Log in</Link> or <Link href="https://finasddee-test-orm.remit.by/en/register" className="text-blue-600 underline">sign up</Link>, and then invite up to 20 friends by sharing your personal referral link.
                                 </p>
                             </div>
                         </div>
@@ -259,7 +260,7 @@ const ReferAFriend = () => {
                                     Invite friends to send money
                                 </h3>
                                 <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-                                    Ask your friends to register using the link you shared. Once they send $100 or more within 30 days of creating the profile using <Link href="#" className="text-blue-600 underline">finasddee.com</Link> or the FINASDDEE<sup>®</sup> app, you will be rewarded with a $15 Amazon.com e-gift code* while your friend will get a $10 Amazon.com e-gift code.
+                                    Ask your friends to register using the link you shared. Once they send $100 or more within 30 days of creating the profile using <Link href="/" className="text-blue-600 underline">finasddee.com</Link> or the FINASDDEE<sup>®</sup> app, you will be rewarded with a $15 Amazon.com e-gift code* while your friend will get a $10 Amazon.com e-gift code.
                                 </p>
                             </div>
                         </div>

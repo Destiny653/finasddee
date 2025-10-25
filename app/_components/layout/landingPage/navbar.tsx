@@ -62,7 +62,7 @@ export function MainHeader() {
               Track Transfer
             </Link>
             <Link
-              href="/#"
+              href="/our-branches"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
               Find Location
@@ -117,7 +117,7 @@ export function MainHeader() {
               </Link>
               <button>
               <Link
-                href="/#"
+                href="/our-branches"
                 className="text-black hover:text-gold-light transition-colors py-2"
                 onClick={toggleMenu}
               >
