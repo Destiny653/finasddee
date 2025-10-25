@@ -220,44 +220,43 @@ export function PageHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8 text-base">
-           <button onClick={(e)=>handleScroll('how-it-works')} >
+           {/* <button onClick={(e)=>handleScroll('how-it-works')} > */}
+           <button >
             <Link
-              href="/#how-it-works"
+              href="/"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
-              How it works
+              Send Money
             </Link>
            </button>
             <Link
-              href="/faq"
+              href="/#"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
-              Help
+              Track Transfer
             </Link>
-            <button onClick={()=>handleScroll('network-section')}>
             <Link
-              href="/#network-section"
+              href="/#"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
-              Our Network
+              Find Location
             </Link>
-            </button>
           </nav>
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-6 text-base">
-            <button
-              onClick={() => openAuthModal('signin')}
+            <Link
+              href="https://finasddee-test-orm.remit.by/en"
               className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
             >
               Login
-            </button>
-            <button
-              onClick={() => openAuthModal('register')}
+            </Link>
+            <Link
+              href="https://finasddee-test-orm.remit.by/en/register"
               className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 font-medium transition-colors"
             >
               Register
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -274,50 +273,45 @@ export function PageHeader() {
         {isMenuOpen && (
           <div className="lg:hidden bg-white backdrop-blur-sm rounded-lg p-4 absolute top-full left-0 right-0 mt-2 mx-4">
             <nav className="flex flex-col space-y-4">
-              <button onClick={()=>(handleScroll('how-it-works'))}>
+              <button>
               <Link
-                href="#how-it-works"
+                href="/"
                 className="text-black hover:text-gold-light transition-colors py-2"
                 onClick={toggleMenu}
               >
-                How it works
+                Send Money
               </Link>
               </button>
               <Link
-                href="/faq"
+                href="/#"
                 className="text-black hover:text-gold-light text-center transition-colors py-2"
                 onClick={toggleMenu}
               >
-                Help
+                Track Transfer
               </Link>
-              <button onClick={()=>(handleScroll('network-section'))}>
+              <button>
               <Link
-                href="#network-section"
+                href="/#"
                 className="text-black hover:text-gold-light transition-colors py-2"
                 onClick={toggleMenu}
               >
-                Our Network
+                Find Location
               </Link>
               </button>
               <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
-              <button
-                onClick={() => {
-                  openAuthModal('signin')
-                  toggleMenu()
-                }}
+          
+              <Link
+                href="https://finasddee-test-orm.remit.by/en"
                 className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-9 px-6 text-sm font-medium transition-colors w-full"
               >
                 Login
-              </button>
-              <button
-                onClick={() => {
-                  openAuthModal('register')
-                  toggleMenu()
-                }}
-                className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-9 px-6 text-sm font-medium transition-colors w-full"
+              </Link>
+              <Link
+                href="https://finasddee-test-orm.remit.by/en/register"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 font-medium transition-colors"
               >
                 Register
-              </button>
+              </Link>
               </div>
             </nav>
           </div>

@@ -1,0 +1,42 @@
+"use client";
+
+import React from "react";
+
+const ReferFriendSection = () => {
+  return (
+    <section className="py-8 px-8 md:py-12 bg-white">
+      <div className="container mx-auto px-4">
+        <div 
+          className="rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6"
+          style={{ backgroundColor: "#001E40" }}
+        >
+          {/* Text Content */}
+          <div className="text-center md:text-left">
+            <h2 
+              className="text-2xl md:text-3xl lg:text-4xl font-bold"
+              style={{ color: "#ce9739" }}
+            >
+              Refer a friend!
+            </h2>
+          </div>
+
+          {/* Button */}
+          <div className="flex-shrink-0">
+            <button
+              className="px-6 md:px-8 py-3 md:py-3.5 rounded-full font-semibold text-sm md:text-base transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+              style={{
+                color: "#ce9739",
+                border: "2px solid #ce9739",
+                backgroundColor: "transparent",
+              }}
+            >
+              Learn more
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ReferFriendSection;

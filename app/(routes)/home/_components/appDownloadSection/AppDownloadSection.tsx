@@ -49,8 +49,8 @@ const AppDownloadSection = () => {
 
                         {/* Right Content */}
                         <div className="relative z-10">
-                            <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-                                Banking at Your Fingertips
+                            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+                                Money transfers at your fingertips with the FINASDDEE app
                             </h2>
                             <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-xl">
                                 Transform your financial experience with our powerful mobile app. 
@@ -66,7 +66,7 @@ const AppDownloadSection = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <p className="text-white/90">Global money transfers with competitive rates</p>
+                                    <p className="text-white/90">Secure global money transfers</p>
                                 </div>
                                 <div className="flex items-start mb-4">
                                     <div className="mr-3 mt-1">
@@ -74,7 +74,7 @@ const AppDownloadSection = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <p className="text-white/90">Real-time transaction tracking and notifications</p>
+                                    <p className="text-white/90">Real-time transaction tracking</p>
                                 </div>
                                 <div className="flex items-start mb-4">
                                     <div className="mr-3 mt-1">
@@ -82,7 +82,7 @@ const AppDownloadSection = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <p className="text-white/90">Bank-grade security and 24/7 support</p>
+                                    <p className="text-white/90">Convenient and fast transfers</p>
                                 </div>
                             </div>
 

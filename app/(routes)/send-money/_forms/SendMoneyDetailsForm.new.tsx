@@ -223,13 +223,11 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
 
     // Define available receiver countries
     const receiverCountries = [
-        { value: "Cameroon", label: "🇨🇲 Cameroon — XAF" },
-        // Future: add more receiving destinations here with their currency
+        { value: "Cameroon", label: "🇨🇲 XAF", fullLabel: "Cameroon" }
     ];
 
     const senderCurrencies = [
-        { value: "GBP", label: "🇬🇧 United Kingdom — GBP" },
-        // Future: add more sending countries/currencies if enabled
+        { value: "GBP", label: "🇬🇧 GBP", fullLabel: "United Kingdom" }
     ];
 
     return (
@@ -325,8 +323,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 }
                 
                 .input-wrapper input {
-                    flex: 0 0 40%;
-                    min-width: 0;
+                    flex: 1;
                     border: none;
                     outline: none;
                     padding: 0 16px;
@@ -341,8 +338,27 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 
                 .currency-select {
                     border-left: 1px solid #e5e7eb;
-                    flex: 0 0 60%;
-                    min-width: 0;
+                    min-width: 120px;
+                }
+                
+                @media (max-width: 768px) {
+                    .input-wrapper {
+                        height: 48px;
+                    }
+                    
+                    .input-wrapper input {
+                        font-size: 16px;
+                        padding: 0 12px;
+                    }
+                    
+                    .currency-select {
+                        min-width: 100px;
+                    }
+                    
+                    .delivery-btn {
+                        padding: 8px 12px;
+                        font-size: 13px;
+                    }
                 }
             `}</style>
 
@@ -362,10 +378,10 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             options={senderCurrencies}
                             value={selectedSendCurrency}
                             onSelectChange={setSelectedSendCurrency}
-                            placeholder="Select currency"
+                            placeholder="GBP"
                             className="h-full border-0 rounded-none"
                             optionFullWidth
-                            // disabled={true}
+                            disabled={false}
                         />
                     </div>
                 </div>
@@ -435,14 +451,14 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 </div>
                 <div className="summary-row">
                     <span>Delivery time</span>
-                    <span className="font-semibold text-[#001E40]">Within minutes</span>
+                    <span className="font-semibold text-blue-600">Within minutes</span>
                 </div>
             </div>
 
             <div className="border-t-2 border-gray-200">
                 <div className="summary-row total">
                     <span>Total Amount</span>
-                    <span className="text-[#001E40] font-bold">
+                    <span className="text-blue-900 font-bold">
                         {totalToPay} {selectedSendCurrency}
                     </span>
                 </div>
@@ -496,16 +512,6 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                         </span>
                     </button>
                 </Link>
-                <p className="text-xs text-gray-500 mt-3 text-center">
-                    *Exchange rate shown is an estimate for an account-to-account transfer and subject to change.
-                </p>
-            </div>
-
-            <div className="text-center">
-                <div className="flex justify-center items-center space-x-4">
-                    <Image src="/assets/images/security pics/credit-card.png" alt="Credit Card" width={32} height={32} />
-                    <Image src="/assets/images/security pics/Trustly-logo.png" alt="Trustly" width={32} height={32} />
-                </div>
             </div>
         </div>
     );

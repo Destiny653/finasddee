@@ -2,7 +2,6 @@
 import HeroSection from "./_components/heroSection/heroSection";
 import HowItWorksSection from "./_components/howItWorksSection/HowItWorksSection";
 import WhyChooseUsSection from "./_components/whyChooseUsSection/WhyChooseUsSection";
-import NetworkSection from "./_components/networkSection/NetworkSection";
 import TestimonialsSection from "./_components/testimonialsSection/TestimonialsSection";
 import SpecialOfferSection from "./_components/specialOfferSection/SpecialOfferSection";
 import FaqSection from "./_components/faqSection/FaqSection";
@@ -11,6 +10,7 @@ import MainLandingPageLayout from "@/app/_components/layout/landingPage/MainLand
 import AppDownloadSection from "./_components/appDownloadSection/AppDownloadSection";
 import ReceivingCountriesSection from "./_components/sendingReceivingCountriesSection/ReceivingCountriesSection";
 import SendingCountriesSection from "./_components/sendingReceivingCountriesSection/SendingCountriesSection";
+import ReferFriendSection from "./_components/referFriend/ReferFriendSection";
 
 const HomePage = () => {
     return (
@@ -19,7 +19,7 @@ const HomePage = () => {
                 <HeroSection />
                 <HowItWorksSection />
                 <WhyChooseUsSection />
-                <NetworkSection />
+                <ReferFriendSection />
                 {/* <TestimonialsSection /> */}
                 {/* <SpecialOfferSection /> */}
                 <AppDownloadSection />
