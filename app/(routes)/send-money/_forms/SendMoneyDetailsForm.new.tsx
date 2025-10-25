@@ -451,14 +451,14 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 </div>
                 <div className="summary-row">
                     <span>Delivery time</span>
-                    <span className="font-semibold text-blue-600">Within minutes</span>
+                    <span className="font-semibold text-[#001E40]">Within minutes</span>
                 </div>
             </div>
 
             <div className="border-t-2 border-gray-200">
                 <div className="summary-row total">
                     <span>Total Amount</span>
-                    <span className="text-blue-900 font-bold">
+                    <span className="text-[#001E40] font-bold">
                         {totalToPay} {selectedSendCurrency}
                     </span>
                 </div>
