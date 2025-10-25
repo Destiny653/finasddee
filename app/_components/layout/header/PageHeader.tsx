@@ -230,7 +230,7 @@ export function PageHeader() {
             </Link>
            </button>
             <Link
-              href="/#"
+              href="/track-transactions"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
               Track Transfer
@@ -283,7 +283,7 @@ export function PageHeader() {
               </Link>
               </button>
               <Link
-                href="/#"
+                href="/track-transactions"
                 className="text-black hover:text-gold-light text-center transition-colors py-2"
                 onClick={toggleMenu}
               >

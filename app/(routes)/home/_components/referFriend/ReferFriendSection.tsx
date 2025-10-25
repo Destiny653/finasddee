@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
+import { useRouter } from 'next/navigation'
 
 const ReferFriendSection = () => {
+  const router = useRouter();
   return (
     <section className="py-8 px-8 md:py-12 bg-white">
       <div className="container mx-auto px-4">
@@ -23,6 +25,7 @@ const ReferFriendSection = () => {
           {/* Button */}
           <div className="flex-shrink-0">
             <button
+              onClick={() => router.push('/refer-friend')}
               className="px-6 md:px-8 py-3 md:py-3.5 rounded-full font-semibold text-sm md:text-base transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
               style={{
                 color: "#ce9739",
@@ -30,7 +33,7 @@ const ReferFriendSection = () => {
                 backgroundColor: "transparent",
               }}
             >
-              Learn more
+                Learn more
             </button>
           </div>
         </div>
