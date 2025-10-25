@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 const ReferFriendSection = () => {
   const router = useRouter();
   return (
-    <section className="py-8 px-8 md:py-12 bg-white">
+    <section className="py-8 px-8 md:py-12  bg-[#D8D9DAFF]">
       <div className="container mx-auto px-4">
         <div 
           className="rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6"
@@ -20,6 +20,7 @@ const ReferFriendSection = () => {
             >
               Refer a friend!
             </h2>
+            <p className="text-white">Share your referral with friends and family to get extra bonus rewards.</p>
           </div>
 
           {/* Button */}
