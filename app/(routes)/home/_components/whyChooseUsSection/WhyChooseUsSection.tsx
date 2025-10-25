@@ -24,7 +24,7 @@ const features = [
 
 const WhyChooseUsSection = () => {
     return (
-        <section className="relative overflow-hidden bg-[#D8D9DAFF]" style={{
+        <section className="relative overflow-hidden" style={{
             paddingBottom: '4rem',
         }}>
             <div className="flex flex-col lg:flex-row">
