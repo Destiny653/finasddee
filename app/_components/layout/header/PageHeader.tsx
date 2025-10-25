@@ -282,13 +282,26 @@ export function PageHeader() {
         <div
           className={`fixed inset-y-0 right-0 z-50 w-80 max-w-[85%] bg-white shadow-xl lg:hidden transform transition-transform duration-300 ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+          } flex flex-col`}
           role="dialog"
           aria-modal="true"
           aria-hidden={!isMenuOpen}
         >
           <div className="p-4 border-b flex items-center justify-between">
-            <span className="font-medium">Finasddee</span>
+            <span className="font-medium">
+              {/* Logo */}
+              <div className="flex items-center">
+                <Link href="/" className="flex items-center">
+                  <Image
+                    src="/assets/images/pic/FinasddeeHorizontal.svg"
+                    alt="Finasddee"
+                    className="h-15 w-auto"
+                    width={500}
+                    height={500}
+                  />
+                </Link>
+              </div>
+            </span>
             <button
               onClick={toggleMenu}
               className="p-2 text-gray-800 hover:text-[#ce9739]"
@@ -297,7 +310,7 @@ export function PageHeader() {
               <X size={20} />
             </button>
           </div>
-          <nav className="p-4 flex flex-col space-y-4">
+          <nav className="p-4 flex flex-col space-y-4 flex-1 overflow-y-auto">
             <button>
             <Link
               href="/"
@@ -323,22 +336,23 @@ export function PageHeader() {
               Find Location
             </Link>
             </button>
-            <div className="flex flex-col space-y-2 pt-4 border-t border-white/20">
-      
-            <Link
-              href="https://finasddee-test-orm.remit.by/en"
-              className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-9 px-6 text-sm font-medium transition-colors w-full"
-            >
-              Login
-            </Link>
-            <Link
-              href="https://finasddee-test-orm.remit.by/en/register"
-              className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 font-medium transition-colors"
-            >
-              Register
-            </Link>
-            </div>
           </nav>
+          <div className="p-4 border-t">
+            <div className="flex flex-col space-y-2">
+              <Link
+                href="https://finasddee-test-orm.remit.by/en"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 text-sm font-medium transition-colors w-full"
+              >
+                Login
+              </Link>
+              <Link
+                href="https://finasddee-test-orm.remit.by/en/register"
+                className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 text-sm font-medium transition-colors w-full"
+              >
+                Register
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 
