@@ -24,13 +24,15 @@ const features = [
 
 const WhyChooseUsSection = () => {
     return (
-        <section className="relative overflow-hidden" style={{
+        <section className="relative overflow-hidden bg-[#D8D9DAFF]" style={{
             paddingBottom: '4rem',
         }}>
             <div className="flex flex-col lg:flex-row">
-        
+
                 {/* Main colored section */}
-                <section className="bg-white py-16">
+                <div className="lg:w-1/2">
+            
+                    <section className=" py-16">
                     <div className="container mx-auto px-4">
                         <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-12">
                             Why choose Finasddee?
@@ -59,17 +61,17 @@ const WhyChooseUsSection = () => {
                                     </div>
                                 </div>
                             ))}
-                            </div>
                         </div>
                     </div>
+                    </div>
                 </section>
-
+                </div>
                 {/* right section with background image - Desktop */}
-                <div className="md:hidden lg:block lg:w-1/2 min-h-[300px] bg-cover bg-center bg-no-repeat"
+                <div className="md:hidden lg:block lg:w-1/2 min-h-[600px] bg-cover bg-center bg-no-repeat"
                     style={{
                         backgroundImage: "url('/assets/images/cashless.jpg')",
-                        WebkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 15% 100%, 0% 85%)',
-                        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 15% 100%, 0% 85%)'
+                        WebkitClipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 30% 100%, 0% 75%)',
+                        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 30% 100%, 0% 75%)'
                     }}>
                 </div>
                 
