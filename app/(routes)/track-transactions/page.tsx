@@ -60,6 +60,27 @@ const TrackTransactionPage = () => {
   const [refId, setRefId] = useState('');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [requestError, setRequestError] = useState(''); // network/HTTP layer error
+  const [responseFail, setResponseFail] = useState(''); // top-level <status> != SUCCESS
+  const [apiResult, setApiResult] = useState<null | {
+    trans_ref?: string;
+    agent_trans_ref?: string;
+    benef_trans_ref?: string;
+    status?: string;
+    compliance_check_required?: string;
+    compliance_checked?: string;
+    ext_compliance_check_required?: string;
+    ext_compliance_checked?: string;
+    error_reason?: string;
+    error_details?: string;
+    deleted_reason?: string;
+    admin_comments?: string;
+    agent_comments?: string;
+    response_status?: string;
+    response_id?: string;
+    raw_xml?: string;
+  }>(null);
 
   const formatDate = (timestamp: string) => {
     const date = new Date(timestamp);
@@ -72,34 +93,103 @@ const TrackTransactionPage = () => {
     return date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!refId.trim()) {
       setError('Please enter a Reference ID');
       return;
     }
 
-    const stored = JSON.parse(localStorage.getItem('transactions') || '[]') as RawTransaction[];
-    const found = stored.find((tx) => `REF-${tx.id.slice(0, 8).toUpperCase()}` === refId.toUpperCase());
+    setLoading(true);
+    setError('');
+    setApiResult(null);
+    setTransaction(null);
+    setRequestError('');
+    setResponseFail('');
 
-    if (found) {
-      const transformed: Transaction = {
-        id: found.id,
-        name: `${found.receiverData.firstName || ''} ${found.receiverData.middleName || ''} ${found.receiverData.lastName || ''}`.trim() || 'Unknown Recipient',
-        time: new Date(found.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        amount: Number(found.detailsData.youSend || 0),
-        type: 'sent',
-        date: formatDate(found.timestamp),
-        email: found.receiverData.email || 'N/A',
-        transactionId: found.id,
-        referenceId: `REF-${found.id.slice(0, 8).toUpperCase()}`,
-        status: 'received', // Assume received for tracking
-        note: found.detailsData.paymentPurpose || 'No note provided',
+    try {
+      const res = await fetch('/api/transaction-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ trans_ref: refId.trim() }),
+      });
+
+      const text = await res.text();
+
+      if (!res.ok) {
+        setRequestError(`Request failed (${res.status})`);
+        return;
+      }
+
+      // Parse XML response
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(text, 'text/xml');
+
+      const getText = (tag: string) => xml.getElementsByTagName(tag)?.[0]?.textContent || '';
+
+      const response_status = getText('status');
+      const response_id = getText('responseId');
+
+      const resultNode = xml.getElementsByTagName('result')?.[0];
+
+      const pick = (tag: string) => resultNode?.getElementsByTagName(tag)?.[0]?.textContent || '';
+
+      const result = {
+        trans_ref: pick('trans_ref'),
+        agent_trans_ref: pick('agent_trans_ref'),
+        benef_trans_ref: pick('benef_trans_ref'),
+        status: pick('status'),
+        compliance_check_required: pick('compliance_check_required'),
+        compliance_checked: pick('compliance_checked'),
+        ext_compliance_check_required: pick('ext_compliance_check_required'),
+        ext_compliance_checked: pick('ext_compliance_checked'),
+        error_reason: pick('error_reason'),
+        error_details: pick('error_details'),
+        deleted_reason: pick('deleted_reason'),
+        admin_comments: pick('admin_comments'),
+        agent_comments: pick('agent_comments'),
+        response_status,
+        response_id,
+        raw_xml: text,
       };
-      setTransaction(transformed);
-      setError('');
-    } else {
-      setError('Transaction not found. Please check the Reference ID.');
-      setTransaction(null);
+
+      // Handle top-level response FAIL
+      if (response_status.toUpperCase() !== 'SUCCESS') {
+        setResponseFail(result.error_reason || 'Request failed at upstream (status FAIL)');
+        setApiResult(result);
+        return;
+      }
+
+      // Map upstream status to local flow
+      const statusMap: Record<string, Transaction['status']> = {
+        PROCESSED: 'received',
+        RECEIVED: 'received',
+        AVAILABLE: 'available',
+        PROCESSING: 'processing',
+        IN_PROGRESS: 'processing',
+      };
+
+      const mappedStatus = statusMap[(result.status || '').toUpperCase()] || 'processing';
+
+      // Provide minimal transaction just to drive the StatusFlow
+      setTransaction({
+        id: result.trans_ref || '-',
+        name: '-',
+        time: '-',
+        amount: 0,
+        type: 'sent',
+        date: formatDate(new Date().toISOString()),
+        email: '-',
+        transactionId: result.trans_ref || '-',
+        referenceId: result.trans_ref || '-',
+        status: mappedStatus,
+        note: '-',
+      });
+
+      setApiResult(result);
+    } catch (e: any) {
+      setRequestError(e?.message || 'Unexpected error');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -198,9 +288,14 @@ const TrackTransactionPage = () => {
               >
                 Search
               </button>
+              {loading && (
+                <span className="ml-3 text-gray-500">Loading...</span>
+              )}
             </div>
 
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {error && <p className="text-red-500 mb-2">{error}</p>}
+            {requestError && <p className="text-red-500 mb-2">{requestError}</p>}
+            {responseFail && <p className="text-red-500 mb-4">{responseFail}</p>}
 
             {transaction && (
               <div>
@@ -208,17 +303,39 @@ const TrackTransactionPage = () => {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Check size={24} className="text-green-600" />
                   </div>
-                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                    {formatAmount(transaction.amount)}
-                  </h2>
-                  <p className="text-gray-600">
-                    You sent <span className="font-medium">{transaction.name}</span>
-                  </p>
-                  <p className="text-gray-500 text-sm">{transaction.email}</p>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">Status</h2>
+                  <p className="text-gray-600">{transaction.status}</p>
                 </div>
 
                 <div className="flex justify-center">
                   <StatusFlow />
+                </div>
+              </div>
+            )}
+
+            {apiResult && (
+              <div className="mt-8 border-t pt-6">
+                <h3 className="text-xl font-semibold mb-4">Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div><span className="text-gray-500">Response ID:</span> <span className="font-medium">{apiResult.response_id || '-'}</span></div>
+                  <div><span className="text-gray-500">Response Status:</span> <span className="font-medium">{apiResult.response_status || '-'}</span></div>
+                  <div><span className="text-gray-500">Transaction Ref:</span> <span className="font-medium">{apiResult.trans_ref || '-'}</span></div>
+                  <div><span className="text-gray-500">Benef Ref:</span> <span className="font-medium">{apiResult.benef_trans_ref || '-'}</span></div>
+                  <div><span className="text-gray-500">Agent Ref:</span> <span className="font-medium">{apiResult.agent_trans_ref || '-'}</span></div>
+                  <div><span className="text-gray-500">Status:</span> <span className="font-medium">{apiResult.status || '-'}</span></div>
+                  <div><span className="text-gray-500">Compliance Required:</span> <span className="font-medium">{apiResult.compliance_check_required || '-'}</span></div>
+                  <div><span className="text-gray-500">Compliance Checked:</span> <span className="font-medium">{apiResult.compliance_checked || '-'}</span></div>
+                  <div><span className="text-gray-500">Ext Compliance Required:</span> <span className="font-medium">{apiResult.ext_compliance_check_required || '-'}</span></div>
+                  <div><span className="text-gray-500">Ext Compliance Checked:</span> <span className="font-medium">{apiResult.ext_compliance_checked || '-'}</span></div>
+                  {apiResult.error_reason && (
+                    <div className="md:col-span-2"><span className="text-gray-500">Error Reason:</span> <span className="font-medium">{apiResult.error_reason}</span></div>
+                  )}
+                  {apiResult.error_details && (
+                    <div className="md:col-span-2"><span className="text-gray-500">Error Details:</span> <span className="font-medium">{apiResult.error_details}</span></div>
+                  )}
+                  {apiResult.deleted_reason && (
+                    <div className="md:col-span-2"><span className="text-gray-500">Deleted Reason:</span> <span className="font-medium">{apiResult.deleted_reason}</span></div>
+                  )}
                 </div>
               </div>
             )}
