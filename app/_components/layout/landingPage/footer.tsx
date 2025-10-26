@@ -8,9 +8,9 @@ const LandingPageFooter = () => {
     return (
         <footer className="py-6 sm:py-8 md:py-10 bg-[#001E40] border-t text-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-                    {/* Logo and Tagline Section */}
-                    <div className="col-span-1 md:col-span-2 lg:col-span-1">
+                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+                    {/* Logo and Tagline Section - Full width on mobile, normal on larger screens */}
+                    <div className="col-span-2 md:col-span-2 lg:col-span-1">
                         <Image
                             src="/assets/images/pic/horLogoWhite.png"
                             alt="FINASDDEE Logo"
@@ -22,8 +22,8 @@ const LandingPageFooter = () => {
                         <p className="text-white text-sm sm:text-base">{t('routes.footer.tagline')}</p>
                     </div>
                     
-                    {/* Information Section */}
-                    <div className="mb-4 sm:mb-6 font-semibold md:col-start-1">
+                    {/* Information Section - Normal flow on all screens */}
+                    <div className="mb-4 sm:mb-6 font-semibold">
                         <h4 className="text-base sm:text-lg font-normal uppercase mb-2 sm:mb-3 text-white">
                             {t('routes.footer.info.title')}
                         </h4>
@@ -51,8 +51,8 @@ const LandingPageFooter = () => {
                         </ul>
                     </div>
 
-                    {/* Help and Support Section */}
-                    <div className="mb-4 sm:mb-6 font-semibold md:col-start-2">
+                    {/* Help and Support Section - Normal flow on all screens */}
+                    <div className="mb-4 sm:mb-6 font-semibold">
                         <h4 className="text-base sm:text-lg font-normal uppercase mb-2 sm:mb-3 text-white">
                             {t('routes.footer.support.title')}
                         </h4>
