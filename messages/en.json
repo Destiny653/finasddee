@@ -1,0 +1,297 @@
+{
+  "nav.sendMoney": "Send Money",
+  "nav.trackTransfer": "Track Transfer",
+  "nav.findLocation": "Find Location",
+
+  "auth.login": "Login",
+  "auth.register": "Register",
+
+  "track.title": "Track Transaction",
+  "track.placeholder": "Enter Reference ID (e.g. REF-12345678)",
+  "track.search": "Search",
+  "track.status": "Status",
+  "track.details": "Details",
+  "track.date.today": "today",
+  "track.date.yesterday": "yesterday",
+  "track.loading": "Loading...",
+  "track.errors.emptyRef": "Please enter a Reference ID",
+  "track.errors.requestFailed": "Request failed ({status})",
+  "track.errors.upstreamFail": "Request failed at upstream (status FAIL)",
+  "track.statusFlow.sent": "Sent",
+  "track.statusFlow.processing": "Processing",
+  "track.statusFlow.available": "Available",
+  "track.statusFlow.received": "Received",
+  "track.detailsLabels.responseId": "Response ID",
+  "track.detailsLabels.responseStatus": "Response Status",
+  "track.detailsLabels.transactionRef": "Transaction Ref",
+  "track.detailsLabels.benefRef": "Benef Ref",
+  "track.detailsLabels.agentRef": "Agent Ref",
+  "track.detailsLabels.status": "Status",
+  "track.detailsLabels.complianceRequired": "Compliance Required",
+  "track.detailsLabels.complianceChecked": "Compliance Checked",
+  "track.detailsLabels.extComplianceRequired": "Ext Compliance Required",
+  "track.detailsLabels.extComplianceChecked": "Ext Compliance Checked",
+  "track.detailsLabels.errorReason": "Error Reason",
+  "track.detailsLabels.errorDetails": "Error Details",
+  "track.detailsLabels.deletedReason": "Deleted Reason",
+
+  "home": {
+    "hero": {
+      "subtitle": "A better way to",
+      "title": "Send Money",
+      "tagline": "You've got the money. We've got the speed."
+    },
+    "how": {
+      "title": "How It Works",
+      "description": "Finasddee is the fastest way to send money to family, friends and businesses home and abroad",
+      "steps": {
+        "1": {"title": "Sign up for free", "desc": "Register online or via our mobile app. Please have your email address ready."},
+        "2": {"title": "Select country", "desc": "Choose the destination country and amount. See rates and fees transparently."},
+        "3": {"title": "Add recipient", "desc": "Add mobile wallet or bank account details. Pick from previous recipients too."},
+        "4": {"title": "Verify your identity", "desc": "Complete standard KYC by verifying your preferred national ID."},
+        "5": {"title": "Pay for your transfer", "desc": "Confirm the amount, fees and total; you always see what you pay."},
+        "6": {"title": "Track transfer", "desc": "Track status and manage recipients and transfers in your account."}
+      }
+    },
+    "why": {
+      "title": "Why choose Finasddee?",
+      "features": {
+        "1": {"title": "Multiple countries", "desc": "Send money to multiple countries conveniently."},
+        "2": {"title": "Lower fees", "desc": "We work to keep our fees among the lowest."},
+        "3": {"title": "Easy to use", "desc": "A clean, intuitive experience across devices."},
+        "4": {"title": "Faster payments", "desc": "Recipients typically receive funds within minutes."}
+      }
+    },
+    "app": {
+      "title": "Money transfers at your fingertips with the FINASDDEE app",
+      "description": "Transform your financial experience with our powerful mobile app. Send money globally, track transactions in real-time, and manage your finances securely — all from your smartphone.",
+      "bullets": {
+        "1": "Secure global money transfers",
+        "2": "Real-time transaction tracking",
+        "3": "Convenient and fast transfers"
+      },
+      "store": {
+        "google": "Get it on Google Play",
+        "apple": "Download on the App Store"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Can't find it here? Check out our",
+      "link": "Help center",
+      "seeMore": "See more FAQ",
+      "items": {
+        "1": {
+          "q": "1. How do I send money to an overseas Bank Account?",
+          "a": "You will first have to register with us! We will then send you an email to activate your online account. Upon activating your online account you can start sending money to almost any bank account in many country securely – although some restrictions do apply.\n\nYou just need the bank account details (such as the SWIFT BIC number and/or IBAN number – depending on the country of the recipient.)"
+        },
+        "2": {
+          "q": "2. Do I need to Register?",
+          "a": "Yes, you will need to register with us to use our service. This will only take a minute and it is FREE ! There is no obligation to use our service.\n\nOnce you have registered, you can send up to around $900 or EUR 1000 to most countries we serve.\n\nTo send more, and to allow a wider list of countries and payment methods you will need to verify your account with Finasddee."
+        },
+        "3": {
+          "q": "3. What is the minimum or maximum amount I can transfer?",
+          "a": "You need to transfer a minimum amount of $10 or the equivalent in your currency.\n\nOnce you have registered, you can send a maximum amount of $900 or EUR 1000 per year before account verification.\n\nOnce you have verified your Finasddee account you will be able to send up to $10,000 per transaction online via Bank Transfer and a maximum amount of $5,000 via card. However, you can make more than one card payment a day.\n\nVerify your Finasddee account\nIn the beginning, your Finasddee account is not verified. Verifying means, for the client, that he/she benefits from several advantages of our services as well as improves the security of his/her account.\n\nIn order to verify your account we need (i) one proof of identity (i.e. Passport, National ID card, EU national resident permit, or EEA photo card driving license)\n\nand(ii) one proof of address (.i.e Utility bill (British Gas, Electricity or Bank Statement), Local authority tax bill, correspondence from HM Revenue & Customs)"
+        },
+        "4": {
+          "q": "4. How long will my bank-to-bank transfer take?",
+          "a": "Depending how long your funds take to reach us (BACS/CHAPS/Debit or Credit card). Once your funds have been received and cleared, we will send out the required currency to the recipient's bank account within the day if it is before the cut off time.\n\nHowever, bear in mind different currencies and time zones vary the time for the funds to reach and be cleared by the designated bank.\n\nMost currency transfers can take up 2 to 3 days to be cleared and arrive in the designated bank account. You will receive a confirmation when we have sent out your funds."
+        },
+        "5": {
+          "q": "5. How does Finasddee save me money?",
+          "a": "Finasddee is an Independent commercial foreign exchange provider. This means that we buy the currency in bulk from the market at 'wholesale rates' and then pass on the price benefit to our clients. This could mean a saving from a hundred to several thousand pounds (depending on the amount you purchase). Finasddee provides you foreign exchange at 'commercial rates' as opposed to 'tourist rates' that you get from your high street banks."
+        },
+        "6": {
+          "q": "6. Is my money safe?",
+          "a": "Your money is always safe. All funds are held in our UK client's bank accounts. These accounts are segregated in line with US Dollars regulations and have been developed to protect client funds in the unexpected event of fraud or bankruptcy. This means that your money is always secure."
+        }
+      }
+    },
+    "form": {
+      "youSend": {"label": "You're sending"},
+      "recipientGets": {"label": "Your receiver gets"},
+      "selectCountry": "Select country",
+      "summary": {
+        "exchangeRate": "Exchange rate",
+        "fees": "Our fees",
+        "deliveryTime": "Delivery time",
+        "deliveryTimeValue": "Within minutes",
+        "totalAmount": "Total Amount"
+      },
+      "cta": {"sendNow": "Send now", "calculating": "Calculating..."},
+      "errors": {
+        "invalidAmount": "Please enter a valid amount to send.",
+        "waitCalculating": "Please wait while we calculate the charges.",
+        "generic": "There was an error. Please try again."
+      }
+    },
+    "refer": {
+      "title": "Refer a friend!",
+      "description": "Share your referral with friends and family to get extra bonus rewards.",
+      "cta": "Learn more"
+    },
+    "receiving": {
+      "title": "Receiving Countries",
+      "description": "Whether you're supporting family abroad, managing finances across borders or sending emergency funds, we give you the flexibility to move money to the people and places that matter quickly, securely, and on your terms.",
+      "card": "Send money to {country}"
+    },
+    "sending": {
+      "title": "Send money internationally from your location",
+      "sendFrom": "Send from"
+    }
+  },
+
+  "contact": {
+    "breadcrumb": {"home": "Home", "current": "Contact Us"},
+    "header": {"title": "Contact Us"},
+    "address": {
+      "title": "Finasddee Inc.",
+      "line1": "74 West Street, Sittingbourne Kent",
+      "line2": "ME10 1AN"
+    },
+    "phone": {
+      "title": "Telephone",
+      "primary": "+44 7441 426016",
+      "secondary": "+44 7441 426016"
+    },
+    "inquiries": {"title": "Business Inquiries"},
+    "social": {
+      "title": "Get in touch",
+      "subtitle": "Connect with us on social media.",
+      "links": {
+        "facebook": "Facebook",
+        "twitter": "Twitter",
+        "google": "Google",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram"
+      }
+    },
+    "support": {
+      "heroTitle": "Awesome Customer Support",
+      "heroSubtitle": "Have you any query? Don't worry. We have great people ready to help you whenever you need it.",
+      "cta": "Find out more"
+    }
+  },
+  "routes": {
+    "common": {
+      "breadcrumb": {"home": "Home"}
+    },
+    "branches": {
+      "header": "Our Branches & Cash Points",
+      "sidebar": {
+        "send": "Send with FINASDDEE Credit Line",
+        "branches": "Our Branches & Cash Points",
+        "contact": "Contact Us",
+        "faqs": "FAQs"
+      },
+      "requestCall": "REQUEST A CALL BACK"
+    },
+    "help": {
+      "hero": {
+        "title": "How can we help you?",
+        "searchPlaceholder": "Search for answer..."
+      },
+      "topics": {
+        "account": "My Account",
+        "payment": "Payment",
+        "security": "Security",
+        "paymentMethods": "Payment Methods",
+        "seeArticles": "See articles"
+      },
+      "popular": {
+        "title": "Popular Topics",
+        "subtitle": "Lisque persius interesset his et, in quot quidam persequeris."
+      },
+      "faq": {
+        "1": {"q": "I forgot the password for my account.", "a": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "2": {"q": "How do I withdraw funds from my account?", "a": "Iisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "3": {"q": "How do I link bank account to my account?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "4": {"q": "How do I confirm the email address on my account?", "a": "Iisque Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "5": {"q": "How do I receive payments?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "6": {"q": "How Can I View My Payments History?", "a": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "7": {"q": "Where is my refund?", "a": "Iisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "8": {"q": "How do I request payments or send an invoice?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "9": {"q": "Forgot my password! What next?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "10": {"q": "Closing Your Account", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."}
+      },
+      "cantFind": {
+        "title": "Can't find what you're looking for?",
+        "text": "We want to answer all of your queries. Get in touch and we'll get back to you as soon as we can.",
+        "cta": "Contact us"
+      },
+      "tech": {
+        "title": "Technical questions",
+        "text": "Have some technical questions? Hit us up on live chat or whatever.",
+        "cta": "Click here"
+      }
+    },
+    "policy": {
+      "title": "Policy",
+      "subtitle": "Our policies and terms",
+      "footer": {
+        "title": "Still have questions?",
+        "text": "If you have any further questions, please don't hesitate to contact us.",
+        "cta": "Contact us"
+      },
+      "privacy": {"title": "Privacy Policy"},
+      "cookie": {"title": "Cookies Policy"},
+      "userAgreement": {"title": "User Agreement"}
+    },
+    "sending": {
+      "title": "Sending Countries",
+      "subtitle": "We support money transfers from these countries. Select your location to get started.",
+      "dialCodeLabel": "Dial Code",
+      "cta": {
+        "title": "Ready to Send Money?",
+        "subtitle": "Choose your sending country and start your secure money transfer today.",
+        "getStarted": "Get Started"
+      },
+      "stats": {
+        "countries": "Sending Countries",
+        "support": "Customer Support",
+        "trusted": "Trusted Service"
+      }
+    },
+    "receiving": {
+      "title": "Receiving Countries",
+      "subtitle": "Send money to these countries safely and securely. Choose your destination to see transfer options.",
+      "dialCodeLabel": "Dial Code",
+      "cta": {
+        "title": "Send Money Worldwide",
+        "subtitle": "Choose your receiving country and start sending money to your loved ones today with competitive rates and fast delivery.",
+        "sendNow": "Send Money Now",
+        "checkRates": "Check Rates"
+      },
+      "features": {
+        "bestRates": {"title": "Best Exchange Rates", "desc": "Get competitive rates with transparent fees and no hidden charges."},
+        "fastTransfer": {"title": "Fast Transfer", "desc": "Send money instantly or within minutes to most countries."},
+        "secureReliable": {"title": "Secure & Reliable", "desc": "Bank-level security with 24/7 customer support and tracking."}
+      },
+      "stats": {
+        "receivingCountries": "Receiving Countries",
+        "totalCountries": "Total Countries",
+        "support": "Customer Support",
+        "trusted": "Trusted Service"
+      }
+    },
+    "footer": {
+      "tagline": "Finasddee sends and receives in 8 countries.",
+      "info": {
+        "title": "Information",
+        "howItWorks": "How It Works",
+        "sendingCountries": "Sending Countries",
+        "receivingCountries": "Receiving Countries",
+        "faq": "FAQ"
+      },
+      "support": {
+        "title": "Help and Support",
+        "contact": "Contact Us",
+        "userAgreement": "User Agreement",
+        "privacyPolicy": "Privacy Policy",
+        "cookiePolicy": "Cookie Policy"
+      },
+      "copyright": "Copyright {year} Finasddee. All Rights Reserved."
+    }
+  }
+}

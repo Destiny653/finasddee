@@ -7,11 +7,14 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import AuthModal from '@/app/_components/AuthModal'
 import { handleScroll } from '@/app/_utils/smoothScoll'
+import { useTranslations } from 'next-intl'
+import LanguageSwitcher from '@/app/_components/LanguageSwitcher'
 
 
 type AuthFormType = 'signin' | 'signup' | 'register'
 
 export function MainHeader() {
+  const t = useTranslations()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [currentAuthForm, setCurrentAuthForm] = useState<AuthFormType>('signin')
@@ -52,36 +55,37 @@ export function MainHeader() {
               href="/"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
-              Send Money
+              {t('nav.sendMoney')}
             </Link>
            </button>
             <Link
               href="/track-transactions"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
-              Track Transfer
+              {t('nav.trackTransfer')}
             </Link>
             <Link
               href="/our-branches"
               className="text-gray-800 hover:text-[#ce9739] transition-colors"
             >
-              Find Location
+              {t('nav.findLocation')}
             </Link>
           </nav>
 
-          {/* Desktop Auth Buttons */}
+          {/* Desktop Auth Buttons + Language Switcher */}
           <div className="hidden lg:flex items-center space-x-6 text-base">
+            <LanguageSwitcher />
             <Link
               href="https://finasddee-test-orm.remit.by/en"
               className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
             >
-              Login
+              {t('auth.login')}
             </Link>
             <Link
               href="https://finasddee-test-orm.remit.by/en/register"
               className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 font-medium transition-colors"
             >
-              Register
+              {t('auth.register')}
             </Link>
           </div>
 
@@ -143,7 +147,7 @@ export function MainHeader() {
               className="text-black hover:text-gold-light transition-colors py-2"
               onClick={toggleMenu}
             >
-              Send Money
+              {t('nav.sendMoney')}
             </Link>
             </button>
             <Link
@@ -151,7 +155,7 @@ export function MainHeader() {
               className="text-black hover:text-gold-light text-center transition-colors py-2"
               onClick={toggleMenu}
             >
-              Track Transfer
+              {t('nav.trackTransfer')}
             </Link>
             <button>
             <Link
@@ -159,23 +163,26 @@ export function MainHeader() {
               className="text-black hover:text-gold-light transition-colors py-2"
               onClick={toggleMenu}
             >
-              Find Location
+              {t('nav.findLocation')}
             </Link>
             </button>
           </nav>
           <div className="p-4 border-t">
             <div className="flex flex-col space-y-2">
+              <div className="mb-2">
+                <LanguageSwitcher />
+              </div>
               <Link
                 href="https://finasddee-test-orm.remit.by/en"
                 className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 text-sm font-medium transition-colors w-full"
               >
-                Login
+                {t('auth.login')}
               </Link>
               <Link
                 href="https://finasddee-test-orm.remit.by/en/register"
                 className="inline-flex items-center justify-center rounded-[50px] bg-[#122D4B] text-white hover:bg-[#1a4170] h-10 px-6 text-sm font-medium transition-colors w-full"
               >
-                Register
+                {t('auth.register')}
               </Link>
             </div>
           </div>

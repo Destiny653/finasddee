@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo, FC } from "react";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import Image from "next/image";
 import { DollarSign } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 // Types for API responses
 interface CountryData {
@@ -34,6 +35,7 @@ interface ISendMoneyDetailsForm {
 }
 
 const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange }) => {
+    const t = useTranslations();
     const [youSend, setYouSend] = useState('');
     const [recipientGets, setRecipientGets] = useState('0.0');
     const [fees, setFees] = useState('0.0');
@@ -363,7 +365,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             `}</style>
 
             <div className="mb-4">
-                <label htmlFor="youSend" className="form-label">You're sending</label>
+                <label htmlFor="youSend" className="form-label">{t('home.form.youSend.label')}</label>
                 <div className="input-wrapper">
                     <input
                         type="number"
@@ -388,11 +390,11 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             </div>
 
             <div className="mb-6">
-                <label htmlFor="recipientGets" className="form-label">Your receiver gets</label>
+                <label htmlFor="recipientGets" className="form-label">{t('home.form.recipientGets.label')}</label>
                 <div className="input-wrapper">
                     <input
                         type="text"
-                        value={loading ? "Calculating..." : recipientGets}
+                        value={loading ? t('home.form.cta.calculating') : recipientGets}
                         readOnly
                         style={{ color: '#6b7280' }}
                     />
@@ -401,7 +403,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             options={receiverCountries}
                             value={selectedRecipientCountry}
                             onSelectChange={setSelectedRecipientCountry}
-                            placeholder="Select country"
+                            placeholder={t('home.form.selectCountry')}
                             className="h-full border-0 rounded-none"
                             optionFullWidth
                         />
@@ -438,26 +440,26 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
 
             <div className="border-t border-gray-200 mb-4">
                 <div className="summary-row">
-                    <span>Exchange rate</span>
+                    <span>{t('home.form.summary.exchangeRate')}</span>
                     <span className="font-semibold text-gray-800">
                         {derivedRate ? derivedRate.toFixed(4) : '—'} XAF
                     </span>
                 </div>
                 <div className="summary-row">
-                    <span>Our fees</span>
+                    <span>{t('home.form.summary.fees')}</span>
                     <span className="font-semibold text-gray-800">
                         {fees} {selectedSendCurrency}
                     </span>
                 </div>
                 <div className="summary-row">
-                    <span>Delivery time</span>
-                    <span className="font-semibold text-[#001E40]">Within minutes</span>
+                    <span>{t('home.form.summary.deliveryTime')}</span>
+                    <span className="font-semibold text-[#001E40]">{t('home.form.summary.deliveryTimeValue')}</span>
                 </div>
             </div>
 
             <div className="border-t-2 border-gray-200">
                 <div className="summary-row total">
-                    <span>Total Amount</span>
+                    <span>{t('home.form.summary.totalAmount')}</span>
                     <span className="text-[#001E40] font-bold">
                         {totalToPay} {selectedSendCurrency}
                     </span>
@@ -473,19 +475,19 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                             const amount = parseFloat(youSend);
                             if (!amount || amount <= 0) {
                                 import("sonner").then(({ toast }) => {
-                                    toast.error('Please enter a valid amount to send.');
+                                    toast.error(t('home.form.errors.invalidAmount'));
                                 });
                                 return;
                             }
                             if (loading) {
                                 import("sonner").then(({ toast }) => {
-                                    toast.error('Please wait while we calculate the charges.');
+                                    toast.error(t('home.form.errors.waitCalculating'));
                                 });
                                 return;
                             }
                             if (error) {
                                 import("sonner").then(({ toast }) => {
-                                    toast.error('There was an error. Please try again.');
+                                    toast.error(t('home.form.errors.generic'));
                                 });
                                 return;
                             }
@@ -508,7 +510,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                         disabled={!isFormReady}
                     >
                         <span className="cta-label">
-                            {loading ? 'Calculating...' : 'Send now'}
+                            {loading ? t('home.form.cta.calculating') : t('home.form.cta.sendNow')}
                         </span>
                     </button>
                 </Link>

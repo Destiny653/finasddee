@@ -2,8 +2,11 @@ import React from 'react';
 import CountryList from 'country-list-with-dial-code-and-flag';
 import { PageHeader } from '@/app/_components/layout/header/PageHeader';
 import LandingPageFooter from '@/app/_components/layout/landingPage/footer';
+import { useTranslations } from 'next-intl';
 
 const SendingCountries = () => {
+  const t = useTranslations();
+
   // Define the countries we want to display based on the original HTML
   const sendingCountryCodes = [
     // 'AU', // Australia
@@ -38,10 +41,10 @@ const SendingCountries = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Sending Countries
+              {t('routes.sending.title')}
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We support money transfers from these countries. Select your location to get started.
+              {t('routes.sending.subtitle')}
             </p>
           </div>
 
@@ -74,7 +77,7 @@ const SendingCountries = () => {
                 {/* Optional: Add dial code display */}
                 <div className="mt-4 pt-4 border-t border-gray-100">
                   <p className="text-xs text-gray-400">
-                    Dial Code: {country.dial_code}
+                    {t('routes.sending.dialCodeLabel')}: {country.dial_code}
                   </p>
                 </div>
               </div>
@@ -85,13 +88,13 @@ const SendingCountries = () => {
           <div className="mt-16 text-center">
             <div className="bg-blue-50 rounded-lg p-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                Ready to Send Money?
+                {t('routes.sending.cta.title')}
               </h2>
               <p className="text-gray-600 mb-6 max-w-lg mx-auto">
-                Choose your sending country and start your secure money transfer today.
+                {t('routes.sending.cta.subtitle')}
               </p>
               <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
-                Get Started
+                {t('routes.sending.cta.getStarted')}
               </button>
             </div>
           </div>
@@ -103,15 +106,15 @@ const SendingCountries = () => {
                 {/* {sendingCountries.length} */}
                 8
               </div>
-              <div className="text-gray-600">Sending Countries</div>
+              <div className="text-gray-600">{t('routes.sending.stats.countries')}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-green-600 mb-2">24/7</div>
-              <div className="text-gray-600">Customer Support</div>
+              <div className="text-gray-600">{t('routes.sending.stats.support')}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-600 mb-2">5★</div>
-              <div className="text-gray-600">Trusted Service</div>
+              <div className="text-gray-600">{t('routes.sending.stats.trusted')}</div>
             </div>
           </div>
         </div>

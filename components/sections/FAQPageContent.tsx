@@ -3,18 +3,21 @@
 import Link from 'next/link'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/Accordion'
 import { useFAQs } from '@/lib/queries'
+import { useTranslations, useLocale } from 'next-intl'
 
 export function FAQPageContent() {
-  const { data: faqs = [] } = useFAQs()
+  const locale = useLocale()
+  const { data: faqs = [] } = useFAQs(locale)
+  const t = useTranslations();
 
   return (
     <section id="faq-page" className="py-24 bg-gray-100 text-black">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4">{t('routes.faq.header.title')}</h1>
           <p className="text-lg text-black/90">
-            Can&apos;t find it here? Check out our{' '}
-            <Link href="/help" className="text-black underline hover:text-gold-dark transition-colors">Help center</Link>.
+            {t('routes.faq.header.subtitle')}{' '}
+            <Link href="/help" className="text-black underline hover:text-gold-dark transition-colors">{t('routes.faq.header.link')}</Link>.
           </p>
         </div>
 

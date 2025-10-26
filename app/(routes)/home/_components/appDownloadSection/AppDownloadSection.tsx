@@ -1,8 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 const AppDownloadSection = () => {
+    const t = useTranslations();
     return (
         <section className="relative overflow-hidden bg-[#ce9739]" style={{
             paddingBottom: '4rem',
@@ -50,12 +52,10 @@ const AppDownloadSection = () => {
                         {/* Right Content */}
                         <div className="relative z-10">
                             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
-                                Money transfers at your fingertips with the FINASDDEE app
+                                {t('home.app.title')}
                             </h2>
                             <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-xl">
-                                Transform your financial experience with our powerful mobile app. 
-                                Send money globally, track transactions in real-time, and manage 
-                                your finances securely — all from your smartphone.
+                                {t('home.app.description')}
                             </p>
                         
                             {/* Features List */}
@@ -66,7 +66,7 @@ const AppDownloadSection = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <p className="text-white/90">Secure global money transfers</p>
+                                    <p className="text-white/90">{t('home.app.bullets.1')}</p>
                                 </div>
                                 <div className="flex items-start mb-4">
                                     <div className="mr-3 mt-1">
@@ -74,7 +74,7 @@ const AppDownloadSection = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <p className="text-white/90">Real-time transaction tracking</p>
+                                    <p className="text-white/90">{t('home.app.bullets.2')}</p>
                                 </div>
                                 <div className="flex items-start mb-4">
                                     <div className="mr-3 mt-1">
@@ -82,7 +82,7 @@ const AppDownloadSection = () => {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                                         </svg>
                                     </div>
-                                    <p className="text-white/90">Convenient and fast transfers</p>
+                                    <p className="text-white/90">{t('home.app.bullets.3')}</p>
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@ const AppDownloadSection = () => {
                                 >
                                     <Image
                                         src="/assets/images/pic/google-play-badge.svg"
-                                        alt="Get it on Google Play"
+                                        alt={t('home.app.store.google')}
                                         width={180}
                                         height={53}
                                         className="h-[53px] w-auto"
@@ -110,7 +110,7 @@ const AppDownloadSection = () => {
                                 >
                                     <Image
                                         src="/assets/images/pic/app-store-badge.svg"
-                                        alt="Download on the App Store"
+                                        alt={t('home.app.store.apple')}
                                         width={180}
                                         height={53}
                                         className="h-[53px] w-auto"

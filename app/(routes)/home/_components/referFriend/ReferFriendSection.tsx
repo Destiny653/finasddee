@@ -2,9 +2,11 @@
 
 import React from "react";
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 const ReferFriendSection = () => {
   const router = useRouter();
+  const t = useTranslations();
   return (
     <section className="py-8 px-8 md:py-12  bg-[#f1f1f1]">
       <div className="container mx-auto px-4">
@@ -18,9 +20,9 @@ const ReferFriendSection = () => {
               className="text-2xl md:text-3xl lg:text-4xl font-bold"
               style={{ color: "#ce9739" }}
             >
-              Refer a friend!
+              {t('home.refer.title')}
             </h2>
-            <p className="text-white">Share your referral with friends and family to get extra bonus rewards.</p>
+            <p className="text-white">{t('home.refer.description')}</p>
           </div>
 
           {/* Button */}
@@ -34,7 +36,7 @@ const ReferFriendSection = () => {
                 backgroundColor: "transparent",
               }}
             >
-                Learn more
+                {t('home.refer.cta')}
             </button>
           </div>
         </div>
