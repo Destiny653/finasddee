@@ -2,13 +2,39 @@
   "nav.sendMoney": "Send Money",
   "nav.trackTransfer": "Track Transfer",
   "nav.findLocation": "Find Location",
+
   "auth.login": "Login",
   "auth.register": "Register",
+
   "track.title": "Track Transaction",
   "track.placeholder": "Enter Reference ID (e.g. REF-12345678)",
   "track.search": "Search",
   "track.status": "Status",
   "track.details": "Details",
+  "track.date.today": "today",
+  "track.date.yesterday": "yesterday",
+  "track.loading": "Loading...",
+  "track.errors.emptyRef": "Please enter a Reference ID",
+  "track.errors.requestFailed": "Request failed ({status})",
+  "track.errors.upstreamFail": "Request failed at upstream (status FAIL)",
+  "track.statusFlow.sent": "Sent",
+  "track.statusFlow.processing": "Processing",
+  "track.statusFlow.available": "Available",
+  "track.statusFlow.received": "Received",
+  "track.detailsLabels.responseId": "Response ID",
+  "track.detailsLabels.responseStatus": "Response Status",
+  "track.detailsLabels.transactionRef": "Transaction Ref",
+  "track.detailsLabels.benefRef": "Benef Ref",
+  "track.detailsLabels.agentRef": "Agent Ref",
+  "track.detailsLabels.status": "Status",
+  "track.detailsLabels.complianceRequired": "Compliance Required",
+  "track.detailsLabels.complianceChecked": "Compliance Checked",
+  "track.detailsLabels.extComplianceRequired": "Ext Compliance Required",
+  "track.detailsLabels.extComplianceChecked": "Ext Compliance Checked",
+  "track.detailsLabels.errorReason": "Error Reason",
+  "track.detailsLabels.errorDetails": "Error Details",
+  "track.detailsLabels.deletedReason": "Deleted Reason",
+
   "home": {
     "hero": {
       "subtitle": "A better way to",
@@ -44,7 +70,10 @@
         "2": "Real-time transaction tracking",
         "3": "Convenient and fast transfers"
       },
-      "store": {"google": "Get it on Google Play", "apple": "Download on the App Store"}
+      "store": {
+        "google": "Get it on Google Play",
+        "apple": "Download on the App Store"
+      }
     },
     "faq": {
       "title": "Frequently Asked Questions",
@@ -109,6 +138,160 @@
     "sending": {
       "title": "Send money internationally from your location",
       "sendFrom": "Send from"
+    }
+  },
+
+  "contact": {
+    "breadcrumb": {"home": "Home", "current": "Contact Us"},
+    "header": {"title": "Contact Us"},
+    "address": {
+      "title": "Finasddee Inc.",
+      "line1": "74 West Street, Sittingbourne Kent",
+      "line2": "ME10 1AN"
+    },
+    "phone": {
+      "title": "Telephone",
+      "primary": "+44 7441 426016",
+      "secondary": "+44 7441 426016"
+    },
+    "inquiries": {"title": "Business Inquiries"},
+    "social": {
+      "title": "Get in touch",
+      "subtitle": "Connect with us on social media.",
+      "links": {
+        "facebook": "Facebook",
+        "twitter": "Twitter",
+        "google": "Google",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram"
+      }
+    },
+    "support": {
+      "heroTitle": "Awesome Customer Support",
+      "heroSubtitle": "Have you any query? Don't worry. We have great people ready to help you whenever you need it.",
+      "cta": "Find out more"
+    }
+  },
+  "routes": {
+    "common": {
+      "breadcrumb": {"home": "Home"}
+    },
+    "branches": {
+      "header": "Our Branches & Cash Points",
+      "sidebar": {
+        "send": "Send with FINASDDEE Credit Line",
+        "branches": "Our Branches & Cash Points",
+        "contact": "Contact Us",
+        "faqs": "FAQs"
+      },
+      "requestCall": "REQUEST A CALL BACK"
+    },
+    "help": {
+      "hero": {
+        "title": "How can we help you?",
+        "searchPlaceholder": "Search for answer..."
+      },
+      "topics": {
+        "account": "My Account",
+        "payment": "Payment",
+        "security": "Security",
+        "paymentMethods": "Payment Methods",
+        "seeArticles": "See articles"
+      },
+      "popular": {
+        "title": "Popular Topics",
+        "subtitle": "Lisque persius interesset his et, in quot quidam persequeris."
+      },
+      "faq": {
+        "1": {"q": "I forgot the password for my account.", "a": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "2": {"q": "How do I withdraw funds from my account?", "a": "Iisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "3": {"q": "How do I link bank account to my account?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "4": {"q": "How do I confirm the email address on my account?", "a": "Iisque Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "5": {"q": "How do I receive payments?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "6": {"q": "How Can I View My Payments History?", "a": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "7": {"q": "Where is my refund?", "a": "Iisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "8": {"q": "How do I request payments or send an invoice?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "9": {"q": "Forgot my password! What next?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "10": {"q": "Closing Your Account", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."}
+      },
+      "cantFind": {
+        "title": "Can't find what you're looking for?",
+        "text": "We want to answer all of your queries. Get in touch and we'll get back to you as soon as we can.",
+        "cta": "Contact us"
+      },
+      "tech": {
+        "title": "Technical questions",
+        "text": "Have some technical questions? Hit us up on live chat or whatever.",
+        "cta": "Click here"
+      }
+    },
+    "policy": {
+      "title": "Policy",
+      "subtitle": "Our policies and terms",
+      "footer": {
+        "title": "Still have questions?",
+        "text": "If you have any further questions, please don't hesitate to contact us.",
+        "cta": "Contact us"
+      },
+      "privacy": {"title": "Privacy Policy"},
+      "cookie": {"title": "Cookies Policy"},
+      "userAgreement": {"title": "User Agreement"}
+    },
+    "sending": {
+      "title": "Sending Countries",
+      "subtitle": "We support money transfers from these countries. Select your location to get started.",
+      "dialCodeLabel": "Dial Code",
+      "cta": {
+        "title": "Ready to Send Money?",
+        "subtitle": "Choose your sending country and start your secure money transfer today.",
+        "getStarted": "Get Started"
+      },
+      "stats": {
+        "countries": "Sending Countries",
+        "support": "Customer Support",
+        "trusted": "Trusted Service"
+      }
+    },
+    "receiving": {
+      "title": "Receiving Countries",
+      "subtitle": "Send money to these countries safely and securely. Choose your destination to see transfer options.",
+      "dialCodeLabel": "Dial Code",
+      "cta": {
+        "title": "Send Money Worldwide",
+        "subtitle": "Choose your receiving country and start sending money to your loved ones today with competitive rates and fast delivery.",
+        "sendNow": "Send Money Now",
+        "checkRates": "Check Rates"
+      },
+      "features": {
+        "bestRates": {"title": "Best Exchange Rates", "desc": "Get competitive rates with transparent fees and no hidden charges."},
+        "fastTransfer": {"title": "Fast Transfer", "desc": "Send money instantly or within minutes to most countries."},
+        "secureReliable": {"title": "Secure & Reliable", "desc": "Bank-level security with 24/7 customer support and tracking."}
+      },
+      "stats": {
+        "receivingCountries": "Receiving Countries",
+        "totalCountries": "Total Countries",
+        "support": "Customer Support",
+        "trusted": "Trusted Service"
+      }
+    },
+    "footer": {
+      "tagline": "Finasddee sends and receives in 8 countries.",
+      "info": {
+        "title": "Information",
+        "howItWorks": "How It Works",
+        "sendingCountries": "Sending Countries",
+        "receivingCountries": "Receiving Countries",
+        "faq": "FAQ"
+      },
+      "support": {
+        "title": "Help and Support",
+        "contact": "Contact Us",
+        "userAgreement": "User Agreement",
+        "privacyPolicy": "Privacy Policy",
+        "cookiePolicy": "Cookie Policy"
+      },
+      "copyright": "Copyright {year} Finasddee. All Rights Reserved."
     }
   }
 }

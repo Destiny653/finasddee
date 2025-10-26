@@ -1,5 +1,5 @@
 import { useQuery, useMutation } from '@tanstack/react-query'
-import { senderCountries, receiverCountries, testimonials, faqs } from './data'
+import { senderCountries, receiverCountries, testimonials, faqs, faqsLocalized } from './data'
 import { SendMoneyForm } from './schemas'
 
 // Mock API functions
@@ -59,10 +59,11 @@ export const useTestimonials = () => {
   })
 }
 
-export const useFAQs = () => {
+export const useFAQs = (locale: string = 'en') => {
+  const norm = (locale || 'en').toLowerCase().split('-')[0]
   return useQuery({
-    queryKey: ['faqs'],
-    queryFn: () => Promise.resolve(faqs),
+    queryKey: ['faqs', norm],
+    queryFn: () => Promise.resolve(faqsLocalized[norm] ?? faqsLocalized['en'] ?? faqs),
   })
 }
 

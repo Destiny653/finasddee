@@ -90,14 +90,14 @@ const TrackTransactionPage = () => {
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate() - 1);
 
-    if (date.toDateString() === today.toDateString()) return 'today';
-    if (date.toDateString() === yesterday.toDateString()) return 'yesterday';
+    if (date.toDateString() === today.toDateString()) return t('track.date.today');
+    if (date.toDateString() === yesterday.toDateString()) return t('track.date.yesterday');
     return date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
   };
 
   const handleSearch = async () => {
     if (!refId.trim()) {
-      setError('Please enter a Reference ID');
+      setError(t('track.errors.emptyRef'));
       return;
     }
 
@@ -118,7 +118,7 @@ const TrackTransactionPage = () => {
       const text = await res.text();
 
       if (!res.ok) {
-        setRequestError(`Request failed (${res.status})`);
+        setRequestError(t('track.errors.requestFailed', {status: res.status}))
         return;
       }
 
@@ -156,7 +156,7 @@ const TrackTransactionPage = () => {
 
       // Handle top-level response FAIL
       if (response_status.toUpperCase() !== 'SUCCESS') {
-        setResponseFail(result.error_reason || 'Request failed at upstream (status FAIL)');
+        setResponseFail(result.error_reason || t('track.errors.upstreamFail'));
         setApiResult(result);
         return;
       }
@@ -208,7 +208,7 @@ const TrackTransactionPage = () => {
         <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
           <Check size={10} className="text-white" />
         </div>
-        <span className="text-green-600 font-medium">Sent</span>
+        <span className="text-green-600 font-medium">{t('track.statusFlow.sent')}</span>
       </div>
 
       {/* Line */}
@@ -227,7 +227,7 @@ const TrackTransactionPage = () => {
           transaction?.status === 'processing' || transaction?.status === 'available' || transaction?.status === 'received'
             ? 'text-green-600' : 'text-gray-400'
         }`}>
-          Processing
+          {t('track.statusFlow.processing')}
         </span>
       </div>
 
@@ -244,7 +244,7 @@ const TrackTransactionPage = () => {
         <span className={`font-medium ${
           transaction?.status === 'available' || transaction?.status === 'received' ? 'text-green-600' : 'text-gray-400'
         }`}>
-          Available
+          {t('track.statusFlow.available')}
         </span>
       </div>
 
@@ -261,7 +261,7 @@ const TrackTransactionPage = () => {
         <span className={`font-medium ${
           transaction?.status === 'received' ? 'text-green-600' : 'text-gray-400'
         }`}>
-          Received
+          {t('track.statusFlow.received')}
         </span>
       </div>
     </div>
@@ -291,7 +291,7 @@ const TrackTransactionPage = () => {
                 {t('track.search')}
               </button>
               {loading && (
-                <span className="ml-3 text-gray-500">Loading...</span>
+                <span className="ml-3 text-gray-500">{t('track.loading')}</span>
               )}
             </div>
 
@@ -319,24 +319,24 @@ const TrackTransactionPage = () => {
               <div className="mt-8 border-t pt-6">
                 <h3 className="text-xl font-semibold mb-4">{t('track.details')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  <div><span className="text-gray-500">Response ID:</span> <span className="font-medium">{apiResult.response_id || '-'}</span></div>
-                  <div><span className="text-gray-500">Response Status:</span> <span className="font-medium">{apiResult.response_status || '-'}</span></div>
-                  <div><span className="text-gray-500">Transaction Ref:</span> <span className="font-medium">{apiResult.trans_ref || '-'}</span></div>
-                  <div><span className="text-gray-500">Benef Ref:</span> <span className="font-medium">{apiResult.benef_trans_ref || '-'}</span></div>
-                  <div><span className="text-gray-500">Agent Ref:</span> <span className="font-medium">{apiResult.agent_trans_ref || '-'}</span></div>
-                  <div><span className="text-gray-500">Status:</span> <span className="font-medium">{apiResult.status || '-'}</span></div>
-                  <div><span className="text-gray-500">Compliance Required:</span> <span className="font-medium">{apiResult.compliance_check_required || '-'}</span></div>
-                  <div><span className="text-gray-500">Compliance Checked:</span> <span className="font-medium">{apiResult.compliance_checked || '-'}</span></div>
-                  <div><span className="text-gray-500">Ext Compliance Required:</span> <span className="font-medium">{apiResult.ext_compliance_check_required || '-'}</span></div>
-                  <div><span className="text-gray-500">Ext Compliance Checked:</span> <span className="font-medium">{apiResult.ext_compliance_checked || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.responseId')}:</span> <span className="font-medium">{apiResult.response_id || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.responseStatus')}:</span> <span className="font-medium">{apiResult.response_status || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.transactionRef')}:</span> <span className="font-medium">{apiResult.trans_ref || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.benefRef')}:</span> <span className="font-medium">{apiResult.benef_trans_ref || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.agentRef')}:</span> <span className="font-medium">{apiResult.agent_trans_ref || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.status')}:</span> <span className="font-medium">{apiResult.status || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.complianceRequired')}:</span> <span className="font-medium">{apiResult.compliance_check_required || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.complianceChecked')}:</span> <span className="font-medium">{apiResult.compliance_checked || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.extComplianceRequired')}:</span> <span className="font-medium">{apiResult.ext_compliance_check_required || '-'}</span></div>
+                  <div><span className="text-gray-500">{t('track.detailsLabels.extComplianceChecked')}:</span> <span className="font-medium">{apiResult.ext_compliance_checked || '-'}</span></div>
                   {apiResult.error_reason && (
-                    <div className="md:col-span-2"><span className="text-gray-500">Error Reason:</span> <span className="font-medium">{apiResult.error_reason}</span></div>
+                    <div className="md:col-span-2"><span className="text-gray-500">{t('track.detailsLabels.errorReason')}:</span> <span className="font-medium">{apiResult.error_reason}</span></div>
                   )}
                   {apiResult.error_details && (
-                    <div className="md:col-span-2"><span className="text-gray-500">Error Details:</span> <span className="font-medium">{apiResult.error_details}</span></div>
+                    <div className="md:col-span-2"><span className="text-gray-500">{t('track.detailsLabels.errorDetails')}:</span> <span className="font-medium">{apiResult.error_details}</span></div>
                   )}
                   {apiResult.deleted_reason && (
-                    <div className="md:col-span-2"><span className="text-gray-500">Deleted Reason:</span> <span className="font-medium">{apiResult.deleted_reason}</span></div>
+                    <div className="md:col-span-2"><span className="text-gray-500">{t('track.detailsLabels.deletedReason')}:</span> <span className="font-medium">{apiResult.deleted_reason}</span></div>
                   )}
                 </div>
               </div>

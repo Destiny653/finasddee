@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ChevronRight, Facebook, Linkedin, Twitter, Youtube, Mail, MapPin, Phone } from "lucide-react";
 import MainHeader from "@/app/_components/layout/landingPage/navbar";
 import Footer from "@/app/_components/layout/landingPage/footer";
+import { useTranslations } from "next-intl";
 
 interface Branch {
     id: string;
@@ -16,6 +17,7 @@ interface Branch {
 }
 
 const OurBranches = () => {
+    const t = useTranslations();
     const [activeSection, setActiveSection] = useState<string | null>(null);
 
     // Sample branch data - easily add more branches here
@@ -63,10 +65,10 @@ const OurBranches = () => {
     ];
 
     const sidebarLinks = [
-        { label: "Send with FINASDDEE Credit Line", href: "/" },
-        { label: "Our Branches & Cash Points", href: "#branches", active: true },
-        { label: "Contact Us", href: "contact" },
-        { label: "FAQs", href: "faq" }
+        { label: t('routes.branches.sidebar.send'), href: "/" },
+        { label: t('routes.branches.sidebar.branches'), href: "#branches", active: true },
+        { label: t('routes.branches.sidebar.contact'), href: "contact" },
+        { label: t('routes.branches.sidebar.faqs'), href: "faq" }
     ];
 
     return (
@@ -136,15 +138,15 @@ const OurBranches = () => {
                     <div className="flex items-start justify-between">
                         <div className="flex-1 pr-4">
                             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#ce9739] mb-4">
-                                Our Branches & Cash Points
+                                {t('routes.branches.header')}
                             </h1>
                             {/* Breadcrumb */}
                             <div className="flex items-center gap-3 text-white text-sm md:text-base">
                                 <Link href="/" className="hover:text-[#ce9739] transition-colors">
-                                    Home
+                                    {t('routes.common.breadcrumb.home')}
                                 </Link>
                                 <ChevronRight className="w-4 h-4" />
-                                <span className="font-semibold">Our Branches & Cash Points</span>
+                                <span className="font-semibold">{t('routes.branches.header')}</span>
                             </div>
                         </div>
                         <div className="social-wrap">
@@ -214,7 +216,7 @@ const OurBranches = () => {
                                             </div>
                                             <div className="lg:pl-6 lg:min-w-[240px]">
                                                 <button className="request-btn w-full px-6 py-3 text-white font-semibold rounded-md inline-flex items-center justify-center gap-2">
-                                                    REQUEST A CALL BACK
+                                                    {t('routes.branches.requestCall')}
                                                     <ChevronRight className="w-5 h-5" />
                                                 </button>
                                             </div>

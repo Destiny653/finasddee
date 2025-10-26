@@ -2,13 +2,39 @@
   "nav.sendMoney": "Envoyer de l'argent",
   "nav.trackTransfer": "Suivre le transfert",
   "nav.findLocation": "Trouver un point",
+
   "auth.login": "Connexion",
   "auth.register": "Inscription",
+
   "track.title": "Suivre la transaction",
   "track.placeholder": "Entrez l'ID de référence (ex. REF-12345678)",
   "track.search": "Rechercher",
   "track.status": "Statut",
   "track.details": "Détails",
+  "track.date.today": "aujourd'hui",
+  "track.date.yesterday": "hier",
+  "track.loading": "Chargement...",
+  "track.errors.emptyRef": "Veuillez saisir un identifiant de référence",
+  "track.errors.requestFailed": "Requête échouée ({status})",
+  "track.errors.upstreamFail": "Échec en amont (statut FAIL)",
+  "track.statusFlow.sent": "Envoyé",
+  "track.statusFlow.processing": "En cours de traitement",
+  "track.statusFlow.available": "Disponible",
+  "track.statusFlow.received": "Reçu",
+  "track.detailsLabels.responseId": "ID de réponse",
+  "track.detailsLabels.responseStatus": "Statut de la réponse",
+  "track.detailsLabels.transactionRef": "Réf. transaction",
+  "track.detailsLabels.benefRef": "Réf. bénéficiaire",
+  "track.detailsLabels.agentRef": "Réf. agent",
+  "track.detailsLabels.status": "Statut",
+  "track.detailsLabels.complianceRequired": "Conformité requise",
+  "track.detailsLabels.complianceChecked": "Conformité vérifiée",
+  "track.detailsLabels.extComplianceRequired": "Conformité externe requise",
+  "track.detailsLabels.extComplianceChecked": "Conformité externe vérifiée",
+  "track.detailsLabels.errorReason": "Raison de l'erreur",
+  "track.detailsLabels.errorDetails": "Détails de l'erreur",
+  "track.detailsLabels.deletedReason": "Raison de suppression",
+
   "home": {
     "hero": {
       "subtitle": "Une meilleure façon de",
@@ -44,7 +70,10 @@
         "2": "Suivi des transactions en temps réel",
         "3": "Transferts pratiques et rapides"
       },
-      "store": {"google": "Disponible sur Google Play", "apple": "Télécharger sur l'App Store"}
+      "store": {
+        "google": "Disponible sur Google Play",
+        "apple": "Télécharger sur l'App Store"
+      }
     },
     "faq": {
       "title": "Foire aux questions",
@@ -109,6 +138,160 @@
     "sending": {
       "title": "Envoyez de l'argent à l'international depuis votre pays",
       "sendFrom": "Envoyer depuis"
+    }
+  },
+
+  "contact": {
+    "breadcrumb": {"home": "Accueil", "current": "Contactez-nous"},
+    "header": {"title": "Contactez-nous"},
+    "address": {
+      "title": "Finasddee Inc.",
+      "line1": "74 West Street, Sittingbourne Kent",
+      "line2": "ME10 1AN"
+    },
+    "phone": {
+      "title": "Téléphone",
+      "primary": "+44 7441 426016",
+      "secondary": "+44 7441 426016"
+    },
+    "inquiries": {"title": "Demandes commerciales"},
+    "social": {
+      "title": "Entrer en contact",
+      "subtitle": "Retrouvez-nous sur les réseaux sociaux.",
+      "links": {
+        "facebook": "Facebook",
+        "twitter": "Twitter",
+        "google": "Google",
+        "linkedin": "LinkedIn",
+        "youtube": "YouTube",
+        "instagram": "Instagram"
+      }
+    },
+    "support": {
+      "heroTitle": "Un support client exceptionnel",
+      "heroSubtitle": "Vous avez une question ? Pas d'inquiétude. Notre équipe est là pour vous aider à tout moment.",
+      "cta": "En savoir plus"
+    }
+  },
+  "routes": {
+    "common": {
+      "breadcrumb": {"home": "Accueil"}
+    },
+    "branches": {
+      "header": "Nos agences et points de retrait",
+      "sidebar": {
+        "send": "Envoyer avec FINASDDEE Credit Line",
+        "branches": "Nos agences et points de retrait",
+        "contact": "Contactez-nous",
+        "faqs": "FAQ"
+      },
+      "requestCall": "DEMANDER UN RAPPEL"
+    },
+    "help": {
+      "hero": {
+        "title": "Comment pouvons-nous vous aider ?",
+        "searchPlaceholder": "Rechercher une réponse..."
+      },
+      "topics": {
+        "account": "Mon compte",
+        "payment": "Paiement",
+        "security": "Sécurité",
+        "paymentMethods": "Moyens de paiement",
+        "seeArticles": "Voir les articles"
+      },
+      "popular": {
+        "title": "Sujets populaires",
+        "subtitle": "Lisque persius interesset his et, in quot quidam persequeris."
+      },
+      "faq": {
+        "1": {"q": "J'ai oublié le mot de passe de mon compte.", "a": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "2": {"q": "Comment retirer des fonds de mon compte ?", "a": "Iisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "3": {"q": "Comment lier un compte bancaire à mon compte ?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "4": {"q": "Comment confirmer l'adresse e-mail de mon compte ?", "a": "Iisque Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "5": {"q": "Comment recevoir des paiements ?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "6": {"q": "Comment voir l'historique de mes paiements ?", "a": "Lisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "7": {"q": "Où est mon remboursement ?", "a": "Iisque persius interesset his et, in quot quidam persequeris vim, ad mea essent possim iriure. Mutat tacimates id sit. Ridens mediocritatem ius an, eu nec magna imperdiet."},
+        "8": {"q": "Comment demander des paiements ou envoyer une facture ?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "9": {"q": "Mot de passe oublié ! Et ensuite ?", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."},
+        "10": {"q": "Clôturer votre compte", "a": "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid."}
+      },
+      "cantFind": {
+        "title": "Vous ne trouvez pas ce que vous cherchez ?",
+        "text": "Nous souhaitons répondre à toutes vos questions. Contactez-nous et nous vous répondrons dès que possible.",
+        "cta": "Nous contacter"
+      },
+      "tech": {
+        "title": "Questions techniques",
+        "text": "Vous avez des questions techniques ? Contactez-nous via le chat en direct ou autre.",
+        "cta": "Cliquez ici"
+      }
+    },
+    "faq": {
+      "header": {
+        "title": "Foire aux questions",
+        "subtitle": "Vous ne trouvez pas ici ? Consultez notre",
+        "link": "Centre d'aide"
+      }
+    },
+    "policy": {
+      "privacy": { "title": "Politique de confidentialité" },
+      "cookie": { "title": "Politique de cookies" },
+      "userAgreement": { "title": "Accord d'utilisation" }
+    },
+    "sending": {
+      "title": "Pays d’envoi",
+      "subtitle": "Nous prenons en charge les transferts d’argent depuis ces pays. Sélectionnez votre localisation pour commencer.",
+      "dialCodeLabel": "Indicatif",
+      "cta": {
+        "title": "Prêt à envoyer de l’argent ?",
+        "subtitle": "Choisissez votre pays d’envoi et lancez votre transfert sécurisé dès aujourd’hui.",
+        "getStarted": "Commencer"
+      },
+      "stats": {
+        "countries": "Pays d’envoi",
+        "support": "Support client",
+        "trusted": "Service de confiance"
+      }
+    },
+    "receiving": {
+      "title": "Pays de réception",
+      "subtitle": "Envoyez de l’argent vers ces pays en toute sécurité. Choisissez votre destination pour voir les options de transfert.",
+      "dialCodeLabel": "Indicatif",
+      "cta": {
+        "title": "Envoyer de l’argent dans le monde",
+        "subtitle": "Choisissez le pays de réception et envoyez de l’argent à vos proches dès aujourd’hui, avec des tarifs compétitifs et une livraison rapide.",
+        "sendNow": "Envoyer maintenant",
+        "checkRates": "Voir les tarifs"
+      },
+      "features": {
+        "bestRates": {"title": "Meilleurs taux de change", "desc": "Bénéficiez de taux compétitifs, de frais transparents et sans coûts cachés."},
+        "fastTransfer": {"title": "Transfert rapide", "desc": "Envoyez de l’argent instantanément ou en quelques minutes vers la plupart des pays."},
+        "secureReliable": {"title": "Sécurisé et fiable", "desc": "Sécurité de niveau bancaire, assistance 24/7 et suivi."}
+      },
+      "stats": {
+        "receivingCountries": "Pays de réception",
+        "totalCountries": "Nombre total de pays",
+        "support": "Support client",
+        "trusted": "Service de confiance"
+      }
+    },
+    "footer": {
+      "tagline": "Finasddee envoie et reçoit dans 8 pays.",
+      "info": {
+        "title": "Informations",
+        "howItWorks": "Comment ça marche",
+        "sendingCountries": "Pays d’envoi",
+        "receivingCountries": "Pays de réception",
+        "faq": "FAQ"
+      },
+      "support": {
+        "title": "Aide et support",
+        "contact": "Contactez-nous",
+        "userAgreement": "Accord d'utilisation",
+        "privacyPolicy": "Politique de confidentialité",
+        "cookiePolicy": "Politique de cookies"
+      },
+      "copyright": "Copyright © {year} Finasddee. Tous droits réservés."
     }
   }
 }
