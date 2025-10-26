@@ -181,6 +181,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import AuthModal from '@/app/_components/AuthModal'
 import { handleScroll } from '@/app/_utils/smoothScoll'
+import LanguageSwitcher from '@/app/_components/LanguageSwitcher'
 
 
 type AuthFormType = 'signin' | 'signup' | 'register'
@@ -245,6 +246,7 @@ export function PageHeader() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden lg:flex items-center space-x-6 text-base">
+            <LanguageSwitcher />
             <Link
               href="https://finasddee-test-orm.remit.by/en"
               className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 font-medium transition-colors"
@@ -339,6 +341,9 @@ export function PageHeader() {
           </nav>
           <div className="p-4 border-t">
             <div className="flex flex-col space-y-2">
+              <div className="mb-2">
+                <LanguageSwitcher />
+              </div>
               <Link
                 href="https://finasddee-test-orm.remit.by/en"
                 className="inline-flex items-center justify-center rounded-[50px] bg-[#ce9739] text-white hover:bg-[#e9a907] h-10 px-6 text-sm font-medium transition-colors w-full"

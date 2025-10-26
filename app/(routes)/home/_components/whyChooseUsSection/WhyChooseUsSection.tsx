@@ -2,27 +2,12 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CircleCheck } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
-const features = [
-    {
-        title: 'Multiple countries',
-        desc: 'Send money to multiple countries conveniently.',
-    },
-    {
-        title: 'Lower fees',
-        desc: 'We work to keep our fees among the lowest.',
-    },
-    {
-        title: 'Easy to use',
-        desc: 'A clean, intuitive experience across devices.',
-    },
-    {
-        title: 'Faster payments',
-        desc: 'Recipients typically receive funds within minutes.',
-    },
-];
+const features = [1, 2, 3, 4] as const;
 
 const WhyChooseUsSection = () => {
+    const t = useTranslations();
     return (
         <section className="relative overflow-hidden" style={{
             paddingBottom: '4rem',
@@ -35,11 +20,11 @@ const WhyChooseUsSection = () => {
                     <section className=" py-16">
                     <div className="container mx-auto px-4">
                         <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-12">
-                            Why choose Finasddee?
+                            {t('home.why.title')}
                         </h2>
                         <div className="max-w-6xl mx-auto">
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                            {features.map((f, idx) => (
+                            {features.map((n, idx) => (
                                 <div
                                     key={idx}
                                     className="group relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm overflow-hidden transition-transform duration-200 ease-out hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02]"
@@ -55,8 +40,8 @@ const WhyChooseUsSection = () => {
                                             <CircleCheck className="text-[#001E40]" size={24} />
                                         </div>
                                         <div>
-                                            <h3 className="text-lg font-semibold text-gray-900 mb-1">{f.title}</h3>
-                                            <p className="text-sm text-gray-600 leading-6">{f.desc}</p>
+                                            <h3 className="text-lg font-semibold text-gray-900 mb-1">{t(`home.why.features.${n}.title`)}</h3>
+                                            <p className="text-sm text-gray-600 leading-6">{t(`home.why.features.${n}.desc`)}</p>
                                         </div>
                                     </div>
                                 </div>

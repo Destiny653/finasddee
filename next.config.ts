@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+import createNextIntlPlugin from 'next-intl/plugin';
+import type {NextConfig} from 'next';
+
+const withNextIntl = createNextIntlPlugin('./next-intl.config.mjs');
 
 const nextConfig: NextConfig = {
-    /* config options here */
+  experimental: {
+    turbo: {}, // Keep this for Turbopack
+  },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

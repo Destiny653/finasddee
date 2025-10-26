@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import PageHeader from '@/app/_components/layout/header/PageHeader';
 import LandingPageFooter from '@/app/_components/layout/landingPage/footer';
+import { useTranslations } from 'next-intl';
 
 // Define interface for raw transaction data from localStorage
 interface RawTransaction {
@@ -57,6 +58,7 @@ interface Transaction {
 }
 
 const TrackTransactionPage = () => {
+  const t = useTranslations();
   const [refId, setRefId] = useState('');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [error, setError] = useState('');
@@ -272,12 +274,12 @@ const TrackTransactionPage = () => {
         
         <div className="max-w-4xl mx-auto my-8 min-h-screen p-4 md:p-6">
           <div className="bg-white rounded-lg p-6">
-            <h1 className="text-2xl font-semibold mb-6">Track Transaction</h1>
+            <h1 className="text-2xl font-semibold mb-6">{t('track.title')}</h1>
 
             <div className="mb-6">
               <input
                 type="text"
-                placeholder="Enter Reference ID (e.g. REF-12345678)"
+                placeholder={t('track.placeholder')}
                 value={refId}
                 onChange={(e) => setRefId(e.target.value)}
                 className="w-full p-3 border border-gray-300 outline-0 bg-gray-100 md:py-4 rounded-lg mb-3"
@@ -286,7 +288,7 @@ const TrackTransactionPage = () => {
                 onClick={handleSearch}
                 className="bg-[#b8860b] text-white px-10 py-4 rounded-lg hover:bg-[#b8860b]"
               >
-                Search
+                {t('track.search')}
               </button>
               {loading && (
                 <span className="ml-3 text-gray-500">Loading...</span>
@@ -303,7 +305,7 @@ const TrackTransactionPage = () => {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Check size={24} className="text-green-600" />
                   </div>
-                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">Status</h2>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">{t('track.status')}</h2>
                   <p className="text-gray-600">{transaction.status}</p>
                 </div>
 
@@ -315,7 +317,7 @@ const TrackTransactionPage = () => {
 
             {apiResult && (
               <div className="mt-8 border-t pt-6">
-                <h3 className="text-xl font-semibold mb-4">Details</h3>
+                <h3 className="text-xl font-semibold mb-4">{t('track.details')}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div><span className="text-gray-500">Response ID:</span> <span className="font-medium">{apiResult.response_id || '-'}</span></div>
                   <div><span className="text-gray-500">Response Status:</span> <span className="font-medium">{apiResult.response_status || '-'}</span></div>

@@ -1,0 +1,114 @@
+{
+  "nav.sendMoney": "Envoyer de l'argent",
+  "nav.trackTransfer": "Suivre le transfert",
+  "nav.findLocation": "Trouver un point",
+  "auth.login": "Connexion",
+  "auth.register": "Inscription",
+  "track.title": "Suivre la transaction",
+  "track.placeholder": "Entrez l'ID de référence (ex. REF-12345678)",
+  "track.search": "Rechercher",
+  "track.status": "Statut",
+  "track.details": "Détails",
+  "home": {
+    "hero": {
+      "subtitle": "Une meilleure façon de",
+      "title": "Envoyer de l'argent",
+      "tagline": "Vous avez l'argent. Nous avons la vitesse."
+    },
+    "how": {
+      "title": "Comment ça marche",
+      "description": "Finasddee est le moyen le plus rapide d'envoyer de l'argent à la famille, aux amis et aux entreprises, ici et à l'étranger",
+      "steps": {
+        "1": {"title": "Inscription gratuite", "desc": "Inscrivez-vous en ligne ou via notre application mobile. Préparez votre adresse e-mail."},
+        "2": {"title": "Sélectionnez le pays", "desc": "Choisissez le pays de destination et le montant. Voyez les taux et frais en toute transparence."},
+        "3": {"title": "Ajoutez un bénéficiaire", "desc": "Ajoutez un portefeuille mobile ou un compte bancaire. Choisissez aussi parmi vos bénéficiaires précédents."},
+        "4": {"title": "Vérifiez votre identité", "desc": "Effectuez la vérification KYC standard avec votre pièce d'identité."},
+        "5": {"title": "Payez votre transfert", "desc": "Confirmez le montant, les frais et le total; vous savez toujours ce que vous payez."},
+        "6": {"title": "Suivez le transfert", "desc": "Suivez le statut et gérez vos bénéficiaires et transferts dans votre compte."}
+      }
+    },
+    "why": {
+      "title": "Pourquoi choisir Finasddee ?",
+      "features": {
+        "1": {"title": "De nombreux pays", "desc": "Envoyez de l'argent vers de nombreux pays facilement."},
+        "2": {"title": "Frais réduits", "desc": "Nos frais figurent parmi les plus bas."},
+        "3": {"title": "Simplicité d'utilisation", "desc": "Une expérience claire et intuitive sur tous les appareils."},
+        "4": {"title": "Paiements rapides", "desc": "Les bénéficiaires reçoivent généralement les fonds en quelques minutes."}
+      }
+    },
+    "app": {
+      "title": "Les transferts à portée de main avec l'application FINASDDEE",
+      "description": "Transformez votre expérience financière avec notre puissante application mobile. Envoyez de l'argent dans le monde entier, suivez vos transactions en temps réel et gérez vos finances en toute sécurité — depuis votre smartphone.",
+      "bullets": {
+        "1": "Transferts d'argent sécurisés dans le monde",
+        "2": "Suivi des transactions en temps réel",
+        "3": "Transferts pratiques et rapides"
+      },
+      "store": {"google": "Disponible sur Google Play", "apple": "Télécharger sur l'App Store"}
+    },
+    "faq": {
+      "title": "Foire aux questions",
+      "subtitle": "Vous ne trouvez pas ici ? Consultez notre",
+      "link": "Centre d'aide",
+      "seeMore": "Voir plus de FAQ",
+      "items": {
+        "1": {
+          "q": "1. Comment envoyer de l'argent vers un compte bancaire à l'étranger ?",
+          "a": "Vous devez d'abord vous inscrire chez nous ! Nous vous enverrons ensuite un e-mail pour activer votre compte en ligne. Après l'activation, vous pouvez commencer à envoyer de l'argent vers presque n'importe quel compte bancaire dans de nombreux pays — certaines restrictions peuvent s'appliquer.\n\nVous avez simplement besoin des coordonnées bancaires (comme le code SWIFT/BIC et/ou l'IBAN — selon le pays du bénéficiaire)."
+        },
+        "2": {
+          "q": "2. Dois-je m'inscrire ?",
+          "a": "Oui, vous devez vous inscrire pour utiliser notre service. Cela ne prend qu'une minute et c'est GRATUIT ! Aucune obligation d'utilisation.\n\nUne fois inscrit, vous pouvez envoyer jusqu'à environ 900 $ ou 1000 € vers la plupart des pays que nous desservons.\n\nPour envoyer davantage et accéder à plus de pays et de méthodes de paiement, vous devrez vérifier votre compte Finasddee."
+        },
+        "3": {
+          "q": "3. Montant minimum et maximum ?",
+          "a": "Le montant minimum de transfert est de 10 $ ou l'équivalent dans votre devise.\n\nAprès inscription, vous pouvez envoyer un maximum de 900 $ ou 1000 € par an avant vérification du compte.\n\nUne fois votre compte vérifié, vous pourrez envoyer jusqu'à 10 000 $ par transaction par virement bancaire et un maximum de 5 000 $ par carte (plusieurs paiements carte par jour possibles)."
+        },
+        "4": {
+          "q": "4. Délais d'un virement banque-à-banque ?",
+          "a": "Selon le délai d'arrivée de vos fonds chez nous (BACS/CHAPS/carte). Une fois les fonds reçus et compensés, nous envoyons la devise au compte du bénéficiaire le jour même si c'est avant l'heure limite.\n\nNotez que les délais varient selon les devises et fuseaux horaires. La plupart des transferts prennent 2 à 3 jours pour être compensés. Vous recevrez une confirmation quand nous aurons envoyé vos fonds."
+        },
+        "5": {
+          "q": "5. Comment Finasddee me fait économiser ?",
+          "a": "Finasddee est un fournisseur indépendant de change commercial. Nous achetons la devise en gros à des 'taux de gros' et répercutons l'avantage sur nos clients. Cela peut représenter des économies de plusieurs centaines à plusieurs milliers d'euros selon le montant. Nous offrons des taux 'commerciaux' plutôt que les 'taux touristiques' des banques traditionnelles."
+        },
+        "6": {
+          "q": "6. Mon argent est-il en sécurité ?",
+          "a": "Votre argent est toujours en sécurité. Tous les fonds sont détenus sur des comptes bancaires clients au Royaume-Uni. Ces comptes sont séparés conformément à la réglementation et protègent les fonds en cas de fraude ou de faillite."
+        }
+      }
+    },
+    "form": {
+      "youSend": {"label": "Vous envoyez"},
+      "recipientGets": {"label": "Votre bénéficiaire reçoit"},
+      "selectCountry": "Sélectionner le pays",
+      "summary": {
+        "exchangeRate": "Taux de change",
+        "fees": "Nos frais",
+        "deliveryTime": "Délai de livraison",
+        "deliveryTimeValue": "En quelques minutes",
+        "totalAmount": "Montant total"
+      },
+      "cta": {"sendNow": "Envoyer maintenant", "calculating": "Calcul en cours..."},
+      "errors": {
+        "invalidAmount": "Veuillez saisir un montant valide à envoyer.",
+        "waitCalculating": "Veuillez patienter pendant le calcul des frais.",
+        "generic": "Une erreur est survenue. Veuillez réessayer."
+      }
+    },
+    "refer": {
+      "title": "Parrainez un ami !",
+      "description": "Partagez votre parrainage avec vos proches pour obtenir des bonus.",
+      "cta": "En savoir plus"
+    },
+    "receiving": {
+      "title": "Pays de réception",
+      "description": "Que vous aidiez votre famille à l'étranger, gériez des finances transfrontalières ou envoyiez des fonds d'urgence, nous vous offrons la flexibilité d'envoyer de l'argent rapidement, en toute sécurité et selon vos besoins.",
+      "card": "Envoyer de l'argent vers {country}"
+    },
+    "sending": {
+      "title": "Envoyez de l'argent à l'international depuis votre pays",
+      "sendFrom": "Envoyer depuis"
+    }
+  }
+}

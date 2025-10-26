@@ -2,8 +2,10 @@
 import DetailsStep from "@/app/(routes)/send-money/_component/steps/DetailsStep";
 import LandingPageNavBar from "@/app/_components/layout/landingPage/navbar";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const HeroSection = () => {
+    const t = useTranslations();
     return (
         <div>
             <LandingPageNavBar/>
@@ -25,10 +27,10 @@ const HeroSection = () => {
                         {/* Left content */}
                         <div className="lg:w-7/12 xl:w-7/12 text-center lg:text-left pb-6 sm:pb-8 lg:pb-0 z-40">
                             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-normal mb-3 sm:mb-4">
-                                <span className="font-light text-2xl sm:text-3xl md:text-4xl lg:text-5xl block">A better way to</span>
-                                Send Money
+                                <span className="font-light text-2xl sm:text-3xl md:text-4xl lg:text-5xl block">{t("home.hero.subtitle")}</span>
+                                {t("home.hero.title")}
                             </h2>
-                            <p className="text-base sm:text-lg md:text-xl text-white mb-4 sm:mb-6">You&apos;ve got the money. We&apos;ve got the speed.</p>
+                            <p className="text-base sm:text-lg md:text-xl text-white mb-4 sm:mb-6">{t("home.hero.tagline")}</p>
                         </div>
 
                         {/* Right form */}

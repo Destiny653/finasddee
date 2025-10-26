@@ -2,19 +2,23 @@ import type { Metadata } from "next";
 import { AppQueryProvider } from "./_components/AppQueryProvider";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
     title: "Finasddee - Money Transfer and Online Payments",
     description: "This professional design html template is for build a Money Transfer and online payments website.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const locale = await getLocale();
+    const messages = await getMessages();
     return (
-        <html lang="en" className="h-full">
+        <html lang={locale} className="h-full">
             <head>
                 <link href="/assets/images/pic/faviconRed.png" rel="icon" />
                 <meta name="description" content="This professional design html template is for build a Money Transfer and online payments website." />
@@ -37,7 +41,9 @@ export default function RootLayout({
             <body
                 className="antialiased h-full overflow-x-hidden"
             >
-                <AppQueryProvider>{children}</AppQueryProvider>
+                <NextIntlClientProvider locale={locale} messages={messages}>
+                    <AppQueryProvider>{children}</AppQueryProvider>
+                </NextIntlClientProvider>
                 <Toaster />
             </body>
         </html>

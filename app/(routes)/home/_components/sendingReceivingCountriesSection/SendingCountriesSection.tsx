@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 
 type Country = {
   code: string;
@@ -15,6 +16,7 @@ const sendFromCountries: Country[] = [
 ];
 
 const SendingCountriesSection = () => {
+  const t = useTranslations();
   return (
     <section className="py-12 md:py-16" style={{ backgroundColor: "#F7F8FC" }}>
       <div className="container mx-auto px-4">
@@ -22,7 +24,7 @@ const SendingCountriesSection = () => {
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-[#001E40] mb-3">
-              Send money internationally from your location
+              {t('home.sending.title')}
             </h2>
           </div>
 
@@ -58,7 +60,7 @@ const SendingCountriesSection = () => {
                 {/* Text Content */}
                 <div className="flex-1 text-left">
                   <p className="text-sm text-gray-500 font-medium mb-0.5">
-                    Send from
+                    {t('home.sending.sendFrom')}
                   </p>
                   <p className="text-lg md:text-xl font-semibold text-[#001E40]">
                     {country.name}

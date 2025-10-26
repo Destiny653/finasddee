@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import AuthModal from '@/app/_components/AuthModal'
 import { color } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 const HowItWorksSection = () => {
+      const t = useTranslations();
 
       const [isMenuOpen, setIsMenuOpen] = useState(false)
       const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
@@ -20,10 +22,10 @@ const HowItWorksSection = () => {
         <section className="py-16" id="how-it-works" style={{ backgroundColor: '#F7F8FC' }}>
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl lg:text-5xl text-center font-bold text-[#0b0f1a] mb-2">
-                    How It Works
+                    {t('home.how.title')}
                 </h2>
                 <p className="text-base lg:text-lg text-center text-[#4b5563] mb-10 max-w-3xl mx-auto">
-                    Finasddee is the fastest way to send money to family, friends and businesses home and abroad
+                    {t('home.how.description')}
                 </p>
 
                 {/* Timeline with numbered markers (desktop/tablet only) */}
@@ -43,12 +45,12 @@ const HowItWorksSection = () => {
                 {/* Cards */}
                 <div className="mt-4 md:mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-5">
                     {[
-                        { title: 'Sign up for free', desc: 'Register online or via our mobile app. Please have your email address ready.', icon: '🧭' },
-                        { title: 'Select country', desc: 'Choose the destination country and amount. See rates and fees transparently.', icon: '🌐' },
-                        { title: 'Add recipient', desc: 'Add mobile wallet or bank account details. Pick from previous recipients too.', icon: '👤' },
-                        { title: 'Verify your identity', desc: 'Complete standard KYC by verifying your preferred national ID.', icon: '🪪' },
-                        { title: 'Pay for your transfer', desc: 'Confirm the amount, fees and total, you always see what you pay.', icon: '💳' },
-                        { title: 'Track Sender', desc: 'Track status and manage recipients and transfers in your account.', icon: '📦' },
+                        { key: 1, icon: '🧭' },
+                        { key: 2, icon: '🌐' },
+                        { key: 3, icon: '👤' },
+                        { key: 4, icon: '🪪' },
+                        { key: 5, icon: '💳' },
+                        { key: 6, icon: '📦' },
                     ].map((s, idx) => (
                         <div key={idx} className="relative bg-white rounded-xl shadow-sm border border-gray-100 p-4">
                             {/* Mobile step badge */}
@@ -57,9 +59,9 @@ const HowItWorksSection = () => {
                                 <div className="w-9 h-9 rounded-full flex items-center justify-center text-base" style={{ backgroundColor: '#001E40', color: 'white' }}>
                                     <span>{s.icon}</span>
                                 </div>
-                                <h3 className="text-sm md:text-[15px] font-semibold text-[#111827] leading-snug">{s.title}</h3>
+                                <h3 className="text-sm md:text-[15px] font-semibold text-[#111827] leading-snug">{t(`home.how.steps.${s.key}.title`)}</h3>
                             </div>
-                            <p className="text-[13px] md:text-[14px] leading-5 text-[#4b5563]">{s.desc}</p>
+                            <p className="text-[13px] md:text-[14px] leading-5 text-[#4b5563]">{t(`home.how.steps.${s.key}.desc`)}</p>
                         </div>
                     ))}
                 </div>
