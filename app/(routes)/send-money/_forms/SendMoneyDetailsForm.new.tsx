@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState, useEffect, useCallback, useMemo, FC } from "react";
+import React, { useState, useEffect, useCallback, useMemo, FC, useRef } from "react";
 import { CustomCombobox } from "@/app/_components/CustomCombobox";
 import Image from "next/image";
 import { DollarSign } from "lucide-react";
@@ -46,13 +46,46 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState('BANK');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    
-    const derivedRate = useMemo(() => {
-        const amt = parseFloat(youSend || '0');
-        const dest = parseFloat(recipientGets || '0');
-        if (!amt || !dest) return 0;
-        return dest / amt;
-    }, [youSend, recipientGets]);
+    const [exchangeRate, setExchangeRate] = useState<number>(0);
+
+    // Function to safely extract value from API response
+    const extractValue = (result: any, key: string): string => {
+        
+        // Try direct access first
+        if (result[key] !== undefined && result[key] !== null) {
+            return String(result[key]);
+        }
+        
+        // Try _raw.resultData path
+        if (result._raw?.resultData?.[key] !== undefined && result._raw?.resultData?.[key] !== null) {
+            return String(result._raw.resultData[key]);
+        }
+        
+        // Try result.data path (some APIs use this)
+        if (result.data?.[key] !== undefined && result.data?.[key] !== null) {
+            return String(result.data[key]);
+        }
+        
+        // Try common variations of the key name
+        const variations = [
+            key.toLowerCase(),
+            key.toUpperCase(),
+            key.replace(/_/g, ''),
+            key.replace(/_/g, '-'),
+        ];
+        
+        for (const variation of variations) {
+            if (result[variation] !== undefined && result[variation] !== null) {
+                return String(result[variation]);
+            }
+            if (result._raw?.resultData?.[variation] !== undefined && result._raw?.resultData?.[variation] !== null) {
+                return String(result._raw.resultData[variation]);
+            }
+        }
+        
+        console.log(`Could not find "${key}" anywhere, returning '0'`);
+        return '0';
+    };
 
     // Function to fetch destination countries
     const fetchDestinationCountries = async () => {
@@ -70,7 +103,6 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             }
 
             const { countries } = await response.json();
-            // setCountries(countries);
             return countries;
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : 'Failed to fetch countries';
@@ -84,15 +116,25 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
     };
 
     // Function to fetch transaction charges
-    const fetchTransactionCharges = useCallback(async (amount: string) => {
-        if (!amount || parseFloat(amount) <= 0) {
+    const fetchTransactionCharges = async (amount: string) => {
+        // Skip if amount is invalid or zero
+        const parsedAmount = parseFloat(amount);
+        if (!amount || isNaN(parsedAmount) || parsedAmount <= 0) {
             setRecipientGets('0.0');
             setFees('0.0');
             setTotalToPay('0.00');
+            setExchangeRate(0);
+            return;
+        }
+
+        // Skip if we don't have required values
+        if (!selectedRecipientCountry || !selectedSendCurrency) {
             return;
         }
 
         setLoading(true);
+        setError(null); // Clear previous errors
+        
         try {
             const formData = new FormData();
             formData.append('destination_country', selectedRecipientCountry);
@@ -115,46 +157,75 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             }
 
             const result = await response.json();
-
-            setRecipientGets(result.destination_amount);
-            setFees(result.total_charges);
-            const totalAmount = (parseFloat(amount) + parseFloat(result.total_charges)).toFixed(2);
-            setTotalToPay(totalAmount);
+            
+            // Extract values using the helper function
+            const destinationAmount = extractValue(result, 'destination_amount');
+            const totalCharges = extractValue(result, 'total_charges');
+            const rate = extractValue(result, 'rate');
+            
+            // Parse the values
+            const parsedDestAmount = parseFloat(destinationAmount);
+            const parsedCharges = parseFloat(totalCharges);
+            const parsedRate = parseFloat(rate);
+            
+            
+            // Calculate total amount to pay (amount + fees)
+            const calculatedTotal = parsedAmount + (isNaN(parsedCharges) ? 0 : parsedCharges);
+            
+            
+            // Format the values
+            const formattedRecipientGets = isNaN(parsedDestAmount) ? '0.0' : parsedDestAmount.toFixed(2);
+            const formattedRate = isNaN(parsedRate) ? '0.0' : parsedRate.toFixed(2);
+            const formattedFees = isNaN(parsedCharges) ? '0.0' : parsedCharges.toFixed(2);
+            const formattedTotal = isNaN(calculatedTotal) ? '0.00' : calculatedTotal.toFixed(2);
+            
+            
+            // Update all states
+            setRecipientGets(formattedRecipientGets);
+            setFees(formattedFees);
+            setExchangeRate(parseFloat(formattedRate));
+            // setExchangeRate(isNaN(parsedRate) ? 0 : parsedRate);
+            setTotalToPay(formattedTotal);
+            
+            
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to fetch charges');
             console.error('Error fetching charges:', err);
-
-            // Reset values on error
-            setRecipientGets('0.0');
-            setFees('0.0');
-            setTotalToPay('0.00');
-            import("sonner").then(({ toast }) => {
-                toast.error(err instanceof Error ? err.message : 'Failed to calculate charges');
-            });
+            
+            // Only show error toast if it's a real error (not an abort)
+            if (!(err instanceof DOMException && err.name === 'AbortError')) {
+                const errorMessage = err instanceof Error ? err.message : 'Failed to calculate charges';
+                setError(errorMessage);
+                
+                import("sonner").then(({ toast }) => {
+                    toast.error(errorMessage);
+                });
+                
+                // Reset values on error
+                setRecipientGets('0.0');
+                setFees('0.0');
+                setTotalToPay('0.00');
+                setExchangeRate(0);
+            }
         } finally {
             setLoading(false);
         }
-    }, [selectedRecipientCountry, selectedSendCurrency]);
+    };
 
     // Debounced version of fetchTransactionCharges
-    const debouncedFetchCharges = useMemo(
-        () => {
-            const debounced = (amount: string) => {
-                const timeoutId = setTimeout(() => {
-                    fetchTransactionCharges(amount);
-                }, 1000);
-                return () => clearTimeout(timeoutId);
-            };
-            return debounced;
-        },
-        [fetchTransactionCharges]
-    );
-
-    // Update charges when amount changes
     useEffect(() => {
-        const cleanup = debouncedFetchCharges(youSend);
-        return () => cleanup();
-    }, [youSend, debouncedFetchCharges]);
+        const timeoutId = setTimeout(() => {
+            if (youSend) {
+                fetchTransactionCharges(youSend);
+            }
+        }, 1000);
+
+        return () => clearTimeout(timeoutId);
+    }, [youSend, selectedRecipientCountry, selectedSendCurrency]);
+
+    // Debug: Log state changes
+    useEffect(() => {
+        console.log('=== STATE CHANGED ===');
+    }, [fees, totalToPay, recipientGets, exchangeRate]);
 
     // Calculate if form is ready
     const isFormReady = youSend !== '' &&
@@ -352,38 +423,11 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                 </div>
             </div>
 
-            {/* <div className="mb-6">
-                <p className="form-label">Delivery method</p>
-                <div className="grid grid-cols-3 gap-3">
-                    <button
-                        type="button"
-                        className={`delivery-btn ${selectedDeliveryMethod === 'BANK' ? 'active' : ''}`}
-                        onClick={() => setSelectedDeliveryMethod('BANK')}
-                    >
-                        FINASDDEE Bank
-                    </button>
-                    <button
-                        type="button"
-                        className={`delivery-btn ${selectedDeliveryMethod === 'OTHER' ? 'active' : ''}`}
-                        onClick={() => setSelectedDeliveryMethod('OTHER')}
-                    >
-                        Other Banks
-                    </button>
-                    <button
-                        type="button"
-                        className={`delivery-btn ${selectedDeliveryMethod === 'MOBILE' ? 'active' : ''}`}
-                        onClick={() => setSelectedDeliveryMethod('MOBILE')}
-                    >
-                        Mobile wallet
-                    </button>
-                </div>
-            </div> */}
-
             <div className="border-t border-gray-200 mb-4">
                 <div className="summary-row">
                     <span>{t('home.form.summary.exchangeRate')}</span>
                     <span className="font-semibold text-gray-800">
-                        {derivedRate ? derivedRate.toFixed(4) : '—'} XAF
+                        {exchangeRate > 0 ? `${exchangeRate} XAF` : '—'}
                     </span>
                 </div>
                 <div className="summary-row">
@@ -441,7 +485,8 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
                                     selectedSenderCountry,
                                     selectedRecipientCountry,
                                     selectedSendCurrency,
-                                    selectedDeliveryMethod
+                                    selectedDeliveryMethod,
+                                    exchangeRate
                                 });
                             }
                             if (onNext) {

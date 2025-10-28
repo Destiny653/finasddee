@@ -35,25 +35,37 @@ export async function POST(request: Request) {
         }
 
         const xmlText = await response.text();
+        
         const parser = new XMLParser();
         const jsonObj = parser.parse(xmlText);
         
         // The structure might need adjustment based on the actual XML response
         const responseData = jsonObj.response || jsonObj;
         const status = responseData.status;
-
+        
         if (status === 'FAIL') {
             const message = responseData.message || 'Failed to get charges';
             return NextResponse.json({ error: message }, { status: 400 });
         }
 
+        // Extract data from the nested result object
+        const resultData = responseData.result || {};
+        
+        // Log the structure of resultData to debug
+        
         const result = {
-            destination_amount: responseData.destination_amount || '0',
-            total_charges: responseData.total_charges || '0',
-            source_currency: responseData.source_currency || '',
-            destination_currency: responseData.destination_currency || '',
-            rate: responseData.rate || '0',
+            destination_amount: resultData.destination_amount?.toString() || '0',
+            total_charges: resultData.total_charges?.toString() || '0',
+            source_currency: resultData.source_currency || '',
+            destination_currency: resultData.destination_currency || '',
+            rate: resultData.rate?.toString() || '0',
+            // Add raw data for debugging
+            _raw: {
+                responseData,
+                resultData
+            }
         };
+        
 
         return NextResponse.json(result);
     } catch (error) {
