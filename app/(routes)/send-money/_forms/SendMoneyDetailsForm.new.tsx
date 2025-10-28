@@ -54,63 +54,32 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
         return dest / amt;
     }, [youSend, recipientGets]);
 
-    // Function to fetch transaction charges
+    // Function to fetch destination countries
     const fetchDestinationCountries = async () => {
         try {
-            const credentials = {
-                username: process.env.NEXT_PUBLIC_API_USERNAME,
-                password: process.env.NEXT_PUBLIC_API_PASSWORD,
-                pin: process.env.NEXT_PUBLIC_API_PIN,
-                submit: process.env.NEXT_PUBLIC_API_SUBMIT,
-            };
-
-            if (!credentials.username || !credentials.password || !credentials.pin || !credentials.submit) {
-                import("sonner").then(({ toast }) => {
-                    toast.error('API configuration error. Please contact support.');
-                });
-                throw new Error('Missing API credentials');
-            }
-
-            const formData = new FormData();
-            Object.entries(credentials).forEach(([key, value]) => {
-                formData.append(key, value!);
-            });
-
-            const response = await fetch('https://test4.remit.by/finasddeetest/ws/country/getDestinationCountries', {
+            const response = await fetch('/api/country', {
                 method: 'POST',
-                body: formData,
-            }).catch(error => {
-                import("sonner").then(({ toast }) => {
-                    toast.error('Network error. Please check your connection.');
-                });
-                throw error;
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
 
-            const xmlText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-            const status = xmlDoc.querySelector('status')?.textContent;
-
-            if (status === 'FAIL') {
-                const message = xmlDoc.querySelector('message')?.textContent;
-                throw new Error(message || 'Failed to fetch countries');
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to fetch countries');
             }
 
-            const countryElements = xmlDoc.querySelectorAll('country');
-            const parsedCountries: CountryData[] = Array.from(countryElements).map(country => ({
-                id: country.querySelector('id')?.textContent || '',
-                name: country.querySelector('name')?.textContent || '',
-                iso_code: country.querySelector('iso_code')?.textContent || '',
-                currency: country.querySelector('currency')?.textContent || '',
-            }));
-
-            // setCountries(parsedCountries);
+            const { countries } = await response.json();
+            // setCountries(countries);
+            return countries;
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Failed to fetch countries');
+            const errorMessage = err instanceof Error ? err.message : 'Failed to fetch countries';
+            setError(errorMessage);
             console.error('Error fetching countries:', err);
             import("sonner").then(({ toast }) => {
-                toast.error('Failed to fetch available countries');
+                toast.error(errorMessage);
             });
+            throw err;
         }
     };
 
@@ -125,22 +94,7 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
 
         setLoading(true);
         try {
-            const credentials = {
-                username: process.env.NEXT_PUBLIC_API_USERNAME,
-                password: process.env.NEXT_PUBLIC_API_PASSWORD,
-                pin: process.env.NEXT_PUBLIC_API_PIN,
-                submit: process.env.NEXT_PUBLIC_API_SUBMIT,
-            };
-
-            if (!credentials.username || !credentials.password || !credentials.pin || !credentials.submit) {
-                throw new Error('Missing API credentials');
-            }
-
             const formData = new FormData();
-            Object.entries(credentials).forEach(([key, value]) => {
-                formData.append(key, value!);
-            });
-
             formData.append('destination_country', selectedRecipientCountry);
             formData.append('trans_type', 'Account');
             formData.append('payment_method', '3');
@@ -150,30 +104,17 @@ const SendMoneyDetailsForm: FC<ISendMoneyDetailsForm> = ({ onNext, onDataChange 
             formData.append('destination_currency', 'XAF');
             formData.append('source_currency', selectedSendCurrency);
 
-            const response = await fetch('https://test4.remit.by/finasddeetest/ws/transaction/getCharges', {
+            const response = await fetch('/api/transaction', {
                 method: 'POST',
                 body: formData,
-            }).catch(error => {
-                import("sonner").then(({ toast }) => {
-                    toast.error('Network error. Please check your connection.');
-                });
-                throw error;
             });
 
-            const xmlText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-            const status = xmlDoc.querySelector('status')?.textContent;
-
-            if (status === 'FAIL') {
-                const message = xmlDoc.querySelector('message')?.textContent;
-                throw new Error(message || 'Failed to get charges');
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to calculate charges');
             }
 
-            const result = {
-                destination_amount: xmlDoc.querySelector('destination_amount')?.textContent || '0',
-                total_charges: xmlDoc.querySelector('total_charges')?.textContent || '0',
-            };
+            const result = await response.json();
 
             setRecipientGets(result.destination_amount);
             setFees(result.total_charges);
